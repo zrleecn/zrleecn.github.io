@@ -5,16 +5,16 @@
   
   <title>linux常用口令 | resume.zrlee.cn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="打开文件  vi 文件 该模式是命令模式    尾行模式操作  &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改\ &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行内容设置编号\ &amp;gt">
+  <meta name="description" content="打开文件 vi 文件  该模式是命令模式    尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 \&amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 \&amp;gt; :set number/nu //给">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux常用口令">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/linux常用口令/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="打开文件  vi 文件 该模式是命令模式    尾行模式操作  &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改\ &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行内容设置编号\ &amp;gt">
-<meta property="og:updated_time" content="2017-05-11T11:56:18.965Z">
+<meta property="og:description" content="打开文件 vi 文件  该模式是命令模式    尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 \&amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 \&amp;gt; :set number/nu //给">
+<meta property="og:updated_time" content="2017-05-11T12:00:08.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux常用口令">
-<meta name="twitter:description" content="打开文件  vi 文件 该模式是命令模式    尾行模式操作  &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改\ &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行内容设置编号\ &amp;gt">
+<meta name="twitter:description" content="打开文件 vi 文件  该模式是命令模式    尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 \&amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 \&amp;gt; :set number/nu //给">
   
     <link rel="alternate" href="/atom.xml" title="resume.zrlee.cn" type="application/atom+xml">
   
@@ -92,13 +92,25 @@
         <hr>
 <ol>
 <li><p>打开文件</p>
-<p> vi 文件<br> 该模式是命令模式</p>
-</li>
+<pre><code>vi 文件 
+该模式是命令模式
+</code></pre></li>
 </ol>
 <ol>
 <li><p>尾行模式操作</p>
-<p> > :q 该模式是“尾行模式”<br> > :w    //保存已经修改的文档<br> > :wq //保存并退出<br> > :q! //强行退出，不保存修改<br>\ &gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头<br> > :set number/nu //给文件每行内容设置编号<br>\ &gt; :set nonumber/nonu //取消编号设置<br>\ &gt; :%s/bin/abcd/ //替换所有行的bin内容为abcd<br>\ &gt; :s/bin/abcd/ //替换当前行首次出现的bin为abcd<br> > :s/bin/abcd/g //替换当前行所有的bin为abcd<br>\ &gt; :n //光标跳转到n行位置<br>\ &gt; /内容 //查找指定内容</p>
-</li>
+<pre><code>&gt; :q 该模式是“尾行模式”
+&gt; :w    //保存已经修改的文档
+&gt; :wq //保存并退出
+&gt; :q! //强行退出，不保存修改
+\&gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头
+\&gt; :set number/nu //给文件每行内容设置编号
+\&gt; :set nonumber/nonu //取消编号设置
+\&gt; :%s/bin/abcd/ //替换所有行的bin内容为abcd
+\&gt; :s/bin/abcd/ //替换当前行首次出现的bin为abcd
+\&gt; :s/bin/abcd/g //替换当前行所有的bin为abcd
+\&gt; :n //光标跳转到n行位置
+\&gt; /内容 //查找指定内容
+</code></pre></li>
 </ol>
 <ol>
 <li><p>命令模式鼠标移动</p>
@@ -400,7 +412,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2kcyxbl0004ncvap2ma612q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2kd3v8m0004ucva94r3r0sd" class="article-share-link">Share</a>
       
       
     </footer>
