@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>linux常用口令 | resume.zrlee.cn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="###vi  编辑器常用口令  打开文件   vi 文件该模式是命令模式   尾行模式操作 :q 该模式是“尾行模式”:w    //保存已经修改的文档:wq //保存并退出:q! //强行退出，不保存修改:/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个//查找到文档的最后，又会跑到文档的开头:set number/nu //给文件每行内容设置编号:set nonumber/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux常用口令">
+<meta property="og:url" content="http://yoursite.com/2017/05/11/linux常用口令/index.html">
+<meta property="og:site_name" content="resume.zrlee.cn">
+<meta property="og:description" content="###vi  编辑器常用口令  打开文件   vi 文件该模式是命令模式   尾行模式操作 :q 该模式是“尾行模式”:w    //保存已经修改的文档:wq //保存并退出:q! //强行退出，不保存修改:/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个//查找到文档的最后，又会跑到文档的开头:set number/nu //给文件每行内容设置编号:set nonumber/">
+<meta property="og:updated_time" content="2017-05-11T11:36:32.409Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux常用口令">
+<meta name="twitter:description" content="###vi  编辑器常用口令  打开文件   vi 文件该模式是命令模式   尾行模式操作 :q 该模式是“尾行模式”:w    //保存已经修改的文档:wq //保存并退出:q! //强行退出，不保存修改:/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个//查找到文档的最后，又会跑到文档的开头:set number/nu //给文件每行内容设置编号:set nonumber/">
+  
+    <link rel="alternate" href="/atom.xml" title="resume.zrlee.cn" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">resume.zrlee.cn</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-linux常用口令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/11/linux常用口令/" class="article-date">
+  <time datetime="2017-05-10T16:00:00.000Z" itemprop="datePublished">2017-05-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux常用口令
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p>###vi  编辑器常用口令</p>
+<ol>
+<li>打开文件</li>
+</ol>
+<blockquote>
+<p>vi 文件<br>该模式是命令模式</p>
+</blockquote>
+<ol>
+<li>尾行模式操作<blockquote>
+<p>:q 该模式是“尾行模式”<br>:w    //保存已经修改的文档<br>:wq //保存并退出<br>:q! //强行退出，不保存修改<br>:/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个<br>//查找到文档的最后，又会跑到文档的开头<br>:set number/nu //给文件每行内容设置编号<br>:set nonumber/nonu //取消编号设置<br>:%s/bin/abcd/ //替换所有行的bin内容为abcd<br>:s/bin/abcd/ //替换当前行首次出现的bin为abcd<br>:s/bin/abcd/g //替换当前行所有的bin为abcd<br>:n //光标跳转到n行位置<br>/内容 //查找指定内容</p>
+</blockquote>
+</li>
+<li><p>命令模式鼠标移动</p>
+<p>   字符移动：上、下、左、右 键盘<br>   h(左) j(下) k(上) l(右)</p>
+<p> 单词移动 w ： 下个单词的首字母<br>b ： 本单词或上个单词的首字母<br>e : 本单词或下个单词的尾字母</p>
+<p> 行级移动 $ : 到达行尾<br>0 : 数字0到达行首</p>
+<p> 段落级移动 { : 段落首部<br>} : 段落的尾部</p>
+<p> 屏级移动 L : 屏幕尾部(当前屏其作用，不会走到下一屏)<br>H : 屏幕首部</p>
+<p> 文档级移动 G : 文档尾部<br> 1G : 文档首行<br> nG : 光标走到第n行</p>
+</li>
+<li><p>命令模式删除文档信息</p>
+<p> 字符级删除 x<br> 通用删除 d+光标移动距离<br>d+$ 从当前位置删除到行尾<br>d+0 从单前位置删除到行首<br>d+w 删除单词(包括单词后边的空格)</p>
+<p> d+} 删除到段落尾部(尾部空行有保留)<br>d+{ 删除到段落的首部(首部上边的空行也被删除，只删除一行空白行)</p>
+<p> d+L 删除至屏幕尾部, 删除包括当前行<br>d+H 删除至屏幕首部，删除包括当前行</p>
+<p> d+G 删除至文档尾部，删除包括当前行<br>d+1G 删除至文档首部，删除包括当前行<br>d+nG 删除至文档的第n行，删除包括当期行和第n行</p>
+<p> dd 删除当前行<br>n+dd 从当前行向下删除n行</p>
+</li>
+<li><p>命令模式复制并粘贴<br> yy 复制单行<br>n+yy 复制n行<br>y+光标移动距离 可以进行灵活复制 [该方式使用可以参考删除]<br>p 粘贴(光标所在位置的后边开始粘贴，[光标所在行的后一行])</p>
+</li>
+<li><p>删除的内容，也可以被粘贴，删除的内容被放到缓存里边，也可以提供粘贴服务</p>
+</li>
+<li><p>在“命令模式”对操作进行撤销<br> u //撤销，向上会递归撤销以往所有操作<br>r+字符 //单个字符替换<br>. //点，重复执行上个命令<br>J //合并两行</p>
+</li>
+<li><p>修改目录的颜色为“金色”<br> 编辑文件 vi /etc/DIR_CORLORS</p>
+</li>
+</ol>
+<ol>
+<li><p>查看当前目录下有哪些文件和目录</p>
+<blockquote>
+<p>ls //list<br>ls -al //all list 显示当前目录全部的文件详细信息(以列表形式显示) 会显示隐藏文件<br>ls -l //list显示当前目录一般文件的详细信息(以列表形式显示)<br>ls -a //显示当前目录全部文件信息，只有文件的名字<br>ls 目录 //罗列指定目录的文件信息<br>ll //以列表形式列出当前目录文件的详细内容(不会显示隐藏文件)</p>
+</blockquote>
+</li>
+<li><p>查看我当前在哪个目录</p>
+<blockquote>
+<p>pwd</p>
+</blockquote>
+</li>
+<li><p>显示当前用户信息</p>
+<blockquote>
+<p>who am i //显示用户名 和 其登录系统的时间信息<br>whoami //只显示当前登录系统的用户名信息</p>
+</blockquote>
+</li>
+<li><p>从普通用户切换到root用户</p>
+<blockquote>
+<p>su – //提示输入密码<br>su root //<br>两种切换方式：前者切换为超级管理员用户，权限也是超级管理员权限<br>后者虽然切换为超级管理员，其权限是普通权限</p>
+</blockquote>
+</li>
+<li><p>从root用户切换到普通用户</p>
+<blockquote>
+<p>su shuhua //从root切回普通用户</p>
+</blockquote>
+</li>
+<li><p>从桌面窗口切换为“命令行窗口”(通过超级管理员切换)</p>
+<blockquote>
+<p>init 3<br>init 5 //从“命令行”切换回“桌面”</p>
+</blockquote>
+</li>
+<li><p>目录切换</p>
+<blockquote>
+<p>cd 具体目录</p>
+</blockquote>
+</li>
+<li><p>输出文件的信息，全部内容直接都输出</p>
+<blockquote>
+<p>cat 文件</p>
+</blockquote>
+</li>
+<li><p>创建目录指令</p>
+<blockquote>
+<p>mkdir 目录<br>mkdir -p 目录1/目录2/目录3 //递归创建目录</p>
+</blockquote>
+</li>
+<li><p>修改目录的名字</p>
+<blockquote>
+<p>mv 目录1 目录2 //把”目录1″的名字改为”目录2″的名字<br>mv 目录/目录a 目录/目录b //把“目录a”改成”目录b”</p>
+</blockquote>
+</li>
+<li><p>移动操作</p>
+<blockquote>
+<p>mv 文件 目录 //移动文件到指定的目录<br>mv 目录 目录 //移动目录到指定目录(包括多级目录)</p>
+</blockquote>
+</li>
+<li><p>mv指令什么时候是移动，什么时候是该名字<br>mv 一参 二参<br>二参 是不存在的，就是改名字<br>二参 是存在的目录，就是移动</p>
+<p>mv com.txt red.txt<br>red.txt是存在的文件，com.txt也是存在的文件<br>首先明确，不可以移动操作<br>不能<br>【能】把名字由com.txt改为red.txt</p>
+<p>mv guangzhou hello.txt<br>guangzhou 是存在的目录<br>hello.txt 是存在的文件<br>首先明确不能移动<br>是否可以把guangzhou的名字改为hello.txt<br>【不能】把名字由“guangzhou”改为”hello.txt”<br>能</p>
+</li>
+<li><p>删除目录</p>
+<blockquote>
+<p>rmdir 目录 //删除单个目录(没有子级目录)<br>rm -rf 文件名字 //force强制 recursive 递归删除<br>rm -rf / //kill your self [root用户可以删除更多的文件]<br>rm -rf shanghai/beijing //这是删除shanghai下边的beijing目录，不会删除shanghai</p>
+</blockquote>
+</li>
+<li><p>复制</p>
+<blockquote>
+<p>cp copy<br>cp 目录 地址 -R //复制目录需要加上固定参数-R，目录会进行递归复制<br>cp 文件 目录/不存在名字 //文件在被复制到指定目录的同时被“改名字”<br>cp 文件 新文件名字 //复制同时并起新名字</p>
+</blockquote>
+</li>
+<li><p>查看文件内容</p>
+<blockquote>
+<p>more 文件 //从文件内容第一行开始显示，有显示内容查看%百分比<br>//敲回车，会逐行查看后边的内容，到最后会释放光标<br>less 文件 //逐行显示文件内容，通过“上、下、左、右”可以查看文档的各部分内容<br>//允许向前查看，没有百分比显示<br>//通过”q”键释放光标<br>head -n 文件 //查看文件前n行内容<br>tail -n 文件 //查看文件尾部n行内容<br>wc 文件 //计算文件内容行数、段落</p>
+</blockquote>
+</li>
+<li><p>创建新文件</p>
+<blockquote>
+<p>touch 文件名 //创建文件</p>
+</blockquote>
+</li>
+<li><p>给文件添加内容</p>
+<blockquote>
+<p>echo 内容 &gt; 文件 //把指定内容输入到“文件”里边<br>echo 内容 &gt;&gt; 文件 //把内容追加到文件里边</p>
+</blockquote>
+</li>
+<li><p>重定向内容到一个文件</p>
+<blockquote>
+<p>cat 文件1 &gt; 文件2 //把文件1的内容重定向到文件2里边，文件2没有则会自动创建<br>cat 文件1 &gt;&gt; 文件2 //追加重定向</p>
+</blockquote>
+</li>
+</ol>
+<p>19.增加用户 /etc/passwd存放系统用户信息（组编号、家目录）</p>
+<blockquote>
+<p>useradd 用户名<br>useradd -g 编号 用户名 //增加用户的同时设置“组编号”<br>useradd -d 目录名 用户名 //增加用户同时设置“家目录”，目录没有会自动创建<br>useradd -g 编号 -d 家目录 用户名 //同时设置组编号和家目录地址<br>useradd -g 组编号 用户 //常用操作</p>
+</blockquote>
+<ol>
+<li><p>创建组 (可以设置组本身编号)</p>
+<blockquote>
+<p>groupadd 组名 //常用操作<br>groupadd -g 编号 组名 //可以设置组编号，下一个组的编号要从最大的自增</p>
+</blockquote>
+</li>
+<li><p>修改用户信息(组编号、家目录地址、用户名)</p>
+<blockquote>
+<p>usermod -g 组编号 用户名 //修改用户的组编号<br>usermod -d 家目录 用户名 //修改用户的家目录，passwd文件有修改，实际并没有这个目录(手动创建)<br>usermod -u 编号 用户名 //修改用户本身的编号<br>usermod -l 新名字 旧用户名 //修改用户的名字</p>
+</blockquote>
+</li>
+<li><p>修改组 (组编号、组名)</p>
+<blockquote>
+<p>groupmod -g 组编号 组名 //修改组编号<br>groupmod -n 新组名 旧组名 //修改组名字</p>
+</blockquote>
+</li>
+<li><p>删除用户(用户信息、家目录地址)</p>
+<blockquote>
+<p>userdel 用户<br>userdel -r 用户 //删除用户同时，其“家目录”地址也会被删除</p>
+</blockquote>
+</li>
+<li><p>删除组</p>
+<blockquote>
+<p>groupdel 组名 //一个组下边有具体用户，该组不允许删除</p>
+</blockquote>
+</li>
+<li><p>查看一个指令在使用的时候有何种参数可以设置</p>
+<blockquote>
+<p>useradd –help 命令 –help</p>
+</blockquote>
+</li>
+<li><p>给一个用户设置密码(可以让其登录系统)</p>
+<blockquote>
+<p>passwd 用户名 //密码根据提示输入两遍</p>
+</blockquote>
+</li>
+<li><p>查看命令具体参数设置</p>
+<blockquote>
+<p>man 命令 //前后反复查看命令的使用参数</p>
+</blockquote>
+</li>
+<li><p>给文件进行权限设置[相对方式]</p>
+<blockquote>
+<p>chmod u+x 文件<br>chmod g+x 文件 //给同组用户设置执行权限<br>chmod o+x 文件 //给其他组用户设置执行权限<br>chmod o+w,o+x 文件 //同时给文件设置可写、可执行全选</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>chmod u-r 文件 //取消主人的可读权限<br>chmod g-w,g-x 文件 //取消同组用户写、执行权限<br>chmod o-r,o-x 文件 //取消其他组用户读、执行权限</p>
+<p>chmod g+rx,o+wx 文件 //给文件同组用户设置“读、执行”权限，其他组用户有“写、执行权限”<br>chmod u-rwx,g-rw //取消具体用户的权限</p>
+</blockquote>
+<ol>
+<li><p>数字[绝对方式]设置文件权限<br>读、写、可执行<br>二进制代码表示计算机的信息<br>1————-1<br>10————-2<br>100————-4</p>
+<p>例如：读：1 写：2 执行3<br>如果文件权限是读写执行都有就是数字6<br>如果文件只有读的权限就是数字1<br>3 不知道是“读写” 还是 “执行权限”，歧义产生</p>
+<p>正确的用法是：读4 写2 执行1<br>1：执行<br>2：写<br>3：写、执行<br>4：读<br>5：读、执行<br>6：读、写<br>7：读、写、执行</p>
+<blockquote>
+<p>chmod 777 文件 //主人、同组用户、其他组用户权限是满的<br>chmod 001 文件 //主人、同组用户都没有权限，其他组用户有可执行权限<br>ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执行<br>chmod 345 ppink.txt</p>
+</blockquote>
+</li>
+<li><p>给目录递归设置权限</p>
+<blockquote>
+<p>chmod 755 目录 -R //-R参数可以递归目录进行权限设置</p>
+</blockquote>
+</li>
+<li><p>文件权限使用<br>-w- 文件只有可写权限[不可以看到原内容，可以写，覆盖写，强行保存]<br>r– 文件只有可读权限[可以看到原内容，可以写，不会覆盖，强行保存]<br>–x 文件有可执行权限[不可以看到原内容，可以写，覆盖写，强行保存]</p>
+</li>
+<li><p>目录权限<br>r– 目录有可读权限[可以阅读里边的文件，不允许进入]<br>–x 目录有执行权限[不能阅读，不允许写，允许进入目录]<br>-w- 目录有些权限[不能阅读，不能增加或减少文件,不能进入目录]<br>rw- 有读、写权限[可以阅读，不能进入目录]<br>rwx 读、写、可执行[可以阅读，可以增加减少文件、可以进入]<br>一个目录如何进行写操作：给目录增加文件或减少文件就是写</p>
+</li>
+<li><p>同组用户对文件权限操作<br>r– 操作只读文件[可以阅读，可以写，强行保存，文件的主人和组已经更改]<br>-w- 写权限 [不能读，可以强行覆盖写，文件的主人和组有更改]<br>–x 是否可以进入目录</p>
+<p>[一个目录有可执行权限，说明用户可以切换进该目录]</p>
+</li>
+<li><p>文件或目录的各种权限对超级管理员root没有影响</p>
+</li>
+<li><p>在指定文件里边查找我们需要的内容</p>
+<blockquote>
+<p>grep 内容 文件</p>
+</blockquote>
+</li>
+<li><p>查看“任务管理器”</p>
+<blockquote>
+<p>top</p>
+</blockquote>
+</li>
+<li><p>查看内存信息</p>
+<blockquote>
+<p>free -m //以M兆为单位显示内存大小使用情况</p>
+</blockquote>
+</li>
+<li><p>查看文件或目录占用大小的情况</p>
+<blockquote>
+<p>du -h 目标 //有最小单元限制（4k） 1字节</p>
+</blockquote>
+</li>
+<li><p>文件查找<br>find 目录 选项 选项值</p>
+<blockquote>
+<p>find ./ -name abc.txt //在当前目录查找名字为abc.txt的这个文件<br>find / -name xxx //在根目录查找文件<br>find ./ -size 大小 //根据文件的大小来查找<br>单位：<br>10 512字节默认<br>100c 1字节单位<br>100k 1024字节单位<br>find ./ -size +100c //查找文件大小大于100字节的<br>find ./ -size -100c //查找大小小于100字节的文件<br>find ./ -size 4 //查找大小等于2048字节的文件<br>find ./ -size 2k //查找大小等于2048字节的文件</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>find ./ -maxdepth 1 //查找文件目录最深是2层<br>find ./ -mindepth 1 //查找文件通过最浅层次进行查找</p>
+<p>find ./ -type f //通过类型查找，查找文件类型<br>find ./ -type d //通过类型查找，查找目录类型</p>
+<p>find ./ -user 用户名 //查找文件主人为XX的文件<br>find ./ -uid 用户编号 //查找文件主人编号为XX的文件<br>find ./ -nouser //查找没有主人的文件<br>文件创建的时候，是某个用户创建的<br>有的一些文件创建好后，被用户发布到网络上边<br>我们把网络的文件下载本地，放到我们自己的系统里边<br>创建这个文件的用户，在我自己的系统里边并没有<br>例如，创建这个文件的用户编号是710(用户名：runfa)</p>
+<p>find ./ -perm 权限764 //根据文件的权限进行查找</p>
+<p>find ./ -name ‘bao*’ //进行模糊查找，名字前缀是bao的文件</p>
+</blockquote>
+<ol>
+<li><p>设置软连接</p>
+<blockquote>
+<p>ln -s 源文件 链接文件<br>ln -s /home/shuhua/shanghai/passwd /var/passwd</p>
+</blockquote>
+</li>
+<li><p>查看文件索引号码</p>
+<blockquote>
+<p>ls -li</p>
+</blockquote>
+</li>
+<li><p>制作任务调度指令</p>
+<blockquote>
+<p>crontab -e //编辑任务调度指令<br>crontab -l //查看任务调度指令设置情况<br>在17:38来执行具体任务指令<br>分钟 小时 日期 月份 星期 具体命令<br>38 17 <em> </em> * /home/shuhua/shanghai/newout.sh</p>
+</blockquote>
+</li>
+</ol>
+<p>0代表周日</p>
+<ol>
+<li><p>设置系统时间</p>
+<blockquote>
+<p>date -s “2013-08-13 17:39:40”;<br>date //查看系统时间</p>
+</blockquote>
+</li>
+<li><p>给文件设置主人</p>
+<blockquote>
+<p>change owner<br>chown 主人 文件</p>
+</blockquote>
+</li>
+<li><p>给文件设置组</p>
+<blockquote>
+<p>change group<br>chgrp 组 文件</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>chown .组 文件</p>
+</blockquote>
+<ol>
+<li><p>同时给文件设置主人和组</p>
+<blockquote>
+<p>chown 主人.组 文件<br>chown 主人.组 目录 -R //递归给目录设置主人和组的信息，二级目录和三级目录等等都会设置</p>
+</blockquote>
+</li>
+<li><p>实现设备挂载、卸载</p>
+<blockquote>
+<p>mount /dev/cdrom /home/shuhua/rom //把光驱挂载到rom的目录下边<br>mount /dev/hda1 /home/shuhua/upan //挂载u盘<br>mount /dev/sda3 /home/shuhua/pan3 //挂载硬盘</p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>umount 设备 或者 挂载点<br>umount /dev/cdrom<br>umount /home/shuhua/rom</p>
+</blockquote>
+<ol>
+<li><p>rpm指令安装软件</p>
+<blockquote>
+<p>rpm -ivh 软件文件名(vsftpd-2.0.5-16.el5_4.1.i386.rpm) //安装软件<br>rpm -e 软件名(vsftpd) //卸载软件<br>rpm -q 软件名 //query检查是否安装该软件<br>rpm -qa //查看系统全部安装软件情况<br>rpm -qa | grep ftp //在全部安装软件里边，通过模糊方式查找是否有ftp这个软件<br>rpm -u 文件名 //对软件升级</p>
+</blockquote>
+</li>
+<li><p>让vsftpd软件运行</p>
+<blockquote>
+<p>service vsftpd start</p>
+</blockquote>
+</li>
+<li><p>服务器重新启动</p>
+<blockquote>
+<p>reboot 重新启动<br>shutdown 关机<br>poweroff 关机</p>
+</blockquote>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2kc9jst0004u4vab3e19xyc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/11/javascript停止事件冒泡/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          javascript停止事件冒泡
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/11/php捅式排序/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">php 桶式排序 实现方法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo博客/">hexo博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/05/11/php http文件下载/">php http文件下载</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/11/javascript停止事件冒泡/">javascript停止事件冒泡</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/11/linux常用口令/">linux常用口令</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/11/php捅式排序/">php 桶式排序 实现方法</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/10/how-to-update-hexo-article/">how to update hexo article</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

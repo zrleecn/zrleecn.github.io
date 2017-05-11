@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>php Ͱʽ���� ʵ�ַ��� | resume.zrlee.cn</title>
+  <title>php 桶式排序 实现方法 | resume.zrlee.cn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334&amp;lt;?php/** * Created by PhpStorm. * User: Administrator * Date: 2017/2/20 * Time: 12:49 *//** * Ͱʽ���� */function bucketSort ($list)&amp;#123;">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334&amp;lt;?php/** * Created by PhpStorm. * User: Administrator * Date: 2017/2/20 * Time: 12:49 *//** * 桶式排序 */function bucketSort ($list)&amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php Ͱʽ���� ʵ�ַ���">
+<meta property="og:title" content="php 桶式排序 实现方法">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/php捅式排序/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334&amp;lt;?php/** * Created by PhpStorm. * User: Administrator * Date: 2017/2/20 * Time: 12:49 *//** * Ͱʽ���� */function bucketSort ($list)&amp;#123;">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334&amp;lt;?php/** * Created by PhpStorm. * User: Administrator * Date: 2017/2/20 * Time: 12:49 *//** * 桶式排序 */function bucketSort ($list)&amp;#123;">
 <meta property="og:image" content="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png">
-<meta property="og:updated_time" content="2017-05-11T11:20:56.180Z">
+<meta property="og:updated_time" content="2017-05-11T11:23:37.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php Ͱʽ���� ʵ�ַ���">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334&amp;lt;?php/** * Created by PhpStorm. * User: Administrator * Date: 2017/2/20 * Time: 12:49 *//** * Ͱʽ���� */function bucketSort ($list)&amp;#123;">
+<meta name="twitter:title" content="php 桶式排序 实现方法">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334&amp;lt;?php/** * Created by PhpStorm. * User: Administrator * Date: 2017/2/20 * Time: 12:49 *//** * 桶式排序 */function bucketSort ($list)&amp;#123;">
 <meta name="twitter:image" content="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png">
   
     <link rel="alternate" href="/atom.xml" title="resume.zrlee.cn" type="application/atom+xml">
@@ -68,7 +68,7 @@
         <section id="main"><article id="post-php捅式排序" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/11/php捅式排序/" class="article-date">
-  <time datetime="2017-05-11T11:16:09.000Z" itemprop="datePublished">2017-05-11</time>
+  <time datetime="2017-05-10T16:00:00.000Z" itemprop="datePublished">2017-05-11</time>
 </a>
     
   <div class="article-category">
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      php Ͱʽ���� ʵ�ַ���
+      php 桶式排序 实现方法
     </h1>
   
 
@@ -92,13 +92,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by PhpStorm.</div><div class="line"> * User: Administrator</div><div class="line"> * Date: 2017/2/20</div><div class="line"> * Time: 12:49</div><div class="line"> */</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Ͱʽ����</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bucketSort</span> <span class="params">($list)</span></span>&#123;</div><div class="line">    $max = max($list);</div><div class="line">    $min = min($list) ;</div><div class="line"></div><div class="line">    $bucket = array_fill($min , $max-$min +<span class="number">1</span> , <span class="number">0</span> );</div><div class="line">    <span class="comment">//������������Ϊ�����ļ� ֵȫ��0</span></div><div class="line">    <span class="keyword">foreach</span> ($list <span class="keyword">as</span> $value)&#123;</div><div class="line"></div><div class="line">        $bucket[$value] ++ ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">foreach</span>($bucket <span class="keyword">as</span> $key=&gt;$value)&#123;</div><div class="line">        <span class="keyword">if</span>($value == <span class="number">1</span>) &#123;</div><div class="line">            $new_list[] = $key ;</div><div class="line">        &#125;<span class="keyword">elseif</span> ($value &gt;=<span class="number">1</span> )&#123;</div><div class="line">            <span class="keyword">for</span>($i = <span class="number">1</span> ; $i&lt;=$value ; $i++)&#123;</div><div class="line">                $new_list [] = $key ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $new_list ;</div><div class="line">&#125;</div><div class="line">$result = bucketSort(<span class="keyword">array</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">77</span>,<span class="number">55</span>,<span class="number">44</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">778</span>,<span class="number">999</span>,<span class="number">87</span>)) ;</div><div class="line">var_dump($result) ;</div></pre></td></tr></table></figure>
-<p>����������<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="�˴�����ͼƬ������"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by PhpStorm.</div><div class="line"> * User: Administrator</div><div class="line"> * Date: 2017/2/20</div><div class="line"> * Time: 12:49</div><div class="line"> */</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 桶式排序</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bucketSort</span> <span class="params">($list)</span></span>&#123;</div><div class="line">    $max = max($list);</div><div class="line">    $min = min($list) ;</div><div class="line"></div><div class="line">    $bucket = array_fill($min , $max-$min +<span class="number">1</span> , <span class="number">0</span> );</div><div class="line">    <span class="comment">//待排序的数作为数组的键 值全是0</span></div><div class="line">    <span class="keyword">foreach</span> ($list <span class="keyword">as</span> $value)&#123;</div><div class="line"></div><div class="line">        $bucket[$value] ++ ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">foreach</span>($bucket <span class="keyword">as</span> $key=&gt;$value)&#123;</div><div class="line">        <span class="keyword">if</span>($value == <span class="number">1</span>) &#123;</div><div class="line">            $new_list[] = $key ;</div><div class="line">        &#125;<span class="keyword">elseif</span> ($value &gt;=<span class="number">1</span> )&#123;</div><div class="line">            <span class="keyword">for</span>($i = <span class="number">1</span> ; $i&lt;=$value ; $i++)&#123;</div><div class="line">                $new_list [] = $key ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $new_list ;</div><div class="line">&#125;</div><div class="line">$result = bucketSort(<span class="keyword">array</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">77</span>,<span class="number">55</span>,<span class="number">44</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">778</span>,<span class="number">999</span>,<span class="number">87</span>)) ;</div><div class="line">var_dump($result) ;</div></pre></td></tr></table></figure>
+<p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/php捅式排序/" data-id="cj2kbpp9k0004f8vabz73nmwf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/11/php捅式排序/" data-id="cj2kc9jt90006u4vakculekyf" class="article-share-link">Share</a>
       
       
     </footer>
@@ -107,10 +107,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2017/05/11/linux常用口令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          linux常用口令
+        
+      </div>
+    </a>
   
-    <a href="/2017/05/11/javascript停止事件冒泡/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2017/05/10/how-to-update-hexo-article/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">javascript停止事件冒泡</div>
+      <div class="article-nav-title">how to update hexo article</div>
     </a>
   
 </nav>
@@ -126,7 +135,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo博客/">hexo博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo博客/">hexo博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li></ul>
     </div>
   </div>
 
@@ -154,7 +163,7 @@
       <ul>
         
           <li>
-            <a href="/2017/05/11/php捅式排序/">php Ͱʽ���� ʵ�ַ���</a>
+            <a href="/2017/05/11/php http文件下载/">php http文件下载</a>
           </li>
         
           <li>
@@ -162,15 +171,15 @@
           </li>
         
           <li>
+            <a href="/2017/05/11/linux常用口令/">linux常用口令</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/11/php捅式排序/">php 桶式排序 实现方法</a>
+          </li>
+        
+          <li>
             <a href="/2017/05/10/how-to-update-hexo-article/">how to update hexo article</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/10/start/">项目清单文件</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/10/hello-world/">Hello World</a>
           </li>
         
       </ul>

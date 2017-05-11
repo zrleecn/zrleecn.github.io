@@ -3,14 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017/5 | resume.zrlee.cn</title>
+  <title>php http文件下载 | resume.zrlee.cn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="resume.zrlee.cn">
-<meta property="og:url" content="http://yoursite.com/archives/2017/05/index.html">
+  <meta name="description" content="1234567891011121314151617&amp;lt;?php//文件路径$file = &apos;file.docx&apos; ;$fileinfo = finfo_open(FILEINFO_MIME);$mime = finfo_file($fileinfo , $file);header(&apos;Content-Disposition:attachment;filename=&apos;.basename($fil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="php http文件下载">
+<meta property="og:url" content="http://yoursite.com/2017/05/11/php http文件下载/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
+<meta property="og:description" content="1234567891011121314151617&amp;lt;?php//文件路径$file = &apos;file.docx&apos; ;$fileinfo = finfo_open(FILEINFO_MIME);$mime = finfo_file($fileinfo , $file);header(&apos;Content-Disposition:attachment;filename=&apos;.basename($fil">
+<meta property="og:updated_time" content="2017-05-11T11:25:08.140Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="resume.zrlee.cn">
+<meta name="twitter:title" content="php http文件下载">
+<meta name="twitter:description" content="1234567891011121314151617&amp;lt;?php//文件路径$file = &apos;file.docx&apos; ;$fileinfo = finfo_open(FILEINFO_MIME);$mime = finfo_file($fileinfo , $file);header(&apos;Content-Disposition:attachment;filename=&apos;.basename($fil">
   
     <link rel="alternate" href="/atom.xml" title="resume.zrlee.cn" type="application/atom+xml">
   
@@ -59,153 +63,57 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/11/php http文件下载/" class="archive-article-date">
-  <time datetime="2017-05-11T11:21:09.000Z" itemprop="datePublished">May 11</time>
+        <section id="main"><article id="post-php http文件下载" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/11/php http文件下载/" class="article-date">
+  <time datetime="2017-05-11T11:21:09.000Z" itemprop="datePublished">2017-05-11</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/php/">php</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/11/php http文件下载/">php http文件下载</a>
+    <h1 class="article-title" itemprop="name">
+      php http文件下载
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/11/javascript停止事件冒泡/" class="archive-article-date">
-  <time datetime="2017-05-11T10:59:18.000Z" itemprop="datePublished">May 11</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/11/javascript停止事件冒泡/">javascript停止事件冒泡</a>
-    </h1>
-  
+        <hr>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">//文件路径</span></div><div class="line">$file = <span class="string">'file.docx'</span> ;</div><div class="line">$fileinfo = finfo_open(FILEINFO_MIME);</div><div class="line">$mime = finfo_file($fileinfo , $file);</div><div class="line">header(<span class="string">'Content-Disposition:attachment;filename='</span>.basename($file));</div><div class="line"><span class="comment">//类型为任意的二进制文件</span></div><div class="line"><span class="comment">//header('Content-Type:application/oct-stream');</span></div><div class="line">header(<span class="string">'Accept-ranges:bytes'</span>);</div><div class="line">header(<span class="string">'Accept-legth:'</span>.filesize($file));</div><div class="line">header(<span class="string">'Content-type:'</span>.$mime);</div><div class="line"><span class="comment">//读取文件</span></div><div class="line"></div><div class="line">readfile($file);</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/11/linux常用口令/" class="archive-article-date">
-  <time datetime="2017-05-10T16:00:00.000Z" itemprop="datePublished">May 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/11/linux常用口令/">linux常用口令</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/11/php捅式排序/" class="archive-article-date">
-  <time datetime="2017-05-10T16:00:00.000Z" itemprop="datePublished">May 11</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/11/php http文件下载/" data-id="cj2kc9jt90005u4vaom6kkm7b" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/11/php捅式排序/">php 桶式排序 实现方法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/10/how-to-update-hexo-article/" class="archive-article-date">
-  <time datetime="2017-05-10T14:45:13.000Z" itemprop="datePublished">May 10</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/10/how-to-update-hexo-article/">how to update hexo article</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/10/start/" class="archive-article-date">
-  <time datetime="2017-05-10T14:45:13.000Z" itemprop="datePublished">May 10</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/10/start/">项目清单文件</a>
-    </h1>
   
+    <a href="/2017/05/11/javascript停止事件冒泡/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">javascript停止事件冒泡</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/05/10/hello-world/" class="archive-article-date">
-  <time datetime="2017-05-10T13:34:43.175Z" itemprop="datePublished">May 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/10/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
 </section>
         
