@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/11/linux常用口令/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
 <meta property="og:description" content="打开文件 vi 文件  该模式是命令模式  尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行">
-<meta property="og:updated_time" content="2017-05-11T12:55:40.473Z">
+<meta property="og:updated_time" content="2017-05-11T13:00:06.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux常用口令">
 <meta name="twitter:description" content="打开文件 vi 文件  该模式是命令模式  尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行">
@@ -52,9 +52,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -171,197 +171,330 @@
 </code>
  </pre> </li>
 <li><p>删除目录</p>
-<blockquote>
-<p>rmdir 目录 //删除单个目录(没有子级目录)<br>rm -rf 文件名字 //force强制 recursive 递归删除<br>rm -rf / //kill your self [root用户可以删除更多的文件]<br>rm -rf shanghai/beijing                  //这是删除shanghai下边的beijing目录，不会删除shanghai</p>
-</blockquote>
+<pre>
+   <code>
+   > rmdir 目录 //删除单个目录(没有子级目录)
+   > rm -rf 文件名字 //force强制 recursive 递归删除
+   > rm -rf / //kill your self [root用户可以删除更多的文件]
+   > rm -rf shanghai/beijing                  //这是删除shanghai下边的beijing目录，不会删除shanghai
+</code>
+ </pre> 
 </li>
 <li><p>复制</p>
-<blockquote>
-<p>cp copy<br>cp 目录 地址 -R //复制目录需要加上固定参数-R，目录会进行递归复制<br>cp 文件 目录/不存在名字 //文件在被复制到指定目录的同时被“改名字”<br>cp 文件 新文件名字 //复制同时并起新名字</p>
-</blockquote>
-</li>
-<li><p>查看文件内容</p>
-<blockquote>
-<p>more 文件 //从文件内容第一行开始显示，有显示内容查看%百分比<br>   //敲回车，会逐行查看后边的内容，到最后会释放光标<br>less 文件 //逐行显示文件内容，通过“上、下、左、右”可以查看文档的各部分内容<br>   //允许向前查看，没有百分比显示<br>   //通过”q”键释放光标<br>head -n 文件 //查看文件前n行内容<br>tail -n 文件 //查看文件尾部n行内容<br>wc 文件 //计算文件内容行数、段落</p>
-</blockquote>
-</li>
-<li><p>创建新文件</p>
-<blockquote>
-<p>touch 文件名 //创建文件</p>
-</blockquote>
-</li>
-<li><p>给文件添加内容</p>
-<blockquote>
-<p>echo 内容 &gt; 文件 //把指定内容输入到“文件”里边<br>echo 内容 &gt;&gt; 文件 //把内容追加到文件里边</p>
-</blockquote>
-</li>
-<li><p>重定向内容到一个文件</p>
-<blockquote>
-<p>cat 文件1 &gt; 文件2 //把文件1的内容重定向到文件2里边，文件2没有则会自动创建<br>cat 文件1 &gt;&gt; 文件2 //追加重定向</p>
-</blockquote>
-</li>
-<li><p>增加用户 /etc/passwd存放系统用户信息（组编号、家目录）</p>
-<blockquote>
-<p>useradd 用户名<br>useradd -g 编号 用户名 //增加用户的同时设置“组编号”<br>useradd -d 目录名 用户名 //增加用户同时设置“家目录”，目录没有会自动创建<br>useradd -g 编号 -d 家目录 用户名 //同时设置组编号和家目录地址<br>useradd -g 组编号 用户 //常用操作</p>
-</blockquote>
-</li>
-<li><p>创建组 (可以设置组本身编号)</p>
-<blockquote>
-<p>groupadd 组名 //常用操作<br>groupadd -g 编号 组名 //可以设置组编号，下一个组的编号要从最大的自增</p>
-</blockquote>
-</li>
-<li><p>修改用户信息(组编号、家目录地址、用户名)</p>
-<blockquote>
-<p>usermod -g 组编号 用户名 //修改用户的组编号<br>usermod -d 家目录 用户名 //修改用户的家目录，passwd文件有修改，实际并没有这个目录(手动创建)<br>usermod -u 编号 用户名 //修改用户本身的编号<br>usermod -l 新名字 旧用户名 //修改用户的名字</p>
-</blockquote>
-</li>
-<li><p>修改组 (组编号、组名)</p>
-<blockquote>
-<p>groupmod -g 组编号 组名 //修改组编号<br>groupmod -n 新组名 旧组名 //修改组名字</p>
-</blockquote>
-</li>
-<li><p>删除用户(用户信息、家目录地址)</p>
-<blockquote>
-<p>userdel 用户<br>userdel -r 用户 //删除用户同时，其“家目录”地址也会被删除</p>
-</blockquote>
-</li>
-<li><p>删除组</p>
-<blockquote>
-<p>groupdel 组名 //一个组下边有具体用户，该组不允许删除</p>
-</blockquote>
-</li>
-<li><p>查看一个指令在使用的时候有何种参数可以设置</p>
-<blockquote>
-<p>useradd –help 命令 –help</p>
-</blockquote>
-</li>
-<li><p>给一个用户设置密码(可以让其登录系统)</p>
-<blockquote>
-<p>passwd 用户名 //密码根据提示输入两遍</p>
-</blockquote>
-</li>
-<li><p>查看命令具体参数设置</p>
-<blockquote>
-<p>man 命令 //前后反复查看命令的使用参数</p>
-</blockquote>
-</li>
-<li><p>给文件进行权限设置[相对方式]</p>
-<blockquote>
-<p>chmod u+x 文件<br>chmod g+x 文件 //给同组用户设置执行权限<br>chmod o+x 文件 //给其他组用户设置执行权限<br>chmod o+w,o+x 文件 //同时给文件设置可写、可执行全选<br>chmod u-r 文件 //取消主人的可读权限<br>chmod g-w,g-x 文件 //取消同组用户写、执行权限<br>chmod o-r,o-x 文件 //取消其他组用户读、执行权限<br>chmod g+rx,o+wx 文件 //给文件同组用户设置“读、执行”权限，其他组用户有“写、执行权限”<br>chmod u-rwx,g-rw //取消具体用户的权限</p>
-</blockquote>
-</li>
-<li><p>数字[绝对方式]设置文件权限</p>
-<p>   读、写、可执行<br>   二进制代码表示计算机的信息<br>   1————-1<br>   10————-2<br>   100————-4<br>   例如：读：1 写：2 执行3<br>   如果文件权限是读写执行都有就是数字6<br>   如果文件只有读的权限就是数字1<br>   3 不知道是“读写” 还是 “执行权限”，歧义产生<br>   正确的用法是：读4 写2 执行1<br>   1：执行<br>   2：写<br>   3：写、执行<br>   4：读<br>   5：读、执行<br>   6：读、写<br>   7：读、写、执行</p>
-<blockquote>
-<p>chmod 777 文件 //主人、同组用户、其他组用户权限是满的<br>chmod 001 文件 //主人、同组用户都没有权限，其他组用户有可执行权限<br>   ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执行<br>chmod 345 ppink.txt</p>
-</blockquote>
-</li>
-<li><p>给目录递归设置权限</p>
-<blockquote>
-<p>chmod 755 目录 -R //-R参数可以递归目录进行权限设置</p>
-</blockquote>
-</li>
-<li><p>文件权限使用</p>
-<p>   -w- 文件只有可写权限[不可以看到原内容，可以写，覆盖写，强行保存]<br>   r– 文件只有可读权限[可以看到原内容，可以写，不会覆盖，强行保存]<br>   –x 文件有可执行权限[不可以看到原内容，可以写，覆盖写，强行保存]</p>
-</li>
-<li><p>目录权限</p>
-<p>   r– 目录有可读权限[可以阅读里边的文件，不允许进入]<br>   –x 目录有执行权限[不能阅读，不允许写，允许进入目录]<br>   -w- 目录有些权限[不能阅读，不能增加或减少文件,不能进入目录]<br>   rw- 有读、写权限[可以阅读，不能进入目录]<br>   rwx 读、写、可执行[可以阅读，可以增加减少文件、可以进入]<br>   一个目录如何进行写操作：给目录增加文件或减少文件就是写</p>
-</li>
+<pre>
+   <code>
+   >cp copy
+   >cp 目录 地址 -R //复制目录需要加上固定参数-R，目录会进行递归复制
+   >cp 文件 目录/不存在名字 //文件在被复制到指定目录的同时被“改名字”
+   >cp 文件 新文件名字 //复制同时并起新名字
+</code>
+ </pre></li>
+<li>查看文件内容<pre>
+   <code>
+   > more 文件 //从文件内容第一行开始显示，有显示内容查看%百分比
+   //敲回车，会逐行查看后边的内容，到最后会释放光标
+   > less 文件 //逐行显示文件内容，通过“上、下、左、右”可以查看文档的各部分内容
+   //允许向前查看，没有百分比显示
+   //通过”q”键释放光标
+   > head -n 文件 //查看文件前n行内容
+   > tail -n 文件 //查看文件尾部n行内容
+   > wc 文件 //计算文件内容行数、段落
+   </code>
+</pre></li>
+<li>创建新文件<pre>
+   <code>
+   > touch 文件名 //创建文件
+   </code>
+</pre></li>
+<li>给文件添加内容<pre>
+   <code>
+   > echo 内容 > 文件 //把指定内容输入到“文件”里边
+   > echo 内容 >> 文件 //把内容追加到文件里边
+   </code>
+</pre></li>
+<li>重定向内容到一个文件<pre>
+   <code>
+   > cat 文件1 > 文件2 //把文件1的内容重定向到文件2里边，文件2没有则会自动创建
+   > cat 文件1 >> 文件2 //追加重定向
+   </code>
+</pre></li>
+<li>增加用户 /etc/passwd存放系统用户信息（组编号、家目录）<pre>
+   <code>
+   > useradd 用户名
+   > useradd -g 编号 用户名 //增加用户的同时设置“组编号”
+   > useradd -d 目录名 用户名 //增加用户同时设置“家目录”，目录没有会自动创建
+   > useradd -g 编号 -d 家目录 用户名 //同时设置组编号和家目录地址
+   > useradd -g 组编号 用户 //常用操作
+   </code>
+</pre></li>
+<li>创建组 (可以设置组本身编号)<pre>
+   <code>
+   > groupadd 组名 //常用操作
+   > groupadd -g 编号 组名 //可以设置组编号，下一个组的编号要从最大的自增
+   </code>
+</pre></li>
+<li>修改用户信息(组编号、家目录地址、用户名)<pre>
+   <code>
+   > usermod -g 组编号 用户名 //修改用户的组编号
+   > usermod -d 家目录 用户名 //修改用户的家目录，passwd文件有修改，实际并没有这个目录(手动创建)
+   > usermod -u 编号 用户名 //修改用户本身的编号
+   > usermod -l 新名字 旧用户名 //修改用户的名字
+   </code>
+</pre></li>
+<li>修改组 (组编号、组名)<pre>
+   <code>
+   > groupmod -g 组编号 组名 //修改组编号
+   > groupmod -n 新组名 旧组名 //修改组名字
+   </code>
+</pre></li>
+<li>删除用户(用户信息、家目录地址)<pre>
+   <code>       
+   > userdel 用户
+   > userdel -r 用户 //删除用户同时，其“家目录”地址也会被删除
+   </code>
+</pre></li>
+<li>删除组<pre>
+   <code>
+   > groupdel 组名 //一个组下边有具体用户，该组不允许删除
+   </code>
+</pre>        </li>
+<li>查看一个指令在使用的时候有何种参数可以设置<pre>
+   <code>
+   > useradd –help 命令 –help
+   </code>
+</pre></li>
+<li>给一个用户设置密码(可以让其登录系统)<pre>
+   <code>
+   > passwd 用户名 //密码根据提示输入两遍
+   </code>
+</pre></li>
+<li>查看命令具体参数设置<pre>
+   <code>
+   > man 命令 //前后反复查看命令的使用参数
+   </code>
+</pre></li>
+<li>给文件进行权限设置[相对方式]<pre>
+   <code>
+   > chmod u+x 文件
+   > chmod g+x 文件 //给同组用户设置执行权限
+   > chmod o+x 文件 //给其他组用户设置执行权限
+   > chmod o+w,o+x 文件 //同时给文件设置可写、可执行全选
+   > chmod u-r 文件 //取消主人的可读权限
+   > chmod g-w,g-x 文件 //取消同组用户写、执行权限
+   > chmod o-r,o-x 文件 //取消其他组用户读、执行权限
+   > chmod g+rx,o+wx 文件 //给文件同组用户设置“读、执行”权限，其他组用户有“写、执行权限”
+   > chmod u-rwx,g-rw //取消具体用户的权限
+   </code>
+</pre></li>
+<li>数字[绝对方式]设置文件权限<pre>
+   <code>  
+   读、写、可执行
+   二进制代码表示计算机的信息
+   1————-1
+   10————-2
+   100————-4
+   例如：读：1 写：2 执行3
+   如果文件权限是读写执行都有就是数字6
+   如果文件只有读的权限就是数字1
+   3 不知道是“读写” 还是 “执行权限”，歧义产生
+   正确的用法是：读4 写2 执行1
+   1：执行
+   2：写
+   3：写、执行
+   4：读
+   5：读、执行
+   6：读、写
+   7：读、写、执行
+   > chmod 777 文件 //主人、同组用户、其他组用户权限是满的
+   > chmod 001 文件 //主人、同组用户都没有权限，其他组用户有可执行权限
+   ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执行
+   > chmod 345 ppink.txt
+   </code>
+</pre></li>
+<li>给目录递归设置权限<pre>
+   <code>
+   > chmod 755 目录 -R //-R参数可以递归目录进行权限设置
+   </code>
+</pre></li>
+<li>文件权限使用<pre>
+   <code>  
+   -w- 文件只有可写权限[不可以看到原内容，可以写，覆盖写，强行保存]
+   r– 文件只有可读权限[可以看到原内容，可以写，不会覆盖，强行保存]
+   –x 文件有可执行权限[不可以看到原内容，可以写，覆盖写，强行保存]
+   </code>
+</pre></li>
+<li>目录权限<pre>
+   <code>  
+   r– 目录有可读权限[可以阅读里边的文件，不允许进入]
+   –x 目录有执行权限[不能阅读，不允许写，允许进入目录]
+   -w- 目录有些权限[不能阅读，不能增加或减少文件,不能进入目录]
+   rw- 有读、写权限[可以阅读，不能进入目录]
+   rwx 读、写、可执行[可以阅读，可以增加减少文件、可以进入]
+   一个目录如何进行写操作：给目录增加文件或减少文件就是写
+   </code>
+</pre></li>
 <li><p>同组用户对文件权限操作</p>
-<p>   r– 操作只读文件[可以阅读，可以写，强行保存，文件的主人和组已经更改]<br>   -w- 写权限 [不能读，可以强行覆盖写，文件的主人和组有更改]<br>   –x 是否可以进入目录</p>
-<p>   [一个目录有可执行权限，说明用户可以切换进该目录]</p>
-</li>
+<pre>
+   <code>   
+   r– 操作只读文件[可以阅读，可以写，强行保存，文件的主人和组已经更改]
+   -w- 写权限 [不能读，可以强行覆盖写，文件的主人和组有更改]
+   –x 是否可以进入目录
+
+   [一个目录有可执行权限，说明用户可以切换进该目录]
+   </code>
+</pre></li>
 <li><p>文件或目录的各种权限对超级管理员root没有影响</p>
 </li>
 <li><p>在指定文件里边查找我们需要的内容</p>
-<blockquote>
-<p>grep 内容 文件</p>
-</blockquote>
-</li>
-<li><p>查看“任务管理器”</p>
-<blockquote>
-<p>top</p>
-</blockquote>
-</li>
-<li><p>查看内存信息</p>
-<blockquote>
-<p>free -m //以M兆为单位显示内存大小使用情况</p>
-</blockquote>
-</li>
-<li><p>查看文件或目录占用大小的情况</p>
-<blockquote>
-<p>du -h 目标 //有最小单元限制（4k） 1字节</p>
-</blockquote>
-</li>
+<pre>
+   <code>
+   > grep 内容 文件
+   </code>
+</pre></li>
+<li>查看“任务管理器”<pre>
+   <code>
+   > top
+   </code>
+</pre></li>
+<li>查看内存信息<pre>
+   <code>
+   > free -m //以M兆为单位显示内存大小使用情况
+   </code>
+</pre></li>
+<li>查看文件或目录占用大小的情况<pre>
+   <code>
+   > du -h 目标 //有最小单元限制（4k） 1字节
+   </code>
+</pre></li>
 <li><p>文件查找</p>
-<p>   find 目录 选项 选项值<br></p>
-<blockquote>
-<p>find ./ -name abc.txt //在当前目录查找名字为abc.txt的这个文件<br>find / -name xxx //在根目录查找文件<br>find ./ -size 大小 //根据文件的大小来查找<br>   单位：<br><br>   10 512字节默认<br><br>   100c 1字节单位<br><br>   100k 1024字节单位<br><br>find ./ -size +100c //查找文件大小大于100字节的<br>find ./ -size -100c //查找大小小于100字节的文件<br>find ./ -size 4 //查找大小等于2048字节的文件<br>find ./ -size 2k //查找大小等于2048字节的文件<br>find ./ -maxdepth 1 //查找文件目录最深是2层<br>find ./ -mindepth 1 //查找文件通过最浅层次进行查找</p>
-<p>find ./ -type f //通过类型查找，查找文件类型<br>find ./ -type d //通过类型查找，查找目录类型</p>
-<p>find ./ -user 用户名 //查找文件主人为XX的文件<br>find ./ -uid 用户编号 //查找文件主人编号为XX的文件<br>find ./ -nouser //查找没有主人的文件<br>   文件创建的时候，是某个用户创建的<br>   有的一些文件创建好后，被用户发布到网络上边<br>   我们把网络的文件下载本地，放到我们自己的系统里边<br>   创建这个文件的用户，在我自己的系统里边并没有<br>   例如，创建这个文件的用户编号是710(用户名：runfa)<br>find ./ -perm 权限764 //根据文件的权限进行查找<br>find ./ -name ‘bao*’ //进行模糊查找，名字前缀是bao的文件</p>
-</blockquote>
-</li>
-<li><p>设置软连接</p>
-<blockquote>
-<p>ln -s 源文件 链接文件<br>ln -s /home/shuhua/shanghai/passwd /var/passwd</p>
-</blockquote>
-</li>
-<li><p>查看文件索引号码</p>
-<blockquote>
-<p>ls -li</p>
-</blockquote>
-</li>
-<li><p>制作任务调度指令</p>
-<blockquote>
-<p>crontab -e //编辑任务调度指令<br>crontab -l //查看任务调度指令设置情况<br>   在17:38来执行具体任务指令<br>   分钟 小时 日期 月份 星期 具体命令<br>   38 17 <em> </em> * /home/shuhua/shanghai/newout.sh<br>   0代表周日</p>
-</blockquote>
-</li>
-<li><p>设置系统时间</p>
-<blockquote>
-<p>date -s “2013-08-13 17:39:40”;<br>date //查看系统时间</p>
-</blockquote>
-</li>
-<li><p>给文件设置主人</p>
-<blockquote>
-<p>change owner<br>chown 主人 文件</p>
-</blockquote>
-</li>
-<li><p>给文件设置组</p>
-<blockquote>
-<p>change group<br>chgrp 组 文件<br>chown .组 文件</p>
-</blockquote>
-</li>
-<li><p>同时给文件设置主人和组</p>
-<blockquote>
-<p>chown 主人.组 文件<br>chown 主人.组 目录 -R //递归给目录设置主人和组的信息，二级目录和三级目录等等都会设置</p>
-</blockquote>
-</li>
-<li><p>实现设备挂载、卸载</p>
-<blockquote>
-<p>mount /dev/cdrom /home/shuhua/rom //把光驱挂载到rom的目录下边<br>mount /dev/hda1 /home/shuhua/upan //挂载u盘<br>mount /dev/sda3 /home/shuhua/pan3 //挂载硬盘<br>umount 设备 或者 挂载点<br>umount /dev/cdrom<br>umount /home/shuhua/rom</p>
-</blockquote>
-</li>
-<li><p>rpm指令安装软件</p>
-<blockquote>
-<p>rpm -ivh 软件文件名(vsftpd-2.0.5-16.el5_4.1.i386.rpm) //安装软件<br>rpm -e 软件名(vsftpd) //卸载软件<br>rpm -q 软件名 //query检查是否安装该软件<br>rpm -qa //查看系统全部安装软件情况<br>rpm -qa | grep ftp //在全部安装软件里边，通过模糊方式查找是否有ftp这个软件<br>rpm -u 文件名 //对软件升级</p>
-</blockquote>
-</li>
-<li><p>让vsftpd软件运行</p>
+<pre>
+   <code>
+   find 目录 选项 选项值<br>
+   > find ./ -name abc.txt //在当前目录查找名字为abc.txt的这个文件
+   > find / -name xxx //在根目录查找文件
+   > find ./ -size 大小 //根据文件的大小来查找
+   单位：<br>
+   10 512字节默认<br>
+   100c 1字节单位<br>
+   100k 1024字节单位<br>
+   > find ./ -size +100c //查找文件大小大于100字节的
+   > find ./ -size -100c //查找大小小于100字节的文件
+   > find ./ -size 4 //查找大小等于2048字节的文件
+   > find ./ -size 2k //查找大小等于2048字节的文件
+   > find ./ -maxdepth 1 //查找文件目录最深是2层
+   > find ./ -mindepth 1 //查找文件通过最浅层次进行查找
+
+   > find ./ -type f //通过类型查找，查找文件类型
+   > find ./ -type d //通过类型查找，查找目录类型
+
+   > find ./ -user 用户名 //查找文件主人为XX的文件
+   > find ./ -uid 用户编号 //查找文件主人编号为XX的文件
+   > find ./ -nouser //查找没有主人的文件
+   文件创建的时候，是某个用户创建的
+   有的一些文件创建好后，被用户发布到网络上边
+   我们把网络的文件下载本地，放到我们自己的系统里边
+   创建这个文件的用户，在我自己的系统里边并没有
+   例如，创建这个文件的用户编号是710(用户名：runfa)
+   > find ./ -perm 权限764 //根据文件的权限进行查找
+   > find ./ -name ‘bao*’ //进行模糊查找，名字前缀是bao的文件
+   </code>
+</pre></li>
+<li>设置软连接<pre>
+   <code>
+   > ln -s 源文件 链接文件
+   > ln -s /home/shuhua/shanghai/passwd /var/passwd
+   </code>
+</pre></li>
+<li>查看文件索引号码<pre>
+   <code>
+   > ls -li
+   </code>
+</pre></li>
+<li>制作任务调度指令<pre>
+   <code>
+   > crontab -e //编辑任务调度指令
+   > crontab -l //查看任务调度指令设置情况
+   在17:38来执行具体任务指令
+   分钟 小时 日期 月份 星期 具体命令
+   38 17 * * * /home/shuhua/shanghai/newout.sh
+   0代表周日
+   </code>
+</pre></li>
+<li>设置系统时间<pre>
+   <code>
+   > date -s “2013-08-13 17:39:40”;
+   > date //查看系统时间
+   </code>
+</pre></li>
+<li>给文件设置主人<pre>
+   <code>
+   > change owner
+   > chown 主人 文件
+   </code>
+</pre></li>
+<li>给文件设置组<pre>
+   <code>
+   > change group
+   > chgrp 组 文件
+   > chown .组 文件
+   </code>
+</pre></li>
+<li>同时给文件设置主人和组<pre>
+   <code>
+   > chown 主人.组 文件
+   > chown 主人.组 目录 -R //递归给目录设置主人和组的信息，二级目录和三级目录等等都会设置
+   </code>
+</pre></li>
+<li>实现设备挂载、卸载<pre>
+   <code>
+   > mount /dev/cdrom /home/shuhua/rom //把光驱挂载到rom的目录下边
+   > mount /dev/hda1 /home/shuhua/upan //挂载u盘
+   > mount /dev/sda3 /home/shuhua/pan3 //挂载硬盘
+   > umount 设备 或者 挂载点
+   > umount /dev/cdrom
+   > umount /home/shuhua/rom
+   </code>
+</pre></li>
+<li>rpm指令安装软件<pre>
+   <code>
+   > rpm -ivh 软件文件名(vsftpd-2.0.5-16.el5_4.1.i386.rpm) //安装软件
+   > rpm -e 软件名(vsftpd) //卸载软件
+   > rpm -q 软件名 //query检查是否安装该软件
+   > rpm -qa //查看系统全部安装软件情况
+   > rpm -qa | grep ftp //在全部安装软件里边，通过模糊方式查找是否有ftp这个软件
+   > rpm -u 文件名 //对软件升级
+   </code>
+</pre></li>
+<li><p>让vsftpd软件运行<br><pre><br>   <code></code></pre></p>
 <blockquote>
 <p>service vsftpd start</p>
 </blockquote>
 </li>
 <li><p>服务器重新启动</p>
-<blockquote>
-<p>reboot 重新启动<br>shutdown 关机<br>poweroff 关机       </p>
-</blockquote>
+<pre>
+   <code>
+   > reboot 重新启动
+   > shutdown 关机
+   > poweroff 关机       
+   </code>
+</pre>
+
+
+
+
+
+
+
+
+
+
 </li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2kf3a1v00044gvaj9gcf1pa" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2kf9ck60004ugvaobbxpjv3" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -371,7 +504,7 @@
 <nav id="article-nav">
   
     <a href="/2017/05/11/javascript停止事件冒泡/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Récent</strong>
+      <strong class="article-nav-caption">Nieuwer</strong>
       <div class="article-nav-title">
         
           javascript停止事件冒泡
@@ -381,7 +514,7 @@
   
   
     <a href="/2017/05/11/php捅式排序/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">php 桶式排序 实现方法</div>
     </a>
   
@@ -396,7 +529,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Catégories</h3>
+    <h3 class="widget-title">Categorieën</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo博客/">hexo博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li></ul>
     </div>
@@ -411,7 +544,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
     </div>
@@ -421,7 +554,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
         
@@ -458,7 +591,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
