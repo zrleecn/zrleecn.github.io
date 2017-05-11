@@ -5,16 +5,16 @@
   
   <title>linux常用口令 | resume.zrlee.cn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="打开文件  vi 文件  该模式是命令模式  尾行模式操作  &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件">
+  <meta name="description" content="打开文件 vi 文件  该模式是命令模式    尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux常用口令">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/linux常用口令/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="打开文件  vi 文件  该模式是命令模式  尾行模式操作  &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件">
-<meta property="og:updated_time" content="2017-05-11T12:24:43.280Z">
+<meta property="og:description" content="打开文件 vi 文件  该模式是命令模式    尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件">
+<meta property="og:updated_time" content="2017-05-11T12:28:49.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux常用口令">
-<meta name="twitter:description" content="打开文件  vi 文件  该模式是命令模式  尾行模式操作  &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件">
+<meta name="twitter:description" content="打开文件 vi 文件  该模式是命令模式    尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件">
   
     <link rel="alternate" href="/atom.xml" title="resume.zrlee.cn" type="application/atom+xml">
   
@@ -91,13 +91,13 @@
       
         <hr>
 <ol>
-<li>打开文件</li>
-</ol>
+<li><p>打开文件</p>
 <pre><code>vi 文件 
 该模式是命令模式
-</code></pre><ol>
-<li>尾行模式操作</li>
+</code></pre></li>
 </ol>
+<ol>
+<li><p>尾行模式操作</p>
 <pre><code>&gt; :q 该模式是“尾行模式”
 &gt; :w    //保存已经修改的文档
 &gt; :wq //保存并退出
@@ -110,37 +110,30 @@
 &gt; :s/bin/abcd/g //替换当前行所有的bin为abcd
 &gt; :n //光标跳转到n行位置
 &gt; /内容 //查找指定内容
-</code></pre><ol>
-<li>显示当前用户信息</li>
-</ol>
+</code></pre></li>
+<li><p>显示当前用户信息</p>
 <pre><code>&gt; who am i //显示用户名 和 其登录系统的时间信息
 &gt; whoami //只显示当前登录系统的用户名信息
-</code></pre><ol>
-<li>从普通用户切换到root用户</li>
-</ol>
+</code></pre></li>
+<li><p>从普通用户切换到root用户</p>
 <pre><code>&gt; su – //提示输入密码
 &gt; su root //
 两种切换方式：前者切换为超级管理员用户，权限也是超级管理员权限
 后者虽然切换为超级管理员，其权限是普通权限
-</code></pre><ol>
-<li>从root用户切换到普通用户</li>
-</ol>
+</code></pre></li>
+<li><p>从root用户切换到普通用户</p>
 <pre><code>&gt; su shuhua //从root切回普通用户
-</code></pre><ol>
-<li>从桌面窗口切换为“命令行窗口”(通过超级管理员切换)</li>
-</ol>
+</code></pre></li>
+<li><p>从桌面窗口切换为“命令行窗口”(通过超级管理员切换)</p>
 <pre><code>&gt; init 3
 &gt; init 5 //从“命令行”切换回“桌面”
-</code></pre><ol>
-<li>目录切换</li>
-</ol>
+</code></pre></li>
+<li><p>目录切换</p>
 <pre><code>&gt; cd 具体目录
-</code></pre><ol>
+</code></pre></li>
 <li><p>输出文件的信息，全部内容直接都输出</p>
 <pre><code>&gt;cat 文件      
 </code></pre></li>
-</ol>
-<ol>
 <li><p>创建目录指令</p>
 <pre><code>&gt; mkdir 目录
 &gt; mkdir -p 目录1/目录2/目录3 //递归创建目录
@@ -155,28 +148,12 @@
 <p>mv 文件 目录 //移动文件到指定的目录<br>mv 目录 目录 //移动目录到指定目录(包括多级目录)        </p>
 </blockquote>
 </li>
-</ol>
-<ol>
-<li>mv指令什么时候是移动，什么时候是该名字</li>
-</ol>
-<pre><code>mv 一参 二参
-二参 是不存在的，就是改名字
-二参 是存在的目录，就是移动
-
-mv com.txt red.txt
-red.txt是存在的文件，com.txt也是存在的文件
-首先明确，不可以移动操作
-不能
-【能】把名字由com.txt改为red.txt
-
-mv guangzhou hello.txt
- guangzhou 是存在的目录
-hello.txt 是存在的文件
-首先明确不能移动
-是否可以把guangzhou的名字改为hello.txt
-【不能】把名字由“guangzhou”改为”hello.txt”
-能       
-</code></pre><ol>
+<li><p>mv指令什么时候是移动，什么时候是该名字</p>
+<p>   mv 一参 二参<br>   二参 是不存在的，就是改名字<br>   二参 是存在的目录，就是移动</p>
+<p>   mv com.txt red.txt<br>   red.txt是存在的文件，com.txt也是存在的文件<br>   首先明确，不可以移动操作<br>   不能<br>   【能】把名字由com.txt改为red.txt<br>   mv guangzhou hello.txt</p>
+<pre><code>guangzhou 是存在的目录
+</code></pre><p>   hello.txt 是存在的文件<br>   首先明确不能移动<br>   是否可以把guangzhou的名字改为hello.txt<br>   【不能】把名字由“guangzhou”改为”hello.txt”<br>   能       </p>
+</li>
 <li><p>删除目录</p>
 <blockquote>
 <p>rmdir 目录 //删除单个目录(没有子级目录)<br>rm -rf 文件名字 //force强制 recursive 递归删除<br>rm -rf / //kill your self [root用户可以删除更多的文件]<br>rm -rf shanghai/beijing                  //这是删除shanghai下边的beijing目录，不会删除shanghai</p>
@@ -394,7 +371,7 @@ ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2kdzj020004tkva340ag934" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2ke4s570005lwvaptkw9eba" class="article-share-link">Share</a>
       
       
     </footer>
