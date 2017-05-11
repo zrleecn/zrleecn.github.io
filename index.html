@@ -48,9 +48,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -93,7 +93,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/php http文件下载/" data-id="cj2kf9ckm0005ugva7dosdm98" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/11/php http文件下载/" data-id="cj2kfjed2000264vayx6cvjgq" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -140,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/javascript停止事件冒泡/" data-id="cj2kf9cjq0001ugvaczdt96vm" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/11/javascript停止事件冒泡/" data-id="cj2kfjecn000164va4vqoqojf" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -223,14 +223,13 @@
 <pre><code>&gt; mkdir 目录
 &gt; mkdir -p 目录1/目录2/目录3 //递归创建目录
 </code></pre></li>
-<li><p>修改目录的名字</p>
-<pre>
-    <code>
-       > mv 目录1 目录2 //把”目录1″的名字改为”目录2”的名字
-       > mv 目录/目录a 目录/目录b //把“目录a”改成“目录b”
-   </code>
-</pre></li>
-<li>移动操作<pre>
+<li><p>修改目录的名字<br><pre></pre></p>
+<pre><code>&lt;code&gt;
+   &gt; mv 目录1 目录2 //把”目录1″的名字改为”目录2”的名字
+   &gt; mv 目录/目录a 目录/目录b //把“目录a”改成“目录b”
+</code></pre><p>   <br><br><br></p>
+</li>
+<li>移动操作<br><pre>
    <code>
        > mv 文件 目录 //移动文件到指定的目录
        > mv 目录 目录 //移动目录到指定目录(包括多级目录)  
@@ -267,150 +266,77 @@
 </code>
  </pre> 
 </li>
-<li><p>复制</p>
-<pre>
-   <code>
-   >cp copy
-   >cp 目录 地址 -R //复制目录需要加上固定参数-R，目录会进行递归复制
-   >cp 文件 目录/不存在名字 //文件在被复制到指定目录的同时被“改名字”
-   >cp 文件 新文件名字 //复制同时并起新名字
-</code>
- </pre></li>
-<li>查看文件内容<pre>
-   <code>
-   > more 文件 //从文件内容第一行开始显示，有显示内容查看%百分比
-   //敲回车，会逐行查看后边的内容，到最后会释放光标
-   > less 文件 //逐行显示文件内容，通过“上、下、左、右”可以查看文档的各部分内容
-   //允许向前查看，没有百分比显示
-   //通过”q”键释放光标
-   > head -n 文件 //查看文件前n行内容
-   > tail -n 文件 //查看文件尾部n行内容
-   > wc 文件 //计算文件内容行数、段落
-   </code>
-</pre></li>
-<li>创建新文件<pre>
-   <code>
-   > touch 文件名 //创建文件
-   </code>
-</pre></li>
-<li>给文件添加内容<pre>
-   <code>
-   > echo 内容 > 文件 //把指定内容输入到“文件”里边
-   > echo 内容 >> 文件 //把内容追加到文件里边
-   </code>
-</pre></li>
-<li>重定向内容到一个文件<pre>
-   <code>
-   > cat 文件1 > 文件2 //把文件1的内容重定向到文件2里边，文件2没有则会自动创建
-   > cat 文件1 >> 文件2 //追加重定向
-   </code>
-</pre></li>
-<li>增加用户 /etc/passwd存放系统用户信息（组编号、家目录）<pre>
-   <code>
-   > useradd 用户名
-   > useradd -g 编号 用户名 //增加用户的同时设置“组编号”
-   > useradd -d 目录名 用户名 //增加用户同时设置“家目录”，目录没有会自动创建
-   > useradd -g 编号 -d 家目录 用户名 //同时设置组编号和家目录地址
-   > useradd -g 组编号 用户 //常用操作
-   </code>
-</pre></li>
-<li>创建组 (可以设置组本身编号)<pre>
-   <code>
-   > groupadd 组名 //常用操作
-   > groupadd -g 编号 组名 //可以设置组编号，下一个组的编号要从最大的自增
-   </code>
-</pre></li>
-<li>修改用户信息(组编号、家目录地址、用户名)<pre>
-   <code>
-   > usermod -g 组编号 用户名 //修改用户的组编号
-   > usermod -d 家目录 用户名 //修改用户的家目录，passwd文件有修改，实际并没有这个目录(手动创建)
-   > usermod -u 编号 用户名 //修改用户本身的编号
-   > usermod -l 新名字 旧用户名 //修改用户的名字
-   </code>
-</pre></li>
-<li>修改组 (组编号、组名)<pre>
-   <code>
-   > groupmod -g 组编号 组名 //修改组编号
-   > groupmod -n 新组名 旧组名 //修改组名字
-   </code>
-</pre></li>
-<li>删除用户(用户信息、家目录地址)<pre>
-   <code>       
-   > userdel 用户
-   > userdel -r 用户 //删除用户同时，其“家目录”地址也会被删除
-   </code>
-</pre></li>
-<li>删除组<pre>
-   <code>
-   > groupdel 组名 //一个组下边有具体用户，该组不允许删除
-   </code>
-</pre>        </li>
-<li>查看一个指令在使用的时候有何种参数可以设置<pre>
-   <code>
-   > useradd –help 命令 –help
-   </code>
-</pre></li>
-<li>给一个用户设置密码(可以让其登录系统)<pre>
-   <code>
-   > passwd 用户名 //密码根据提示输入两遍
-   </code>
-</pre></li>
-<li>查看命令具体参数设置<pre>
-   <code>
-   > man 命令 //前后反复查看命令的使用参数
-   </code>
-</pre></li>
-<li>给文件进行权限设置[相对方式]<pre>
-   <code>
-   > chmod u+x 文件
-   > chmod g+x 文件 //给同组用户设置执行权限
-   > chmod o+x 文件 //给其他组用户设置执行权限
-   > chmod o+w,o+x 文件 //同时给文件设置可写、可执行全选
-   > chmod u-r 文件 //取消主人的可读权限
-   > chmod g-w,g-x 文件 //取消同组用户写、执行权限
-   > chmod o-r,o-x 文件 //取消其他组用户读、执行权限
-   > chmod g+rx,o+wx 文件 //给文件同组用户设置“读、执行”权限，其他组用户有“写、执行权限”
-   > chmod u-rwx,g-rw //取消具体用户的权限
-   </code>
-</pre></li>
-<li>数字[绝对方式]设置文件权限<pre>
-   <code>  
-   读、写、可执行
-   二进制代码表示计算机的信息
-   1————-1
-   10————-2
-   100————-4
-   例如：读：1 写：2 执行3
-   如果文件权限是读写执行都有就是数字6
-   如果文件只有读的权限就是数字1
-   3 不知道是“读写” 还是 “执行权限”，歧义产生
-   正确的用法是：读4 写2 执行1
-   1：执行
-   2：写
-   3：写、执行
-   4：读
-   5：读、执行
-   6：读、写
-   7：读、写、执行
-   > chmod 777 文件 //主人、同组用户、其他组用户权限是满的
-   > chmod 001 文件 //主人、同组用户都没有权限，其他组用户有可执行权限
-   ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执行
-   > chmod 345 ppink.txt
-   </code>
-</pre></li>
-<li>给目录递归设置权限<pre>
-   <code>
-   > chmod 755 目录 -R //-R参数可以递归目录进行权限设置
-   </code>
-</pre></li>
-<li>文件权限使用<pre>
-   <code>  
-   -w- 文件只有可写权限[不可以看到原内容，可以写，覆盖写，强行保存]
-   r– 文件只有可读权限[可以看到原内容，可以写，不会覆盖，强行保存]
-   –x 文件有可执行权限[不可以看到原内容，可以写，覆盖写，强行保存]
-   </code>
-</pre></li>
-<li>目录权限<pre>
+<li><p>复制<br><pre><br>   <code></code></pre></p>
+<blockquote>
+<p>cp copy<br>cp 目录 地址 -R //复制目录需要加上固定参数-R，目录会进行递归复制<br>cp 文件 目录/不存在名字 //文件在被复制到指定目录的同时被“改名字”<br>cp 文件 新文件名字 //复制同时并起新名字<br><br> <br></p>
+</blockquote>
+</li>
+<li>查看文件内容<br><br><pre><br>   <code><blockquote>
+<p>more 文件 //从文件内容第一行开始显示，有显示内容查看%百分比<br>   //敲回车，会逐行查看后边的内容，到最后会释放光标<br>less 文件 //逐行显示文件内容，通过“上、下、左、右”可以查看文档的各部分内容<br>   //允许向前查看，没有百分比显示<br>   //通过”q”键释放光标<br>head -n 文件 //查看文件前n行内容<br>tail -n 文件 //查看文件尾部n行内容<br>wc 文件 //计算文件内容行数、段落<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>创建新文件<br><br><pre><br>   <code><blockquote>
+<p>touch 文件名 //创建文件<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>给文件添加内容<br><br><pre><br>   <code><blockquote>
+<p>echo 内容 &gt; 文件 //把指定内容输入到“文件”里边<br>echo 内容 &gt;&gt; 文件 //把内容追加到文件里边<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>重定向内容到一个文件<br><br><pre><br>   <code><blockquote>
+<p>cat 文件1 &gt; 文件2 //把文件1的内容重定向到文件2里边，文件2没有则会自动创建<br>cat 文件1 &gt;&gt; 文件2 //追加重定向<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>增加用户 /etc/passwd存放系统用户信息（组编号、家目录）<br><br><pre><br>   <code><blockquote>
+<p>useradd 用户名<br>useradd -g 编号 用户名 //增加用户的同时设置“组编号”<br>useradd -d 目录名 用户名 //增加用户同时设置“家目录”，目录没有会自动创建<br>useradd -g 编号 -d 家目录 用户名 //同时设置组编号和家目录地址<br>useradd -g 组编号 用户 //常用操作<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>创建组 (可以设置组本身编号)<br><br><pre><br>   <code><blockquote>
+<p>groupadd 组名 //常用操作<br>groupadd -g 编号 组名 //可以设置组编号，下一个组的编号要从最大的自增<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>修改用户信息(组编号、家目录地址、用户名)<br><br><pre><br>   <code><blockquote>
+<p>usermod -g 组编号 用户名 //修改用户的组编号<br>usermod -d 家目录 用户名 //修改用户的家目录，passwd文件有修改，实际并没有这个目录(手动创建)<br>usermod -u 编号 用户名 //修改用户本身的编号<br>usermod -l 新名字 旧用户名 //修改用户的名字<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>修改组 (组编号、组名)<br><br><pre><br>   <code><blockquote>
+<p>groupmod -g 组编号 组名 //修改组编号<br>groupmod -n 新组名 旧组名 //修改组名字<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>删除用户(用户信息、家目录地址)<br><br><pre><br>   <code>       <blockquote>
+<p>userdel 用户<br>userdel -r 用户 //删除用户同时，其“家目录”地址也会被删除<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>删除组<br><br><pre><br>   <code><blockquote>
+<p>groupdel 组名 //一个组下边有具体用户，该组不允许删除<br>   </p></blockquote></code><br></pre>    <br>    <p></p>
+
+</li>
+<li>查看一个指令在使用的时候有何种参数可以设置<br><br><pre><br>   <code><blockquote>
+<p>useradd –help 命令 –help<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>给一个用户设置密码(可以让其登录系统)<br><br><pre><br>   <code><blockquote>
+<p>passwd 用户名 //密码根据提示输入两遍<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>查看命令具体参数设置<br><br><pre><br>   <code><blockquote>
+<p>man 命令 //前后反复查看命令的使用参数<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>给文件进行权限设置[相对方式]<br><br><pre><br>   <code><blockquote>
+<p>chmod u+x 文件<br>chmod g+x 文件 //给同组用户设置执行权限<br>chmod o+x 文件 //给其他组用户设置执行权限<br>chmod o+w,o+x 文件 //同时给文件设置可写、可执行全选<br>chmod u-r 文件 //取消主人的可读权限<br>chmod g-w,g-x 文件 //取消同组用户写、执行权限<br>chmod o-r,o-x 文件 //取消其他组用户读、执行权限<br>chmod g+rx,o+wx 文件 //给文件同组用户设置“读、执行”权限，其他组用户有“写、执行权限”<br>chmod u-rwx,g-rw //取消具体用户的权限<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>数字[绝对方式]设置文件权限<br><br><pre><br>   <code><br>   读、写、可执行<br>   二进制代码表示计算机的信息<br>   1————-1<br>   10————-2<br>   100————-4<br>   例如：读：1 写：2 执行3<br>   如果文件权限是读写执行都有就是数字6<br>   如果文件只有读的权限就是数字1<br>   3 不知道是“读写” 还是 “执行权限”，歧义产生<br>   正确的用法是：读4 写2 执行1<br>   1：执行<br>   2：写<br>   3：写、执行<br>   4：读<br>   5：读、执行<br>   6：读、写<br>   7：读、写、执行<blockquote>
+<p>chmod 777 文件 //主人、同组用户、其他组用户权限是满的<br>chmod 001 文件 //主人、同组用户都没有权限，其他组用户有可执行权限<br>   ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执行<br>chmod 345 ppink.txt<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>给目录递归设置权限<br><br><pre><br>   <code><blockquote>
+<p>chmod 755 目录 -R //-R参数可以递归目录进行权限设置<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>文件权限使用<br><br><pre><br>   <code><br>   -w- 文件只有可写权限[不可以看到原内容，可以写，覆盖写，强行保存]<br>   r– 文件只有可读权限[可以看到原内容，可以写，不会覆盖，强行保存]<br>   –x 文件有可执行权限[不可以看到原内容，可以写，覆盖写，强行保存]<br>   </code><br></pre><br></li>
+<li>目录权限<br><pre>
    <code>  
    r– 目录有可读权限[可以阅读里边的文件，不允许进入]
    –x 目录有执行权限[不能阅读，不允许写，允许进入目录]
@@ -432,117 +358,64 @@
 </pre></li>
 <li><p>文件或目录的各种权限对超级管理员root没有影响</p>
 </li>
-<li><p>在指定文件里边查找我们需要的内容</p>
-<pre>
-   <code>
-   > grep 内容 文件
-   </code>
-</pre></li>
-<li>查看“任务管理器”<pre>
-   <code>
-   > top
-   </code>
-</pre></li>
-<li>查看内存信息<pre>
-   <code>
-   > free -m //以M兆为单位显示内存大小使用情况
-   </code>
-</pre></li>
-<li>查看文件或目录占用大小的情况<pre>
-   <code>
-   > du -h 目标 //有最小单元限制（4k） 1字节
-   </code>
-</pre></li>
-<li><p>文件查找</p>
-<pre>
-   <code>
-   find 目录 选项 选项值<br>
-   > find ./ -name abc.txt //在当前目录查找名字为abc.txt的这个文件
-   > find / -name xxx //在根目录查找文件
-   > find ./ -size 大小 //根据文件的大小来查找
-   单位：<br>
-   10 512字节默认<br>
-   100c 1字节单位<br>
-   100k 1024字节单位<br>
-   > find ./ -size +100c //查找文件大小大于100字节的
-   > find ./ -size -100c //查找大小小于100字节的文件
-   > find ./ -size 4 //查找大小等于2048字节的文件
-   > find ./ -size 2k //查找大小等于2048字节的文件
-   > find ./ -maxdepth 1 //查找文件目录最深是2层
-   > find ./ -mindepth 1 //查找文件通过最浅层次进行查找
+<li><p>在指定文件里边查找我们需要的内容<br><pre><br>   <code></code></pre></p>
+<blockquote>
+<p>grep 内容 文件<br>   <br><br></p>
+</blockquote>
+</li>
+<li>查看“任务管理器”<br><br><pre><br>   <code><blockquote>
+<p>top<br>   </p></blockquote></code><br></pre><br><br><p></p>
 
-   > find ./ -type f //通过类型查找，查找文件类型
-   > find ./ -type d //通过类型查找，查找目录类型
+</li>
+<li>查看内存信息<br><br><pre><br>   <code><blockquote>
+<p>free -m //以M兆为单位显示内存大小使用情况<br>   </p></blockquote></code><br></pre><br><p></p>
 
-   > find ./ -user 用户名 //查找文件主人为XX的文件
-   > find ./ -uid 用户编号 //查找文件主人编号为XX的文件
-   > find ./ -nouser //查找没有主人的文件
-   文件创建的时候，是某个用户创建的
-   有的一些文件创建好后，被用户发布到网络上边
-   我们把网络的文件下载本地，放到我们自己的系统里边
-   创建这个文件的用户，在我自己的系统里边并没有
-   例如，创建这个文件的用户编号是710(用户名：runfa)
-   > find ./ -perm 权限764 //根据文件的权限进行查找
-   > find ./ -name ‘bao*’ //进行模糊查找，名字前缀是bao的文件
-   </code>
-</pre></li>
-<li>设置软连接<pre>
-   <code>
-   > ln -s 源文件 链接文件
-   > ln -s /home/shuhua/shanghai/passwd /var/passwd
-   </code>
-</pre></li>
-<li>查看文件索引号码<pre>
-   <code>
-   > ls -li
-   </code>
-</pre></li>
-<li>制作任务调度指令<pre>
-   <code>
-   > crontab -e //编辑任务调度指令
-   > crontab -l //查看任务调度指令设置情况
-   在17:38来执行具体任务指令
-   分钟 小时 日期 月份 星期 具体命令
-   38 17 * * * /home/shuhua/shanghai/newout.sh
-   0代表周日
-   </code>
-</pre></li>
-<li>设置系统时间<pre>
-   <code>
-   > date -s “2013-08-13 17:39:40”;
-   > date //查看系统时间
-   </code>
-</pre></li>
-<li>给文件设置主人<pre>
-   <code>
-   > change owner
-   > chown 主人 文件
-   </code>
-</pre></li>
-<li>给文件设置组<pre>
-   <code>
-   > change group
-   > chgrp 组 文件
-   > chown .组 文件
-   </code>
-</pre></li>
-<li>同时给文件设置主人和组<pre>
-   <code>
-   > chown 主人.组 文件
-   > chown 主人.组 目录 -R //递归给目录设置主人和组的信息，二级目录和三级目录等等都会设置
-   </code>
-</pre></li>
-<li>实现设备挂载、卸载<pre>
-   <code>
-   > mount /dev/cdrom /home/shuhua/rom //把光驱挂载到rom的目录下边
-   > mount /dev/hda1 /home/shuhua/upan //挂载u盘
-   > mount /dev/sda3 /home/shuhua/pan3 //挂载硬盘
-   > umount 设备 或者 挂载点
-   > umount /dev/cdrom
-   > umount /home/shuhua/rom
-   </code>
-</pre></li>
-<li>rpm指令安装软件<pre>
+</li>
+<li>查看文件或目录占用大小的情况<br><br><pre><br>   <code><blockquote>
+<p>du -h 目标 //有最小单元限制（4k） 1字节<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li><p>文件查找<br><br><pre><br>   <code><br>   find 目录 选项 选项值<br></code></pre></p>
+<blockquote>
+<p>find ./ -name abc.txt //在当前目录查找名字为abc.txt的这个文件<br>find / -name xxx //在根目录查找文件<br>find ./ -size 大小 //根据文件的大小来查找<br>   单位：<br><br>   10 512字节默认<br><br>   100c 1字节单位<br><br>   100k 1024字节单位<br><br>find ./ -size +100c //查找文件大小大于100字节的<br>find ./ -size -100c //查找大小小于100字节的文件<br>find ./ -size 4 //查找大小等于2048字节的文件<br>find ./ -size 2k //查找大小等于2048字节的文件<br>find ./ -maxdepth 1 //查找文件目录最深是2层<br>find ./ -mindepth 1 //查找文件通过最浅层次进行查找</p>
+<p>find ./ -type f //通过类型查找，查找文件类型<br>find ./ -type d //通过类型查找，查找目录类型</p>
+<p>find ./ -user 用户名 //查找文件主人为XX的文件<br>find ./ -uid 用户编号 //查找文件主人编号为XX的文件<br>find ./ -nouser //查找没有主人的文件<br>   文件创建的时候，是某个用户创建的<br>   有的一些文件创建好后，被用户发布到网络上边<br>   我们把网络的文件下载本地，放到我们自己的系统里边<br>   创建这个文件的用户，在我自己的系统里边并没有<br>   例如，创建这个文件的用户编号是710(用户名：runfa)<br>find ./ -perm 权限764 //根据文件的权限进行查找<br>find ./ -name ‘bao*’ //进行模糊查找，名字前缀是bao的文件<br>   <br><br></p>
+</blockquote>
+</li>
+<li>设置软连接<br><br><pre><br>   <code><blockquote>
+<p>ln -s 源文件 链接文件<br>ln -s /home/shuhua/shanghai/passwd /var/passwd<br>   </p></blockquote></code><br></pre><br><br><p></p>
+
+</li>
+<li>查看文件索引号码<br><br><pre><br>   <code><blockquote>
+<p>ls -li<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>制作任务调度指令<br><br><pre><br>   <code><blockquote>
+<p>crontab -e //编辑任务调度指令<br>crontab -l //查看任务调度指令设置情况<br>   在17:38来执行具体任务指令<br>   分钟 小时 日期 月份 星期 具体命令<br>   38 17 <em> </em> * /home/shuhua/shanghai/newout.sh<br>   0代表周日<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>设置系统时间<br><br><pre><br>   <code><blockquote>
+<p>date -s “2013-08-13 17:39:40”;<br>date //查看系统时间<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>给文件设置主人<br><br><pre><br>   <code><blockquote>
+<p>change owner<br>chown 主人 文件<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>给文件设置组<br><br><pre><br>   <code><blockquote>
+<p>change group<br>chgrp 组 文件<br>chown .组 文件<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>同时给文件设置主人和组<br><br><pre><br>   <code><blockquote>
+<p>chown 主人.组 文件<br>chown 主人.组 目录 -R //递归给目录设置主人和组的信息，二级目录和三级目录等等都会设置<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li>实现设备挂载、卸载<br><br><pre><br>   <code><blockquote>
+<p>mount /dev/cdrom /home/shuhua/rom //把光驱挂载到rom的目录下边<br>mount /dev/hda1 /home/shuhua/upan //挂载u盘<br>mount /dev/sda3 /home/shuhua/pan3 //挂载硬盘<br>umount 设备 或者 挂载点<br>umount /dev/cdrom<br>umount /home/shuhua/rom<br>   </p></blockquote></code><br></pre><br><p></p>
+
+</li>
+<li><p>rpm指令安装软件<br></p>
+<pre>
    <code>
    > rpm -ivh 软件文件名(vsftpd-2.0.5-16.el5_4.1.i386.rpm) //安装软件
    > rpm -e 软件名(vsftpd) //卸载软件
@@ -551,19 +424,23 @@
    > rpm -qa | grep ftp //在全部安装软件里边，通过模糊方式查找是否有ftp这个软件
    > rpm -u 文件名 //对软件升级
    </code>
-</pre></li>
-<li><p>让vsftpd软件运行<br><pre><br>   <code></code></pre></p>
-<blockquote>
-<p>service vsftpd start</p>
-</blockquote>
+</pre>
 </li>
-<li><p>服务器重新启动</p>
+<li><p>让vsftpd软件运行</p>
+</li>
+</ol>
 <pre>
-   <code>
-   > reboot 重新启动
-   > shutdown 关机
-   > poweroff 关机       
-   </code>
+        <code>
+        > service vsftpd start
+        </code>
+</pre>
+ 50. 服务器重新启动
+<pre>
+        <code>
+        > reboot 重新启动
+        > shutdown 关机
+        > poweroff 关机       
+        </code>
 </pre>
 
 
@@ -575,13 +452,11 @@
 
 
 
-</li>
-</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2kf9ck60004ugvaobbxpjv3" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2kfjed2000464vacw8xr21y" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -624,7 +499,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/php捅式排序/" data-id="cj2kf9ckm0006ugvagfevpzy0" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/11/php捅式排序/" data-id="cj2kfjedi000564vaxoek0lbz" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -634,14 +509,14 @@
 
 
   
-    <article id="post-how-to-update-hexo-article" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-流行框架第一天" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/05/10/how-to-update-hexo-article/" class="article-date">
-  <time datetime="2017-05-10T14:45:13.000Z" itemprop="datePublished">2017-05-10</time>
+    <a href="/2017/05/11/流行框架第一天/" class="article-date">
+  <time datetime="2017-05-10T16:00:00.000Z" itemprop="datePublished">2017-05-11</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/hexo博客/">hexo博客</a>
+    <a class="article-category-link" href="/categories/移动web/">移动web</a>
   </div>
 
   </div>
@@ -652,7 +527,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/10/how-to-update-hexo-article/">how to update hexo article</a>
+      <a class="article-title" href="/2017/05/11/流行框架第一天/">流行框架第一天：构建前端自动化工作流环境</a>
     </h1>
   
 
@@ -660,17 +535,192 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'文件名称'</span></div></pre></td></tr></table></figure>
-<p>例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'test'</span></div></pre></td></tr></table></figure></p>
-<p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
-<p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
-<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">(若要本地预览就先执行 hexo server)</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
+        <h2 id="兩個問題"><a href="#兩個問題" class="headerlink" title="兩個問題"></a>兩個問題</h2><h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
+<li>了解什么是Node，什么是NPM；（Node.js）</li>
+<li>掌握Bower的使用；</li>
+<li>熟练使用Less/Sass；</li>
+<li>搭建一个自己的自动化工作流环境；<ul>
+<li>自动编译</li>
+<li>自动合并</li>
+<li>自动刷新</li>
+<li>自动部署</li>
+</ul>
+</li>
+<li>GIT 与 GITHUB<ul>
+<li>master 托管源文件</li>
+<li>gh-pages 托管部署文件</li>
+<li>在github搭建自己的blog</li>
+</ul>
+</li>
+</ul>
+<h2 id="为什么要有自动化的流程"><a href="#为什么要有自动化的流程" class="headerlink" title="为什么要有自动化的流程"></a>为什么要有自动化的流程</h2><ul>
+<li>在我们的开发过程中有大量的重复操作</li>
+<li>DRY  Don’t repeat yourself</li>
+<li><p>开发人员的精力应放在哪？创造，新的一切</p>
+</li>
+<li><p>前端开发的编译操作</p>
+</li>
+</ul>
+<h2 id="1-Node环境"><a href="#1-Node环境" class="headerlink" title="1.Node环境"></a>1.Node环境</h2><h3 id="1-1-什么是Node"><a href="#1-1-什么是Node" class="headerlink" title="1.1.什么是Node"></a>1.1.什么是Node</h3><ul>
+<li>Node.js 可能类似jquery.js</li>
+<li>不是JS文件，也不是一个JS框架（）</li>
+<li>而是Server side Javascript runtime, 服务端的一个JS运行时</li>
+<li>我们可以在NODE运行JS代码</li>
+<li>alert();ECMAScript  JS- ES  BOM  DOM</li>
+<li>node中只能运行ECMAScript，无法使用 BOM 和 DOM</li>
+<li>目前我们的JS是运行在浏览器内核中</li>
+<li>PHP是什么？是一门脚本语言也是一个运行环境</li>
+<li><p>为什么Node选中了JS，</p>
+</li>
+<li><p>说到底就是一个JS运行环境</p>
+</li>
+<li><p>目前有两个分支</p>
+<ul>
+<li>Node.js 0.12.7 官方版本 要求尽善尽美</li>
+<li>IO.js 是社区的产物，不是官方的东西，io.js有很多新特性，迭代非常快，社区推进非常快</li>
+<li>15年两者合并，发布node第一个正式版 4.0， 迭代速度又慢了</li>
+<li>node 5.x == io.js</li>
+<li>node 4.0 == node</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-Node环境搭建"><a href="#1-2-Node环境搭建" class="headerlink" title="1.2.Node环境搭建"></a>1.2.Node环境搭建</h3><h4 id="1-2-1-Mac"><a href="#1-2-1-Mac" class="headerlink" title="1.2.1.Mac"></a>1.2.1.Mac</h4><ul>
+<li>安装包的方式<ul>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0.pkg" target="_blank" rel="external">pkg</a></li>
+</ul>
+</li>
+<li><p>NVM（Node Version Manager）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'. ~/.nvm/nvm.sh'</span> &gt;&gt; .bash_profile</div><div class="line">$ nvm install stable</div><div class="line">$ nvm <span class="built_in">alias</span> default stable</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="1-2-2-Windows"><a href="#1-2-2-Windows" class="headerlink" title="1.2.2.Windows"></a>1.2.2.Windows</h4><ul>
+<li>安装包的方式<ul>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x64.msi" target="_blank" rel="external">msi_x64</a></li>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x86.msi" target="_blank" rel="external">msi_x86</a></li>
+</ul>
+</li>
+<li>NVM（Node Version Manager）</li>
+<li>nvm(node version manager)</li>
+<li>因为NODE版本比较多，开发人员可能依赖很多版本</li>
+<li><p>通过NVM，可以轻松切换于不同的版本之间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>NVM_HOME=C:\Develop\nvm</p>
+<p>NVM_SYMLINK=C:\Develop\nodejs</p>
+<p>NPM_HOME=C:\Develop\nvm\npm</p>
+<p>PATH=%NVM_HOME%;%NVM_SYMLINK%;%NPM_HOME%</p>
+<h4 id="1-2-3-环境变量"><a href="#1-2-3-环境变量" class="headerlink" title="1.2.3.环境变量"></a>1.2.3.环境变量</h4><ul>
+<li><p>环境变量就是操作系统提供的系统级别用于存储变量的地方</p>
+</li>
+<li><p>系统变量和用户变量</p>
+</li>
+<li>系统变量指的是所用当前系统用户共享的变量</li>
+<li>自己的电脑一般只有一个用户</li>
+<li><p>建议将自己配置的环境变量放在用户变量中，用户变量比较干净</p>
+</li>
+<li><p>环境变量的变量名是不区分大小写的</p>
+</li>
+<li><p>变量间运行相互引用</p>
+</li>
+<li><p>特殊值：</p>
+</li>
+<li>PATH变量（不区分大小写）</li>
+<li>PATH 相当于一个路径的引用</li>
+<li><p>只要添加到PATH变量中的路径，都可以在任何目录下搜索</p>
+</li>
+<li><p>命令行</p>
+</li>
+<li>可以用来执行当前目录下的文件</li>
+<li>命令</li>
+</ul>
+<p>cd :change directory</p>
+<ul>
+<li>Node.js是一个轻内核（本身没有什么功能）的东东，所有的功能都要功能包提供</li>
+<li>node官方提供了一些最基础的包</li>
+</ul>
+<h3 id="1-3-Node用途"><a href="#1-3-Node用途" class="headerlink" title="1.3.Node用途"></a>1.3.Node用途</h3><h4 id="REPL环境（控制台环境）"><a href="#REPL环境（控制台环境）" class="headerlink" title="REPL环境（控制台环境）"></a>REPL环境（控制台环境）</h4><h4 id="1-3-1-开发Web应用程序"><a href="#1-3-1-开发Web应用程序" class="headerlink" title="1.3.1.开发Web应用程序"></a>1.3.1.开发Web应用程序</h4><ul>
+<li>做动态网站</li>
+<li>开发提供数据的服务端API</li>
+</ul>
+<h4 id="1-3-2-前端开发工具基础"><a href="#1-3-2-前端开发工具基础" class="headerlink" title="1.3.2.前端开发工具基础"></a>1.3.2.前端开发工具基础</h4><ul>
+<li>Node.js给前端乃至整个开发行业带来一场工业革命</li>
+<li>刀跟火种</li>
+</ul>
+<h3 id="1-4-Node开发Web应用Demo"><a href="#1-4-Node开发Web应用Demo" class="headerlink" title="1.4.Node开发Web应用Demo"></a>1.4.Node开发Web应用Demo</h3><h4 id="1-4-1-复习请求与响应"><a href="#1-4-1-复习请求与响应" class="headerlink" title="1.4.1.复习请求与响应"></a>1.4.1.复习请求与响应</h4><p>客户端发送到服务端的东西称之为请求报文<br>服务端返回给客户端的东西称之为响应报文</p>
+<h3 id="1-5-NPM"><a href="#1-5-NPM" class="headerlink" title="1.5.NPM"></a>1.5.NPM</h3><h4 id="1-5-1-什么是NPM"><a href="#1-5-1-什么是NPM" class="headerlink" title="1.5.1.什么是NPM"></a>1.5.1.什么是NPM</h4><p><a href="https://www.npmjs.com/" target="_blank" rel="external">https://www.npmjs.com/</a></p>
+<ul>
+<li>Node Package Manager</li>
+<li>Node应用程序依赖包的管理工具</li>
+<li>安装卸载更新之类的操作</li>
+</ul>
+<h4 id="1-5-2-为什么使用NPM"><a href="#1-5-2-为什么使用NPM" class="headerlink" title="1.5.2.为什么使用NPM"></a>1.5.2.为什么使用NPM</h4><ul>
+<li>包很多</li>
+<li>场景：我需要用一个A，A依赖B，B依赖C</li>
+<li>常见的包管理工具都有循环依赖的功能</li>
+<li>你只需记住你要什么东西</li>
+</ul>
+<h4 id="1-5-3-常见的NPM操作"><a href="#1-5-3-常见的NPM操作" class="headerlink" title="1.5.3.常见的NPM操作"></a>1.5.3.常见的NPM操作</h4><p>// 安装一个包，默认安装最新稳定版本<br>npm install package_name<br>// –save<br>// 初始化操作，给项目添加一个配置文件<br>npm init<br>// –yes参数走默认配置</p>
+<ul>
+<li>如果官方数据源太慢使用</li>
+<li><a href="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a></li>
+</ul>
+<hr>
+<h2 id="2-Bower"><a href="#2-Bower" class="headerlink" title="2.Bower"></a>2.Bower</h2><h3 id="2-1-什么是Bower"><a href="#2-1-什么是Bower" class="headerlink" title="2.1.什么是Bower"></a>2.1.什么是Bower</h3><ul>
+<li><a href="http://bower.io/" target="_blank" rel="external">官网</a></li>
+<li>web应用程序依赖项管理工具</li>
+</ul>
+<h3 id="2-2-为什么使用Bower"><a href="#2-2-为什么使用Bower" class="headerlink" title="2.2.为什么使用Bower"></a>2.2.为什么使用Bower</h3><ul>
+<li>方便便捷的方式管理包，zhuangbi</li>
+</ul>
+<h3 id="2-3-Bower实践"><a href="#2-3-Bower实践" class="headerlink" title="2.3.Bower实践"></a>2.3.Bower实践</h3><ul>
+<li><p>npm install -g bower // -g:global</p>
+</li>
+<li><p>修改npm全局路径，就是在用户目录下添加.npmrc文件</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-Sass-LESS"><a href="#3-Sass-LESS" class="headerlink" title="3.Sass/LESS"></a>3.Sass/LESS</h2><hr>
+<h2 id="4-Gulp"><a href="#4-Gulp" class="headerlink" title="4.Gulp"></a>4.Gulp</h2><h3 id="4-1-Gulp简介"><a href="#4-1-Gulp简介" class="headerlink" title="4.1.Gulp简介"></a>4.1.Gulp简介</h3><ul>
+<li>链接：<ul>
+<li><a href="http://gulpjs.com/" target="_blank" rel="external">官网</a></li>
+<li><a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">中文网</a></li>
+</ul>
+</li>
+<li>就是用来机械化的完成重复性质的工作</li>
+<li>gulp的机制就是将重复工作抽象成一个个的任务，</li>
+</ul>
+<h3 id="4-2-Gulp准备工作"><a href="#4-2-Gulp准备工作" class="headerlink" title="4.2.Gulp准备工作"></a>4.2.Gulp准备工作</h3><ul>
+<li>安装Node.js</li>
+<li>安装 gulp 命令行工具<ul>
+<li><code>npm install -g gulp</code></li>
+</ul>
+</li>
+<li>初始化 gulp 项目</li>
+<li>创建任务 - gulpfile.js</li>
+</ul>
+<h3 id="4-3-基本使用"><a href="#4-3-基本使用" class="headerlink" title="4.3.基本使用"></a>4.3.基本使用</h3><h3 id="4-4-常用插件"><a href="#4-4-常用插件" class="headerlink" title="4.4.常用插件"></a>4.4.常用插件</h3><ul>
+<li><a href="https://www.npmjs.com/package/gulp-less" target="_blank" rel="external">编译 Less：gulp-less</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-connect" target="_blank" rel="external">创建本地服务器：gulp-connect</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-concat" target="_blank" rel="external">合并文件：gulp-concat</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-uglify" target="_blank" rel="external">最小化 js 文件：gulp-uglify</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-rename" target="_blank" rel="external">重命名文件：gulp-rename</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-css" target="_blank" rel="external">最小化 css 文件：gulp-minify-css</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-html" target="_blank" rel="external">压缩html文件 gulp-minify-html</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-imagemin" target="_blank" rel="external">最小化图像：gulp-imagemin</a></li>
+</ul>
+<hr>
+<h2 id="5-Git"><a href="#5-Git" class="headerlink" title="5.Git"></a>5.Git</h2><h3 id="5-1-什么是GIT，什么是GITHUB"><a href="#5-1-什么是GIT，什么是GITHUB" class="headerlink" title="5.1.什么是GIT，什么是GITHUB"></a>5.1.什么是GIT，什么是GITHUB</h3><ul>
+<li>GIT</li>
+<li>GITHUB</li>
+</ul>
+<h3 id="5-2-环境安装"><a href="#5-2-环境安装" class="headerlink" title="5.2.环境安装"></a>5.2.环境安装</h3><h3 id="5-3-GIT常用命令"><a href="#5-3-GIT常用命令" class="headerlink" title="5.3.GIT常用命令"></a>5.3.GIT常用命令</h3><hr>
+<h2 id="6-Markdown"><a href="#6-Markdown" class="headerlink" title="6.Markdown"></a>6.Markdown</h2><p><a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="external">https://guides.github.com/features/mastering-markdown/</a><br><a href="https://help.github.com/articles/github-flavored-markdown/" target="_blank" rel="external">https://help.github.com/articles/github-flavored-markdown/</a><br><a href="https://help.github.com/articles/markdown-basics/" target="_blank" rel="external">https://help.github.com/articles/markdown-basics/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/10/how-to-update-hexo-article/" data-id="cj2kf9ck60002ugva2bjp5rh3" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/11/流行框架第一天/" data-id="cj2kfjedi000864vanmbnudov" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -819,7 +869,53 @@ myaccount.html     ------------------ 用户登录视图
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/10/start/" data-id="cj2kf9ckm0008ugva8bhbkuif" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/10/start/" data-id="cj2kfjedi000664vatyrtusvy" class="article-share-link">Partager</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-how-to-update-hexo-article" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/10/how-to-update-hexo-article/" class="article-date">
+  <time datetime="2017-05-10T14:45:13.000Z" itemprop="datePublished">2017-05-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo博客/">hexo博客</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/10/how-to-update-hexo-article/">how to update hexo article</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'文件名称'</span></div></pre></td></tr></table></figure>
+<p>例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'test'</span></div></pre></td></tr></table></figure></p>
+<p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
+<p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
+<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">(若要本地预览就先执行 hexo server)</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/10/how-to-update-hexo-article/" data-id="cj2kfjedy000a64vadbtk57k1" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -864,7 +960,7 @@ myaccount.html     ------------------ 用户登录视图
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/10/hello-world/" data-id="cj2kf9cjq0000ugvaowiylj45" class="article-share-link">Delen</a>
+      <a data-url="http://yoursite.com/2017/05/10/hello-world/" data-id="cj2kfjec7000064vakw0o7xss" class="article-share-link">Partager</a>
       
       
     </footer>
@@ -881,9 +977,9 @@ myaccount.html     ------------------ 用户登录视图
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categorieën</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo博客/">hexo博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo博客/">hexo博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动web/">移动web</a></li></ul>
     </div>
   </div>
 
@@ -896,7 +992,7 @@ myaccount.html     ------------------ 用户登录视图
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
     </div>
@@ -906,7 +1002,7 @@ myaccount.html     ------------------ 用户登录视图
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -927,7 +1023,7 @@ myaccount.html     ------------------ 用户登录视图
           </li>
         
           <li>
-            <a href="/2017/05/10/how-to-update-hexo-article/">how to update hexo article</a>
+            <a href="/2017/05/11/流行框架第一天/">流行框架第一天：构建前端自动化工作流环境</a>
           </li>
         
       </ul>
@@ -943,7 +1039,7 @@ myaccount.html     ------------------ 用户登录视图
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
