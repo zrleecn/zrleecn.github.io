@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>流行框架第一天：构建前端自动化工作流环境 | resume.zrlee.cn</title>
+  <title>网页加载进度条与雪花效果 | resume.zrlee.cn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="引入库文件就行了12&amp;lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&amp;gt;">
+  <meta name="description" content="网页顶部加载加载进度条 引入库文件就行了12&amp;lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&amp;gt;   雪">
 <meta property="og:type" content="article">
-<meta property="og:title" content="流行框架第一天：构建前端自动化工作流环境">
+<meta property="og:title" content="网页加载进度条与雪花效果">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/网页加载条/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="引入库文件就行了12&amp;lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&amp;gt;">
-<meta property="og:updated_time" content="2017-05-11T13:43:30.763Z">
+<meta property="og:description" content="网页顶部加载加载进度条 引入库文件就行了12&amp;lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&amp;gt;   雪">
+<meta property="og:updated_time" content="2017-05-11T13:57:20.985Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="流行框架第一天：构建前端自动化工作流环境">
-<meta name="twitter:description" content="引入库文件就行了12&amp;lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&amp;gt;">
+<meta name="twitter:title" content="网页加载进度条与雪花效果">
+<meta name="twitter:description" content="网页顶部加载加载进度条 引入库文件就行了12&amp;lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&amp;gt;   雪">
   
     <link rel="alternate" href="/atom.xml" title="resume.zrlee.cn" type="application/atom+xml">
   
@@ -54,7 +54,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -81,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      流行框架第一天：构建前端自动化工作流环境
+      网页加载进度条与雪花效果
     </h1>
   
 
@@ -89,11 +89,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="引入库文件就行了"><a href="#引入库文件就行了" class="headerlink" title="引入库文件就行了"></a>引入库文件就行了</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/pace.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div></pre></td></tr></table></figure>
+        <h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
+<li>引入库文件就行了<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/pace.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
+<li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
+<li><p>先引入js：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在合适的地方调用就行了 可以把图片换成其他的图片</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).snowfall(&#123;<span class="attr">deviceorientation</span> : <span class="literal">true</span>, <span class="attr">image</span>: <span class="string">"http://loktar00.github.io/JQuery-Snowfall/images/flake.png"</span>, <span class="attr">minSize</span>: <span class="number">10</span>, <span class="attr">maxSize</span>: <span class="number">32</span>, <span class="attr">flakeCount</span>: <span class="number">60</span>&#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/网页加载条/" data-id="cj2kgtdm4000o78va1trv6y1d" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/11/网页加载条/" data-id="cj2khameq000odsvaqrw4xci7" class="article-share-link">Delen</a>
       
       
     </footer>
@@ -103,7 +115,7 @@
 <nav id="article-nav">
   
     <a href="/2017/05/11/流行框架第二天/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Nieuwer</strong>
       <div class="article-nav-title">
         
           流行框架第二天：Git与Angular入门
@@ -113,7 +125,7 @@
   
   
     <a href="/2017/05/10/how-to-update-hexo-article/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">how to update hexo article</div>
     </a>
   
@@ -128,7 +140,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Categorieën</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/hexo博客/">hexo博客</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/php/">php</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动web/">移动web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网页效果/">网页效果</a></li></ul>
     </div>
@@ -143,7 +155,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li></ul>
     </div>
@@ -153,7 +165,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
         
