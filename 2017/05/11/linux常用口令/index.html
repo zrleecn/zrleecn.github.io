@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/11/linux常用口令/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
 <meta property="og:description" content="打开文件 vi 文件  该模式是命令模式  尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行">
-<meta property="og:updated_time" content="2017-05-11T12:32:16.001Z">
+<meta property="og:updated_time" content="2017-05-11T12:36:07.541Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux常用口令">
 <meta name="twitter:description" content="打开文件 vi 文件  该模式是命令模式  尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行">
@@ -227,39 +227,15 @@
 </li>
 <li><p>给文件进行权限设置[相对方式]</p>
 <blockquote>
-<p>chmod u+x 文件<br>chmod g+x 文件 //给同组用户设置执行权限<br>chmod o+x 文件 //给其他组用户设置执行权限<br>chmod o+w,o+x 文件 //同时给文件设置可写、可执行全选</p>
-<p>chmod u-r 文件 //取消主人的可读权限<br>chmod g-w,g-x 文件 //取消同组用户写、执行权限<br>chmod o-r,o-x 文件 //取消其他组用户读、执行权限</p>
-<p>chmod g+rx,o+wx 文件 //给文件同组用户设置“读、执行”权限，其他组用户有“写、执行权限”<br>chmod u-rwx,g-rw //取消具体用户的权限</p>
+<p>chmod u+x 文件<br>chmod g+x 文件 //给同组用户设置执行权限<br>chmod o+x 文件 //给其他组用户设置执行权限<br>chmod o+w,o+x 文件 //同时给文件设置可写、可执行全选<br>chmod u-r 文件 //取消主人的可读权限<br>chmod g-w,g-x 文件 //取消同组用户写、执行权限<br>chmod o-r,o-x 文件 //取消其他组用户读、执行权限<br>chmod g+rx,o+wx 文件 //给文件同组用户设置“读、执行”权限，其他组用户有“写、执行权限”<br>chmod u-rwx,g-rw //取消具体用户的权限</p>
 </blockquote>
 </li>
 <li><p>数字[绝对方式]设置文件权限</p>
+<p>   读、写、可执行<br>   二进制代码表示计算机的信息<br>   1————-1<br>   10————-2<br>   100————-4<br>   例如：读：1 写：2 执行3<br>   如果文件权限是读写执行都有就是数字6<br>   如果文件只有读的权限就是数字1<br>   3 不知道是“读写” 还是 “执行权限”，歧义产生<br>   正确的用法是：读4 写2 执行1<br>   1：执行<br>   2：写<br>   3：写、执行<br>   4：读<br>   5：读、执行<br>   6：读、写<br>   7：读、写、执行</p>
+<blockquote>
+<p>chmod 777 文件 //主人、同组用户、其他组用户权限是满的<br>chmod 001 文件 //主人、同组用户都没有权限，其他组用户有可执行权限<br>   ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执行<br>chmod 345 ppink.txt</p>
+</blockquote>
 </li>
-</ol>
-<pre><code>读、写、可执行
-二进制代码表示计算机的信息
-1————-1
-10————-2
-100————-4
-
-例如：读：1 写：2 执行3
-如果文件权限是读写执行都有就是数字6
- 如果文件只有读的权限就是数字1
-3 不知道是“读写” 还是 “执行权限”，歧义产生
-
-正确的用法是：读4 写2 执行1
-1：执行
-2：写
-3：写、执行
-4：读
-5：读、执行
-6：读、写
-7：读、写、执行
-
-&gt; chmod 777 文件 //主人、同组用户、其他组用户权限是满的
-&gt; chmod 001 文件 //主人、同组用户都没有权限，其他组用户有可执行权限
-ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执行
-&gt; chmod 345 ppink.txt
-</code></pre><ol>
 <li><p>给目录递归设置权限</p>
 <blockquote>
 <p>chmod 755 目录 -R //-R参数可以递归目录进行权限设置</p>
@@ -278,11 +254,15 @@ ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执�
 <li><p>文件或目录的各种权限对超级管理员root没有影响</p>
 </li>
 <li><p>在指定文件里边查找我们需要的内容</p>
-<pre><code>&gt; grep 内容 文件
-</code></pre></li>
+<blockquote>
+<p>grep 内容 文件</p>
+</blockquote>
+</li>
 <li><p>查看“任务管理器”</p>
-<pre><code>&gt; top
-</code></pre></li>
+<blockquote>
+<p>top</p>
+</blockquote>
+</li>
 <li><p>查看内存信息</p>
 <blockquote>
 <p>free -m //以M兆为单位显示内存大小使用情况</p>
@@ -294,14 +274,11 @@ ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执�
 </blockquote>
 </li>
 <li><p>文件查找</p>
-<p>   find 目录 选项 选项值</p>
+<p>   find 目录 选项 选项值<br></p>
 <blockquote>
-<p>find ./ -name abc.txt //在当前目录查找名字为abc.txt的这个文件<br>find / -name xxx //在根目录查找文件<br>find ./ -size 大小 //根据文件的大小来查找<br>   单位：<br>   10 512字节默认<br>   100c 1字节单位<br>   100k 1024字节单位<br>find ./ -size +100c //查找文件大小大于100字节的<br>find ./ -size -100c //查找大小小于100字节的文件<br>find ./ -size 4 //查找大小等于2048字节的文件<br>find ./ -size 2k //查找大小等于2048字节的文件</p>
-<p>find ./ -maxdepth 1 //查找文件目录最深是2层<br>find ./ -mindepth 1 //查找文件通过最浅层次进行查找</p>
+<p>find ./ -name abc.txt //在当前目录查找名字为abc.txt的这个文件<br>find / -name xxx //在根目录查找文件<br>find ./ -size 大小 //根据文件的大小来查找<br>   单位：<br><br>   10 512字节默认<br><br>   100c 1字节单位<br><br>   100k 1024字节单位<br><br>find ./ -size +100c //查找文件大小大于100字节的<br>find ./ -size -100c //查找大小小于100字节的文件<br>find ./ -size 4 //查找大小等于2048字节的文件<br>find ./ -size 2k //查找大小等于2048字节的文件<br>find ./ -maxdepth 1 //查找文件目录最深是2层<br>find ./ -mindepth 1 //查找文件通过最浅层次进行查找</p>
 <p>find ./ -type f //通过类型查找，查找文件类型<br>find ./ -type d //通过类型查找，查找目录类型</p>
-<p>find ./ -user 用户名 //查找文件主人为XX的文件<br>find ./ -uid 用户编号 //查找文件主人编号为XX的文件<br>find ./ -nouser //查找没有主人的文件<br>   文件创建的时候，是某个用户创建的<br>   有的一些文件创建好后，被用户发布到网络上边<br>   我们把网络的文件下载本地，放到我们自己的系统里边<br>   创建这个文件的用户，在我自己的系统里边并没有<br>   例如，创建这个文件的用户编号是710(用户名：runfa)</p>
-<p>find ./ -perm 权限764 //根据文件的权限进行查找</p>
-<p>find ./ -name ‘bao*’ //进行模糊查找，名字前缀是bao的文件</p>
+<p>find ./ -user 用户名 //查找文件主人为XX的文件<br>find ./ -uid 用户编号 //查找文件主人编号为XX的文件<br>find ./ -nouser //查找没有主人的文件<br>   文件创建的时候，是某个用户创建的<br>   有的一些文件创建好后，被用户发布到网络上边<br>   我们把网络的文件下载本地，放到我们自己的系统里边<br>   创建这个文件的用户，在我自己的系统里边并没有<br>   例如，创建这个文件的用户编号是710(用户名：runfa)<br>find ./ -perm 权限764 //根据文件的权限进行查找<br>find ./ -name ‘bao*’ //进行模糊查找，名字前缀是bao的文件</p>
 </blockquote>
 </li>
 <li><p>设置软连接</p>
@@ -316,9 +293,8 @@ ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执�
 </li>
 <li><p>制作任务调度指令</p>
 <blockquote>
-<p>crontab -e //编辑任务调度指令<br>crontab -l //查看任务调度指令设置情况<br>   在17:38来执行具体任务指令<br>   分钟 小时 日期 月份 星期 具体命令<br>   38 17 <em> </em> * /home/shuhua/shanghai/newout.sh</p>
+<p>crontab -e //编辑任务调度指令<br>crontab -l //查看任务调度指令设置情况<br>   在17:38来执行具体任务指令<br>   分钟 小时 日期 月份 星期 具体命令<br>   38 17 <em> </em> * /home/shuhua/shanghai/newout.sh<br>   0代表周日</p>
 </blockquote>
-<p>   0代表周日</p>
 </li>
 <li><p>设置系统时间</p>
 <blockquote>
@@ -332,8 +308,7 @@ ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执�
 </li>
 <li><p>给文件设置组</p>
 <blockquote>
-<p>change group<br>chgrp 组 文件</p>
-<p>chown .组 文件</p>
+<p>change group<br>chgrp 组 文件<br>chown .组 文件</p>
 </blockquote>
 </li>
 <li><p>同时给文件设置主人和组</p>
@@ -343,8 +318,7 @@ ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执�
 </li>
 <li><p>实现设备挂载、卸载</p>
 <blockquote>
-<p>mount /dev/cdrom /home/shuhua/rom //把光驱挂载到rom的目录下边<br>mount /dev/hda1 /home/shuhua/upan //挂载u盘<br>mount /dev/sda3 /home/shuhua/pan3 //挂载硬盘</p>
-<p>umount 设备 或者 挂载点<br>umount /dev/cdrom<br>umount /home/shuhua/rom</p>
+<p>mount /dev/cdrom /home/shuhua/rom //把光驱挂载到rom的目录下边<br>mount /dev/hda1 /home/shuhua/upan //挂载u盘<br>mount /dev/sda3 /home/shuhua/pan3 //挂载硬盘<br>umount 设备 或者 挂载点<br>umount /dev/cdrom<br>umount /home/shuhua/rom</p>
 </blockquote>
 </li>
 <li><p>rpm指令安装软件</p>
@@ -367,7 +341,7 @@ ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2ke9kyk0002sgvakjn603eb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2kee4ml00045ova8dt0r9n7" class="article-share-link">Share</a>
       
       
     </footer>
