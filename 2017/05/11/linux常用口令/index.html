@@ -5,16 +5,16 @@
   
   <title>linux常用口令 | resume.zrlee.cn</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="打开文件 vi 文件  该模式是命令模式    尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件">
+  <meta name="description" content="打开文件 vi 文件  该模式是命令模式  尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux常用口令">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/linux常用口令/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="打开文件 vi 文件  该模式是命令模式    尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件">
-<meta property="og:updated_time" content="2017-05-11T12:28:49.324Z">
+<meta property="og:description" content="打开文件 vi 文件  该模式是命令模式  尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行">
+<meta property="og:updated_time" content="2017-05-11T12:32:16.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux常用口令">
-<meta name="twitter:description" content="打开文件 vi 文件  该模式是命令模式    尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件">
+<meta name="twitter:description" content="打开文件 vi 文件  该模式是命令模式  尾行模式操作 &amp;gt; :q 该模式是“尾行模式” &amp;gt; :w    //保存已经修改的文档 &amp;gt; :wq //保存并退出 &amp;gt; :q! //强行退出，不保存修改 &amp;gt; :/内容/ //查找指定内容，”n”会查找下一个，”N”会查找上一个 //查找到文档的最后，又会跑到文档的开头 &amp;gt; :set number/nu //给文件每行">
   
     <link rel="alternate" href="/atom.xml" title="resume.zrlee.cn" type="application/atom+xml">
   
@@ -95,8 +95,6 @@
 <pre><code>vi 文件 
 该模式是命令模式
 </code></pre></li>
-</ol>
-<ol>
 <li><p>尾行模式操作</p>
 <pre><code>&gt; :q 该模式是“尾行模式”
 &gt; :w    //保存已经修改的文档
@@ -132,7 +130,7 @@
 <pre><code>&gt; cd 具体目录
 </code></pre></li>
 <li><p>输出文件的信息，全部内容直接都输出</p>
-<pre><code>&gt;cat 文件      
+<pre><code>&gt; cat 文件      
 </code></pre></li>
 <li><p>创建目录指令</p>
 <pre><code>&gt; mkdir 目录
@@ -150,9 +148,7 @@
 </li>
 <li><p>mv指令什么时候是移动，什么时候是该名字</p>
 <p>   mv 一参 二参<br>   二参 是不存在的，就是改名字<br>   二参 是存在的目录，就是移动</p>
-<p>   mv com.txt red.txt<br>   red.txt是存在的文件，com.txt也是存在的文件<br>   首先明确，不可以移动操作<br>   不能<br>   【能】把名字由com.txt改为red.txt<br>   mv guangzhou hello.txt</p>
-<pre><code>guangzhou 是存在的目录
-</code></pre><p>   hello.txt 是存在的文件<br>   首先明确不能移动<br>   是否可以把guangzhou的名字改为hello.txt<br>   【不能】把名字由“guangzhou”改为”hello.txt”<br>   能       </p>
+<p>   mv com.txt red.txt<br>   red.txt是存在的文件，com.txt也是存在的文件<br>   首先明确，不可以移动操作<br>   不能<br>   【能】把名字由com.txt改为red.txt<br>   mv guangzhou hello.txt<br>   guangzhou 是存在的目录<br>   hello.txt 是存在的文件<br>   首先明确不能移动<br>   是否可以把guangzhou的名字改为hello.txt<br>   [不能]把名字由“guangzhou”改为”hello.txt”<br>   能       </p>
 </li>
 <li><p>删除目录</p>
 <blockquote>
@@ -371,7 +367,7 @@ ppink.txt 主人有写、执行 同组用户有读 其他组用户有读、执�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2ke4s570005lwvaptkw9eba" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/11/linux常用口令/" data-id="cj2ke9kyk0002sgvakjn603eb" class="article-share-link">Share</a>
       
       
     </footer>
