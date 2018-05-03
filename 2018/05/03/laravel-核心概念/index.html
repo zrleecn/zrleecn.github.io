@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="laravel," />
 
 
 
@@ -90,16 +90,17 @@
 
 
 
-<meta name="description" content="1234567891011121314151617&amp;lt;?php//文件路径$file = &apos;file.docx&apos; ;$fileinfo = finfo_open(FILEINFO_MIME);$mime = finfo_file($fileinfo , $file);header(&apos;Content-Disposition:attachment;filename=&apos;.basename($fil">
+<meta name="description" content="配置基础介绍可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：1$value = config(&amp;apos;app.timezone&amp;apos;);">
+<meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php http文件下载">
-<meta property="og:url" content="http://yoursite.com/2017/05/11/php http文件下载/index.html">
+<meta property="og:title" content="laravel核心目录">
+<meta property="og:url" content="http://yoursite.com/2018/05/03/laravel-核心概念/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="1234567891011121314151617&amp;lt;?php//文件路径$file = &apos;file.docx&apos; ;$fileinfo = finfo_open(FILEINFO_MIME);$mime = finfo_file($fileinfo , $file);header(&apos;Content-Disposition:attachment;filename=&apos;.basename($fil">
-<meta property="og:updated_time" content="2017-05-11T15:16:14.971Z">
+<meta property="og:description" content="配置基础介绍可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：1$value = config(&amp;apos;app.timezone&amp;apos;);">
+<meta property="og:updated_time" content="2018-05-03T12:57:29.340Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php http文件下载">
-<meta name="twitter:description" content="1234567891011121314151617&amp;lt;?php//文件路径$file = &apos;file.docx&apos; ;$fileinfo = finfo_open(FILEINFO_MIME);$mime = finfo_file($fileinfo , $file);header(&apos;Content-Disposition:attachment;filename=&apos;.basename($fil">
+<meta name="twitter:title" content="laravel核心目录">
+<meta name="twitter:description" content="配置基础介绍可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：1$value = config(&amp;apos;app.timezone&amp;apos;);">
 
 
 
@@ -127,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/11/php http文件下载/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/03/laravel-核心概念/"/>
 
 
 
 
 
-  <title>php http文件下载 | resume.zrlee.cn</title>
+  <title>laravel核心目录 | resume.zrlee.cn</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -272,7 +273,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/php http文件下载/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/laravel-核心概念/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
@@ -289,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">php http文件下载</h1>
+          <h1 class="post-title" itemprop="name headline">laravel核心目录</h1>
         
 
         <div class="post-meta">
@@ -301,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T19:21:09+08:00">
-                2017-05-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T00:00:00+08:00">
+                2018-05-03
               </time>
             
 
@@ -324,8 +325,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
+                  <a href="/categories/laravel/" itemprop="url" rel="index">
+                    <span itemprop="name">laravel</span>
                   </a>
                 </span>
 
@@ -358,8 +359,7 @@
       
 
       
-        <hr>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">//文件路径</span></div><div class="line">$file = <span class="string">'file.docx'</span> ;</div><div class="line">$fileinfo = finfo_open(FILEINFO_MIME);</div><div class="line">$mime = finfo_file($fileinfo , $file);</div><div class="line">header(<span class="string">'Content-Disposition:attachment;filename='</span>.basename($file));</div><div class="line"><span class="comment">//类型为任意的二进制文件</span></div><div class="line"><span class="comment">//header('Content-Type:application/oct-stream');</span></div><div class="line">header(<span class="string">'Accept-ranges:bytes'</span>);</div><div class="line">header(<span class="string">'Accept-legth:'</span>.filesize($file));</div><div class="line">header(<span class="string">'Content-type:'</span>.$mime);</div><div class="line"><span class="comment">//读取文件</span></div><div class="line"></div><div class="line">readfile($file);</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+        <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$value = config(&apos;app.timezone&apos;);</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -387,6 +387,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/laravel/" rel="tag"># laravel</a>
+          
+        </div>
+      
 
       
         
@@ -396,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/11/javascript停止事件冒泡/" rel="next" title="javascript停止事件冒泡">
-                <i class="fa fa-chevron-left"></i> javascript停止事件冒泡
+              <a href="/2017/05/17/无限分类算法/" rel="next" title="php递归实现无限分类算法">
+                <i class="fa fa-chevron-left"></i> php递归实现无限分类算法
               </a>
             
           </div>
@@ -405,10 +411,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/15/angular入门/" rel="prev" title="流行框架第三天：Angular入门">
-                流行框架第三天：Angular入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -455,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://resume.zrlee.cn/img/me.png"
@@ -587,6 +598,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置"><span class="nav-number">1.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础介绍"><span class="nav-number">1.1.</span> <span class="nav-text">基础介绍</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

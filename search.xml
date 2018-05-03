@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title><![CDATA[laravel核心目录]]></title>
+      <url>/2018/05/03/laravel-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+      <content type="html"><![CDATA[<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$value = config(&apos;app.timezone&apos;);</div></pre></td></tr></table></figure></p>
+]]></content>
+      
+        <categories>
+            
+            <category> laravel </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> laravel </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[php递归实现无限分类算法]]></title>
       <url>/2017/05/17/%E6%97%A0%E9%99%90%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/</url>
       <content type="html"><![CDATA[<h1 id="php递归实现无限分类算法"><a href="#php递归实现无限分类算法" class="headerlink" title="php递归实现无限分类算法"></a>php递归实现无限分类算法</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</div><div class="line">$list = <span class="keyword">array</span> (</div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'1'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点A'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'3'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'2'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点C'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'1'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'3'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点D'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'0'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'4'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点F'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'2'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'5'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点K'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'3'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'6'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点P'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'2'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'7'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点U'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'8'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'8'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点X'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'3'</span>, ), </div><div class="line">) ;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@param</span> &amp;$list array 所有分类的数组，在这个数组内查找</div><div class="line"> * <span class="doctag">@param</span> $parent_id int 当前的父分类id</div><div class="line"> * <span class="doctag">@param</span> $deep int 当前递归调用的深度</div><div class="line"> * <span class="doctag">@retrun</span> array 按照层级关系排序好的数组</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tree</span><span class="params">(&amp;$list, $parent_id, $deep)</span> </span>&#123;</div><div class="line">	<span class="comment">//保证找到的元素都放在一个数组$tree内,应该是$tree在所有的tree函数都共享</span></div><div class="line">	<span class="keyword">static</span> $tree;</div><div class="line">	<span class="comment">//遍历该数组，找到parent_id值为当前传递进来的$parent_id;</span></div><div class="line">	<span class="keyword">foreach</span>($list <span class="keyword">as</span> $row) &#123;</div><div class="line">		<span class="comment">//判断</span></div><div class="line">		<span class="keyword">if</span>($row[<span class="string">'parent_id'</span>] == $parent_id) &#123;</div><div class="line">			<span class="comment">//保存起来</span></div><div class="line">			$row[<span class="string">'deep'</span>] = $deep;</div><div class="line">			$tree[] = $row;</div><div class="line">			<span class="comment">//依据当前所找到的分类，找到其子节点，操作相同，递归完成</span></div><div class="line">			tree($list, $row[<span class="string">'cat_id'</span>],$deep+<span class="number">1</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> $tree;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$result = tree($list, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">var_dump($result);</div><div class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</div><div class="line"><span class="keyword">foreach</span>($result <span class="keyword">as</span> $row) &#123;</div><div class="line"><span class="comment">//	echo $row['deep'];</span></div><div class="line">	<span class="keyword">echo</span> <span class="string">'|'</span>, str_repeat(<span class="string">'---'</span>, $row[<span class="string">'deep'</span>]);</div><div class="line">	<span class="keyword">echo</span> $row[<span class="string">'cat_name'</span>];</div><div class="line">	<span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
@@ -340,7 +361,7 @@ data-slide=&apos;next&apos;
 <li>IE上 window.event.cancelBubble=true;</li>
 <li>其他浏览器 eve.stopPropagation() ;</li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">    #outer &#123;</div><div class="line">        width:300px ;</div><div class="line">        height:300px ;</div><div class="line">        background: darkorange;</div><div class="line">    &#125;</div><div class="line">    #inner &#123;</div><div class="line">        width:100px ;</div><div class="line">        height:100px ;</div><div class="line">        background: greenyellow;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">    function stop (eve)&#123;</div><div class="line">        if(window.event)&#123; //IE</div><div class="line">            window.event.cancelBubble=true;</div><div class="line">        &#125;else&#123; //其他浏览器</div><div class="line">            eve.stopPropagation() ;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    window.onload= function ()&#123;</div><div class="line">        document.getElementById('outer').onclick=function(e)&#123;</div><div class="line">            alert('outer');</div><div class="line">            stop(e);</div><div class="line">        &#125;</div><div class="line">        document.getElementById('inner').onclick=function(e)&#123;</div><div class="line">            alert('inner');</div><div class="line">            stop(e);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"outer"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"inner"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-id">#outer</span> &#123;</div><div class="line">        <span class="attribute">width</span>:<span class="number">300px</span> ;</div><div class="line">        <span class="attribute">height</span>:<span class="number">300px</span> ;</div><div class="line">        <span class="attribute">background</span>: darkorange;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-id">#inner</span> &#123;</div><div class="line">        <span class="attribute">width</span>:<span class="number">100px</span> ;</div><div class="line">        <span class="attribute">height</span>:<span class="number">100px</span> ;</div><div class="line">        <span class="attribute">background</span>: greenyellow;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">    function stop (eve)&#123;</div><div class="line">        if(window.event)&#123; //IE</div><div class="line">            window.event.cancelBubble=true;</div><div class="line">        &#125;else&#123; //其他浏览器</div><div class="line">            eve.stopPropagation() ;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    window.onload= function ()&#123;</div><div class="line">        document.getElementById('outer').onclick=function(e)&#123;</div><div class="line">            alert('outer');</div><div class="line">            stop(e);</div><div class="line">        &#125;</div><div class="line">        document.getElementById('inner').onclick=function(e)&#123;</div><div class="line">            alert('inner');</div><div class="line">            stop(e);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"outer"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"inner"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 ]]></content>
       
         <categories>
@@ -349,6 +370,57 @@ data-slide=&apos;next&apos;
             
         </categories>
         
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[php 桶式排序 实现方法]]></title>
+      <url>/2017/05/11/php%E6%8D%85%E5%BC%8F%E6%8E%92%E5%BA%8F/</url>
+      <content type="html"><![CDATA[<hr>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by PhpStorm.</div><div class="line"> * User: Administrator</div><div class="line"> * Date: 2017/2/20</div><div class="line"> * Time: 12:49</div><div class="line"> */</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 桶式排序</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bucketSort</span> <span class="params">($list)</span></span>&#123;</div><div class="line">    $max = max($list);</div><div class="line">    $min = min($list) ;</div><div class="line"></div><div class="line">    $bucket = array_fill($min , $max-$min +<span class="number">1</span> , <span class="number">0</span> );</div><div class="line">    <span class="comment">//待排序的数作为数组的键 值全是0</span></div><div class="line">    <span class="keyword">foreach</span> ($list <span class="keyword">as</span> $value)&#123;</div><div class="line"></div><div class="line">        $bucket[$value] ++ ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">foreach</span>($bucket <span class="keyword">as</span> $key=&gt;$value)&#123;</div><div class="line">        <span class="keyword">if</span>($value == <span class="number">1</span>) &#123;</div><div class="line">            $new_list[] = $key ;</div><div class="line">        &#125;<span class="keyword">elseif</span> ($value &gt;=<span class="number">1</span> )&#123;</div><div class="line">            <span class="keyword">for</span>($i = <span class="number">1</span> ; $i&lt;=$value ; $i++)&#123;</div><div class="line">                $new_list [] = $key ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $new_list ;</div><div class="line">&#125;</div><div class="line">$result = bucketSort(<span class="keyword">array</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">77</span>,<span class="number">55</span>,<span class="number">44</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">778</span>,<span class="number">999</span>,<span class="number">87</span>)) ;</div><div class="line">var_dump($result) ;</div></pre></td></tr></table></figure>
+<p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[网页加载进度条与雪花效果]]></title>
+      <url>/2017/05/11/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%9D%A1/</url>
+      <content type="html"><![CDATA[<h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
+<li>引入库文件就行了<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/pace.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
+<li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
+<li><p>先引入js：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在合适的地方调用就行了 可以把图片换成其他的图片</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).snowfall(&#123;<span class="attr">deviceorientation</span> : <span class="literal">true</span>, <span class="attr">image</span>: <span class="string">"http://loktar00.github.io/JQuery-Snowfall/images/flake.png"</span>, <span class="attr">minSize</span>: <span class="number">10</span>, <span class="attr">maxSize</span>: <span class="number">32</span>, <span class="attr">flakeCount</span>: <span class="number">60</span>&#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p> 其他效果以后更新或者在其他文章发布</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 网页效果 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 效果 </tag>
+            
+        </tags>
         
     </entry>
     
@@ -1021,50 +1093,19 @@ data-slide=&apos;next&apos;
     </entry>
     
     <entry>
-      <title><![CDATA[网页加载进度条与雪花效果]]></title>
-      <url>/2017/05/11/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%9D%A1/</url>
-      <content type="html"><![CDATA[<h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
-<li>引入库文件就行了<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/pace.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
-<li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
-<li><p>先引入js：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>在合适的地方调用就行了 可以把图片换成其他的图片</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).snowfall(&#123;<span class="attr">deviceorientation</span> : <span class="literal">true</span>, <span class="attr">image</span>: <span class="string">"http://loktar00.github.io/JQuery-Snowfall/images/flake.png"</span>, <span class="attr">minSize</span>: <span class="number">10</span>, <span class="attr">maxSize</span>: <span class="number">32</span>, <span class="attr">flakeCount</span>: <span class="number">60</span>&#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
-<p> 其他效果以后更新或者在其他文章发布</p>
+      <title><![CDATA[how to update hexo article]]></title>
+      <url>/2017/05/10/how-to-update-hexo-article/</url>
+      <content type="html"><![CDATA[<h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'文件名称'</span></div></pre></td></tr></table></figure>
+<p>例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'test'</span></div></pre></td></tr></table></figure></p>
+<p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
+<p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
+<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">(若要本地预览就先执行 hexo server)</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
 ]]></content>
       
         <categories>
             
-            <category> 网页效果 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 效果 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[php 桶式排序 实现方法]]></title>
-      <url>/2017/05/11/php%E6%8D%85%E5%BC%8F%E6%8E%92%E5%BA%8F/</url>
-      <content type="html"><![CDATA[<hr>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by PhpStorm.</div><div class="line"> * User: Administrator</div><div class="line"> * Date: 2017/2/20</div><div class="line"> * Time: 12:49</div><div class="line"> */</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 桶式排序</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bucketSort</span> <span class="params">($list)</span></span>&#123;</div><div class="line">    $max = max($list);</div><div class="line">    $min = min($list) ;</div><div class="line"></div><div class="line">    $bucket = array_fill($min , $max-$min +<span class="number">1</span> , <span class="number">0</span> );</div><div class="line">    <span class="comment">//待排序的数作为数组的键 值全是0</span></div><div class="line">    <span class="keyword">foreach</span> ($list <span class="keyword">as</span> $value)&#123;</div><div class="line"></div><div class="line">        $bucket[$value] ++ ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">foreach</span>($bucket <span class="keyword">as</span> $key=&gt;$value)&#123;</div><div class="line">        <span class="keyword">if</span>($value == <span class="number">1</span>) &#123;</div><div class="line">            $new_list[] = $key ;</div><div class="line">        &#125;<span class="keyword">elseif</span> ($value &gt;=<span class="number">1</span> )&#123;</div><div class="line">            <span class="keyword">for</span>($i = <span class="number">1</span> ; $i&lt;=$value ; $i++)&#123;</div><div class="line">                $new_list [] = $key ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $new_list ;</div><div class="line">&#125;</div><div class="line">$result = bucketSort(<span class="keyword">array</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">77</span>,<span class="number">55</span>,<span class="number">44</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">778</span>,<span class="number">999</span>,<span class="number">87</span>)) ;</div><div class="line">var_dump($result) ;</div></pre></td></tr></table></figure>
-<p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
+            <category> hexo博客 </category>
             
         </categories>
         
@@ -1189,26 +1230,6 @@ myaccount.html     ------------------ 用户登录视图
 </ul>
 ]]></content>
       
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[how to update hexo article]]></title>
-      <url>/2017/05/10/how-to-update-hexo-article/</url>
-      <content type="html"><![CDATA[<h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'文件名称'</span></div></pre></td></tr></table></figure>
-<p>例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'test'</span></div></pre></td></tr></table></figure></p>
-<p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
-<p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
-<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">(若要本地预览就先执行 hexo server)</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
-]]></content>
-      
-        <categories>
-            
-            <category> hexo博客 </category>
-            
-        </categories>
-        
         
     </entry>
     
