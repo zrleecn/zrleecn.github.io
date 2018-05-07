@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="docker," />
 
 
 
@@ -90,12 +90,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="resume.zrlee.cn">
-<meta property="og:url" content="http://yoursite.com/categories/hexo博客/index.html">
+<meta name="description" content="CentOS下安装Docker与启动方法 有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动  1、取消selinux，因为它会干扰lxc的正常功能1# vim /etc/selinux/config 将SELINUX 改成disabled SELINUX=disabledSELINUXTYPE=targeted 2、配置Fedora EPEL">
+<meta name="keywords" content="docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS下安装Docker与启动方法">
+<meta property="og:url" content="http://yoursite.com/2018/05/06/CentOS下安装启动Docker/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
+<meta property="og:description" content="CentOS下安装Docker与启动方法 有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动  1、取消selinux，因为它会干扰lxc的正常功能1# vim /etc/selinux/config 将SELINUX 改成disabled SELINUX=disabledSELINUXTYPE=targeted 2、配置Fedora EPEL">
+<meta property="og:updated_time" content="2018-05-07T02:55:10.728Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="resume.zrlee.cn">
+<meta name="twitter:title" content="CentOS下安装Docker与启动方法">
+<meta name="twitter:description" content="CentOS下安装Docker与启动方法 有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动  1、取消selinux，因为它会干扰lxc的正常功能1# vim /etc/selinux/config 将SELINUX 改成disabled SELINUX=disabledSELINUXTYPE=targeted 2、配置Fedora EPEL">
 
 
 
@@ -123,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/hexo博客/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/06/CentOS下安装启动Docker/"/>
 
 
 
 
 
-  <title>分类: hexo博客 | resume.zrlee.cn</title>
+  <title>CentOS下安装Docker与启动方法 | resume.zrlee.cn</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,7 +159,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,45 +263,180 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>hexo博客<small>分类</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/10/how-to-update-hexo-article/" itemprop="url">
-              
-                <span itemprop="name">how to update hexo article</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-10T22:45:13+08:00"
-              content="2017-05-10" >
-          05-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/06/CentOS下安装启动Docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CentOS下安装Docker与启动方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-06T00:00:00+08:00">
+                2018-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CentOS下安装Docker与启动方法"><a href="#CentOS下安装Docker与启动方法" class="headerlink" title="CentOS下安装Docker与启动方法"></a>CentOS下安装Docker与启动方法</h1><blockquote>
+<p>有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动</p>
+</blockquote>
+<h3 id="1、取消selinux，因为它会干扰lxc的正常功能"><a href="#1、取消selinux，因为它会干扰lxc的正常功能" class="headerlink" title="1、取消selinux，因为它会干扰lxc的正常功能"></a>1、取消selinux，因为它会干扰lxc的正常功能</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vim /etc/selinux/config</span></div></pre></td></tr></table></figure>
+<p>将SELINUX 改成disabled</p>
+<p>SELINUX=disabled<br>SELINUXTYPE=targeted</p>
+<h3 id="2、配置Fedora-EPEL-源"><a href="#2、配置Fedora-EPEL-源" class="headerlink" title="2、配置Fedora EPEL 源"></a>2、配置Fedora EPEL 源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install http://ftp.riken.jp/Linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm</div></pre></td></tr></table></figure>
+<h3 id="3、配置hop5-in源"><a href="#3、配置hop5-in源" class="headerlink" title="3、配置hop5.in源"></a>3、配置hop5.in源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># cd /etc/yum.repos.d</div><div class="line"># sudo wget http://www.hop5.in/yum/el6/hop5.repo</div></pre></td></tr></table></figure>
+<h3 id="4、安装docker-io"><a href="#4、安装docker-io" class="headerlink" title="4、安装docker-io"></a>4、安装docker-io</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># yum install docker-io</div></pre></td></tr></table></figure>
+<h3 id="5、检查安装情况"><a href="#5、检查安装情况" class="headerlink" title="5、检查安装情况"></a>5、检查安装情况</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># docker -h</div></pre></td></tr></table></figure>
+<h3 id="6、启动docker"><a href="#6、启动docker" class="headerlink" title="6、启动docker"></a>6、启动docker</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># service docker start</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/03/laravel-核心概念/" rel="next" title="laravel验证">
+                <i class="fa fa-chevron-left"></i> laravel验证
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -304,6 +444,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -323,8 +467,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://wx.zrlee.cn/image/me.png"
@@ -456,6 +609,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CentOS下安装Docker与启动方法"><span class="nav-number">1.</span> <span class="nav-text">CentOS下安装Docker与启动方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、取消selinux，因为它会干扰lxc的正常功能"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、取消selinux，因为它会干扰lxc的正常功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、配置Fedora-EPEL-源"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、配置Fedora EPEL 源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、配置hop5-in源"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、配置hop5.in源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、安装docker-io"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、安装docker-io</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、检查安装情况"><span class="nav-number">1.0.5.</span> <span class="nav-text">5、检查安装情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、启动docker"><span class="nav-number">1.0.6.</span> <span class="nav-text">6、启动docker</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -569,6 +738,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 

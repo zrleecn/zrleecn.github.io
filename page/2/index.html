@@ -275,7 +275,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://resume.zrlee.cn/img/me.png">
+      <meta itemprop="image" content="http://wx.zrlee.cn/image/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -411,7 +411,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://resume.zrlee.cn/img/me.png">
+      <meta itemprop="image" content="http://wx.zrlee.cn/image/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -720,159 +720,12 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/网页加载条/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://resume.zrlee.cn/img/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/11/网页加载条/" itemprop="url">网页加载进度条与雪花效果</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
-                2017-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网页效果/" itemprop="url" rel="index">
-                    <span itemprop="name">网页效果</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
-<li>引入库文件就行了<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/pace.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
-<li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
-<li><p>先引入js：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>在合适的地方调用就行了 可以把图片换成其他的图片</p>
-</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).snowfall(&#123;<span class="attr">deviceorientation</span> : <span class="literal">true</span>, <span class="attr">image</span>: <span class="string">"http://loktar00.github.io/JQuery-Snowfall/images/flake.png"</span>, <span class="attr">minSize</span>: <span class="number">10</span>, <span class="attr">maxSize</span>: <span class="number">32</span>, <span class="attr">flakeCount</span>: <span class="number">60</span>&#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
-<p> 其他效果以后更新或者在其他文章发布</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/流行框架第二天/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://resume.zrlee.cn/img/me.png">
+      <meta itemprop="image" content="http://wx.zrlee.cn/image/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1169,12 +1022,12 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/how-to-update-hexo-article/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/网页加载条/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://resume.zrlee.cn/img/me.png">
+      <meta itemprop="image" content="http://wx.zrlee.cn/image/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1188,7 +1041,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/10/how-to-update-hexo-article/" itemprop="url">how to update hexo article</a></h1>
+                <a class="post-title-link" href="/2017/05/11/网页加载条/" itemprop="url">网页加载进度条与雪花效果</a></h1>
         
 
         <div class="post-meta">
@@ -1200,8 +1053,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-10T22:45:13+08:00">
-                2017-05-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
+                2017-05-11
               </time>
             
 
@@ -1223,8 +1076,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo博客/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo博客</span>
+                  <a href="/categories/网页效果/" itemprop="url" rel="index">
+                    <span itemprop="name">网页效果</span>
                   </a>
                 </span>
 
@@ -1259,12 +1112,20 @@
       
         
           
-            <h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'文件名称'</span></div></pre></td></tr></table></figure>
-<p>例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'test'</span></div></pre></td></tr></table></figure></p>
-<p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
-<p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
-<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">(若要本地预览就先执行 hexo server)</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
+            <h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
+<li>引入库文件就行了<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/pace.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
+<li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
+<li><p>先引入js：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在合适的地方调用就行了 可以把图片换成其他的图片</p>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).snowfall(&#123;<span class="attr">deviceorientation</span> : <span class="literal">true</span>, <span class="attr">image</span>: <span class="string">"http://loktar00.github.io/JQuery-Snowfall/images/flake.png"</span>, <span class="attr">minSize</span>: <span class="number">10</span>, <span class="attr">maxSize</span>: <span class="number">32</span>, <span class="attr">flakeCount</span>: <span class="number">60</span>&#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<p> 其他效果以后更新或者在其他文章发布</p>
 
           
         
@@ -1313,7 +1174,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://resume.zrlee.cn/img/me.png">
+      <meta itemprop="image" content="http://wx.zrlee.cn/image/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1532,12 +1393,151 @@ myaccount.html     ------------------ 用户登录视图
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/how-to-update-hexo-article/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/10/how-to-update-hexo-article/" itemprop="url">how to update hexo article</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-10T22:45:13+08:00">
+                2017-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo博客/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'文件名称'</span></div></pre></td></tr></table></figure>
+<p>例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'test'</span></div></pre></td></tr></table></figure></p>
+<p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
+<p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
+<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">(若要本地预览就先执行 hexo server)</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://resume.zrlee.cn/img/me.png">
+      <meta itemprop="image" content="http://wx.zrlee.cn/image/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1657,7 +1657,7 @@ myaccount.html     ------------------ 用户登录视图
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://resume.zrlee.cn/img/me.png">
+      <meta itemprop="image" content="http://wx.zrlee.cn/image/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -1791,7 +1791,7 @@ myaccount.html     ------------------ 用户登录视图
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="http://resume.zrlee.cn/img/me.png"
+               src="http://wx.zrlee.cn/image/me.png"
                alt="zrlee" />
           <p class="site-author-name" itemprop="name">zrlee</p>
            
