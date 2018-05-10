@@ -758,9 +758,11 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
 <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
 
 <script>
-	window.onload = function (){
+	
 		hljs.initHighlightingOnLoad();
-	}
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
 </script>
 
 

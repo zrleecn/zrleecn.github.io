@@ -821,9 +821,11 @@ myinfo.html      -------------------- 展示个人信息视图
 <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
 
 <script>
-	window.onload = function (){
+	
 		hljs.initHighlightingOnLoad();
-	}
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
 </script>
 
 

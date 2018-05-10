@@ -785,9 +785,11 @@ foreach($result as $row) {
 <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
 
 <script>
-	window.onload = function (){
+	
 		hljs.initHighlightingOnLoad();
-	}
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
 </script>
 
 

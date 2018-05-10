@@ -901,9 +901,11 @@ git init // 初始化一个本地的仓库
 <script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
 
 <script>
-	window.onload = function (){
+	
 		hljs.initHighlightingOnLoad();
-	}
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
 </script>
 
 
