@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="创建表单请求在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令  php artisan make:request ArticleRequest  新生成的类保存在 app/Http/Requests 目录下。如果这个目录不存在，那么将会在你运行 make">
+<meta name="description" content="创建表单请求在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令1php artisan make:request ArticleRequest 新生成的类保存在 app/Http/Requests 目录下。如果这个目录不存在，那么将会在你运行 make:r">
 <meta name="keywords" content="laravel">
 <meta property="og:type" content="article">
 <meta property="og:title" content="laravel验证">
 <meta property="og:url" content="http://yoursite.com/2018/05/03/laravel-验证规则/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="创建表单请求在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令  php artisan make:request ArticleRequest  新生成的类保存在 app/Http/Requests 目录下。如果这个目录不存在，那么将会在你运行 make">
+<meta property="og:description" content="创建表单请求在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令1php artisan make:request ArticleRequest 新生成的类保存在 app/Http/Requests 目录下。如果这个目录不存在，那么将会在你运行 make:r">
 <meta property="og:updated_time" content="2018-05-03T13:52:47.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="laravel验证">
-<meta name="twitter:description" content="创建表单请求在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令  php artisan make:request ArticleRequest  新生成的类保存在 app/Http/Requests 目录下。如果这个目录不存在，那么将会在你运行 make">
+<meta name="twitter:description" content="创建表单请求在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令1php artisan make:request ArticleRequest 新生成的类保存在 app/Http/Requests 目录下。如果这个目录不存在，那么将会在你运行 make:r">
 
 
 
@@ -359,43 +359,11 @@
       
 
       
-        <h1 id="创建表单请求"><a href="#创建表单请求" class="headerlink" title="创建表单请求"></a>创建表单请求</h1><p>在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令 </p>
-<pre><code class="php">php artisan make:request ArticleRequest
-</code></pre>
+        <h1 id="创建表单请求"><a href="#创建表单请求" class="headerlink" title="创建表单请求"></a>创建表单请求</h1><p>在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:request ArticleRequest</div></pre></td></tr></table></figure></p>
 <p>新生成的类保存在 app/Http/Requests 目录下。如果这个目录不存在，那么将会在你运行 make:request 命令时创建出来。让我们添加一些验证规则到 rules 方法中：</p>
-<pre><code class="php">/**
-     * Get the validation rules that apply to the request.
-     *验证规则
-     * @return array
-     */
-    public function rules()
-    {
-        return  [
-            &quot;title&quot;=&gt;&#39;min:5|required&#39;
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            &quot;title.required&quot;=&gt;&quot;不能为空&quot;,
-            &quot;title.min&quot;=&gt;&quot;至少5个字符&quot;
-        ];
-    }
-</code></pre>
-<p>怎样才能较好的运行验证规则呢？你所需要做的就是在控制器方法中利用类型提示传入请求。传入的请求会在控制器方法被调用前进行验证，意思就是说你不会因为验证逻辑而把控制器弄得一团糟：</p>
-<pre><code class="php">    /**
-     * 自定义request
-     * request 中进行表单验证
-     * @param Request $request
-     */
-    public function store (ArticleRequest $request){
-
-        dd($request-&gt;all()) ;
-    }
-</code></pre>
-<h2 id="显示验证错误"><a href="#显示验证错误" class="headerlink" title="显示验证错误"></a>显示验证错误</h2><pre><code class="html"> &lt;p&gt;&lt;input type=&quot;text&quot; name=&quot;title&quot; &gt;{{$errors->first('title')}}&lt;/p&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * Get the validation rules that apply to the request.</div><div class="line">     *验证规则</div><div class="line">     * <span class="doctag">@return</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span>  [</div><div class="line">            <span class="string">"title"</span>=&gt;<span class="string">'min:5|required'</span></div><div class="line">        ];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">messages</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> [</div><div class="line">            <span class="string">"title.required"</span>=&gt;<span class="string">"不能为空"</span>,</div><div class="line">            <span class="string">"title.min"</span>=&gt;<span class="string">"至少5个字符"</span></div><div class="line">        ];</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>怎样才能较好的运行验证规则呢？你所需要做的就是在控制器方法中利用类型提示传入请求。传入的请求会在控制器方法被调用前进行验证，意思就是说你不会因为验证逻辑而把控制器弄得一团糟：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 自定义request</div><div class="line"> * request 中进行表单验证</div><div class="line"> * <span class="doctag">@param</span> Request $request</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">store</span> <span class="params">(ArticleRequest $request)</span></span>&#123;</div><div class="line"></div><div class="line">    dd($request-&gt;all()) ;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="显示验证错误"><a href="#显示验证错误" class="headerlink" title="显示验证错误"></a>显示验证错误</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"title"</span> &gt;</span>&#123;&#123;$errors-&gt;first('title')&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="可用的验证规则"><a href="#可用的验证规则" class="headerlink" title="可用的验证规则"></a>可用的验证规则</h2><p><a href="http://blog.noxue.com/article/473.html" title="不学网" target="_blank" rel="external">不学网验证规则</a></p>
 
       

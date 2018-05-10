@@ -452,9 +452,7 @@
 <h3 id="GIT命令操作"><a href="#GIT命令操作" class="headerlink" title="GIT命令操作"></a>GIT命令操作</h3><ul>
 <li>初始化一个本地GIT仓储</li>
 </ul>
-<pre><code class="shell">cd 当前项目目录
-git init // 初始化一个本地的仓库
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd 当前项目目录</div><div class="line">git init // 初始化一个本地的仓库</div></pre></td></tr></table></figure>
 <blockquote>
 <p>就是在本地文件夹中添加了一个.git的文件夹用于记录所有的项目变更信息</p>
 </blockquote>
@@ -665,41 +663,7 @@ git init // 初始化一个本地的仓库
         
           
             <hr>
-<pre><code class="php">&lt;?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/2/20
- * Time: 12:49
- */
-/**
- * 桶式排序
- */
-
-function bucketSort ($list){
-    $max = max($list);
-    $min = min($list) ;
-
-    $bucket = array_fill($min , $max-$min +1 , 0 );
-    //待排序的数作为数组的键 值全是0
-    foreach ($list as $value){
-
-        $bucket[$value] ++ ;
-    }
-    foreach($bucket as $key=&gt;$value){
-        if($value == 1) {
-            $new_list[] = $key ;
-        }elseif ($value &gt;=1 ){
-            for($i = 1 ; $i&lt;=$value ; $i++){
-                $new_list [] = $key ;
-            }
-        }
-    }
-    return $new_list ;
-}
-$result = bucketSort(array(2,4,5,2,1,0,77,55,44,5,3,5,778,999,87)) ;
-var_dump($result) ;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by PhpStorm.</div><div class="line"> * User: Administrator</div><div class="line"> * Date: 2017/2/20</div><div class="line"> * Time: 12:49</div><div class="line"> */</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 桶式排序</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bucketSort</span> <span class="params">($list)</span></span>&#123;</div><div class="line">    $max = max($list);</div><div class="line">    $min = min($list) ;</div><div class="line"></div><div class="line">    $bucket = array_fill($min , $max-$min +<span class="number">1</span> , <span class="number">0</span> );</div><div class="line">    <span class="comment">//待排序的数作为数组的键 值全是0</span></div><div class="line">    <span class="keyword">foreach</span> ($list <span class="keyword">as</span> $value)&#123;</div><div class="line"></div><div class="line">        $bucket[$value] ++ ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">foreach</span>($bucket <span class="keyword">as</span> $key=&gt;$value)&#123;</div><div class="line">        <span class="keyword">if</span>($value == <span class="number">1</span>) &#123;</div><div class="line">            $new_list[] = $key ;</div><div class="line">        &#125;<span class="keyword">elseif</span> ($value &gt;=<span class="number">1</span> )&#123;</div><div class="line">            <span class="keyword">for</span>($i = <span class="number">1</span> ; $i&lt;=$value ; $i++)&#123;</div><div class="line">                $new_list [] = $key ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $new_list ;</div><div class="line">&#125;</div><div class="line">$result = bucketSort(<span class="keyword">array</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">77</span>,<span class="number">55</span>,<span class="number">44</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">778</span>,<span class="number">999</span>,<span class="number">87</span>)) ;</div><div class="line">var_dump($result) ;</div></pre></td></tr></table></figure>
 <p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
 
           
@@ -889,11 +853,7 @@ var_dump($result) ;
 </ul>
 </li>
 <li><p>NVM（Node Version Manager）</p>
-<pre><code class="bash">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
-$ echo &#39;. ~/.nvm/nvm.sh&#39; &gt;&gt; .bash_profile
-$ nvm install stable
-$ nvm alias default stable
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'. ~/.nvm/nvm.sh'</span> &gt;&gt; .bash_profile</div><div class="line">$ nvm install stable</div><div class="line">$ nvm <span class="built_in">alias</span> default stable</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="1-2-2-Windows"><a href="#1-2-2-Windows" class="headerlink" title="1.2.2.Windows"></a>1.2.2.Windows</h4><ul>
@@ -906,11 +866,10 @@ $ nvm alias default stable
 <li>nvm(node version manager)</li>
 <li>因为NODE版本比较多，开发人员可能依赖很多版本</li>
 <li><p>通过NVM，可以轻松切换于不同的版本之间</p>
-<pre><code class="command">
-</code></pre>
-<p>NVM_HOME=C:\Develop\nvm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
 </li>
 </ul>
+<p>NVM_HOME=C:\Develop\nvm</p>
 <p>NVM_SYMLINK=C:\Develop\nodejs</p>
 <p>NPM_HOME=C:\Develop\nvm\npm</p>
 <p>PATH=%NVM_HOME%;%NVM_SYMLINK%;%NPM_HOME%</p>
@@ -1154,22 +1113,18 @@ $ nvm alias default stable
         
           
             <h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
-<li>引入库文件就行了<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&gt;&lt;/script&gt;
-&lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&gt;
-</code></pre>
+<li>引入库文件就行了<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/pace.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
 <li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
-<li>先引入js：<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js&quot;&gt;&lt;/script&gt;
-</code></pre>
+<li><p>先引入js：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 </li>
-<li>在合适的地方调用就行了 可以把图片换成其他的图片</li>
+<li><p>在合适的地方调用就行了 可以把图片换成其他的图片</p>
+</li>
 </ol>
-<pre><code class="javascript">&lt;script&gt;
-    $(document).snowfall({deviceorientation : true, image: &quot;http://loktar00.github.io/JQuery-Snowfall/images/flake.png&quot;, minSize: 10, maxSize: 32, flakeCount: 60});
-&lt;/script&gt;
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    $(<span class="built_in">document</span>).snowfall(&#123;<span class="attr">deviceorientation</span> : <span class="literal">true</span>, <span class="attr">image</span>: <span class="string">"http://loktar00.github.io/JQuery-Snowfall/images/flake.png"</span>, <span class="attr">minSize</span>: <span class="number">10</span>, <span class="attr">maxSize</span>: <span class="number">32</span>, <span class="attr">flakeCount</span>: <span class="number">60</span>&#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
 <p> 其他效果以后更新或者在其他文章发布</p>
 
           
@@ -1701,9 +1656,9 @@ MySQL5.6.17
 </ul>
 <ul>
 <li><p>GoodsController 商品控制器</p>
-<pre><code> upload_goods() --------------------- 上传商品
- delete_goods() --------------------- 删除商品
- delete_collection() ---------------- 删除收藏的商品
+<pre><code>upload_goods() --------------------- 上传商品
+delete_goods() --------------------- 删除商品
+delete_collection() ---------------- 删除收藏的商品
 </code></pre></li>
 <li><p>IndexController 个人中心控制器</p>
 <pre><code>my ()---------------------------- 个人中心默认打开我的商品页面
@@ -1727,29 +1682,29 @@ logout ---------------------  用户登出
 <pre><code>send ()--------------------- 发送邮件
 </code></pre></li>
 <li><p>GoodsController 商品控制器</p>
-<pre><code>  showlist ()---------------------- 商品列表
-  category()----------------------- 加载分类
-  goods()-------------------------- 展示商品
-  search()------------------------- 搜索
-  order_by_price()----------------- 搜索按照价格排序
-  goods_detail -------------------- 展示商品详情
-  loadComment --------------------- 加载评论
- addNewComment()------------------- 新增评论
+<pre><code> showlist ()---------------------- 商品列表
+ category()----------------------- 加载分类
+ goods()-------------------------- 展示商品
+ search()------------------------- 搜索
+ order_by_price()----------------- 搜索按照价格排序
+ goods_detail -------------------- 展示商品详情
+ loadComment --------------------- 加载评论
+addNewComment()------------------- 新增评论
 </code></pre></li>
 <li><p>GoodsController 商品控制器</p>
-<pre><code>  index ()------------------------- 商品列表
-  category()----------------------- 显示分类
-  contact()------------------------ 联系客服
-  goods_list()--------------------- 商品列表入口
-  goods_list_main()---------------- 搜索到的商品列表
-  myaccount ----------------------- 登录界面
-  verify -------------------------- 输出验证码
- addNewComment()------------------- 新增评论
+<pre><code> index ()------------------------- 商品列表
+ category()----------------------- 显示分类
+ contact()------------------------ 联系客服
+ goods_list()--------------------- 商品列表入口
+ goods_list_main()---------------- 搜索到的商品列表
+ myaccount ----------------------- 登录界面
+ verify -------------------------- 输出验证码
+addNewComment()------------------- 新增评论
 </code></pre><h3 id="三-视图"><a href="#三-视图" class="headerlink" title="三. 视图"></a>三. 视图</h3><h5 id="Admin-View"><a href="#Admin-View" class="headerlink" title="Admin/View"></a>Admin/View</h5></li>
 </ul>
 </li>
 <li><p>Goods/</p>
-<pre><code>      upload_goods.html  -------------------- 商品上传视图
+<pre><code>upload_goods.html  -------------------- 商品上传视图
 </code></pre></li>
 <li><p>Index/</p>
 <pre><code>collection.html  -------------------- 我的收藏视图
@@ -1764,15 +1719,15 @@ myinfo.html      -------------------- 展示个人信息视图
 <pre><code>register.html     -------------------- 用户注册视图
 </code></pre><h5 id="Home-View"><a href="#Home-View" class="headerlink" title="Home/View"></a>Home/View</h5></li>
 <li><p>Goods/</p>
-<pre><code>  category.html  ----------------------- 分类视图
-  goods.html     ----------------------- 商品视图
-  goods_detail.html     ---------------- 商品详情视图
-  goods_list.html    ------------------- 商品列表视图
-  goods_list_main.html ----------------- 搜索商品视图
+<pre><code>category.html  ----------------------- 分类视图
+goods.html     ----------------------- 商品视图
+goods_detail.html     ---------------- 商品详情视图
+goods_list.html    ------------------- 商品列表视图
+goods_list_main.html ----------------- 搜索商品视图
 </code></pre></li>
-<li>Index/<pre><code>  contact.html  ----------------------- 联系客服视图
-  index.html    ----------------------- 首页视图
-  myaccount.html     ------------------ 用户登录视图
+<li>Index/<pre><code>contact.html  ----------------------- 联系客服视图
+index.html    ----------------------- 首页视图
+myaccount.html     ------------------ 用户登录视图
 </code></pre><h3 id="四-目前功能"><a href="#四-目前功能" class="headerlink" title="四. 目前功能"></a>四. 目前功能</h3></li>
 <li><p>首页</p>
 <pre><code>首页主要加载数据库中火热的商品列表
@@ -1937,18 +1892,11 @@ myinfo.html      -------------------- 展示个人信息视图
       
         
           
-            <h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><pre><code class="bash">$ hexo new &#39;文件名称&#39;
-</code></pre>
-<p>例如:</p>
-<pre><code class="bash">$ hexo new &#39;test&#39;
-</code></pre>
+            <h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'文件名称'</span></div></pre></td></tr></table></figure>
+<p>例如:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">'test'</span></div></pre></td></tr></table></figure></p>
 <p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
 <p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
-<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><pre><code class="bash">$ hexo clean
-$ hexo generate
-(若要本地预览就先执行 hexo server)
-$ hexo deploy
-</code></pre>
+<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div><div class="line">$ hexo generate</div><div class="line">(若要本地预览就先执行 hexo server)</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
 
           
@@ -2062,17 +2010,13 @@ $ hexo deploy
         
           
             <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
           

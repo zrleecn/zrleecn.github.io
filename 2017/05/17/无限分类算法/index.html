@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="php递归实现无限分类算法 &amp;lt;?php  echo &amp;#39;&amp;lt;pre&amp;gt;&amp;#39;; $list = array (     array ( &amp;#39;cat_id&amp;#39; =&amp;gt; &amp;#39;1&amp;#39;, &amp;#39;cat_name&amp;#39; =&amp;gt; &amp;#39;节点A&amp;#39;, &amp;#39;parent_id&amp;#39; =&amp;gt; &amp;#39;3&amp;#39;, ),">
+<meta name="description" content="php递归实现无限分类算法1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;?phpecho &apos;&amp;lt;pre&amp;gt;&apos;;$list = array (	array ( &apos;cat_id&apos; =&amp;gt; &apos;1&apos;, &apos;cat_name&apos; =&amp;gt; &apos;节点A&apos;, &apos;parent">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php递归实现无限分类算法">
 <meta property="og:url" content="http://yoursite.com/2017/05/17/无限分类算法/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="php递归实现无限分类算法 &amp;lt;?php  echo &amp;#39;&amp;lt;pre&amp;gt;&amp;#39;; $list = array (     array ( &amp;#39;cat_id&amp;#39; =&amp;gt; &amp;#39;1&amp;#39;, &amp;#39;cat_name&amp;#39; =&amp;gt; &amp;#39;节点A&amp;#39;, &amp;#39;parent_id&amp;#39; =&amp;gt; &amp;#39;3&amp;#39;, ),">
+<meta property="og:description" content="php递归实现无限分类算法1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;?phpecho &apos;&amp;lt;pre&amp;gt;&apos;;$list = array (	array ( &apos;cat_id&apos; =&amp;gt; &apos;1&apos;, &apos;cat_name&apos; =&amp;gt; &apos;节点A&apos;, &apos;parent">
 <meta property="og:updated_time" content="2017-05-17T02:33:32.909Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php递归实现无限分类算法">
-<meta name="twitter:description" content="php递归实现无限分类算法 &amp;lt;?php  echo &amp;#39;&amp;lt;pre&amp;gt;&amp;#39;; $list = array (     array ( &amp;#39;cat_id&amp;#39; =&amp;gt; &amp;#39;1&amp;#39;, &amp;#39;cat_name&amp;#39; =&amp;gt; &amp;#39;节点A&amp;#39;, &amp;#39;parent_id&amp;#39; =&amp;gt; &amp;#39;3&amp;#39;, ),">
+<meta name="twitter:description" content="php递归实现无限分类算法1234567891011121314151617181920212223242526272829303132333435363738394041424344454647&amp;lt;?phpecho &apos;&amp;lt;pre&amp;gt;&apos;;$list = array (	array ( &apos;cat_id&apos; =&amp;gt; &apos;1&apos;, &apos;cat_name&apos; =&amp;gt; &apos;节点A&apos;, &apos;parent">
 
 
 
@@ -359,55 +359,7 @@
       
 
       
-        <h1 id="php递归实现无限分类算法"><a href="#php递归实现无限分类算法" class="headerlink" title="php递归实现无限分类算法"></a>php递归实现无限分类算法</h1><pre><code class="php">
-&lt;?php
-
-echo &#39;&lt;pre&gt;&#39;;
-$list = array (
-    array ( &#39;cat_id&#39; =&gt; &#39;1&#39;, &#39;cat_name&#39; =&gt; &#39;节点A&#39;, &#39;parent_id&#39; =&gt; &#39;3&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;2&#39;, &#39;cat_name&#39; =&gt; &#39;节点C&#39;, &#39;parent_id&#39; =&gt; &#39;1&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;3&#39;, &#39;cat_name&#39; =&gt; &#39;节点D&#39;, &#39;parent_id&#39; =&gt; &#39;0&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;4&#39;, &#39;cat_name&#39; =&gt; &#39;节点F&#39;, &#39;parent_id&#39; =&gt; &#39;2&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;5&#39;, &#39;cat_name&#39; =&gt; &#39;节点K&#39;, &#39;parent_id&#39; =&gt; &#39;3&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;6&#39;, &#39;cat_name&#39; =&gt; &#39;节点P&#39;, &#39;parent_id&#39; =&gt; &#39;2&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;7&#39;, &#39;cat_name&#39; =&gt; &#39;节点U&#39;, &#39;parent_id&#39; =&gt; &#39;8&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;8&#39;, &#39;cat_name&#39; =&gt; &#39;节点X&#39;, &#39;parent_id&#39; =&gt; &#39;3&#39;, ), 
-) ;
-/**
- * @param &amp;$list array 所有分类的数组，在这个数组内查找
- * @param $parent_id int 当前的父分类id
- * @param $deep int 当前递归调用的深度
- * @retrun array 按照层级关系排序好的数组
- */
-function tree(&amp;$list, $parent_id, $deep) {
-    //保证找到的元素都放在一个数组$tree内,应该是$tree在所有的tree函数都共享
-    static $tree;
-    //遍历该数组，找到parent_id值为当前传递进来的$parent_id;
-    foreach($list as $row) {
-        //判断
-        if($row[&#39;parent_id&#39;] == $parent_id) {
-            //保存起来
-            $row[&#39;deep&#39;] = $deep;
-            $tree[] = $row;
-            //依据当前所找到的分类，找到其子节点，操作相同，递归完成
-            tree($list, $row[&#39;cat_id&#39;],$deep+1);
-        }
-    }
-
-    return $tree;
-}
-
-$result = tree($list, 0, 0);
-var_dump($result);
-echo &#39;&lt;hr&gt;&#39;;
-foreach($result as $row) {
-//    echo $row[&#39;deep&#39;];
-    echo &#39;|&#39;, str_repeat(&#39;---&#39;, $row[&#39;deep&#39;]);
-    echo $row[&#39;cat_name&#39;];
-    echo &#39;&lt;br&gt;&#39;;
-}
-</code></pre>
-
+        <h1 id="php递归实现无限分类算法"><a href="#php递归实现无限分类算法" class="headerlink" title="php递归实现无限分类算法"></a>php递归实现无限分类算法</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</div><div class="line">$list = <span class="keyword">array</span> (</div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'1'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点A'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'3'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'2'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点C'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'1'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'3'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点D'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'0'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'4'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点F'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'2'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'5'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点K'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'3'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'6'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点P'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'2'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'7'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点U'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'8'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'8'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点X'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'3'</span>, ), </div><div class="line">) ;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@param</span> &amp;$list array 所有分类的数组，在这个数组内查找</div><div class="line"> * <span class="doctag">@param</span> $parent_id int 当前的父分类id</div><div class="line"> * <span class="doctag">@param</span> $deep int 当前递归调用的深度</div><div class="line"> * <span class="doctag">@retrun</span> array 按照层级关系排序好的数组</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tree</span><span class="params">(&amp;$list, $parent_id, $deep)</span> </span>&#123;</div><div class="line">	<span class="comment">//保证找到的元素都放在一个数组$tree内,应该是$tree在所有的tree函数都共享</span></div><div class="line">	<span class="keyword">static</span> $tree;</div><div class="line">	<span class="comment">//遍历该数组，找到parent_id值为当前传递进来的$parent_id;</span></div><div class="line">	<span class="keyword">foreach</span>($list <span class="keyword">as</span> $row) &#123;</div><div class="line">		<span class="comment">//判断</span></div><div class="line">		<span class="keyword">if</span>($row[<span class="string">'parent_id'</span>] == $parent_id) &#123;</div><div class="line">			<span class="comment">//保存起来</span></div><div class="line">			$row[<span class="string">'deep'</span>] = $deep;</div><div class="line">			$tree[] = $row;</div><div class="line">			<span class="comment">//依据当前所找到的分类，找到其子节点，操作相同，递归完成</span></div><div class="line">			tree($list, $row[<span class="string">'cat_id'</span>],$deep+<span class="number">1</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> $tree;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$result = tree($list, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">var_dump($result);</div><div class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</div><div class="line"><span class="keyword">foreach</span>($result <span class="keyword">as</span> $row) &#123;</div><div class="line"><span class="comment">//	echo $row['deep'];</span></div><div class="line">	<span class="keyword">echo</span> <span class="string">'|'</span>, str_repeat(<span class="string">'---'</span>, $row[<span class="string">'deep'</span>]);</div><div class="line">	<span class="keyword">echo</span> $row[<span class="string">'cat_name'</span>];</div><div class="line">	<span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 

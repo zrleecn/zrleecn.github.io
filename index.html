@@ -362,68 +362,29 @@
           
             <h1 id="MongoDB安装与shell"><a href="#MongoDB安装与shell" class="headerlink" title="MongoDB安装与shell"></a>MongoDB安装与shell</h1><h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>只需要在官网下载解压包<br><a href="https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;wd=&amp;eqid=8488b4090000820b000000065af41a24" target="_blank" rel="external">https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;wd=&amp;eqid=8488b4090000820b000000065af41a24</a></p>
 <p>放到linux服务器上解压即可</p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>MongoDB的数据存储在data目录的db目录下，但是这个目录在安装过程不会自动创建，所以你需要手动创建data目录，并在data目录中创建db目录。<br>例如</p>
-<pre><code class="shell"># mkdir /data/db
-</code></pre>
-<p>启动先进入到mongodb的bin目录 执行命令</p>
-<pre><code># ./mongod
-</code></pre><p>有时候需要用配置文件的形式启动可以通过如下口令</p>
-<pre><code># ./mongod -f 配置文件路径
-</code></pre><p>这个配置文件需要你手动创建例如在mongodb目录中创建一个etc/mongo.conf</p>
-<p>在bin目录</p>
-<pre><code># mkdir etc
-# cd etc
-# vim mongo.conf
-</code></pre><p>mongo.conf 里面的内容</p>
-<pre><code> logpath=./log/mongodb.log
- logappend=false
- dbpath=/data/db
- fork=true
- rest=true
-</code></pre><p>参数详解<br>logpath指定日志的目录<br>logappend 是否追加形式保存日志<br>dbpath 指定db目录<br>fork 是否后台运行进程<br>rest 是否使用web console 设定为true的时候可以通过 ip:28017 访问默认端口是28017</p>
-<h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><pre><code># ps -ef|grep mongo
-</code></pre><h3 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h3><pre><code># ./mongod --shutdown
-</code></pre><h2 id="MongoDB后台管理-Shell"><a href="#MongoDB后台管理-Shell" class="headerlink" title="MongoDB后台管理 Shell"></a>MongoDB后台管理 Shell</h2><h3 id="shell-基本命令"><a href="#shell-基本命令" class="headerlink" title="shell 基本命令"></a>shell 基本命令</h3><p>进入shell 在mongondb的bin目录下</p>
-<pre><code># ./mongo
-</code></pre><p>查看数据库</p>
-<pre><code># show dbs
-</code></pre><p>选择数据库</p>
-<pre><code># use dbname
-</code></pre><p>查看集合</p>
-<pre><code># show collections
-</code></pre><p>集合插入</p>
-<pre><code># db.account.save({&#39;name&#39;:&#39;zrlee&#39; , &#39;skill&#39;:&#39;php22&#39;})
-</code></pre><p>account 为集合的名称</p>
-<p>查看account集合的数据</p>
-<pre><code># db.account.find()
-</code></pre><p>删除account集合</p>
-<pre><code># db.account.drop()
-</code></pre><p>删除数据库</p>
-<pre><code># db.dropDatabase()
-</code></pre><p>注意删除的是当前选中的库</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>MongoDB的数据存储在data目录的db目录下，但是这个目录在安装过程不会自动创建，所以你需要手动创建data目录，并在data目录中创建db目录。<br>例如<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> mkdir /data/db</span></div></pre></td></tr></table></figure></p>
+<p>启动先进入到mongodb的bin目录 执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># ./mongod</div></pre></td></tr></table></figure></p>
+<p>有时候需要用配置文件的形式启动可以通过如下口令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># ./mongod -f 配置文件路径</div></pre></td></tr></table></figure></p>
+<p>这个配置文件需要你手动创建例如在mongodb目录中创建一个etc/mongo.conf</p>
+<p>在bin目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># mkdir etc</div><div class="line"># cd etc</div><div class="line"># vim mongo.conf</div></pre></td></tr></table></figure></p>
+<p>mongo.conf 里面的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">logpath=./log/mongodb.log</div><div class="line">logappend=false</div><div class="line">dbpath=/data/db</div><div class="line">fork=true</div><div class="line">rest=true</div></pre></td></tr></table></figure></p>
+<p>参数详解<br>logpath指定日志的目录<br>logappend 是否追加形式保存日志<br>dbpath 指定db目录<br>fork 是否后台运行进程<br>rest 是否使用web console 设定为true的时候可以通过 ip:28017 访问默认端口是28017</p>
+<h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># ps -ef|grep mongo</div></pre></td></tr></table></figure>
+<h3 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># ./mongod --shutdown</div></pre></td></tr></table></figure>
+<h2 id="MongoDB后台管理-Shell"><a href="#MongoDB后台管理-Shell" class="headerlink" title="MongoDB后台管理 Shell"></a>MongoDB后台管理 Shell</h2><h3 id="shell-基本命令"><a href="#shell-基本命令" class="headerlink" title="shell 基本命令"></a>shell 基本命令</h3><p>进入shell 在mongondb的bin目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># ./mongo</div></pre></td></tr></table></figure></p>
+<p>查看数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># show dbs</div></pre></td></tr></table></figure></p>
+<p>选择数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># use dbname</div></pre></td></tr></table></figure></p>
+<p>查看集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># show collections</div></pre></td></tr></table></figure></p>
+<p>集合插入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># db.account.save(&#123;&apos;name&apos;:&apos;zrlee&apos; , &apos;skill&apos;:&apos;php22&apos;&#125;)</div></pre></td></tr></table></figure></p>
+<p>account 为集合的名称</p>
+<p>查看account集合的数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># db.account.find()</div></pre></td></tr></table></figure></p>
+<p>删除account集合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># db.account.drop()</div></pre></td></tr></table></figure></p>
+<p>删除数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># db.dropDatabase()</div></pre></td></tr></table></figure>
+<p>注意删除的是当前选中的库</p>
 <p>其他的口令</p>
-<pre><code># db.help()                    查看db方法帮助
-# db.mycoll.help()             help on collection methods
-# sh.help()                    sharding helpers
-# rs.help()                    replica set helpers
-# help admin                   administrative help
-# help connect                 connecting to a db help
-# help keys                    key shortcuts
-# help misc                    misc things to know
-# help mr                      mapreduce
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"># db.help()                    查看db方法帮助</div><div class="line"># db.mycoll.help()             help on collection methods</div><div class="line"># sh.help()                    sharding helpers</div><div class="line"># rs.help()                    replica set helpers</div><div class="line"># help admin                   administrative help</div><div class="line"># help connect                 connecting to a db help</div><div class="line"># help keys                    key shortcuts</div><div class="line"># help misc                    misc things to know</div><div class="line"># help mr                      mapreduce</div><div class="line"></div><div class="line"># show dbs                     show database names</div><div class="line"># show collections             show collections in current # </div><div class="line"># show users                   show users in current database</div><div class="line"># show profile                 show most recent </div><div class="line"># show logs                    show the accessible logger names</div><div class="line"># show log [name]              prints out the last segment of log in memory, &apos;global&apos; is default</div><div class="line"># use &lt;db_name&gt;                set current database</div><div class="line"># db.foo.find()                foo集合对象列表</div><div class="line"># db.foo.find( &#123; a : 1 &#125; )     list objects in foo where a == 1</div><div class="line"></div><div class="line">	exit                         quit the mongo shell</div></pre></td></tr></table></figure>
 
-# show dbs                     show database names
-# show collections             show collections in current # 
-# show users                   show users in current database
-# show profile                 show most recent 
-# show logs                    show the accessible logger names
-# show log [name]              prints out the last segment of log in memory, &#39;global&#39; is default
-# use &lt;db_name&gt;                set current database
-# db.foo.find()                foo集合对象列表
-# db.foo.find( { a : 1 } )     list objects in foo where a == 1
-
-    exit                         quit the mongo shell
-</code></pre>
           
         
       
@@ -559,25 +520,20 @@
             <h1 id="CentOS下安装Docker与启动方法"><a href="#CentOS下安装Docker与启动方法" class="headerlink" title="CentOS下安装Docker与启动方法"></a>CentOS下安装Docker与启动方法</h1><blockquote>
 <p>有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动</p>
 </blockquote>
-<h3 id="1、取消selinux，因为它会干扰lxc的正常功能"><a href="#1、取消selinux，因为它会干扰lxc的正常功能" class="headerlink" title="1、取消selinux，因为它会干扰lxc的正常功能"></a>1、取消selinux，因为它会干扰lxc的正常功能</h3><pre><code class="bash"># vim /etc/selinux/config
-</code></pre>
+<h3 id="1、取消selinux，因为它会干扰lxc的正常功能"><a href="#1、取消selinux，因为它会干扰lxc的正常功能" class="headerlink" title="1、取消selinux，因为它会干扰lxc的正常功能"></a>1、取消selinux，因为它会干扰lxc的正常功能</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vim /etc/selinux/config</span></div></pre></td></tr></table></figure>
 <p>将SELINUX 改成disabled</p>
 <p>SELINUX=disabled<br>SELINUXTYPE=targeted</p>
-<h3 id="2、配置Fedora-EPEL-源"><a href="#2、配置Fedora-EPEL-源" class="headerlink" title="2、配置Fedora EPEL 源"></a>2、配置Fedora EPEL 源</h3><pre><code>yum install http://ftp.riken.jp/Linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
-</code></pre><h3 id="3、配置hop5-in源"><a href="#3、配置hop5-in源" class="headerlink" title="3、配置hop5.in源"></a>3、配置hop5.in源</h3><pre><code># cd /etc/yum.repos.d
-# sudo wget http://www.hop5.in/yum/el6/hop5.repo
-</code></pre><h3 id="4、安装docker-io"><a href="#4、安装docker-io" class="headerlink" title="4、安装docker-io"></a>4、安装docker-io</h3><pre><code># yum install docker-io
-</code></pre><h3 id="5、检查安装情况"><a href="#5、检查安装情况" class="headerlink" title="5、检查安装情况"></a>5、检查安装情况</h3><pre><code># docker -h
-</code></pre><h3 id="6、启动docker"><a href="#6、启动docker" class="headerlink" title="6、启动docker"></a>6、启动docker</h3><pre><code># service docker start
-</code></pre><h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><p>Docker需要3.8以上的内核 查看自己的内核</p>
-<pre><code># uname -a
-</code></pre><p>如果内核版本过低可以进行升级，具体升级方法网上有</p>
-<pre><code># docker info
-Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host?
-</code></pre><p>应该是libmapper有关，需要升级下这个库:</p>
-<pre><code> # yum-config-manager --enable public_ol6_latest
- # yum install device-mapper-event-libs
-</code></pre>
+<h3 id="2、配置Fedora-EPEL-源"><a href="#2、配置Fedora-EPEL-源" class="headerlink" title="2、配置Fedora EPEL 源"></a>2、配置Fedora EPEL 源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install http://ftp.riken.jp/Linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm</div></pre></td></tr></table></figure>
+<h3 id="3、配置hop5-in源"><a href="#3、配置hop5-in源" class="headerlink" title="3、配置hop5.in源"></a>3、配置hop5.in源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># cd /etc/yum.repos.d</div><div class="line"># sudo wget http://www.hop5.in/yum/el6/hop5.repo</div></pre></td></tr></table></figure>
+<h3 id="4、安装docker-io"><a href="#4、安装docker-io" class="headerlink" title="4、安装docker-io"></a>4、安装docker-io</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># yum install docker-io</div></pre></td></tr></table></figure>
+<h3 id="5、检查安装情况"><a href="#5、检查安装情况" class="headerlink" title="5、检查安装情况"></a>5、检查安装情况</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># docker -h</div></pre></td></tr></table></figure>
+<h3 id="6、启动docker"><a href="#6、启动docker" class="headerlink" title="6、启动docker"></a>6、启动docker</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># service docker start</div></pre></td></tr></table></figure>
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><p>Docker需要3.8以上的内核 查看自己的内核<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># uname -a</div></pre></td></tr></table></figure></p>
+<p>如果内核版本过低可以进行升级，具体升级方法网上有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># docker info</div><div class="line">Cannot connect to the Docker daemon. Is &apos;docker -d&apos; running on this host?</div></pre></td></tr></table></figure>
+<p>应该是libmapper有关，需要升级下这个库:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># yum-config-manager --enable public_ol6_latest</div><div class="line"># yum install device-mapper-event-libs</div></pre></td></tr></table></figure>
+
           
         
       
@@ -710,9 +666,7 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
       
         
           
-            <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：</p>
-<pre><code class="`php">$value = config(&#39;app.timezone&#39;);
-</code></pre>
+            <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$value = config(&apos;app.timezone&apos;);</div></pre></td></tr></table></figure></p>
 
           
         
@@ -846,43 +800,11 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
       
         
           
-            <h1 id="创建表单请求"><a href="#创建表单请求" class="headerlink" title="创建表单请求"></a>创建表单请求</h1><p>在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令 </p>
-<pre><code class="php">php artisan make:request ArticleRequest
-</code></pre>
+            <h1 id="创建表单请求"><a href="#创建表单请求" class="headerlink" title="创建表单请求"></a>创建表单请求</h1><p>在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php artisan make:request ArticleRequest</div></pre></td></tr></table></figure></p>
 <p>新生成的类保存在 app/Http/Requests 目录下。如果这个目录不存在，那么将会在你运行 make:request 命令时创建出来。让我们添加一些验证规则到 rules 方法中：</p>
-<pre><code class="php">/**
-     * Get the validation rules that apply to the request.
-     *验证规则
-     * @return array
-     */
-    public function rules()
-    {
-        return  [
-            &quot;title&quot;=&gt;&#39;min:5|required&#39;
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            &quot;title.required&quot;=&gt;&quot;不能为空&quot;,
-            &quot;title.min&quot;=&gt;&quot;至少5个字符&quot;
-        ];
-    }
-</code></pre>
-<p>怎样才能较好的运行验证规则呢？你所需要做的就是在控制器方法中利用类型提示传入请求。传入的请求会在控制器方法被调用前进行验证，意思就是说你不会因为验证逻辑而把控制器弄得一团糟：</p>
-<pre><code class="php">    /**
-     * 自定义request
-     * request 中进行表单验证
-     * @param Request $request
-     */
-    public function store (ArticleRequest $request){
-
-        dd($request-&gt;all()) ;
-    }
-</code></pre>
-<h2 id="显示验证错误"><a href="#显示验证错误" class="headerlink" title="显示验证错误"></a>显示验证错误</h2><pre><code class="html"> &lt;p&gt;&lt;input type=&quot;text&quot; name=&quot;title&quot; &gt;{{$errors->first('title')}}&lt;/p&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">     * Get the validation rules that apply to the request.</div><div class="line">     *验证规则</div><div class="line">     * <span class="doctag">@return</span> array</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span>  [</div><div class="line">            <span class="string">"title"</span>=&gt;<span class="string">'min:5|required'</span></div><div class="line">        ];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">messages</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> [</div><div class="line">            <span class="string">"title.required"</span>=&gt;<span class="string">"不能为空"</span>,</div><div class="line">            <span class="string">"title.min"</span>=&gt;<span class="string">"至少5个字符"</span></div><div class="line">        ];</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>怎样才能较好的运行验证规则呢？你所需要做的就是在控制器方法中利用类型提示传入请求。传入的请求会在控制器方法被调用前进行验证，意思就是说你不会因为验证逻辑而把控制器弄得一团糟：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 自定义request</div><div class="line"> * request 中进行表单验证</div><div class="line"> * <span class="doctag">@param</span> Request $request</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">store</span> <span class="params">(ArticleRequest $request)</span></span>&#123;</div><div class="line"></div><div class="line">    dd($request-&gt;all()) ;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="显示验证错误"><a href="#显示验证错误" class="headerlink" title="显示验证错误"></a>显示验证错误</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"title"</span> &gt;</span>&#123;&#123;$errors-&gt;first('title')&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="可用的验证规则"><a href="#可用的验证规则" class="headerlink" title="可用的验证规则"></a>可用的验证规则</h2><p><a href="http://blog.noxue.com/article/473.html" title="不学网" target="_blank" rel="external">不学网验证规则</a></p>
 
           
@@ -1017,55 +939,7 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
       
         
           
-            <h1 id="php递归实现无限分类算法"><a href="#php递归实现无限分类算法" class="headerlink" title="php递归实现无限分类算法"></a>php递归实现无限分类算法</h1><pre><code class="php">
-&lt;?php
-
-echo &#39;&lt;pre&gt;&#39;;
-$list = array (
-    array ( &#39;cat_id&#39; =&gt; &#39;1&#39;, &#39;cat_name&#39; =&gt; &#39;节点A&#39;, &#39;parent_id&#39; =&gt; &#39;3&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;2&#39;, &#39;cat_name&#39; =&gt; &#39;节点C&#39;, &#39;parent_id&#39; =&gt; &#39;1&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;3&#39;, &#39;cat_name&#39; =&gt; &#39;节点D&#39;, &#39;parent_id&#39; =&gt; &#39;0&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;4&#39;, &#39;cat_name&#39; =&gt; &#39;节点F&#39;, &#39;parent_id&#39; =&gt; &#39;2&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;5&#39;, &#39;cat_name&#39; =&gt; &#39;节点K&#39;, &#39;parent_id&#39; =&gt; &#39;3&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;6&#39;, &#39;cat_name&#39; =&gt; &#39;节点P&#39;, &#39;parent_id&#39; =&gt; &#39;2&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;7&#39;, &#39;cat_name&#39; =&gt; &#39;节点U&#39;, &#39;parent_id&#39; =&gt; &#39;8&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;8&#39;, &#39;cat_name&#39; =&gt; &#39;节点X&#39;, &#39;parent_id&#39; =&gt; &#39;3&#39;, ), 
-) ;
-/**
- * @param &amp;$list array 所有分类的数组，在这个数组内查找
- * @param $parent_id int 当前的父分类id
- * @param $deep int 当前递归调用的深度
- * @retrun array 按照层级关系排序好的数组
- */
-function tree(&amp;$list, $parent_id, $deep) {
-    //保证找到的元素都放在一个数组$tree内,应该是$tree在所有的tree函数都共享
-    static $tree;
-    //遍历该数组，找到parent_id值为当前传递进来的$parent_id;
-    foreach($list as $row) {
-        //判断
-        if($row[&#39;parent_id&#39;] == $parent_id) {
-            //保存起来
-            $row[&#39;deep&#39;] = $deep;
-            $tree[] = $row;
-            //依据当前所找到的分类，找到其子节点，操作相同，递归完成
-            tree($list, $row[&#39;cat_id&#39;],$deep+1);
-        }
-    }
-
-    return $tree;
-}
-
-$result = tree($list, 0, 0);
-var_dump($result);
-echo &#39;&lt;hr&gt;&#39;;
-foreach($result as $row) {
-//    echo $row[&#39;deep&#39;];
-    echo &#39;|&#39;, str_repeat(&#39;---&#39;, $row[&#39;deep&#39;]);
-    echo $row[&#39;cat_name&#39;];
-    echo &#39;&lt;br&gt;&#39;;
-}
-</code></pre>
-
+            <h1 id="php递归实现无限分类算法"><a href="#php递归实现无限分类算法" class="headerlink" title="php递归实现无限分类算法"></a>php递归实现无限分类算法</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">&lt;?php</span></div><div class="line"></div><div class="line"><span class="keyword">echo</span> <span class="string">'&lt;pre&gt;'</span>;</div><div class="line">$list = <span class="keyword">array</span> (</div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'1'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点A'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'3'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'2'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点C'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'1'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'3'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点D'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'0'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'4'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点F'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'2'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'5'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点K'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'3'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'6'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点P'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'2'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'7'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点U'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'8'</span>, ), </div><div class="line">	<span class="keyword">array</span> ( <span class="string">'cat_id'</span> =&gt; <span class="string">'8'</span>, <span class="string">'cat_name'</span> =&gt; <span class="string">'节点X'</span>, <span class="string">'parent_id'</span> =&gt; <span class="string">'3'</span>, ), </div><div class="line">) ;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@param</span> &amp;$list array 所有分类的数组，在这个数组内查找</div><div class="line"> * <span class="doctag">@param</span> $parent_id int 当前的父分类id</div><div class="line"> * <span class="doctag">@param</span> $deep int 当前递归调用的深度</div><div class="line"> * <span class="doctag">@retrun</span> array 按照层级关系排序好的数组</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tree</span><span class="params">(&amp;$list, $parent_id, $deep)</span> </span>&#123;</div><div class="line">	<span class="comment">//保证找到的元素都放在一个数组$tree内,应该是$tree在所有的tree函数都共享</span></div><div class="line">	<span class="keyword">static</span> $tree;</div><div class="line">	<span class="comment">//遍历该数组，找到parent_id值为当前传递进来的$parent_id;</span></div><div class="line">	<span class="keyword">foreach</span>($list <span class="keyword">as</span> $row) &#123;</div><div class="line">		<span class="comment">//判断</span></div><div class="line">		<span class="keyword">if</span>($row[<span class="string">'parent_id'</span>] == $parent_id) &#123;</div><div class="line">			<span class="comment">//保存起来</span></div><div class="line">			$row[<span class="string">'deep'</span>] = $deep;</div><div class="line">			$tree[] = $row;</div><div class="line">			<span class="comment">//依据当前所找到的分类，找到其子节点，操作相同，递归完成</span></div><div class="line">			tree($list, $row[<span class="string">'cat_id'</span>],$deep+<span class="number">1</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> $tree;</div><div class="line">&#125;</div><div class="line"></div><div class="line">$result = tree($list, <span class="number">0</span>, <span class="number">0</span>);</div><div class="line">var_dump($result);</div><div class="line"><span class="keyword">echo</span> <span class="string">'&lt;hr&gt;'</span>;</div><div class="line"><span class="keyword">foreach</span>($result <span class="keyword">as</span> $row) &#123;</div><div class="line"><span class="comment">//	echo $row['deep'];</span></div><div class="line">	<span class="keyword">echo</span> <span class="string">'|'</span>, str_repeat(<span class="string">'---'</span>, $row[<span class="string">'deep'</span>]);</div><div class="line">	<span class="keyword">echo</span> $row[<span class="string">'cat_name'</span>];</div><div class="line">	<span class="keyword">echo</span> <span class="string">'&lt;br&gt;'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -1242,13 +1116,11 @@ foreach($result as $row) {
 <li>幻灯片效果</li>
 <li>固定左侧边栏</li>
 </ul>
-<h1 id="常用的类"><a href="#常用的类" class="headerlink" title="常用的类"></a>常用的类</h1><h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><pre><code class="css">    .container
-</code></pre>
+<h1 id="常用的类"><a href="#常用的类" class="headerlink" title="常用的类"></a>常用的类</h1><h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.container</span></div></pre></td></tr></table></figure>
 <h2 id="栅格系统"><a href="#栅格系统" class="headerlink" title="栅格系统"></a>栅格系统</h2><pre><code>分为12个格子
 </code></pre><h2 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h2><ul>
 <li><p>标题 </p>
-<pre><code class="css">    .page-header
-</code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.page-header</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>段落 </p>
 <pre><code>.lead
@@ -1258,166 +1130,48 @@ foreach($result as $row) {
 <li><p>.del删除线标记</p>
 </li>
 <li><p>.samll小号字体标记</p>
-<h2 id="文本对齐"><a href="#文本对齐" class="headerlink" title="文本对齐"></a>文本对齐</h2><pre><code class="css">    .text-left
-    .text-center
-    .text-right
-</code></pre>
+<h2 id="文本对齐"><a href="#文本对齐" class="headerlink" title="文本对齐"></a>文本对齐</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.text-left</span></div><div class="line"><span class="selector-class">.text-center</span></div><div class="line"><span class="selector-class">.text-right</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="文本大小写"><a href="#文本大小写" class="headerlink" title="文本大小写"></a>文本大小写</h2><pre><code class="css">        .text-lowercase
-        .text-uppercase
-        .text-captialize 首字母大写
-</code></pre>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><pre><code class="css">        .list-unstyled
-</code></pre>
+<h2 id="文本大小写"><a href="#文本大小写" class="headerlink" title="文本大小写"></a>文本大小写</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.text-lowercase</span></div><div class="line"><span class="selector-class">.text-uppercase</span></div><div class="line"><span class="selector-class">.text-captialize</span> 首字母大写</div></pre></td></tr></table></figure>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">		<span class="selector-class">.list-unstyled</span></div><div class="line">```		</div><div class="line"><span class="selector-tag">-</span>	内联列表</div><div class="line">``` <span class="selector-tag">css</span>	</div><div class="line">		<span class="selector-class">.list-inline</span></div></pre></td></tr></table></figure>
 <ul>
-<li>内联列表<pre><code class="css">   .list-inline
-</code></pre>
-</li>
 <li>自定义列表</li>
 <li>水平排列列表</li>
 </ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="html">    code 标记
-    pre 标记
-    kbd 标记
-</code></pre>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><pre><code class="css">    .table
-    .table-striped 不同颜色 斑马线
-    .table-bordered 
-    .table-hover
-    .table-responsive ##
-</code></pre>
-<p>响应式表格table外面的div的类</p>
-<pre><code class="css">        表格状态类（颜色）
-        .active    鼠标悬停在行或单元格上时所设置的颜色
-        .success    标识成功或积极的动作
-        .info    标识普通的提示信息或动作
-        .warning    标识警告或需要用户注意
-        .danger    标识危险或潜在的带来负面影响的动作
-</code></pre>
-<h2 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h2><pre><code class="css">    .btn
-    .btn-default
-    .btn-primary
-    .btn-succedd
-    .btn-info
-    .btn-success
-    .btn-warning
-    .btn-danger
-    .btn-lg 大按钮
-    .btn-sm
-    .btn-xs
-    .btn-block 快元素按钮
-    disabled属性 禁止按钮
-</code></pre>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><pre><code class="css">    .img-circle 圆形
-    .img-rounded 圆角
-</code></pre>
-<h2 id="辅助类"><a href="#辅助类" class="headerlink" title="辅助类"></a>辅助类</h2><ul>
-<li>文本颜色<pre><code class="css">      .text-mutexd
-       .text-primary
-       .text-success
-       .text-info
-       .text-warning
-       .text-danger
-</code></pre>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">code 标记</div><div class="line">pre 标记</div><div class="line">kbd 标记</div></pre></td></tr></table></figure>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.table</span></div><div class="line"><span class="selector-class">.table-striped</span> 不同颜色 斑马线</div><div class="line"><span class="selector-class">.table-bordered</span> </div><div class="line"><span class="selector-class">.table-hover</span></div><div class="line"><span class="selector-class">.table-responsive</span> ##</div></pre></td></tr></table></figure>
+<p>响应式表格table外面的div的类<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">      表格状态类（颜色）</div><div class="line"><span class="selector-class">.active</span>	鼠标悬停在行或单元格上时所设置的颜色</div><div class="line"><span class="selector-class">.success</span>	标识成功或积极的动作</div><div class="line"><span class="selector-class">.info</span>	标识普通的提示信息或动作</div><div class="line"><span class="selector-class">.warning</span>	标识警告或需要用户注意</div><div class="line"><span class="selector-class">.danger</span>	标识危险或潜在的带来负面影响的动作</div></pre></td></tr></table></figure></p>
+<h2 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">   <span class="selector-class">.btn</span></div><div class="line"><span class="selector-class">.btn-default</span></div><div class="line"><span class="selector-class">.btn-primary</span></div><div class="line"><span class="selector-class">.btn-succedd</span></div><div class="line"><span class="selector-class">.btn-info</span></div><div class="line"><span class="selector-class">.btn-success</span></div><div class="line"><span class="selector-class">.btn-warning</span></div><div class="line"><span class="selector-class">.btn-danger</span></div><div class="line"><span class="selector-class">.btn-lg</span> 大按钮</div><div class="line"><span class="selector-class">.btn-sm</span></div><div class="line"><span class="selector-class">.btn-xs</span></div><div class="line"><span class="selector-class">.btn-block</span> 快元素按钮</div><div class="line"><span class="selector-tag">disabled</span>属性 禁止按钮</div></pre></td></tr></table></figure>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">	<span class="selector-class">.img-circle</span> 圆形</div><div class="line">	<span class="selector-class">.img-rounded</span> 圆角</div><div class="line">```	</div><div class="line">## 辅助类</div><div class="line"></div><div class="line"><span class="selector-tag">-</span> 文本颜色</div><div class="line">``` <span class="selector-tag">css</span>	</div><div class="line">        <span class="selector-class">.text-mutexd</span></div><div class="line"> 		<span class="selector-class">.text-primary</span></div><div class="line"> 		<span class="selector-class">.text-success</span></div><div class="line"> 		<span class="selector-class">.text-info</span></div><div class="line"> 		<span class="selector-class">.text-warning</span></div><div class="line"> 		<span class="selector-class">.text-danger</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>背景颜色 (和文本差不多)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> 		.bg-primary</div><div class="line"> 		.....</div><div class="line">``` 	</div><div class="line">- 关闭按钮</div><div class="line">``` css	</div><div class="line"> 		.close</div><div class="line"> 		&lt;span class='close'&gt;&amp;times;&lt;/span&gt;</div></pre></td></tr></table></figure>
 </li>
-<li>背景颜色 (和文本差不多)<pre><code class="css">       .bg-primary
-       .....
-</code></pre>
+<li><p>三角形</p>
 </li>
-<li>关闭按钮<pre><code class="css">       .close
-       &lt;span class=&#39;close&#39;&gt;&amp;times;&lt;/span&gt;
-</code></pre>
-</li>
-<li>三角形</li>
 </ul>
-<pre><code>         .caret
-</code></pre><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.caret</div></pre></td></tr></table></figure>
+<ul>
 <li>浮动</li>
 </ul>
-<pre><code class="css">        .pull-left
-         .pull-right
-</code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.pull-left</span></div><div class="line">	<span class="selector-class">.pull-right</span></div></pre></td></tr></table></figure>
 <ul>
 <li>清浮动</li>
 </ul>
-<pre><code class="css">.clearfix
-</code></pre>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clearfix</span></div></pre></td></tr></table></figure>
 <ul>
-<li>隐藏显示<pre><code class="css">       .hide
-       .show
-</code></pre>
-</li>
-<li>块居中<pre><code class="css">       .center-block
-</code></pre>
+<li>隐藏显示<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">	 	<span class="selector-class">.hide</span></div><div class="line">	 	<span class="selector-class">.show</span></div><div class="line">```	</div><div class="line"><span class="selector-tag">-</span> 块居中</div><div class="line">``` <span class="selector-tag">css</span>	</div><div class="line">	 	<span class="selector-class">.center-block</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="glyphicons图标"><a href="#glyphicons图标" class="headerlink" title="glyphicons图标"></a>glyphicons图标</h2><pre><code class="css">    .glyphicon
-    .glyphicon-xxx
-</code></pre>
-<h2 id="下拉菜单"><a href="#下拉菜单" class="headerlink" title="下拉菜单"></a>下拉菜单</h2><pre><code class="css">    .dropdown
-    .dropdown-toggle
-    data-toggle=&#39;dropdown&#39;
-    .dropdown-menu
-    .divider  //分割线
-    .dropdown-header   //标题
-</code></pre>
+<h2 id="glyphicons图标"><a href="#glyphicons图标" class="headerlink" title="glyphicons图标"></a>glyphicons图标</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">   <span class="selector-class">.glyphicon</span></div><div class="line"><span class="selector-class">.glyphicon-xxx</span></div></pre></td></tr></table></figure>
+<h2 id="下拉菜单"><a href="#下拉菜单" class="headerlink" title="下拉菜单"></a>下拉菜单</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.dropdown</div><div class="line">.dropdown-toggle</div><div class="line">data-toggle='dropdown'</div><div class="line">.dropdown-menu</div><div class="line">.divider  //分割线</div><div class="line">.dropdown-header   //标题</div></pre></td></tr></table></figure>
 <ul>
 <li>例子</li>
 </ul>
-<pre><code class="html">&lt;div class=&quot;dropdown&quot;&gt;
-        &lt;div class=&quot;btn btn-success dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
-            更多
-            &lt;span class=&#39;caret&#39;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;ul class=&quot;dropdown-menu list-unstyled&quot;&gt;
-            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
-            &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
-
-        &lt;/ul&gt;
-    &lt;/div&gt;
-</code></pre>
-<h2 id="按钮组"><a href="#按钮组" class="headerlink" title="按钮组"></a>按钮组</h2><pre><code class="css">    .btn-group
-</code></pre>
-<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><pre><code class="css">    .form-group
-    .form-inline
-    .form-control 
-    .input-group
-    .input-group-addon
-    .input-group-btn
-</code></pre>
-<h2 id="表单-1"><a href="#表单-1" class="headerlink" title="表单"></a>表单</h2><pre><code>.form-inline
-.form-horizontal 标签需要加control-lable类
-select也可以加form-control类
-.has-success
-.has-warning
-.has-error
-.has-feedback  //嵌入图标 form-group标签需要加上.has-feedback
-.help-block 下面提示文字&lt;p&gt;
-</code></pre><h1 id="导航"><a href="#导航" class="headerlink" title="导航]"></a>导航]</h1><h2 id="标签页导航"><a href="#标签页导航" class="headerlink" title="标签页导航"></a>标签页导航</h2><pre><code>.nav .nav-tabs
-</code></pre><h2 id="胶囊式标签页"><a href="#胶囊式标签页" class="headerlink" title="胶囊式标签页"></a>胶囊式标签页</h2><pre><code>.nav-pills
-.active 选中
-</code></pre><h2 id="导航条"><a href="#导航条" class="headerlink" title="导航条"></a>导航条</h2><pre><code class="css">    .navbar 
-    .navbar-default
-    .navbar-fixed-top
-    .navbar-header
-    .navbar-default
-    .narbar-inverse
-    .navbar-brand
-    .navbar-form
-    .navbar-text
-    .navbar-left/right
-    .navbar-link
-    .collapsed
-    data-target=
-    data-toggle=
-    .icon-bar
-    .collapse
-    .navbar-collapse
-</code></pre>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"dropdown"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"btn btn-success dropdown-toggle"</span> <span class="attr">data-toggle</span>=<span class="string">"dropdown"</span>&gt;</span></div><div class="line">			更多</div><div class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">'caret'</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"dropdown-menu list-unstyled"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>resume.zrlee.cn<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>resume.zrlee.cn<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"divider"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>resume.zrlee.cn<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span>&gt;</span>resume.zrlee.cn<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">			</div><div class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="按钮组"><a href="#按钮组" class="headerlink" title="按钮组"></a>按钮组</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.btn-group</span></div></pre></td></tr></table></figure>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">	.form-group</div><div class="line">	.form-inline</div><div class="line">	.form-control </div><div class="line">	.input-group</div><div class="line">	.input-group-addon</div><div class="line">	.input-group-btn</div><div class="line">```	</div><div class="line"></div><div class="line">## 表单</div><div class="line">	.form-inline</div><div class="line">	.form-horizontal 标签需要加control-lable类</div><div class="line">	select也可以加form-control类</div><div class="line">	.has-success</div><div class="line">	.has-warning</div><div class="line">	.has-error</div><div class="line">	.has-feedback  //嵌入图标 form-group标签需要加上.has-feedback</div><div class="line">	.help-block 下面提示文字&lt;p&gt;</div><div class="line">	</div><div class="line"></div><div class="line"># 导航]</div><div class="line"></div><div class="line">##	标签页导航</div><div class="line">	.nav .nav-tabs</div><div class="line">##	胶囊式标签页</div><div class="line">	.nav-pills</div><div class="line">	.active 选中</div><div class="line"></div><div class="line">##	导航条</div><div class="line">``` css</div><div class="line">	.navbar </div><div class="line">	.navbar-default</div><div class="line">	.navbar-fixed-top</div><div class="line">	.navbar-header</div><div class="line">	.navbar-default</div><div class="line">	.narbar-inverse</div><div class="line">	.navbar-brand</div><div class="line">	.navbar-form</div><div class="line">	.navbar-text</div><div class="line">	.navbar-left/right</div><div class="line">	.navbar-link</div><div class="line">	.collapsed</div><div class="line">	data-target=</div><div class="line">	data-toggle=</div><div class="line">	.icon-bar</div><div class="line">	.collapse</div><div class="line">	.navbar-collapse</div></pre></td></tr></table></figure>
 <h2 id="路径导航"><a href="#路径导航" class="headerlink" title="路径导航"></a>路径导航</h2><pre><code>.breadcrumb
 </code></pre><h2 id="分页效果"><a href="#分页效果" class="headerlink" title="分页效果"></a>分页效果</h2><pre><code>.pagination
 </code></pre><h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><pre><code>.label
@@ -1425,71 +1179,18 @@ select也可以加form-control类
 .label-primary ....
 </code></pre><h1 id="徽章"><a href="#徽章" class="headerlink" title="徽章"></a>徽章</h1><pre><code>.badge
 </code></pre><h1 id="巨幕"><a href="#巨幕" class="headerlink" title="巨幕"></a>巨幕</h1><pre><code>.jumbotron
-</code></pre><h1 id="缩略图"><a href="#缩略图" class="headerlink" title="缩略图"></a>缩略图</h1><pre><code class="css">    .thumbnail
-
-    警告框
-    .alert
-    .alert-waining
-    .alert-dismissible  //点击关闭按钮隐藏
-    .alert-danger .....
-    .close data-dismiss=&quot;alert&quot;
-    .alert-link 连接
-    进度条
-    .progress
-    .progress-bar
-    .progress-bar-primary
-    .progress-striped
-    .active 进度条有动画
-    媒体对象
-    .media 
-    .media-left
-    .media-bottom
-    .media-heading
-    .media-body
-    .media-object
-    .media-list
-</code></pre>
-<pre><code>列表组
-.list-group
-.list-group-item
-.list-group-item-primary    
-</code></pre><hr>
-<pre><code>    11.html
-</code></pre><hr>
-<pre><code>面版
-.panel
-.pa
-具有响应式特性的嵌入内容
-.embed-responsive 
-.embed-responsive-16by9
-.embed-responsive-item
-</code></pre><p>js插件</p>
+</code></pre><h1 id="缩略图"><a href="#缩略图" class="headerlink" title="缩略图"></a>缩略图</h1><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line">	.thumbnail</div><div class="line"></div><div class="line">	警告框</div><div class="line">	.alert</div><div class="line">	.alert-waining</div><div class="line">	.alert-dismissible  //点击关闭按钮隐藏</div><div class="line">	.alert-danger .....</div><div class="line">	.close data-dismiss="alert"</div><div class="line">	.alert-link 连接</div><div class="line">	进度条</div><div class="line">	.progress</div><div class="line">	.progress-bar</div><div class="line">	.progress-bar-primary</div><div class="line">	.progress-striped</div><div class="line">	.active 进度条有动画</div><div class="line">	媒体对象</div><div class="line">	.media </div><div class="line">	.media-left</div><div class="line">	.media-bottom</div><div class="line">	.media-heading</div><div class="line">	.media-body</div><div class="line">	.media-object</div><div class="line">	.media-list</div><div class="line">```	</div><div class="line"></div><div class="line">	列表组</div><div class="line">	.list-group</div><div class="line">	.list-group-item</div><div class="line">	.list-group-item-primary	</div><div class="line">************************		</div><div class="line">		11.html</div><div class="line">************************</div><div class="line">	面版</div><div class="line">	.panel</div><div class="line">	.pa</div><div class="line">	具有响应式特性的嵌入内容</div><div class="line">	.embed-responsive </div><div class="line">	.embed-responsive-16by9</div><div class="line">	.embed-responsive-item</div><div class="line">js插件</div><div class="line">************************		</div><div class="line">		12.html</div><div class="line">************************</div><div class="line">1.模态框</div><div class="line">``` css</div><div class="line">	.modal</div><div class="line">	.fade</div><div class="line">	.modal-dialog</div><div class="line">	.modal.content</div><div class="line">	.modal-header</div><div class="line">	.modal-title</div><div class="line">	.modal-body</div><div class="line">	.modal-footer</div><div class="line">	data-toggle='modal'</div><div class="line">	data-dismiss ='modal'</div></pre></td></tr></table></figure>
 <hr>
-<pre><code>    12.html
-</code></pre><hr>
-<p>1.模态框</p>
-<pre><code class="css">    .modal
-    .fade
-    .modal-dialog
-    .modal.content
-    .modal-header
-    .modal-title
-    .modal-body
-    .modal-footer
-    data-toggle=&#39;modal&#39;
-    data-dismiss =&#39;modal&#39;
-</code></pre>
-<hr>
-<pre><code>    13.html
+<pre><code>13.html
 </code></pre><hr>
 <p>2.滚动监听<br>    data-spy=’scroll’<br>     data-target=’#mynav’<br>      data-offset=’150’</p>
 <hr>
-<pre><code>    14.html
+<pre><code>14.html
 </code></pre><hr>
 <p>3标签页<br>    .nav<br>    .nav-tabs<br>    .active<br>    data-toggle=’tab’<br>    href=’#id’<br>    .tab-content<br>    .tab-pane<br>    .fade<br>    .in<br>4.提示工具</p>
 <p>5.轮播</p>
 <hr>
-<pre><code>    15.html
+<pre><code>15.html
 </code></pre><hr>
 <pre><code>.carousel   //最外面
 .slide         //最外面
@@ -1500,10 +1201,10 @@ select也可以加form-control类
 .left   //左控制按钮
 .carousel-control
 .right
-data-ride=&#39;carousel&#39;
+data-ride=&apos;carousel&apos;
 data-slide-to=&quot;0&quot; 1 2 3 4
-data-slide=&#39;prev&#39; 
-data-slide=&#39;next&#39;
+data-slide=&apos;prev&apos; 
+data-slide=&apos;next&apos;
 </code></pre>
           
         
@@ -1637,8 +1338,8 @@ data-slide=&#39;next&#39;
       
         
           
-            <h1 id="流行框架第四天：Angular指令、服务、和TODOMVC案例"><a href="#流行框架第四天：Angular指令、服务、和TODOMVC案例" class="headerlink" title="流行框架第四天：Angular指令、服务、和TODOMVC案例"></a>流行框架第四天：Angular指令、服务、和TODOMVC案例</h1><h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="内置指令"><a href="#内置指令" class="headerlink" title="内置指令"></a>内置指令</h3><pre><code> ng-app
-</code></pre><h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><h3 id="内置服务"><a href="#内置服务" class="headerlink" title="内置服务"></a>内置服务</h3><h3 id="自定义服务"><a href="#自定义服务" class="headerlink" title="自定义服务"></a>自定义服务</h3><h2 id="TODOLIST案例"><a href="#TODOLIST案例" class="headerlink" title="TODOLIST案例"></a>TODOLIST案例</h2>
+            <h1 id="流行框架第四天：Angular指令、服务、和TODOMVC案例"><a href="#流行框架第四天：Angular指令、服务、和TODOMVC案例" class="headerlink" title="流行框架第四天：Angular指令、服务、和TODOMVC案例"></a>流行框架第四天：Angular指令、服务、和TODOMVC案例</h1><h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="内置指令"><a href="#内置指令" class="headerlink" title="内置指令"></a>内置指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ng-app</div></pre></td></tr></table></figure>
+<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><h3 id="内置服务"><a href="#内置服务" class="headerlink" title="内置服务"></a>内置服务</h3><h3 id="自定义服务"><a href="#自定义服务" class="headerlink" title="自定义服务"></a>自定义服务</h3><h2 id="TODOLIST案例"><a href="#TODOLIST案例" class="headerlink" title="TODOLIST案例"></a>TODOLIST案例</h2>
           
         
       
@@ -1820,35 +1521,15 @@ data-slide=&#39;next&#39;
 </ul>
 </li>
 <li><p>使用 Bower 安装</p>
-<pre><code class="bash"> $ bower install angular
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bower install angular</div></pre></td></tr></table></figure>
 </li>
 <li><p>使用 NPM 安装</p>
-<pre><code class="bash">$ npm install angular
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install angular</div></pre></td></tr></table></figure>
 </li>
-<li>每种方式安装包，本质都是将angular的库下载到当前文件夹中</li>
+<li><p>每种方式安装包，本质都是将angular的库下载到当前文件夹中</p>
+</li>
 </ul>
-<h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><pre><code class="HTML">
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;UTF-8&quot;&gt;
-        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no&quot; /&gt;
-
-        &lt;title&gt;ng helloworld&lt;/title&gt;
-        &lt;script src=&quot;node_modules/angular/angular.js&quot;&gt;&lt;/script&gt;
-    &lt;/head&gt;
-    &lt;!--ng-app 是angular的入口 需要angular管理的需要包裹在ng-app里面--&gt;
-    &lt;body ng-app&gt; 
-
-        &lt;h1 class=&quot;&quot;&gt;数据绑定&lt;/h1&gt;
-        &lt;input type=&quot;&quot; name=&quot;&quot; id=&quot;&quot; ng-model=&quot;user.name&quot;/&gt;
-        &lt;p&gt; your input is &lt;span&gt;{{user.name}}&lt;/span&gt;&lt;/p&gt;
-
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span></div><div class="line">		</div><div class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>ng helloworld<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"node_modules/angular/angular.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--ng-app 是angular的入口 需要angular管理的需要包裹在ng-app里面--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>&gt;</span> </div><div class="line">		</div><div class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">""</span>&gt;</span>数据绑定<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">""</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">ng-model</span>=<span class="string">"user.name"</span>/&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span> your input is <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;user.name&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		</div><div class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 <ul>
 <li><p>angular中最重要的概念是指令（directive）</p>
 </li>
@@ -2030,24 +1711,7 @@ data-slide=&#39;next&#39;
         
           
             <hr>
-<pre><code class="php">&lt;?php
-//文件路径
-$file = &#39;file.docx&#39; ;
-$fileinfo = finfo_open(FILEINFO_MIME);
-$mime = finfo_file($fileinfo , $file);
-header(&#39;Content-Disposition:attachment;filename=&#39;.basename($file));
-//类型为任意的二进制文件
-//header(&#39;Content-Type:application/oct-stream&#39;);
-header(&#39;Accept-ranges:bytes&#39;);
-header(&#39;Accept-legth:&#39;.filesize($file));
-header(&#39;Content-type:&#39;.$mime);
-//读取文件
-
-readfile($file);
-
-
-?&gt;
-</code></pre>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">//文件路径</span></div><div class="line">$file = <span class="string">'file.docx'</span> ;</div><div class="line">$fileinfo = finfo_open(FILEINFO_MIME);</div><div class="line">$mime = finfo_file($fileinfo , $file);</div><div class="line">header(<span class="string">'Content-Disposition:attachment;filename='</span>.basename($file));</div><div class="line"><span class="comment">//类型为任意的二进制文件</span></div><div class="line"><span class="comment">//header('Content-Type:application/oct-stream');</span></div><div class="line">header(<span class="string">'Accept-ranges:bytes'</span>);</div><div class="line">header(<span class="string">'Accept-legth:'</span>.filesize($file));</div><div class="line">header(<span class="string">'Content-type:'</span>.$mime);</div><div class="line"><span class="comment">//读取文件</span></div><div class="line"></div><div class="line">readfile($file);</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
 
           
         
@@ -2187,54 +1851,7 @@ readfile($file);
 <li>IE上 window.event.cancelBubble=true;</li>
 <li>其他浏览器 eve.stopPropagation() ;</li>
 </ul>
-<pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Title&lt;/title&gt;
-&lt;/head&gt;
-&lt;style&gt;
-    #outer {
-        width:300px ;
-        height:300px ;
-        background: darkorange;
-    }
-    #inner {
-        width:100px ;
-        height:100px ;
-        background: greenyellow;
-    }
-
-&lt;/style&gt;
-&lt;script&gt;
-    function stop (eve){
-        if(window.event){ //IE
-            window.event.cancelBubble=true;
-        }else{ //其他浏览器
-            eve.stopPropagation() ;
-        }
-    }
-
-    window.onload= function (){
-        document.getElementById(&#39;outer&#39;).onclick=function(e){
-            alert(&#39;outer&#39;);
-            stop(e);
-        }
-        document.getElementById(&#39;inner&#39;).onclick=function(e){
-            alert(&#39;inner&#39;);
-            stop(e);
-        }
-
-    }
-
-&lt;/script&gt;
-&lt;body&gt;
-    &lt;div id=&quot;outer&quot;&gt;
-        &lt;div id=&quot;inner&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-id">#outer</span> &#123;</div><div class="line">        <span class="attribute">width</span>:<span class="number">300px</span> ;</div><div class="line">        <span class="attribute">height</span>:<span class="number">300px</span> ;</div><div class="line">        <span class="attribute">background</span>: darkorange;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-id">#inner</span> &#123;</div><div class="line">        <span class="attribute">width</span>:<span class="number">100px</span> ;</div><div class="line">        <span class="attribute">height</span>:<span class="number">100px</span> ;</div><div class="line">        <span class="attribute">background</span>: greenyellow;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line">    function stop (eve)&#123;</div><div class="line">        if(window.event)&#123; //IE</div><div class="line">            window.event.cancelBubble=true;</div><div class="line">        &#125;else&#123; //其他浏览器</div><div class="line">            eve.stopPropagation() ;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    window.onload= function ()&#123;</div><div class="line">        document.getElementById('outer').onclick=function(e)&#123;</div><div class="line">            alert('outer');</div><div class="line">            stop(e);</div><div class="line">        &#125;</div><div class="line">        document.getElementById('inner').onclick=function(e)&#123;</div><div class="line">            alert('inner');</div><div class="line">            stop(e);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"outer"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"inner"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 
           
         
