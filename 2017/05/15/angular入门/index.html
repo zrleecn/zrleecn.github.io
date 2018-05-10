@@ -408,15 +408,35 @@
 </ul>
 </li>
 <li><p>使用 Bower 安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ bower install angular</div></pre></td></tr></table></figure>
+<pre><code class="bash"> $ bower install angular
+</code></pre>
 </li>
 <li><p>使用 NPM 安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install angular</div></pre></td></tr></table></figure>
+<pre><code class="bash">$ npm install angular
+</code></pre>
 </li>
-<li><p>每种方式安装包，本质都是将angular的库下载到当前文件夹中</p>
-</li>
+<li>每种方式安装包，本质都是将angular的库下载到当前文件夹中</li>
 </ul>
-<h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span></div><div class="line">		</div><div class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>ng helloworld<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"node_modules/angular/angular.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--ng-app 是angular的入口 需要angular管理的需要包裹在ng-app里面--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>&gt;</span> </div><div class="line">		</div><div class="line">		<span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">""</span>&gt;</span>数据绑定<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">""</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">""</span> <span class="attr">ng-model</span>=<span class="string">"user.name"</span>/&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span> your input is <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;user.name&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">		</div><div class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><pre><code class="HTML">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no&quot; /&gt;
+
+        &lt;title&gt;ng helloworld&lt;/title&gt;
+        &lt;script src=&quot;node_modules/angular/angular.js&quot;&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;!--ng-app 是angular的入口 需要angular管理的需要包裹在ng-app里面--&gt;
+    &lt;body ng-app&gt; 
+
+        &lt;h1 class=&quot;&quot;&gt;数据绑定&lt;/h1&gt;
+        &lt;input type=&quot;&quot; name=&quot;&quot; id=&quot;&quot; ng-model=&quot;user.name&quot;/&gt;
+        &lt;p&gt; your input is &lt;span&gt;{{user.name}}&lt;/span&gt;&lt;/p&gt;
+
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 <ul>
 <li><p>angular中最重要的概念是指令（directive）</p>
 </li>

@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="一. 测试环境PHP5.5.12 Apache2.4.9 MySQL5.6.17 二. 功能清单控制器Admin/Controller CommonController _initialize()-------------------- 检查用户是否登录进行跳转登录     GoodsController 商品控制器 upload_goods() --------------------- 上传商">
+<meta name="description" content="一. 测试环境PHP5.5.12 Apache2.4.9 MySQL5.6.17 二. 功能清单控制器Admin/Controller CommonController _initialize()-------------------- 检查用户是否登录进行跳转登录     GoodsController 商品控制器  upload_goods() --------------------- 上传">
 <meta property="og:type" content="article">
 <meta property="og:title" content="项目清单文件">
 <meta property="og:url" content="http://yoursite.com/2017/05/10/start/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="一. 测试环境PHP5.5.12 Apache2.4.9 MySQL5.6.17 二. 功能清单控制器Admin/Controller CommonController _initialize()-------------------- 检查用户是否登录进行跳转登录     GoodsController 商品控制器 upload_goods() --------------------- 上传商">
+<meta property="og:description" content="一. 测试环境PHP5.5.12 Apache2.4.9 MySQL5.6.17 二. 功能清单控制器Admin/Controller CommonController _initialize()-------------------- 检查用户是否登录进行跳转登录     GoodsController 商品控制器  upload_goods() --------------------- 上传">
 <meta property="og:updated_time" content="2017-05-10T15:28:27.884Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目清单文件">
-<meta name="twitter:description" content="一. 测试环境PHP5.5.12 Apache2.4.9 MySQL5.6.17 二. 功能清单控制器Admin/Controller CommonController _initialize()-------------------- 检查用户是否登录进行跳转登录     GoodsController 商品控制器 upload_goods() --------------------- 上传商">
+<meta name="twitter:description" content="一. 测试环境PHP5.5.12 Apache2.4.9 MySQL5.6.17 二. 功能清单控制器Admin/Controller CommonController _initialize()-------------------- 检查用户是否登录进行跳转登录     GoodsController 商品控制器  upload_goods() --------------------- 上传">
 
 
 
@@ -346,9 +346,9 @@ MySQL5.6.17
 </ul>
 <ul>
 <li><p>GoodsController 商品控制器</p>
-<pre><code>upload_goods() --------------------- 上传商品
-delete_goods() --------------------- 删除商品
-delete_collection() ---------------- 删除收藏的商品
+<pre><code> upload_goods() --------------------- 上传商品
+ delete_goods() --------------------- 删除商品
+ delete_collection() ---------------- 删除收藏的商品
 </code></pre></li>
 <li><p>IndexController 个人中心控制器</p>
 <pre><code>my ()---------------------------- 个人中心默认打开我的商品页面
@@ -372,29 +372,29 @@ logout ---------------------  用户登出
 <pre><code>send ()--------------------- 发送邮件
 </code></pre></li>
 <li><p>GoodsController 商品控制器</p>
-<pre><code> showlist ()---------------------- 商品列表
- category()----------------------- 加载分类
- goods()-------------------------- 展示商品
- search()------------------------- 搜索
- order_by_price()----------------- 搜索按照价格排序
- goods_detail -------------------- 展示商品详情
- loadComment --------------------- 加载评论
-addNewComment()------------------- 新增评论
+<pre><code>  showlist ()---------------------- 商品列表
+  category()----------------------- 加载分类
+  goods()-------------------------- 展示商品
+  search()------------------------- 搜索
+  order_by_price()----------------- 搜索按照价格排序
+  goods_detail -------------------- 展示商品详情
+  loadComment --------------------- 加载评论
+ addNewComment()------------------- 新增评论
 </code></pre></li>
 <li><p>GoodsController 商品控制器</p>
-<pre><code> index ()------------------------- 商品列表
- category()----------------------- 显示分类
- contact()------------------------ 联系客服
- goods_list()--------------------- 商品列表入口
- goods_list_main()---------------- 搜索到的商品列表
- myaccount ----------------------- 登录界面
- verify -------------------------- 输出验证码
-addNewComment()------------------- 新增评论
+<pre><code>  index ()------------------------- 商品列表
+  category()----------------------- 显示分类
+  contact()------------------------ 联系客服
+  goods_list()--------------------- 商品列表入口
+  goods_list_main()---------------- 搜索到的商品列表
+  myaccount ----------------------- 登录界面
+  verify -------------------------- 输出验证码
+ addNewComment()------------------- 新增评论
 </code></pre><h3 id="三-视图"><a href="#三-视图" class="headerlink" title="三. 视图"></a>三. 视图</h3><h5 id="Admin-View"><a href="#Admin-View" class="headerlink" title="Admin/View"></a>Admin/View</h5></li>
 </ul>
 </li>
 <li><p>Goods/</p>
-<pre><code>upload_goods.html  -------------------- 商品上传视图
+<pre><code>      upload_goods.html  -------------------- 商品上传视图
 </code></pre></li>
 <li><p>Index/</p>
 <pre><code>collection.html  -------------------- 我的收藏视图
@@ -409,15 +409,15 @@ myinfo.html      -------------------- 展示个人信息视图
 <pre><code>register.html     -------------------- 用户注册视图
 </code></pre><h5 id="Home-View"><a href="#Home-View" class="headerlink" title="Home/View"></a>Home/View</h5></li>
 <li><p>Goods/</p>
-<pre><code>category.html  ----------------------- 分类视图
-goods.html     ----------------------- 商品视图
-goods_detail.html     ---------------- 商品详情视图
-goods_list.html    ------------------- 商品列表视图
-goods_list_main.html ----------------- 搜索商品视图
+<pre><code>  category.html  ----------------------- 分类视图
+  goods.html     ----------------------- 商品视图
+  goods_detail.html     ---------------- 商品详情视图
+  goods_list.html    ------------------- 商品列表视图
+  goods_list_main.html ----------------- 搜索商品视图
 </code></pre></li>
-<li>Index/<pre><code>contact.html  ----------------------- 联系客服视图
-index.html    ----------------------- 首页视图
-myaccount.html     ------------------ 用户登录视图
+<li>Index/<pre><code>  contact.html  ----------------------- 联系客服视图
+  index.html    ----------------------- 首页视图
+  myaccount.html     ------------------ 用户登录视图
 </code></pre><h3 id="四-目前功能"><a href="#四-目前功能" class="headerlink" title="四. 目前功能"></a>四. 目前功能</h3></li>
 <li><p>首页</p>
 <pre><code>首页主要加载数据库中火热的商品列表

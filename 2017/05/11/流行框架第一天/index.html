@@ -413,7 +413,11 @@
 </ul>
 </li>
 <li><p>NVM（Node Version Manager）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash</div><div class="line">$ <span class="built_in">echo</span> <span class="string">'. ~/.nvm/nvm.sh'</span> &gt;&gt; .bash_profile</div><div class="line">$ nvm install stable</div><div class="line">$ nvm <span class="built_in">alias</span> default stable</div></pre></td></tr></table></figure>
+<pre><code class="bash">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
+$ echo &#39;. ~/.nvm/nvm.sh&#39; &gt;&gt; .bash_profile
+$ nvm install stable
+$ nvm alias default stable
+</code></pre>
 </li>
 </ul>
 <h4 id="1-2-2-Windows"><a href="#1-2-2-Windows" class="headerlink" title="1.2.2.Windows"></a>1.2.2.Windows</h4><ul>
@@ -426,10 +430,11 @@
 <li>nvm(node version manager)</li>
 <li>因为NODE版本比较多，开发人员可能依赖很多版本</li>
 <li><p>通过NVM，可以轻松切换于不同的版本之间</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"> </div></pre></td></tr></table></figure>
+<pre><code class="command">
+</code></pre>
+<p>NVM_HOME=C:\Develop\nvm</p>
 </li>
 </ul>
-<p>NVM_HOME=C:\Develop\nvm</p>
 <p>NVM_SYMLINK=C:\Develop\nodejs</p>
 <p>NPM_HOME=C:\Develop\nvm\npm</p>
 <p>PATH=%NVM_HOME%;%NVM_SYMLINK%;%NPM_HOME%</p>
@@ -575,8 +580,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/11/流行框架第二天/" rel="next" title="流行框架第二天：Git与Angular入门">
-                <i class="fa fa-chevron-left"></i> 流行框架第二天：Git与Angular入门
+              <a href="/2017/05/11/网页加载条/" rel="next" title="网页加载进度条与雪花效果">
+                <i class="fa fa-chevron-left"></i> 网页加载进度条与雪花效果
               </a>
             
           </div>
