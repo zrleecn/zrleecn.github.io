@@ -128,29 +128,6 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
     
     <entry>
       <title><![CDATA[laravel验证]]></title>
-      <url>/2018/05/03/laravel-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
-      <content type="html"><![CDATA[<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：</p>
-<pre><code class="`php">$value = config(&#39;app.timezone&#39;);
-</code></pre>
-]]></content>
-      
-        <categories>
-            
-            <category> laravel </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> laravel </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[laravel验证]]></title>
       <url>/2018/05/03/laravel-%E9%AA%8C%E8%AF%81%E8%A7%84%E5%88%99/</url>
       <content type="html"><![CDATA[<h1 id="创建表单请求"><a href="#创建表单请求" class="headerlink" title="创建表单请求"></a>创建表单请求</h1><p>在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令 </p>
 <pre><code class="php">php artisan make:request ArticleRequest
@@ -190,6 +167,29 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
 <h2 id="显示验证错误"><a href="#显示验证错误" class="headerlink" title="显示验证错误"></a>显示验证错误</h2><pre><code class="html"> &lt;p&gt;&lt;input type=&quot;text&quot; name=&quot;title&quot; &gt;{{$errors->first('title')}}&lt;/p&gt;
 </code></pre>
 <h2 id="可用的验证规则"><a href="#可用的验证规则" class="headerlink" title="可用的验证规则"></a>可用的验证规则</h2><p><a href="http://blog.noxue.com/article/473.html" title="不学网" target="_blank" rel="external">不学网验证规则</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> laravel </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> laravel </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[laravel验证]]></title>
+      <url>/2018/05/03/laravel-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+      <content type="html"><![CDATA[<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：</p>
+<pre><code class="`php">$value = config(&#39;app.timezone&#39;);
+</code></pre>
 ]]></content>
       
         <categories>
