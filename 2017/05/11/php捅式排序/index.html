@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="12345678910111213141516171819202122232425262728293031323334&amp;lt;?php/** * Created by PhpStorm. * User: Administrator * Date: 2017/2/20 * Time: 12:49 *//** * 桶式排序 */function bucketSort ($list)&amp;#123;">
+<meta name="description" content="&amp;lt;?php /**  * Created by PhpStorm.  * User: Administrator  * Date: 2017/2/20  * Time: 12:49  */ /**  * 桶式排序  */  function bucketSort ($list){     $max = max($list);     $min = min($list) ;      $bu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php 桶式排序 实现方法">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/php捅式排序/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334&amp;lt;?php/** * Created by PhpStorm. * User: Administrator * Date: 2017/2/20 * Time: 12:49 *//** * 桶式排序 */function bucketSort ($list)&amp;#123;">
+<meta property="og:description" content="&amp;lt;?php /**  * Created by PhpStorm.  * User: Administrator  * Date: 2017/2/20  * Time: 12:49  */ /**  * 桶式排序  */  function bucketSort ($list){     $max = max($list);     $min = min($list) ;      $bu">
 <meta property="og:image" content="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png">
 <meta property="og:updated_time" content="2017-05-11T11:23:37.798Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php 桶式排序 实现方法">
-<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334&amp;lt;?php/** * Created by PhpStorm. * User: Administrator * Date: 2017/2/20 * Time: 12:49 *//** * 桶式排序 */function bucketSort ($list)&amp;#123;">
+<meta name="twitter:description" content="&amp;lt;?php /**  * Created by PhpStorm.  * User: Administrator  * Date: 2017/2/20  * Time: 12:49  */ /**  * 桶式排序  */  function bucketSort ($list){     $max = max($list);     $min = min($list) ;      $bu">
 <meta name="twitter:image" content="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png">
 
 
@@ -361,7 +361,41 @@
 
       
         <hr>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by PhpStorm.</div><div class="line"> * User: Administrator</div><div class="line"> * Date: 2017/2/20</div><div class="line"> * Time: 12:49</div><div class="line"> */</div><div class="line"><span class="comment">/**</span></div><div class="line"> * 桶式排序</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bucketSort</span> <span class="params">($list)</span></span>&#123;</div><div class="line">    $max = max($list);</div><div class="line">    $min = min($list) ;</div><div class="line"></div><div class="line">    $bucket = array_fill($min , $max-$min +<span class="number">1</span> , <span class="number">0</span> );</div><div class="line">    <span class="comment">//待排序的数作为数组的键 值全是0</span></div><div class="line">    <span class="keyword">foreach</span> ($list <span class="keyword">as</span> $value)&#123;</div><div class="line"></div><div class="line">        $bucket[$value] ++ ;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">foreach</span>($bucket <span class="keyword">as</span> $key=&gt;$value)&#123;</div><div class="line">        <span class="keyword">if</span>($value == <span class="number">1</span>) &#123;</div><div class="line">            $new_list[] = $key ;</div><div class="line">        &#125;<span class="keyword">elseif</span> ($value &gt;=<span class="number">1</span> )&#123;</div><div class="line">            <span class="keyword">for</span>($i = <span class="number">1</span> ; $i&lt;=$value ; $i++)&#123;</div><div class="line">                $new_list [] = $key ;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> $new_list ;</div><div class="line">&#125;</div><div class="line">$result = bucketSort(<span class="keyword">array</span>(<span class="number">2</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">77</span>,<span class="number">55</span>,<span class="number">44</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">778</span>,<span class="number">999</span>,<span class="number">87</span>)) ;</div><div class="line">var_dump($result) ;</div></pre></td></tr></table></figure>
+<pre><code class="php">&lt;?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2017/2/20
+ * Time: 12:49
+ */
+/**
+ * 桶式排序
+ */
+
+function bucketSort ($list){
+    $max = max($list);
+    $min = min($list) ;
+
+    $bucket = array_fill($min , $max-$min +1 , 0 );
+    //待排序的数作为数组的键 值全是0
+    foreach ($list as $value){
+
+        $bucket[$value] ++ ;
+    }
+    foreach($bucket as $key=&gt;$value){
+        if($value == 1) {
+            $new_list[] = $key ;
+        }elseif ($value &gt;=1 ){
+            for($i = 1 ; $i&lt;=$value ; $i++){
+                $new_list [] = $key ;
+            }
+        }
+    }
+    return $new_list ;
+}
+$result = bucketSort(array(2,4,5,2,1,0,77,55,44,5,3,5,778,999,87)) ;
+var_dump($result) ;
+</code></pre>
 <p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
 
       
@@ -706,6 +740,14 @@
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+
+<script>
+	window.onload = function (){
+		hljs.initHighlightingOnLoad();
+	}
+</script>
 
 
 

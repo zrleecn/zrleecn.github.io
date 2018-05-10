@@ -450,7 +450,9 @@
 <h3 id="GIT命令操作"><a href="#GIT命令操作" class="headerlink" title="GIT命令操作"></a>GIT命令操作</h3><ul>
 <li>初始化一个本地GIT仓储</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd 当前项目目录</div><div class="line">git init // 初始化一个本地的仓库</div></pre></td></tr></table></figure>
+<pre><code class="shell">cd 当前项目目录
+git init // 初始化一个本地的仓库
+</code></pre>
 <blockquote>
 <p>就是在本地文件夹中添加了一个.git的文件夹用于记录所有的项目变更信息</p>
 </blockquote>
@@ -895,6 +897,14 @@
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+
+<script>
+	window.onload = function (){
+		hljs.initHighlightingOnLoad();
+	}
+</script>
 
 
 

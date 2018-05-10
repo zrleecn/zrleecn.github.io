@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="CentOS下安装Docker与启动方法 有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动  1、取消selinux，因为它会干扰lxc的正常功能1# vim /etc/selinux/config 将SELINUX 改成disabled SELINUX=disabledSELINUXTYPE=targeted 2、配置Fedora EPEL">
+<meta name="description" content="CentOS下安装Docker与启动方法 有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动  1、取消selinux，因为它会干扰lxc的正常功能# vim /etc/selinux/config  将SELINUX 改成disabled SELINUX=disabledSELINUXTYPE=targeted 2、配置Fedora EPEL">
 <meta name="keywords" content="docker">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS下安装Docker与启动方法">
 <meta property="og:url" content="http://yoursite.com/2018/05/06/CentOS下安装启动Docker/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="CentOS下安装Docker与启动方法 有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动  1、取消selinux，因为它会干扰lxc的正常功能1# vim /etc/selinux/config 将SELINUX 改成disabled SELINUX=disabledSELINUXTYPE=targeted 2、配置Fedora EPEL">
+<meta property="og:description" content="CentOS下安装Docker与启动方法 有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动  1、取消selinux，因为它会干扰lxc的正常功能# vim /etc/selinux/config  将SELINUX 改成disabled SELINUX=disabledSELINUXTYPE=targeted 2、配置Fedora EPEL">
 <meta property="og:updated_time" content="2018-05-07T03:22:10.144Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS下安装Docker与启动方法">
-<meta name="twitter:description" content="CentOS下安装Docker与启动方法 有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动  1、取消selinux，因为它会干扰lxc的正常功能1# vim /etc/selinux/config 将SELINUX 改成disabled SELINUX=disabledSELINUXTYPE=targeted 2、配置Fedora EPEL">
+<meta name="twitter:description" content="CentOS下安装Docker与启动方法 有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动  1、取消selinux，因为它会干扰lxc的正常功能# vim /etc/selinux/config  将SELINUX 改成disabled SELINUX=disabledSELINUXTYPE=targeted 2、配置Fedora EPEL">
 
 
 
@@ -362,20 +362,25 @@
         <h1 id="CentOS下安装Docker与启动方法"><a href="#CentOS下安装Docker与启动方法" class="headerlink" title="CentOS下安装Docker与启动方法"></a>CentOS下安装Docker与启动方法</h1><blockquote>
 <p>有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动</p>
 </blockquote>
-<h3 id="1、取消selinux，因为它会干扰lxc的正常功能"><a href="#1、取消selinux，因为它会干扰lxc的正常功能" class="headerlink" title="1、取消selinux，因为它会干扰lxc的正常功能"></a>1、取消selinux，因为它会干扰lxc的正常功能</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vim /etc/selinux/config</span></div></pre></td></tr></table></figure>
+<h3 id="1、取消selinux，因为它会干扰lxc的正常功能"><a href="#1、取消selinux，因为它会干扰lxc的正常功能" class="headerlink" title="1、取消selinux，因为它会干扰lxc的正常功能"></a>1、取消selinux，因为它会干扰lxc的正常功能</h3><pre><code class="bash"># vim /etc/selinux/config
+</code></pre>
 <p>将SELINUX 改成disabled</p>
 <p>SELINUX=disabled<br>SELINUXTYPE=targeted</p>
-<h3 id="2、配置Fedora-EPEL-源"><a href="#2、配置Fedora-EPEL-源" class="headerlink" title="2、配置Fedora EPEL 源"></a>2、配置Fedora EPEL 源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install http://ftp.riken.jp/Linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm</div></pre></td></tr></table></figure>
-<h3 id="3、配置hop5-in源"><a href="#3、配置hop5-in源" class="headerlink" title="3、配置hop5.in源"></a>3、配置hop5.in源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># cd /etc/yum.repos.d</div><div class="line"># sudo wget http://www.hop5.in/yum/el6/hop5.repo</div></pre></td></tr></table></figure>
-<h3 id="4、安装docker-io"><a href="#4、安装docker-io" class="headerlink" title="4、安装docker-io"></a>4、安装docker-io</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># yum install docker-io</div></pre></td></tr></table></figure>
-<h3 id="5、检查安装情况"><a href="#5、检查安装情况" class="headerlink" title="5、检查安装情况"></a>5、检查安装情况</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># docker -h</div></pre></td></tr></table></figure>
-<h3 id="6、启动docker"><a href="#6、启动docker" class="headerlink" title="6、启动docker"></a>6、启动docker</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># service docker start</div></pre></td></tr></table></figure>
-<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><p>Docker需要3.8以上的内核 查看自己的内核<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"># uname -a</div></pre></td></tr></table></figure></p>
-<p>如果内核版本过低可以进行升级，具体升级方法网上有</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># docker info</div><div class="line">Cannot connect to the Docker daemon. Is &apos;docker -d&apos; running on this host?</div></pre></td></tr></table></figure>
-<p>应该是libmapper有关，需要升级下这个库:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># yum-config-manager --enable public_ol6_latest</div><div class="line"># yum install device-mapper-event-libs</div></pre></td></tr></table></figure>
-
+<h3 id="2、配置Fedora-EPEL-源"><a href="#2、配置Fedora-EPEL-源" class="headerlink" title="2、配置Fedora EPEL 源"></a>2、配置Fedora EPEL 源</h3><pre><code>yum install http://ftp.riken.jp/Linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
+</code></pre><h3 id="3、配置hop5-in源"><a href="#3、配置hop5-in源" class="headerlink" title="3、配置hop5.in源"></a>3、配置hop5.in源</h3><pre><code># cd /etc/yum.repos.d
+# sudo wget http://www.hop5.in/yum/el6/hop5.repo
+</code></pre><h3 id="4、安装docker-io"><a href="#4、安装docker-io" class="headerlink" title="4、安装docker-io"></a>4、安装docker-io</h3><pre><code># yum install docker-io
+</code></pre><h3 id="5、检查安装情况"><a href="#5、检查安装情况" class="headerlink" title="5、检查安装情况"></a>5、检查安装情况</h3><pre><code># docker -h
+</code></pre><h3 id="6、启动docker"><a href="#6、启动docker" class="headerlink" title="6、启动docker"></a>6、启动docker</h3><pre><code># service docker start
+</code></pre><h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><p>Docker需要3.8以上的内核 查看自己的内核</p>
+<pre><code># uname -a
+</code></pre><p>如果内核版本过低可以进行升级，具体升级方法网上有</p>
+<pre><code># docker info
+Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host?
+</code></pre><p>应该是libmapper有关，需要升级下这个库:</p>
+<pre><code> # yum-config-manager --enable public_ol6_latest
+ # yum install device-mapper-event-libs
+</code></pre>
       
     </div>
 
@@ -749,6 +754,14 @@
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+
+<script>
+	window.onload = function (){
+		hljs.initHighlightingOnLoad();
+	}
+</script>
 
 
 

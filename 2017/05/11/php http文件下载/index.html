@@ -90,16 +90,16 @@
 
 
 
-<meta name="description" content="1234567891011121314151617&amp;lt;?php//文件路径$file = &apos;file.docx&apos; ;$fileinfo = finfo_open(FILEINFO_MIME);$mime = finfo_file($fileinfo , $file);header(&apos;Content-Disposition:attachment;filename=&apos;.basename($fil">
+<meta name="description" content="&amp;lt;?php //文件路径 $file = &amp;#39;file.docx&amp;#39; ; $fileinfo = finfo_open(FILEINFO_MIME); $mime = finfo_file($fileinfo , $file); header(&amp;#39;Content-Disposition:attachment;filename=&amp;#39;.basename($file));">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php http文件下载">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/php http文件下载/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
-<meta property="og:description" content="1234567891011121314151617&amp;lt;?php//文件路径$file = &apos;file.docx&apos; ;$fileinfo = finfo_open(FILEINFO_MIME);$mime = finfo_file($fileinfo , $file);header(&apos;Content-Disposition:attachment;filename=&apos;.basename($fil">
+<meta property="og:description" content="&amp;lt;?php //文件路径 $file = &amp;#39;file.docx&amp;#39; ; $fileinfo = finfo_open(FILEINFO_MIME); $mime = finfo_file($fileinfo , $file); header(&amp;#39;Content-Disposition:attachment;filename=&amp;#39;.basename($file));">
 <meta property="og:updated_time" content="2017-05-11T15:16:14.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php http文件下载">
-<meta name="twitter:description" content="1234567891011121314151617&amp;lt;?php//文件路径$file = &apos;file.docx&apos; ;$fileinfo = finfo_open(FILEINFO_MIME);$mime = finfo_file($fileinfo , $file);header(&apos;Content-Disposition:attachment;filename=&apos;.basename($fil">
+<meta name="twitter:description" content="&amp;lt;?php //文件路径 $file = &amp;#39;file.docx&amp;#39; ; $fileinfo = finfo_open(FILEINFO_MIME); $mime = finfo_file($fileinfo , $file); header(&amp;#39;Content-Disposition:attachment;filename=&amp;#39;.basename($file));">
 
 
 
@@ -359,7 +359,24 @@
 
       
         <hr>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">//文件路径</span></div><div class="line">$file = <span class="string">'file.docx'</span> ;</div><div class="line">$fileinfo = finfo_open(FILEINFO_MIME);</div><div class="line">$mime = finfo_file($fileinfo , $file);</div><div class="line">header(<span class="string">'Content-Disposition:attachment;filename='</span>.basename($file));</div><div class="line"><span class="comment">//类型为任意的二进制文件</span></div><div class="line"><span class="comment">//header('Content-Type:application/oct-stream');</span></div><div class="line">header(<span class="string">'Accept-ranges:bytes'</span>);</div><div class="line">header(<span class="string">'Accept-legth:'</span>.filesize($file));</div><div class="line">header(<span class="string">'Content-type:'</span>.$mime);</div><div class="line"><span class="comment">//读取文件</span></div><div class="line"></div><div class="line">readfile($file);</div><div class="line"></div><div class="line"></div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
+<pre><code class="php">&lt;?php
+//文件路径
+$file = &#39;file.docx&#39; ;
+$fileinfo = finfo_open(FILEINFO_MIME);
+$mime = finfo_file($fileinfo , $file);
+header(&#39;Content-Disposition:attachment;filename=&#39;.basename($file));
+//类型为任意的二进制文件
+//header(&#39;Content-Type:application/oct-stream&#39;);
+header(&#39;Accept-ranges:bytes&#39;);
+header(&#39;Accept-legth:&#39;.filesize($file));
+header(&#39;Content-type:&#39;.$mime);
+//读取文件
+
+readfile($file);
+
+
+?&gt;
+</code></pre>
 
       
     </div>
@@ -703,6 +720,14 @@
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+
+<script>
+	window.onload = function (){
+		hljs.initHighlightingOnLoad();
+	}
+</script>
 
 
 
