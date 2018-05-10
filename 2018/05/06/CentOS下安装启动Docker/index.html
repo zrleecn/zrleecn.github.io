@@ -763,7 +763,22 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
 	hljs.configure({
   classPrefix: 'hljs-'
 });
+
+  $('pre code').each(function(i, block) {
+    //hljs.highlightBlock(block);
+    var lines = $(this).text().split('\n').length - 1;
+    var $numbering = $('<ul/>').addClass('pre-numbering');
+    $(this)
+      .addClass('has-numbering')
+      .parent()
+      .append($numbering);
+    for(i=1;i<=lines;i++){
+      $numbering.append($('<li/>').text(i));
+    }
+  });
 </script>
+
+
 
 
 
