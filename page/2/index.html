@@ -270,6 +270,480 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/流行框架第二天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/11/流行框架第二天/" itemprop="url">流行框架第二天：Git与Angular入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
+                2017-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/移动web/" itemprop="url" rel="index">
+                    <span itemprop="name">移动web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><ul>
+<li><p>Node Node.js — 类似一个操作系统</p>
+<ul>
+<li>一个JS的运行环境</li>
+<li>主要用于开发Web应用程序（回想登陆的例子）</li>
+<li>很多的前端开发工具都是基于node这个平台</li>
+<li>所用的工具就相当于一些软件</li>
+</ul>
+</li>
+<li><p>NVM （可选的）</p>
+<ul>
+<li>Node Version Manager(Node的版本管理工具)</li>
+<li>因为node的版本比较多，很多时候我们可能依赖多个版本，并要求自由切换</li>
+<li>使用<ul>
+<li>nvm use [对应的版本号] [平台架构（如果是32系统需要写32,64位不用管）]</li>
+<li>nvm install <version> [arch]  安装</version></li>
+<li>nvm uninstall <version> 卸载</version></li>
+<li>nvm list 查看已经安装版本</li>
+</ul>
+</li>
+<li>官网<ul>
+<li><a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="external">https://github.com/coreybutler/nvm-windows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>NPM </p>
+<ul>
+<li>node package manager(node的包管理工具)</li>
+<li>npm管理包非常方便，我们只需要记住使用哪个包就可以了</li>
+<li><p>使用</p>
+<ul>
+<li>npm install xxx </li>
+<li>安装一个包到项目本地，必须要联网</li>
+<li><p>安装完成过后项目根目录下会多一个node_modules文件夹，所有的下载下来的包全部在里面</p>
+</li>
+<li><p>由于需要记录项目依赖哪些东西，所以需要一个配置文件“package.json”，可以通过npm init命令生成</p>
+</li>
+<li><p>以后安装包的时候将其–save</p>
+</li>
+<li><p>–save就是将我们安装的包名字和包版本记录到配置文件中的dependencies节点中</p>
+</li>
+<li>–save-dev</li>
+<li><p>项目依赖分两种，一个就是普通的项目依赖比如bootstrap，还用一种只是开发阶段需要用的，这种属于开发依赖比如gulp，开发依赖最终记录在devDependencies节点里面</p>
+</li>
+<li><p>npm uninstall xxx –save</p>
+</li>
+<li><p>npm install xxx -g(全局安装包)</p>
+<ul>
+<li>如果你安装的是一个工具，工具要在每一个地方都能用，这种情况下一般全局安装。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bower</p>
+<ul>
+<li>Web sites are made of lots of things — frameworks, libraries, assets, and utilities. Bower manages all these things for you.</li>
+<li>Bower就是用来管理项目中所有的依赖，主要用于Web页面开发时使用的包管理，比如jquery，bootstrap</li>
+<li><blockquote>
+<p>重复的轮子太多，抓住轮子与轮子之间的共性</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Gulp  FIS3</p>
+</li>
+<li><p><a href="http://www.ydcss.com/archives/94" target="_blank" rel="external">http://www.ydcss.com/archives/94</a></p>
+</li>
+<li><p>msi - microsoft installer 微软安装器</p>
+</li>
+</ul>
+<h2 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h2><h3 id="什么是GIT"><a href="#什么是GIT" class="headerlink" title="什么是GIT"></a>什么是GIT</h3><ul>
+<li>是一个源代码管理工具</li>
+<li>在一个项目中，凡是由开发人员编写的都算是源代码</li>
+<li>源代码有必要管理起来？</li>
+<li>让源代码可以被追溯，主要记录每次变更了什么，谁主导这次变化</li>
+<li>人为的维护比较麻烦，</li>
+<li>GIT是Linux之父当年为了维护管理Linux的源代码写的一个工具</li>
+<li>Git 之前 很多使用 svn vss tfs hs ……</li>
+</ul>
+<ul>
+<li><a href="https://guides.github.com/" target="_blank" rel="external">https://guides.github.com/</a></li>
+</ul>
+<h3 id="安装GIT"><a href="#安装GIT" class="headerlink" title="安装GIT"></a>安装GIT</h3><ul>
+<li>git命令行工具</li>
+<li>基于git命令行的一个客户端软件（提供一个界面去管理源代码）</li>
+</ul>
+<h3 id="GIT命令操作"><a href="#GIT命令操作" class="headerlink" title="GIT命令操作"></a>GIT命令操作</h3><ul>
+<li>初始化一个本地GIT仓储</li>
+</ul>
+<pre><code class="shell">cd 当前项目目录
+git init // 初始化一个本地的仓库
+</code></pre>
+<blockquote>
+<p>就是在本地文件夹中添加了一个.git的文件夹用于记录所有的项目变更信息</p>
+</blockquote>
+<ul>
+<li>查看本地仓储的变更状态</li>
+</ul>
+<p>git status<br>用于查看本地仓储的状态<br>第一次查看，显示的是一坨没有被跟踪的文件</p>
+<p>git status -s // -s 是输出简要的变更日志</p>
+<ul>
+<li>添加本地暂存（托管）文件</li>
+</ul>
+<p>git add<br>可以将一个没有被跟踪的文件添加到跟踪列表</p>
+<p>类似于node_modules这种性质的文件是不应该被跟踪</p>
+<ul>
+<li>添加本地GIT忽略清单文件</li>
+</ul>
+<p>在代码库文件夹的根目录添加一个.gitignore文件<br>此文件用于说明忽略的文件有哪些</p>
+<ul>
+<li>提交被托管的文件变化到本地仓储</li>
+</ul>
+<p>git commit<br>将本地的变化提交的本地的仓库文件夹归档<br>一般在有了一个小单元的整体变化后再提交</p>
+<ul>
+<li>对比差异</li>
+</ul>
+<p>git diff<br>可以用于对比当前状态和版本库中状态的变化</p>
+<ul>
+<li>提交日志</li>
+</ul>
+<p>git log<br>可以查看提交日志</p>
+<ul>
+<li>回归到指定版本</li>
+</ul>
+<p>git reset –hard</p>
+<ul>
+<li><p>为仓储添加远端（服务器端）地址</p>
+</li>
+<li><p>将本地仓储的提交记录推送到远端的master分支</p>
+</li>
+<li><p>拉取远端master分支的更新记录到本地</p>
+</li>
+<li><p>回归到指定版本</p>
+</li>
+</ul>
+<h3 id="GITHUB基本使用"><a href="#GITHUB基本使用" class="headerlink" title="GITHUB基本使用"></a>GITHUB基本使用</h3><ul>
+<li><a href="https://github.com/" target="_blank" rel="external">https://github.com/</a></li>
+<li>GITHUB是一个GIT服务的提供商，</li>
+<li></li>
+<li>提出社交化编程</li>
+</ul>
+<p><a href="http://zoomzhao.github.io/code-guide/" target="_blank" rel="external">http://zoomzhao.github.io/code-guide/</a><br><a href="https://github.com/jobbole/awesome-javascript-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-javascript-cn</a><br><a href="https://github.com/jobbole/awesome-css-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-css-cn</a></p>
+<ul>
+<li>GIT分支</li>
+</ul>
+<h2 id="Angular入门"><a href="#Angular入门" class="headerlink" title="Angular入门"></a>Angular入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>知识储备</li>
+<li>什么是Angular<ul>
+<li>快速构建Web应用程序</li>
+<li>单页面应用程序</li>
+</ul>
+</li>
+<li>Angular的特性</li>
+<li>为什么要用Angular<ul>
+<li>让Web应用程序开发更简单，更快捷</li>
+</ul>
+</li>
+<li>带领前端进入MV*的时代</li>
+</ul>
+<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><ul>
+<li>引用Angular<ul>
+<li>下载</li>
+<li>bower</li>
+<li>npm</li>
+</ul>
+</li>
+<li>基本使用</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/php捅式排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/11/php捅式排序/" itemprop="url">php 桶式排序 实现方法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
+                2017-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<pre><code class="php">&lt;?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2017/2/20
+ * Time: 12:49
+ */
+/**
+ * 桶式排序
+ */
+
+function bucketSort ($list){
+    $max = max($list);
+    $min = min($list) ;
+
+    $bucket = array_fill($min , $max-$min +1 , 0 );
+    //待排序的数作为数组的键 值全是0
+    foreach ($list as $value){
+
+        $bucket[$value] ++ ;
+    }
+    foreach($bucket as $key=&gt;$value){
+        if($value == 1) {
+            $new_list[] = $key ;
+        }elseif ($value &gt;=1 ){
+            for($i = 1 ; $i&lt;=$value ; $i++){
+                $new_list [] = $key ;
+            }
+        }
+    }
+    return $new_list ;
+}
+$result = bucketSort(array(2,4,5,2,1,0,77,55,44,5,3,5,778,999,87)) ;
+var_dump($result) ;
+</code></pre>
+<p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/流行框架第一天/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -546,480 +1020,6 @@ $ nvm alias default stable
 </ul>
 <h3 id="5-2-环境安装"><a href="#5-2-环境安装" class="headerlink" title="5.2.环境安装"></a>5.2.环境安装</h3><h3 id="5-3-GIT常用命令"><a href="#5-3-GIT常用命令" class="headerlink" title="5.3.GIT常用命令"></a>5.3.GIT常用命令</h3><hr>
 <h2 id="6-Markdown"><a href="#6-Markdown" class="headerlink" title="6.Markdown"></a>6.Markdown</h2><p><a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="external">https://guides.github.com/features/mastering-markdown/</a><br><a href="https://help.github.com/articles/github-flavored-markdown/" target="_blank" rel="external">https://help.github.com/articles/github-flavored-markdown/</a><br><a href="https://help.github.com/articles/markdown-basics/" target="_blank" rel="external">https://help.github.com/articles/markdown-basics/</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/php捅式排序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/11/php捅式排序/" itemprop="url">php 桶式排序 实现方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
-                2017-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<pre><code class="php">&lt;?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/2/20
- * Time: 12:49
- */
-/**
- * 桶式排序
- */
-
-function bucketSort ($list){
-    $max = max($list);
-    $min = min($list) ;
-
-    $bucket = array_fill($min , $max-$min +1 , 0 );
-    //待排序的数作为数组的键 值全是0
-    foreach ($list as $value){
-
-        $bucket[$value] ++ ;
-    }
-    foreach($bucket as $key=&gt;$value){
-        if($value == 1) {
-            $new_list[] = $key ;
-        }elseif ($value &gt;=1 ){
-            for($i = 1 ; $i&lt;=$value ; $i++){
-                $new_list [] = $key ;
-            }
-        }
-    }
-    return $new_list ;
-}
-$result = bucketSort(array(2,4,5,2,1,0,77,55,44,5,3,5,778,999,87)) ;
-var_dump($result) ;
-</code></pre>
-<p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/流行框架第二天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/11/流行框架第二天/" itemprop="url">流行框架第二天：Git与Angular入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
-                2017-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动web/" itemprop="url" rel="index">
-                    <span itemprop="name">移动web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><ul>
-<li><p>Node Node.js — 类似一个操作系统</p>
-<ul>
-<li>一个JS的运行环境</li>
-<li>主要用于开发Web应用程序（回想登陆的例子）</li>
-<li>很多的前端开发工具都是基于node这个平台</li>
-<li>所用的工具就相当于一些软件</li>
-</ul>
-</li>
-<li><p>NVM （可选的）</p>
-<ul>
-<li>Node Version Manager(Node的版本管理工具)</li>
-<li>因为node的版本比较多，很多时候我们可能依赖多个版本，并要求自由切换</li>
-<li>使用<ul>
-<li>nvm use [对应的版本号] [平台架构（如果是32系统需要写32,64位不用管）]</li>
-<li>nvm install <version> [arch]  安装</version></li>
-<li>nvm uninstall <version> 卸载</version></li>
-<li>nvm list 查看已经安装版本</li>
-</ul>
-</li>
-<li>官网<ul>
-<li><a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="external">https://github.com/coreybutler/nvm-windows</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>NPM </p>
-<ul>
-<li>node package manager(node的包管理工具)</li>
-<li>npm管理包非常方便，我们只需要记住使用哪个包就可以了</li>
-<li><p>使用</p>
-<ul>
-<li>npm install xxx </li>
-<li>安装一个包到项目本地，必须要联网</li>
-<li><p>安装完成过后项目根目录下会多一个node_modules文件夹，所有的下载下来的包全部在里面</p>
-</li>
-<li><p>由于需要记录项目依赖哪些东西，所以需要一个配置文件“package.json”，可以通过npm init命令生成</p>
-</li>
-<li><p>以后安装包的时候将其–save</p>
-</li>
-<li><p>–save就是将我们安装的包名字和包版本记录到配置文件中的dependencies节点中</p>
-</li>
-<li>–save-dev</li>
-<li><p>项目依赖分两种，一个就是普通的项目依赖比如bootstrap，还用一种只是开发阶段需要用的，这种属于开发依赖比如gulp，开发依赖最终记录在devDependencies节点里面</p>
-</li>
-<li><p>npm uninstall xxx –save</p>
-</li>
-<li><p>npm install xxx -g(全局安装包)</p>
-<ul>
-<li>如果你安装的是一个工具，工具要在每一个地方都能用，这种情况下一般全局安装。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Bower</p>
-<ul>
-<li>Web sites are made of lots of things — frameworks, libraries, assets, and utilities. Bower manages all these things for you.</li>
-<li>Bower就是用来管理项目中所有的依赖，主要用于Web页面开发时使用的包管理，比如jquery，bootstrap</li>
-<li><blockquote>
-<p>重复的轮子太多，抓住轮子与轮子之间的共性</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>Gulp  FIS3</p>
-</li>
-<li><p><a href="http://www.ydcss.com/archives/94" target="_blank" rel="external">http://www.ydcss.com/archives/94</a></p>
-</li>
-<li><p>msi - microsoft installer 微软安装器</p>
-</li>
-</ul>
-<h2 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h2><h3 id="什么是GIT"><a href="#什么是GIT" class="headerlink" title="什么是GIT"></a>什么是GIT</h3><ul>
-<li>是一个源代码管理工具</li>
-<li>在一个项目中，凡是由开发人员编写的都算是源代码</li>
-<li>源代码有必要管理起来？</li>
-<li>让源代码可以被追溯，主要记录每次变更了什么，谁主导这次变化</li>
-<li>人为的维护比较麻烦，</li>
-<li>GIT是Linux之父当年为了维护管理Linux的源代码写的一个工具</li>
-<li>Git 之前 很多使用 svn vss tfs hs ……</li>
-</ul>
-<ul>
-<li><a href="https://guides.github.com/" target="_blank" rel="external">https://guides.github.com/</a></li>
-</ul>
-<h3 id="安装GIT"><a href="#安装GIT" class="headerlink" title="安装GIT"></a>安装GIT</h3><ul>
-<li>git命令行工具</li>
-<li>基于git命令行的一个客户端软件（提供一个界面去管理源代码）</li>
-</ul>
-<h3 id="GIT命令操作"><a href="#GIT命令操作" class="headerlink" title="GIT命令操作"></a>GIT命令操作</h3><ul>
-<li>初始化一个本地GIT仓储</li>
-</ul>
-<pre><code class="shell">cd 当前项目目录
-git init // 初始化一个本地的仓库
-</code></pre>
-<blockquote>
-<p>就是在本地文件夹中添加了一个.git的文件夹用于记录所有的项目变更信息</p>
-</blockquote>
-<ul>
-<li>查看本地仓储的变更状态</li>
-</ul>
-<p>git status<br>用于查看本地仓储的状态<br>第一次查看，显示的是一坨没有被跟踪的文件</p>
-<p>git status -s // -s 是输出简要的变更日志</p>
-<ul>
-<li>添加本地暂存（托管）文件</li>
-</ul>
-<p>git add<br>可以将一个没有被跟踪的文件添加到跟踪列表</p>
-<p>类似于node_modules这种性质的文件是不应该被跟踪</p>
-<ul>
-<li>添加本地GIT忽略清单文件</li>
-</ul>
-<p>在代码库文件夹的根目录添加一个.gitignore文件<br>此文件用于说明忽略的文件有哪些</p>
-<ul>
-<li>提交被托管的文件变化到本地仓储</li>
-</ul>
-<p>git commit<br>将本地的变化提交的本地的仓库文件夹归档<br>一般在有了一个小单元的整体变化后再提交</p>
-<ul>
-<li>对比差异</li>
-</ul>
-<p>git diff<br>可以用于对比当前状态和版本库中状态的变化</p>
-<ul>
-<li>提交日志</li>
-</ul>
-<p>git log<br>可以查看提交日志</p>
-<ul>
-<li>回归到指定版本</li>
-</ul>
-<p>git reset –hard</p>
-<ul>
-<li><p>为仓储添加远端（服务器端）地址</p>
-</li>
-<li><p>将本地仓储的提交记录推送到远端的master分支</p>
-</li>
-<li><p>拉取远端master分支的更新记录到本地</p>
-</li>
-<li><p>回归到指定版本</p>
-</li>
-</ul>
-<h3 id="GITHUB基本使用"><a href="#GITHUB基本使用" class="headerlink" title="GITHUB基本使用"></a>GITHUB基本使用</h3><ul>
-<li><a href="https://github.com/" target="_blank" rel="external">https://github.com/</a></li>
-<li>GITHUB是一个GIT服务的提供商，</li>
-<li></li>
-<li>提出社交化编程</li>
-</ul>
-<p><a href="http://zoomzhao.github.io/code-guide/" target="_blank" rel="external">http://zoomzhao.github.io/code-guide/</a><br><a href="https://github.com/jobbole/awesome-javascript-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-javascript-cn</a><br><a href="https://github.com/jobbole/awesome-css-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-css-cn</a></p>
-<ul>
-<li>GIT分支</li>
-</ul>
-<h2 id="Angular入门"><a href="#Angular入门" class="headerlink" title="Angular入门"></a>Angular入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
-<li>知识储备</li>
-<li>什么是Angular<ul>
-<li>快速构建Web应用程序</li>
-<li>单页面应用程序</li>
-</ul>
-</li>
-<li>Angular的特性</li>
-<li>为什么要用Angular<ul>
-<li>让Web应用程序开发更简单，更快捷</li>
-</ul>
-</li>
-<li>带领前端进入MV*的时代</li>
-</ul>
-<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><ul>
-<li>引用Angular<ul>
-<li>下载</li>
-<li>bower</li>
-<li>npm</li>
-</ul>
-</li>
-<li>基本使用</li>
-</ul>
 
           
         
@@ -2486,7 +2486,7 @@ $ hexo deploy
   <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
 
 <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dark.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 
 <script>
