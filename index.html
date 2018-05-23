@@ -270,6 +270,671 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/SVN基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/22/SVN基本使用/" itemprop="url">SVN 的基本使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T00:00:00+08:00">
+                2018-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SVN/" itemprop="url" rel="index">
+                    <span itemprop="name">SVN</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简单说明"><a href="#简单说明" class="headerlink" title="简单说明"></a>简单说明</h2><p>① 多人开发同一个项目不会出现代码覆盖情况。<br>② 针对一个文件可以创建许多不同版本，并且可以随时查看不同版本的内容。<br>③ 公司领导可以通过svn查看每个人的工作情况</p>
+<h2 id="svn的安装"><a href="#svn的安装" class="headerlink" title="svn的安装"></a>svn的安装</h2><ul>
+<li>安装subversion</li>
+<li>安装TortoiseSVN<br>安装完成后可以进行重启操作，重启后会看到svn的状态图标</li>
+</ul>
+<h2 id="创建svn仓库"><a href="#创建svn仓库" class="headerlink" title="创建svn仓库"></a>创建svn仓库</h2><p>cmd 命令代码</p>
+<pre><code>svnadmin create f:/svnServer/app/shop
+</code></pre><p>这样就创建好了。<strong>前提是这个目录需要自己先创建好。</strong></p>
+<h2 id="启动仓库服务"><a href="#启动仓库服务" class="headerlink" title="启动仓库服务"></a>启动仓库服务</h2><p>svnserve  -d(独立端口运行)  -r(仓库地址)   仓库地址</p>
+<p>使用cmd命令行启动刚创建的shop仓库</p>
+<pre><code>svnserve  -d  -r  f:/svnServer/app/shop
+</code></pre><p>该svn服务走svn协议，端口号码是3690</p>
+<h2 id="客户端与仓库取得联系"><a href="#客户端与仓库取得联系" class="headerlink" title="客户端与仓库取得联系"></a>客户端与仓库取得联系</h2><p>本地目录右键 SVN Checkout<br>URL of repository svn地址，主机名 如svn://localhsot<br>Checkout diretory 是本地目录<br>确定</p>
+<p>但是现在是不能够连接的 因为还没配置 现在使用匿名方式<br>在仓库conf/svnserve.conf 设置成下面这样</p>
+<pre><code>anon-access = write (12行)
+</code></pre><p>然后再checkout就可以了</p>
+<h2 id="账号的设置"><a href="#账号的设置" class="headerlink" title="账号的设置"></a>账号的设置</h2><p>在仓库conf/svnserve.conf 修改</p>
+<pre><code>password-db = passwd
+authz-db = authz
+</code></pre><p>把他们前面的#去掉 注意前面不能有空格</p>
+<h3 id="设置账号"><a href="#设置账号" class="headerlink" title="设置账号"></a>设置账号</h3><p>在仓库conf/svnserve.conf 关闭匿名</p>
+<pre><code>anon-access = none
+</code></pre><p>在仓库conf/passwd 设置账号<br>在[users] 下面添加用户<br>例如：</p>
+<pre><code>zrlee = zrlee
+user1 = password
+</code></pre><h3 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h3><p>在仓库conf/authz 设置权限</p>
+<p>例如<br>[/] 对应主机地址svn：//loaclhost<br>[shop:/] 多个仓库之一地址 svn://localhsot/shop<br>r – 读<br>w – 写<br>*= 其他用户无权限<br>设置例子</p>
+<pre><code>[/]
+zrlee = rw 
+*=
+</code></pre><h3 id="一个组设置权限"><a href="#一个组设置权限" class="headerlink" title="一个组设置权限"></a>一个组设置权限</h3><p>在仓库conf/authz</p>
+<pre><code>[groups]
+php = php1,php2,php3
+[/]
+zrlee = rw 
+@php = rw    // 设置hp组的用户权限
+*=
+</code></pre><h2 id="设置开机启动服务"><a href="#设置开机启动服务" class="headerlink" title="设置开机启动服务"></a>设置开机启动服务</h2><p>(略过）</p>
+<h2 id="文件图标标志"><a href="#文件图标标志" class="headerlink" title="文件图标标志"></a>文件图标标志</h2><p>① 蓝色加号：本地的.svn对该文件有形成管理(远程仓库 还没有该文件记录)<br>② 绿色对号：本地文件、.svn管理的版本文件、仓库文件 三者内部一致<br>③ 红色叹号：本地文件  与  .svn和仓库文件 不一致(用户自己修改了该文件)<br>④ 黄色叹号：表示该文件正处于冲突状态<br>⑤ 蓝色问号：新建的一个文件，本地.svn 和 远程仓库 对该文件都没有记录</p>
+<h2 id="同时运行多个仓库"><a href="#同时运行多个仓库" class="headerlink" title="同时运行多个仓库"></a>同时运行多个仓库</h2><p>svnserve -r 目录写上级的目录即可</p>
+<h2 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h2><p>SVN的冲突：<br>广义角度的冲突：提交程序文件 本地版本号码 小于 仓库服务器版本号码.<br>狭义角度的冲突：多个程序员对同一个文件、同一处代码进行修改，在他们提交文件的时候会产生冲突。</p>
+<h3 id="大家修改的代码不在同一处"><a href="#大家修改的代码不在同一处" class="headerlink" title="大家修改的代码不在同一处"></a>大家修改的代码不在同一处</h3><p>解决：直接执行update操作，把仓库最新文件更新到本地，与本地文件做融合，之后继续提交给文件即可。</p>
+<p>把仓库最新的程序文件给update更新多本地，使得本地 和 仓库的号码保持一致，<br>仓库的文件更新到本地，会与本地的文件进行融合(非覆盖操作)，会把两个人的修改内容体现在一个文件中。</p>
+<h3 id="大家修改的代码在同一处-行"><a href="#大家修改的代码在同一处-行" class="headerlink" title="大家修改的代码在同一处(行)"></a>大家修改的代码在同一处(行)</h3><p>解决：先执行update更新操作，把本地冲突文件打开“稍作”调整，继续提交。</p>
+<h2 id="同一个文件的不同版本切换"><a href="#同一个文件的不同版本切换" class="headerlink" title="同一个文件的不同版本切换"></a>同一个文件的不同版本切换</h2><p>TortoiseSVN-Update to revision ..</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/geetest使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/22/geetest使用/" itemprop="url">geettest滑块验证码使用完整教程(PHP)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T00:00:00+08:00">
+                2018-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
+<li>官网：<a href="http://www.geetest.com/" target="_blank" rel="external">http://www.geetest.com/</a></li>
+<li>github：<a href="https://github.com/GeeTeam/gt-php-sdk.git" target="_blank" rel="external">https://github.com/GeeTeam/gt-php-sdk.git</a></li>
+</ul>
+<p>先在github中下载sdk放在项目目录中</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="引入js"><a href="#引入js" class="headerlink" title="引入js"></a>引入js</h3><p>前端要用验证码的页面引入所需要的js库，例如在login.html中引入。</p>
+<pre><code class="html">&lt;script src=&quot;http://code.jquery.com/jquery-1.12.3.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://static.geetest.com/static/tools/gt.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>文档加载完成后执行一下代码</p>
+<pre><code class="javascript">&lt;script&gt;
+    var handlerEmbed = function (captchaObj) {
+        $(&quot;#embed-submit&quot;).click(function (e) {
+            var validate = captchaObj.getValidate();
+            if (!validate) {
+                $(&quot;#notice&quot;)[0].className = &quot;show&quot;;
+                setTimeout(function () {
+                    $(&quot;#notice&quot;)[0].className = &quot;hide&quot;;
+                }, 2000);
+                e.preventDefault();
+            }
+        });
+        // 将验证码加到id为captcha的元素里，同时会有三个input的值：geetest_challenge, geetest_validate, geetest_seccode
+        captchaObj.appendTo(&quot;#embed-captcha&quot;);
+        captchaObj.onReady(function () {
+            $(&quot;#wait&quot;)[0].className = &quot;hide&quot;;
+        });
+        // 更多接口参考：http://www.geetest.com/install/sections/idx-client-sdk.html
+    };
+    $.ajax({
+        // 获取id，challenge，success（是否启用failback）
+        url: &quot;./web/StartCaptchaServlet.php?type=pc&amp;t=&quot; + (new Date()).getTime(), // 加随机数防止缓存
+        type: &quot;get&quot;,
+        dataType: &quot;json&quot;,
+        success: function (data) {
+            // 使用initGeetest接口
+            // 参数1：配置参数
+            // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它做appendTo之类的事件
+            initGeetest({
+                gt: data.gt,
+                challenge: data.challenge,
+                product: &quot;embed&quot;, // 产品形式，包括：float，embed，popup。注意只对PC版验证码有效
+                offline: !data.success // 表示用户后台检测极验服务器是否宕机，一般不需要关注
+                // 更多配置参数请参见：http://www.geetest.com/install/sections/idx-client-sdk.html#config
+            }, handlerEmbed);
+        }
+    });
+&lt;/script&gt;
+</code></pre>
+<p>代码解读：<br>  <code>#embed-submit</code>  是提交按钮的id 如</p>
+<pre><code>&lt;input class=&quot;btn&quot; id=&quot;embed-submit&quot; type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+</code></pre><p>ajax请求地址<code>url: &quot;./web/StartCaptchaServlet.php?type=pc&amp;t=&quot; + (new Date()).getTime(),</code> 内容在后面介绍</p>
+<h2 id="后端部署"><a href="#后端部署" class="headerlink" title="后端部署"></a>后端部署</h2><p>1.1. 配置config.php<br>在geetest注册账号后会有一个key和id ，吧它拷贝过来放在config.php中</p>
+<pre><code class="php">define(&quot;CAPTCHA_ID&quot;, &quot;xxx&quot;);
+define(&quot;PRIVATE_KEY&quot;, &quot;xxx&quot;);
+</code></pre>
+<p>1.2. StartCaptchaServlet.php</p>
+<pre><code>require_once dirname(dirname(__FILE__)) . &#39;/lib/class.geetestlib.php&#39;;
+require_once dirname(dirname(__FILE__)) . &#39;/config/config.php&#39;;
+if($_GET[&#39;type&#39;] == &#39;pc&#39;){
+    $GtSdk = new GeetestLib(CAPTCHA_ID, PRIVATE_KEY);
+}elseif ($_GET[&#39;type&#39;] == &#39;mobile&#39;) {
+    $GtSdk = new GeetestLib(MOBILE_CAPTCHA_ID, MOBILE_PRIVATE_KEY);
+}
+session_start();
+$user_id = &quot;test&quot;;
+$status = $GtSdk-&gt;pre_process($user_id);
+$_SESSION[&#39;gtserver&#39;] = $status;
+$_SESSION[&#39;user_id&#39;] = $user_id;
+echo $GtSdk-&gt;get_response_str();
+</code></pre><ol>
+<li>3VerifyLoginServlet.php</li>
+</ol>
+<pre><code>require_once dirname(dirname(__FILE__)) . &#39;/lib/class.geetestlib.php&#39;;
+require_once dirname(dirname(__FILE__)) . &#39;/config/config.php&#39;;
+session_start();
+if($_POST[&#39;type&#39;] == &#39;pc&#39;){
+    $GtSdk = new GeetestLib(CAPTCHA_ID, PRIVATE_KEY);
+}elseif ($_POST[&#39;type&#39;] == &#39;mobile&#39;) {
+    $GtSdk = new GeetestLib(MOBILE_CAPTCHA_ID, MOBILE_PRIVATE_KEY);
+}
+
+$user_id = $_SESSION[&#39;user_id&#39;];
+if ($_SESSION[&#39;gtserver&#39;] == 1) {   //服务器正常
+    $result = $GtSdk-&gt;success_validate($_POST[&#39;geetest_challenge&#39;], $_POST[&#39;geetest_validate&#39;], $_POST[&#39;geetest_seccode&#39;], $user_id);
+    if ($result) {
+        echo &#39;{&quot;status&quot;:&quot;success&quot;}&#39;;
+    } else{
+        echo &#39;{&quot;status&quot;:&quot;fail&quot;}&#39;;
+    }
+}else{  //服务器宕机,走failback模式
+    if ($GtSdk-&gt;fail_validate($_POST[&#39;geetest_challenge&#39;],$_POST[&#39;geetest_validate&#39;],$_POST[&#39;geetest_seccode&#39;])) {
+        echo &#39;{&quot;status&quot;:&quot;success&quot;}&#39;;
+    }else{
+        echo &#39;{&quot;status&quot;:&quot;fail&quot;}&#39;;
+    }
+}
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/laravel5安装配置Entrust/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/17/laravel5安装配置Entrust/" itemprop="url">Laravel5安装配置Entrust扩展包RABC权限管理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T00:00:00+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/laravel/" itemprop="url" rel="index">
+                    <span itemprop="name">laravel</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Entrust为我们在Laravel中实现基于角色的权限管理（RBAC）提供了简洁灵活的方式。</p>
+<h1 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h1><p>想要在Laravel中使用Entrust，首先需要通过Composer来安装其依赖包：</p>
+<pre><code>composer require zizaco/entrust 5.2.x-dev
+</code></pre><p>安装完成后需要在config/app.php中注册服务提供者到providers数组：</p>
+<pre><code class="php">Zizaco\Entrust\EntrustServiceProvider::class,
+</code></pre>
+<p>同时在该配置文件中注册相应门面到aliases数组</p>
+<pre><code class="php">&#39;Entrust&#39; =&gt; Zizaco\Entrust\EntrustFacade::class,
+</code></pre>
+<p>如果你想要使用中间件（要求Laravel 5.1或更高版本）还需要添加如下代码到app/Http/Kernel.php的routeMiddleware数组：</p>
+<pre><code class="php">&#39;role&#39; =&gt; \Zizaco\Entrust\Middleware\EntrustRole::class,
+&#39;permission&#39; =&gt; \Zizaco\Entrust\Middleware\EntrustPermission::class,
+&#39;ability&#39; =&gt; \Zizaco\Entrust\Middleware\EntrustAbility::class,
+</code></pre>
+<h1 id="2、配置"><a href="#2、配置" class="headerlink" title="2、配置"></a>2、配置</h1><p>在配置文件config/auth.php中设置合适的值，Entrust会使用这些配置值来选择相应的用户表和模型类：</p>
+<pre><code class="php">&#39;providers&#39; =&gt; [
+    &#39;users&#39; =&gt; [
+        &#39;driver&#39; =&gt; &#39;eloquent&#39;,
+        &#39;model&#39; =&gt; App\User::class,
+        &#39;table&#39; =&gt; &#39;users&#39;,
+    ],
+],
+</code></pre>
+<p>你还可以发布该扩展包的配置以便后续自定义相关表名以及模型类的命名空间：</p>
+<pre><code class="php">php artisan vendor:publish
+</code></pre>
+<p>该命令会在config目录下创建一个entrust.php文件。</p>
+<h1 id="3、用户角色权限表"><a href="#3、用户角色权限表" class="headerlink" title="3、用户角色权限表"></a>3、用户角色权限表</h1><p>接下来我们使用Entrust提供的迁移命令生成迁移文件：</p>
+<pre><code class="php">php artisan entrust:migration
+</code></pre>
+<p>然后通过以下命令生成相应的数据表：</p>
+<pre><code class="php">php artisan migrate
+</code></pre>
+<p>最终会生成4张新表：</p>
+<ul>
+<li>roles —— 存储角色</li>
+<li>permissions —— 存储权限</li>
+<li>role_user —— 存储角色与用户之间的多对多关系</li>
+<li>permission_role —— 存储角色与权限之间的多对多关系</li>
+</ul>
+<h1 id="4、模型类"><a href="#4、模型类" class="headerlink" title="4、模型类"></a>4、模型类</h1><p><strong>Role</strong><br>我们需要创建Role模型类app/Role.php并编辑其内容如下：</p>
+<pre><code class="php">&lt;?php namespace App;
+
+use Zizaco\Entrust\EntrustRole;
+
+class Role extends EntrustRole
+{
+}
+</code></pre>
+<p>Role模型拥有三个主要属性：</p>
+<ul>
+<li>name —— 角色的唯一名称，如“admin”，“owner”，“employee”等</li>
+<li>display_name —— 人类可读的角色名，例如“后台管理员”、“作者”、“雇主”等</li>
+<li>description —— 该角色的详细描述</li>
+<li>display_name和description属性都是可选的，在数据库中的相应字段默认为空。<br><strong><br>Permission</strong></li>
+</ul>
+<p>接下来创建Permission模型app/Permission.php并编辑其内容如下：</p>
+<pre><code class="php">&lt;?php namespace App;
+
+use Zizaco\Entrust\EntrustPermission;
+
+class Permission extends EntrustPermission
+{
+}
+</code></pre>
+<p>Permission模型也有三个主要属性：</p>
+<ul>
+<li>name —— 权限的唯一名称，如“create-post”，“edit-post”等</li>
+<li>display_name —— 人类可读的权限名称，如“发布文章”，“编辑文章”等</li>
+<li>description —— 该权限的详细描述</li>
+</ul>
+<p><strong>User</strong></p>
+<p>接下来我们在User模型中使用EntrustUserTrait：</p>
+<pre><code class="php">&lt;?php
+
+namespace App;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+
+class User extends Authenticatable
+{
+    use Notifiable;
+    use EntrustUserTrait;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        &#39;name&#39;, &#39;email&#39;, &#39;password&#39;,
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        &#39;password&#39;, &#39;remember_token&#39;,
+    ];
+}
+</code></pre>
+<p>这将会建立User与Role之间的关联关系：在User模型中添加roles()、hasRole($name)、can($permission)以及ability($roles,$permissions,$options)方法。</p>
+<h2 id="软删除"><a href="#软删除" class="headerlink" title="软删除"></a>软删除</h2><p>使用Entrust提供的迁移命令生成的关联关系表中默认使用了onDelete(‘cascade’)以便父级记录被删除后移除其对应的关联关系。如果你由于某种原因不能在数据库中使用级联删除，那么可以在EntrustRole、EntrustPermission类以及HasRole trait提供的事件监听器中手动删除关联表中的记录。如果模型使用了软删除，那么当不小心误删除数据时，事件监听器将不会删除关联表数据。不过，由于Laravel事件监听器的局限性，所以暂时无法区分是调用delete()还是forceDelete()，基于这个原因，在你删除一个模型之前，必须手动删除所有关联数据（除非你的数据表使用了级联删除）：</p>
+<pre><code class="php">$role = Role::findOrFail(1); // 获取给定权限
+
+// 正常删除
+$role-&gt;delete();
+
+// 强制删除
+$role-&gt;users()-&gt;sync([]); // 删除关联数据
+$role-&gt;perms()-&gt;sync([]); // 删除关联数据
+
+$role-&gt;forceDelete(); // 不管透视表是否有级联删除都会生效
+</code></pre>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>D:\phpStudy\WWW\blog&gt;php artisan entrust:migration</p>
+<p>In BoundMethod.php line 135:</p>
+<p>Method Zizaco\Entrust\MigrationCommand::handle() does not exist<br>这是什么情况</p>
+<blockquote>
+<p>这个问题也是用在laravel5.5中才遇到的一个问。<br>这个提示也很明确，说是找不到这个方法，<br>所以解决办法就是找到这个Zizaco\Entrust\MigrationCommand这个文件，然后里面又个fire方法改成handle方法即可，</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/10/MongoDB安装与shell/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -620,142 +1285,6 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/laravel-核心概念/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/03/laravel-核心概念/" itemprop="url">laravel验证</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T00:00:00+08:00">
-                2018-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：</p>
-<pre><code class="`php">$value = config(&#39;app.timezone&#39;);
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/laravel-验证规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -884,6 +1413,142 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
 <h2 id="显示验证错误"><a href="#显示验证错误" class="headerlink" title="显示验证错误"></a>显示验证错误</h2><pre><code class="html"> &lt;p&gt;&lt;input type=&quot;text&quot; name=&quot;title&quot; &gt;{{$errors->first('title')}}&lt;/p&gt;
 </code></pre>
 <h2 id="可用的验证规则"><a href="#可用的验证规则" class="headerlink" title="可用的验证规则"></a>可用的验证规则</h2><p><a href="http://blog.noxue.com/article/473.html" title="不学网" target="_blank" rel="external">不学网验证规则</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/laravel-核心概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/03/laravel-核心概念/" itemprop="url">laravel验证</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T00:00:00+08:00">
+                2018-05-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/laravel/" itemprop="url" rel="index">
+                    <span itemprop="name">laravel</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：</p>
+<pre><code class="`php">$value = config(&#39;app.timezone&#39;);
+</code></pre>
 
           
         
@@ -1672,608 +2337,11 @@ data-slide=&#39;next&#39;
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/15/angular入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/15/angular入门/" itemprop="url">流行框架第三天：Angular入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-15T00:00:00+08:00">
-                2017-05-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动web/" itemprop="url" rel="index">
-                    <span itemprop="name">移动web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="流行框架第三天：Angular入门"><a href="#流行框架第三天：Angular入门" class="headerlink" title="流行框架第三天：Angular入门"></a>流行框架第三天：Angular入门</h1><h2 id="推荐工具"><a href="#推荐工具" class="headerlink" title="推荐工具"></a>推荐工具</h2><ul>
-<li>在线编辑器<ul>
-<li><a href="http://codepen.io/" target="_blank" rel="external">http://codepen.io/</a></li>
-<li><a href="https://jsfiddle.net/" target="_blank" rel="external">https://jsfiddle.net/</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="Angular-简介"><a href="#Angular-简介" class="headerlink" title="Angular 简介"></a>Angular 简介</h2><h3 id="什么是-AngularJS"><a href="#什么是-AngularJS" class="headerlink" title="什么是 AngularJS"></a>什么是 AngularJS</h3><ul>
-<li>一款非常优秀的前端高级 JS 框架</li>
-<li>最早由 Misko Hevery 等人创建</li>
-<li>2009 年被 Google 公式收购，用于其多款产品</li>
-<li>目前有一个全职的开发团队继续开发和维护这个库</li>
-<li>有了这一类框架就可以轻松构建 SPA 应用程序</li>
-<li>轻松构建 SPA（单一页面应用程序）</li>
-<li>单一页面应用程序：<ul>
-<li>只有一个页面（整个应用的一个载体）</li>
-<li>内容全部是由AJAX方式呈现出啦的</li>
-</ul>
-</li>
-<li>其核心就是通过指令扩展了 HTML，通过表达式绑定数据到 HTML。</li>
-</ul>
-<h3 id="为什么使用-AngularJS"><a href="#为什么使用-AngularJS" class="headerlink" title="为什么使用 AngularJS"></a>为什么使用 AngularJS</h3><ul>
-<li>更少的代码，实现更强劲的功能</li>
-<li>将一些以前在后台开发中使用的思想带入前端开发</li>
-<li>带领当前市面上的框架走向模式化或者架构化</li>
-</ul>
-<h3 id="AngularJS-的核心特性"><a href="#AngularJS-的核心特性" class="headerlink" title="AngularJS 的核心特性"></a>AngularJS 的核心特性</h3><ul>
-<li>MVC</li>
-<li>模块化</li>
-<li>自动化双向数据绑定</li>
-<li>指令系统</li>
-</ul>
-<h3 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h3><ul>
-<li><a href="http://www.apjs.net/" target="_blank" rel="external">http://www.apjs.net/</a></li>
-<li><a href="http://www.angularjs.cn/" target="_blank" rel="external">http://www.angularjs.cn/</a></li>
-<li><a href="http://docs.angularjs.cn/api" target="_blank" rel="external">http://docs.angularjs.cn/api</a></li>
-<li><a href="https://material.angularjs.org" target="_blank" rel="external">https://material.angularjs.org</a></li>
-<li><a href="http://angular-ui.github.io/" target="_blank" rel="external">http://angular-ui.github.io/</a></li>
-</ul>
-<h2 id="Angular-上手"><a href="#Angular-上手" class="headerlink" title="Angular 上手"></a>Angular 上手</h2><h3 id="安装-Angular"><a href="#安装-Angular" class="headerlink" title="安装 Angular"></a>安装 Angular</h3><ul>
-<li>下载 Angular.js 的包<ul>
-<li><a href="https://github.com/angular/angular.js/releases" target="_blank" rel="external">https://github.com/angular/angular.js/releases</a></li>
-</ul>
-</li>
-<li>使用 CDN 上的 Angular.js<ul>
-<li><a href="http://apps.bdimg.com/libs/angular.js/1.4.9/angular.min.js" target="_blank" rel="external">http://apps.bdimg.com/libs/angular.js/1.4.9/angular.min.js</a></li>
-</ul>
-</li>
-<li><p>使用 Bower 安装</p>
-<pre><code class="bash"> $ bower install angular
-</code></pre>
-</li>
-<li><p>使用 NPM 安装</p>
-<pre><code class="bash">$ npm install angular
-</code></pre>
-</li>
-<li>每种方式安装包，本质都是将angular的库下载到当前文件夹中</li>
-</ul>
-<h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><pre><code class="HTML">
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;UTF-8&quot;&gt;
-        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no&quot; /&gt;
-
-        &lt;title&gt;ng helloworld&lt;/title&gt;
-        &lt;script src=&quot;node_modules/angular/angular.js&quot;&gt;&lt;/script&gt;
-    &lt;/head&gt;
-    &lt;!--ng-app 是angular的入口 需要angular管理的需要包裹在ng-app里面--&gt;
-    &lt;body ng-app&gt; 
-
-        &lt;h1 class=&quot;&quot;&gt;数据绑定&lt;/h1&gt;
-        &lt;input type=&quot;&quot; name=&quot;&quot; id=&quot;&quot; ng-model=&quot;user.name&quot;/&gt;
-        &lt;p&gt; your input is &lt;span&gt;{{user.name}}&lt;/span&gt;&lt;/p&gt;
-
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<ul>
-<li><p>angular中最重要的概念是指令（directive）</p>
-</li>
-<li><p>ng-model 是双向数据绑定的指令，效果就是将当前元素的value属性和模型中的user.name建立绑定关系</p>
-</li>
-<li><p>JS: BOM DOM ES</p>
-</li>
-</ul>
-<h3 id="分析-Angular-示例"><a href="#分析-Angular-示例" class="headerlink" title="分析 Angular 示例"></a>分析 Angular 示例</h3><h3 id="使用总结"><a href="#使用总结" class="headerlink" title="使用总结"></a>使用总结</h3><h3 id="运行官方文档"><a href="#运行官方文档" class="headerlink" title="运行官方文档"></a>运行官方文档</h3><h2 id="CDN的优势"><a href="#CDN的优势" class="headerlink" title="CDN的优势"></a>CDN的优势</h2><p>Content Dev</p>
-<ul>
-<li>快</li>
-<li>节省自己服务器的带宽压力和流量</li>
-</ul>
-<h2 id="Angular-基础概念"><a href="#Angular-基础概念" class="headerlink" title="Angular 基础概念"></a>Angular 基础概念</h2><h3 id="MVC-思想"><a href="#MVC-思想" class="headerlink" title="MVC 思想"></a>MVC 思想</h3><h4 id="什么是-MVC-思想"><a href="#什么是-MVC-思想" class="headerlink" title="什么是 MVC 思想"></a>什么是 MVC 思想</h4><ul>
-<li>将应用程序的组成划分为三个部分：Model View Controller</li>
-<li>控制器的作用就是初始化模型用的；</li>
-<li>模型就是用于存储数据的</li>
-<li>视图用于展现数据</li>
-</ul>
-<ul>
-<li>登陆案例</li>
-<li>模型<ul>
-<li>我们数据库中所有用户的信息</li>
-<li>接受控制器传来的用户名和密码进行校验的业务逻辑并返回true/false</li>
-</ul>
-</li>
-<li>控制器<ul>
-<li>接受用户在界面上填写的用户名和密码</li>
-<li>将用户名和密码交给模型</li>
-</ul>
-</li>
-<li>视图<ul>
-<li>给用户呈现一个表单</li>
-<li>接受用户输入内容，并将其提交给控制器</li>
-<li>根据控制器返回的数据，响应用户页面</li>
-</ul>
-</li>
-</ul>
-<h3 id="模块（Module）"><a href="#模块（Module）" class="headerlink" title="模块（Module）"></a>模块（Module）</h3><ul>
-<li>划分应用程序结构</li>
-<li>我们可以通过angular.module创建一个模块</li>
-<li>angular.module方法传递两个参数才是创建模块，一个参数是获取模块</li>
-</ul>
-<h3 id="控制器（Controller）"><a href="#控制器（Controller）" class="headerlink" title="控制器（Controller）"></a>控制器（Controller）</h3><ul>
-<li>通过$scope和视图关联</li>
-<li></li>
-</ul>
-<h3 id="视图模型（-scope）"><a href="#视图模型（-scope）" class="headerlink" title="视图模型（$scope）"></a>视图模型（$scope）</h3><h3 id="表达式（Expression）"><a href="#表达式（Expression）" class="headerlink" title="表达式（Expression）"></a>表达式（Expression）</h3><h3 id="单向数据绑定"><a href="#单向数据绑定" class="headerlink" title="单向数据绑定"></a>单向数据绑定</h3><h3 id="双向数据绑定"><a href="#双向数据绑定" class="headerlink" title="双向数据绑定"></a>双向数据绑定</h3><h2 id="Angular-指令系统"><a href="#Angular-指令系统" class="headerlink" title="Angular 指令系统"></a>Angular 指令系统</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/php http文件下载/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/11/php http文件下载/" itemprop="url">php http文件下载</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T19:21:09+08:00">
-                2017-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<pre><code class="php">&lt;?php
-//文件路径
-$file = &#39;file.docx&#39; ;
-$fileinfo = finfo_open(FILEINFO_MIME);
-$mime = finfo_file($fileinfo , $file);
-header(&#39;Content-Disposition:attachment;filename=&#39;.basename($file));
-//类型为任意的二进制文件
-//header(&#39;Content-Type:application/oct-stream&#39;);
-header(&#39;Accept-ranges:bytes&#39;);
-header(&#39;Accept-legth:&#39;.filesize($file));
-header(&#39;Content-type:&#39;.$mime);
-//读取文件
-
-readfile($file);
-
-
-?&gt;
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/javascript停止事件冒泡/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/11/javascript停止事件冒泡/" itemprop="url">javascript停止事件冒泡</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T18:59:18+08:00">
-                2017-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>直接上代码</p>
-<ul>
-<li>IE上 window.event.cancelBubble=true;</li>
-<li>其他浏览器 eve.stopPropagation() ;</li>
-</ul>
-<pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Title&lt;/title&gt;
-&lt;/head&gt;
-&lt;style&gt;
-    #outer {
-        width:300px ;
-        height:300px ;
-        background: darkorange;
-    }
-    #inner {
-        width:100px ;
-        height:100px ;
-        background: greenyellow;
-    }
-
-&lt;/style&gt;
-&lt;script&gt;
-    function stop (eve){
-        if(window.event){ //IE
-            window.event.cancelBubble=true;
-        }else{ //其他浏览器
-            eve.stopPropagation() ;
-        }
-    }
-
-    window.onload= function (){
-        document.getElementById(&#39;outer&#39;).onclick=function(e){
-            alert(&#39;outer&#39;);
-            stop(e);
-        }
-        document.getElementById(&#39;inner&#39;).onclick=function(e){
-            alert(&#39;inner&#39;);
-            stop(e);
-        }
-
-    }
-
-&lt;/script&gt;
-&lt;body&gt;
-    &lt;div id=&quot;outer&quot;&gt;
-        &lt;div id=&quot;inner&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2318,7 +2386,7 @@ readfile($file);
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2329,7 +2397,7 @@ readfile($file);
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2340,7 +2408,7 @@ readfile($file);
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

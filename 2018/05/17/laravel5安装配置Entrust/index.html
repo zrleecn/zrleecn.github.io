@@ -1,0 +1,936 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="lavavel," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://resume.zrlee.cn/img/me.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Entrust为我们在Laravel中实现基于角色的权限管理（RBAC）提供了简洁灵活的方式。 1、安装想要在Laravel中使用Entrust，首先需要通过Composer来安装其依赖包： composer require zizaco/entrust 5.2.x-dev 安装完成后需要在config/app.php中注册服务提供者到providers数组： Zizaco\Entrust\Ent">
+<meta name="keywords" content="lavavel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel5安装配置Entrust扩展包RABC权限管理">
+<meta property="og:url" content="http://yoursite.com/2018/05/17/laravel5安装配置Entrust/index.html">
+<meta property="og:site_name" content="resume.zrlee.cn">
+<meta property="og:description" content="Entrust为我们在Laravel中实现基于角色的权限管理（RBAC）提供了简洁灵活的方式。 1、安装想要在Laravel中使用Entrust，首先需要通过Composer来安装其依赖包： composer require zizaco/entrust 5.2.x-dev 安装完成后需要在config/app.php中注册服务提供者到providers数组： Zizaco\Entrust\Ent">
+<meta property="og:updated_time" content="2018-05-17T10:56:30.263Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel5安装配置Entrust扩展包RABC权限管理">
+<meta name="twitter:description" content="Entrust为我们在Laravel中实现基于角色的权限管理（RBAC）提供了简洁灵活的方式。 1、安装想要在Laravel中使用Entrust，首先需要通过Composer来安装其依赖包： composer require zizaco/entrust 5.2.x-dev 安装完成后需要在config/app.php中注册服务提供者到providers数组： Zizaco\Entrust\Ent">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/17/laravel5安装配置Entrust/"/>
+
+
+
+
+
+  <title>Laravel5安装配置Entrust扩展包RABC权限管理 | resume.zrlee.cn</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">resume.zrlee.cn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/laravel5安装配置Entrust/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Laravel5安装配置Entrust扩展包RABC权限管理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T00:00:00+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/laravel/" itemprop="url" rel="index">
+                    <span itemprop="name">laravel</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Entrust为我们在Laravel中实现基于角色的权限管理（RBAC）提供了简洁灵活的方式。</p>
+<h1 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h1><p>想要在Laravel中使用Entrust，首先需要通过Composer来安装其依赖包：</p>
+<pre><code>composer require zizaco/entrust 5.2.x-dev
+</code></pre><p>安装完成后需要在config/app.php中注册服务提供者到providers数组：</p>
+<pre><code class="php">Zizaco\Entrust\EntrustServiceProvider::class,
+</code></pre>
+<p>同时在该配置文件中注册相应门面到aliases数组</p>
+<pre><code class="php">&#39;Entrust&#39; =&gt; Zizaco\Entrust\EntrustFacade::class,
+</code></pre>
+<p>如果你想要使用中间件（要求Laravel 5.1或更高版本）还需要添加如下代码到app/Http/Kernel.php的routeMiddleware数组：</p>
+<pre><code class="php">&#39;role&#39; =&gt; \Zizaco\Entrust\Middleware\EntrustRole::class,
+&#39;permission&#39; =&gt; \Zizaco\Entrust\Middleware\EntrustPermission::class,
+&#39;ability&#39; =&gt; \Zizaco\Entrust\Middleware\EntrustAbility::class,
+</code></pre>
+<h1 id="2、配置"><a href="#2、配置" class="headerlink" title="2、配置"></a>2、配置</h1><p>在配置文件config/auth.php中设置合适的值，Entrust会使用这些配置值来选择相应的用户表和模型类：</p>
+<pre><code class="php">&#39;providers&#39; =&gt; [
+    &#39;users&#39; =&gt; [
+        &#39;driver&#39; =&gt; &#39;eloquent&#39;,
+        &#39;model&#39; =&gt; App\User::class,
+        &#39;table&#39; =&gt; &#39;users&#39;,
+    ],
+],
+</code></pre>
+<p>你还可以发布该扩展包的配置以便后续自定义相关表名以及模型类的命名空间：</p>
+<pre><code class="php">php artisan vendor:publish
+</code></pre>
+<p>该命令会在config目录下创建一个entrust.php文件。</p>
+<h1 id="3、用户角色权限表"><a href="#3、用户角色权限表" class="headerlink" title="3、用户角色权限表"></a>3、用户角色权限表</h1><p>接下来我们使用Entrust提供的迁移命令生成迁移文件：</p>
+<pre><code class="php">php artisan entrust:migration
+</code></pre>
+<p>然后通过以下命令生成相应的数据表：</p>
+<pre><code class="php">php artisan migrate
+</code></pre>
+<p>最终会生成4张新表：</p>
+<ul>
+<li>roles —— 存储角色</li>
+<li>permissions —— 存储权限</li>
+<li>role_user —— 存储角色与用户之间的多对多关系</li>
+<li>permission_role —— 存储角色与权限之间的多对多关系</li>
+</ul>
+<h1 id="4、模型类"><a href="#4、模型类" class="headerlink" title="4、模型类"></a>4、模型类</h1><p><strong>Role</strong><br>我们需要创建Role模型类app/Role.php并编辑其内容如下：</p>
+<pre><code class="php">&lt;?php namespace App;
+
+use Zizaco\Entrust\EntrustRole;
+
+class Role extends EntrustRole
+{
+}
+</code></pre>
+<p>Role模型拥有三个主要属性：</p>
+<ul>
+<li>name —— 角色的唯一名称，如“admin”，“owner”，“employee”等</li>
+<li>display_name —— 人类可读的角色名，例如“后台管理员”、“作者”、“雇主”等</li>
+<li>description —— 该角色的详细描述</li>
+<li>display_name和description属性都是可选的，在数据库中的相应字段默认为空。<br><strong><br>Permission</strong></li>
+</ul>
+<p>接下来创建Permission模型app/Permission.php并编辑其内容如下：</p>
+<pre><code class="php">&lt;?php namespace App;
+
+use Zizaco\Entrust\EntrustPermission;
+
+class Permission extends EntrustPermission
+{
+}
+</code></pre>
+<p>Permission模型也有三个主要属性：</p>
+<ul>
+<li>name —— 权限的唯一名称，如“create-post”，“edit-post”等</li>
+<li>display_name —— 人类可读的权限名称，如“发布文章”，“编辑文章”等</li>
+<li>description —— 该权限的详细描述</li>
+</ul>
+<p><strong>User</strong></p>
+<p>接下来我们在User模型中使用EntrustUserTrait：</p>
+<pre><code class="php">&lt;?php
+
+namespace App;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
+
+class User extends Authenticatable
+{
+    use Notifiable;
+    use EntrustUserTrait;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        &#39;name&#39;, &#39;email&#39;, &#39;password&#39;,
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        &#39;password&#39;, &#39;remember_token&#39;,
+    ];
+}
+</code></pre>
+<p>这将会建立User与Role之间的关联关系：在User模型中添加roles()、hasRole($name)、can($permission)以及ability($roles,$permissions,$options)方法。</p>
+<h2 id="软删除"><a href="#软删除" class="headerlink" title="软删除"></a>软删除</h2><p>使用Entrust提供的迁移命令生成的关联关系表中默认使用了onDelete(‘cascade’)以便父级记录被删除后移除其对应的关联关系。如果你由于某种原因不能在数据库中使用级联删除，那么可以在EntrustRole、EntrustPermission类以及HasRole trait提供的事件监听器中手动删除关联表中的记录。如果模型使用了软删除，那么当不小心误删除数据时，事件监听器将不会删除关联表数据。不过，由于Laravel事件监听器的局限性，所以暂时无法区分是调用delete()还是forceDelete()，基于这个原因，在你删除一个模型之前，必须手动删除所有关联数据（除非你的数据表使用了级联删除）：</p>
+<pre><code class="php">$role = Role::findOrFail(1); // 获取给定权限
+
+// 正常删除
+$role-&gt;delete();
+
+// 强制删除
+$role-&gt;users()-&gt;sync([]); // 删除关联数据
+$role-&gt;perms()-&gt;sync([]); // 删除关联数据
+
+$role-&gt;forceDelete(); // 不管透视表是否有级联删除都会生效
+</code></pre>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>D:\phpStudy\WWW\blog&gt;php artisan entrust:migration</p>
+<p>In BoundMethod.php line 135:</p>
+<p>Method Zizaco\Entrust\MigrationCommand::handle() does not exist<br>这是什么情况</p>
+<blockquote>
+<p>这个问题也是用在laravel5.5中才遇到的一个问。<br>这个提示也很明确，说是找不到这个方法，<br>所以解决办法就是找到这个Zizaco\Entrust\MigrationCommand这个文件，然后里面又个fire方法改成handle方法即可，</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lavavel/" rel="tag"># lavavel</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/10/MongoDB安装与shell/" rel="next" title="MongoDB安装与shell">
+                <i class="fa fa-chevron-left"></i> MongoDB安装与shell
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/22/geetest使用/" rel="prev" title="geettest滑块验证码使用完整教程(PHP)">
+                geettest滑块验证码使用完整教程(PHP) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wx.zrlee.cn/image/me.png"
+               alt="zrlee" />
+          <p class="site-author-name" itemprop="name">zrlee</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zrleecn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微信">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  微信
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/zrleecn" title="Github" target="_blank">Github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://zrleecn.github.io/" title="Blog" target="_blank">Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://resume.zrlee.cn" title="Resume" target="_blank">Resume</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、安装"><span class="nav-number">1.</span> <span class="nav-text">1、安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、配置"><span class="nav-number">2.</span> <span class="nav-text">2、配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3、用户角色权限表"><span class="nav-number">3.</span> <span class="nav-text">3、用户角色权限表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、模型类"><span class="nav-number">4.</span> <span class="nav-text">4、模型类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#软删除"><span class="nav-number">4.1.</span> <span class="nav-text">软删除</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#问题"><span class="nav-number">5.</span> <span class="nav-text">问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zrlee</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script>
+	
+		hljs.initHighlightingOnLoad();
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
+
+
+</script>
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
