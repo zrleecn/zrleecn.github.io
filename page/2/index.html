@@ -270,6 +270,445 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/bootstrap常用的类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/16/bootstrap常用的类/" itemprop="url">bootstrap3.x 学习大纲</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T00:00:00+08:00">
+                2017-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端框架/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>#学习大纲</p>
+<hr>
+<h2 id="css样式"><a href="#css样式" class="headerlink" title="css样式"></a>css样式</h2><ul>
+<li>栅格系统</li>
+<li>排版</li>
+<li>代码</li>
+<li>表格</li>
+<li>表单</li>
+<li>按钮</li>
+<li>图片</li>
+<li>辅助类</li>
+<li>响应式工具<h2 id="css组件"><a href="#css组件" class="headerlink" title="css组件"></a>css组件</h2></li>
+<li>glypicons图标</li>
+<li>下拉菜单</li>
+<li>按钮组</li>
+<li>输入框</li>
+<li>导航</li>
+<li>导航条</li>
+<li>路径导航</li>
+<li>分页</li>
+<li>标签</li>
+<li>微章</li>
+<li>巨幕</li>
+<li>页头</li>
+<li>缩略图</li>
+<li>警告框</li>
+<li>进图条</li>
+<li>媒体对象</li>
+<li>列表组</li>
+<li>面板</li>
+<li>响应式嵌入式内容<br>well<h2 id="js插件"><a href="#js插件" class="headerlink" title="js插件"></a>js插件</h2></li>
+<li>模态框</li>
+<li>下拉菜单</li>
+<li>滚动监听</li>
+<li>标签页</li>
+<li>工具提示</li>
+<li>弹出框</li>
+<li>警告框</li>
+<li>按钮</li>
+<li>折叠效果</li>
+<li>幻灯片效果</li>
+<li>固定左侧边栏</li>
+</ul>
+<h1 id="常用的类"><a href="#常用的类" class="headerlink" title="常用的类"></a>常用的类</h1><h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><pre><code class="css">    .container
+</code></pre>
+<h2 id="栅格系统"><a href="#栅格系统" class="headerlink" title="栅格系统"></a>栅格系统</h2><pre><code>分为12个格子
+</code></pre><h2 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h2><ul>
+<li><p>标题 </p>
+<pre><code class="css">    .page-header
+</code></pre>
+</li>
+<li><p>段落 </p>
+<pre><code>.lead
+</code></pre></li>
+<li><p>.mark标记</p>
+</li>
+<li><p>.del删除线标记</p>
+</li>
+<li><p>.samll小号字体标记</p>
+<h2 id="文本对齐"><a href="#文本对齐" class="headerlink" title="文本对齐"></a>文本对齐</h2><pre><code class="css">    .text-left
+    .text-center
+    .text-right
+</code></pre>
+</li>
+</ul>
+<h2 id="文本大小写"><a href="#文本大小写" class="headerlink" title="文本大小写"></a>文本大小写</h2><pre><code class="css">        .text-lowercase
+        .text-uppercase
+        .text-captialize 首字母大写
+</code></pre>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><pre><code class="css">        .list-unstyled
+</code></pre>
+<ul>
+<li>内联列表<pre><code class="css">   .list-inline
+</code></pre>
+</li>
+<li>自定义列表</li>
+<li>水平排列列表</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="html">    code 标记
+    pre 标记
+    kbd 标记
+</code></pre>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><pre><code class="css">    .table
+    .table-striped 不同颜色 斑马线
+    .table-bordered 
+    .table-hover
+    .table-responsive ##
+</code></pre>
+<p>响应式表格table外面的div的类</p>
+<pre><code class="css">        表格状态类（颜色）
+        .active    鼠标悬停在行或单元格上时所设置的颜色
+        .success    标识成功或积极的动作
+        .info    标识普通的提示信息或动作
+        .warning    标识警告或需要用户注意
+        .danger    标识危险或潜在的带来负面影响的动作
+</code></pre>
+<h2 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h2><pre><code class="css">    .btn
+    .btn-default
+    .btn-primary
+    .btn-succedd
+    .btn-info
+    .btn-success
+    .btn-warning
+    .btn-danger
+    .btn-lg 大按钮
+    .btn-sm
+    .btn-xs
+    .btn-block 快元素按钮
+    disabled属性 禁止按钮
+</code></pre>
+<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><pre><code class="css">    .img-circle 圆形
+    .img-rounded 圆角
+</code></pre>
+<h2 id="辅助类"><a href="#辅助类" class="headerlink" title="辅助类"></a>辅助类</h2><ul>
+<li>文本颜色<pre><code class="css">      .text-mutexd
+       .text-primary
+       .text-success
+       .text-info
+       .text-warning
+       .text-danger
+</code></pre>
+</li>
+<li>背景颜色 (和文本差不多)<pre><code class="css">       .bg-primary
+       .....
+</code></pre>
+</li>
+<li>关闭按钮<pre><code class="css">       .close
+       &lt;span class=&#39;close&#39;&gt;&amp;times;&lt;/span&gt;
+</code></pre>
+</li>
+<li>三角形</li>
+</ul>
+<pre><code>         .caret
+</code></pre><ul>
+<li>浮动</li>
+</ul>
+<pre><code class="css">        .pull-left
+         .pull-right
+</code></pre>
+<ul>
+<li>清浮动</li>
+</ul>
+<pre><code class="css">.clearfix
+</code></pre>
+<ul>
+<li>隐藏显示<pre><code class="css">       .hide
+       .show
+</code></pre>
+</li>
+<li>块居中<pre><code class="css">       .center-block
+</code></pre>
+</li>
+</ul>
+<h2 id="glyphicons图标"><a href="#glyphicons图标" class="headerlink" title="glyphicons图标"></a>glyphicons图标</h2><pre><code class="css">    .glyphicon
+    .glyphicon-xxx
+</code></pre>
+<h2 id="下拉菜单"><a href="#下拉菜单" class="headerlink" title="下拉菜单"></a>下拉菜单</h2><pre><code class="css">    .dropdown
+    .dropdown-toggle
+    data-toggle=&#39;dropdown&#39;
+    .dropdown-menu
+    .divider  //分割线
+    .dropdown-header   //标题
+</code></pre>
+<ul>
+<li>例子</li>
+</ul>
+<pre><code class="html">&lt;div class=&quot;dropdown&quot;&gt;
+        &lt;div class=&quot;btn btn-success dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
+            更多
+            &lt;span class=&#39;caret&#39;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;ul class=&quot;dropdown-menu list-unstyled&quot;&gt;
+            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
+
+        &lt;/ul&gt;
+    &lt;/div&gt;
+</code></pre>
+<h2 id="按钮组"><a href="#按钮组" class="headerlink" title="按钮组"></a>按钮组</h2><pre><code class="css">    .btn-group
+</code></pre>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><pre><code class="css">    .form-group
+    .form-inline
+    .form-control 
+    .input-group
+    .input-group-addon
+    .input-group-btn
+</code></pre>
+<h2 id="表单-1"><a href="#表单-1" class="headerlink" title="表单"></a>表单</h2><pre><code>.form-inline
+.form-horizontal 标签需要加control-lable类
+select也可以加form-control类
+.has-success
+.has-warning
+.has-error
+.has-feedback  //嵌入图标 form-group标签需要加上.has-feedback
+.help-block 下面提示文字&lt;p&gt;
+</code></pre><h1 id="导航"><a href="#导航" class="headerlink" title="导航]"></a>导航]</h1><h2 id="标签页导航"><a href="#标签页导航" class="headerlink" title="标签页导航"></a>标签页导航</h2><pre><code>.nav .nav-tabs
+</code></pre><h2 id="胶囊式标签页"><a href="#胶囊式标签页" class="headerlink" title="胶囊式标签页"></a>胶囊式标签页</h2><pre><code>.nav-pills
+.active 选中
+</code></pre><h2 id="导航条"><a href="#导航条" class="headerlink" title="导航条"></a>导航条</h2><pre><code class="css">    .navbar 
+    .navbar-default
+    .navbar-fixed-top
+    .navbar-header
+    .navbar-default
+    .narbar-inverse
+    .navbar-brand
+    .navbar-form
+    .navbar-text
+    .navbar-left/right
+    .navbar-link
+    .collapsed
+    data-target=
+    data-toggle=
+    .icon-bar
+    .collapse
+    .navbar-collapse
+</code></pre>
+<h2 id="路径导航"><a href="#路径导航" class="headerlink" title="路径导航"></a>路径导航</h2><pre><code>.breadcrumb
+</code></pre><h2 id="分页效果"><a href="#分页效果" class="headerlink" title="分页效果"></a>分页效果</h2><pre><code>.pagination
+</code></pre><h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><pre><code>.label
+.label-default
+.label-primary ....
+</code></pre><h1 id="徽章"><a href="#徽章" class="headerlink" title="徽章"></a>徽章</h1><pre><code>.badge
+</code></pre><h1 id="巨幕"><a href="#巨幕" class="headerlink" title="巨幕"></a>巨幕</h1><pre><code>.jumbotron
+</code></pre><h1 id="缩略图"><a href="#缩略图" class="headerlink" title="缩略图"></a>缩略图</h1><pre><code class="css">    .thumbnail
+
+    警告框
+    .alert
+    .alert-waining
+    .alert-dismissible  //点击关闭按钮隐藏
+    .alert-danger .....
+    .close data-dismiss=&quot;alert&quot;
+    .alert-link 连接
+    进度条
+    .progress
+    .progress-bar
+    .progress-bar-primary
+    .progress-striped
+    .active 进度条有动画
+    媒体对象
+    .media 
+    .media-left
+    .media-bottom
+    .media-heading
+    .media-body
+    .media-object
+    .media-list
+</code></pre>
+<pre><code>列表组
+.list-group
+.list-group-item
+.list-group-item-primary    
+</code></pre><hr>
+<pre><code>    11.html
+</code></pre><hr>
+<pre><code>面版
+.panel
+.pa
+具有响应式特性的嵌入内容
+.embed-responsive 
+.embed-responsive-16by9
+.embed-responsive-item
+</code></pre><p>js插件</p>
+<hr>
+<pre><code>    12.html
+</code></pre><hr>
+<p>1.模态框</p>
+<pre><code class="css">    .modal
+    .fade
+    .modal-dialog
+    .modal.content
+    .modal-header
+    .modal-title
+    .modal-body
+    .modal-footer
+    data-toggle=&#39;modal&#39;
+    data-dismiss =&#39;modal&#39;
+</code></pre>
+<hr>
+<pre><code>    13.html
+</code></pre><hr>
+<p>2.滚动监听<br>    data-spy=’scroll’<br>     data-target=’#mynav’<br>      data-offset=’150’</p>
+<hr>
+<pre><code>    14.html
+</code></pre><hr>
+<p>3标签页<br>    .nav<br>    .nav-tabs<br>    .active<br>    data-toggle=’tab’<br>    href=’#id’<br>    .tab-content<br>    .tab-pane<br>    .fade<br>    .in<br>4.提示工具</p>
+<p>5.轮播</p>
+<hr>
+<pre><code>    15.html
+</code></pre><hr>
+<pre><code>.carousel   //最外面
+.slide         //最外面
+.carousel-inner  //放图片的大容器
+.item  //其中一项图片容器
+.active
+.carousel-indicators  //指示灯
+.left   //左控制按钮
+.carousel-control
+.right
+data-ride=&#39;carousel&#39;
+data-slide-to=&quot;0&quot; 1 2 3 4
+data-slide=&#39;prev&#39; 
+data-slide=&#39;next&#39;
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/15/angular入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -867,6 +1306,461 @@ readfile($file);
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/网页加载条/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/11/网页加载条/" itemprop="url">网页加载进度条与雪花效果</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
+                2017-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网页效果/" itemprop="url" rel="index">
+                    <span itemprop="name">网页效果</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
+<li>引入库文件就行了<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
+<li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
+<li>先引入js：<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</li>
+<li>在合适的地方调用就行了 可以把图片换成其他的图片</li>
+</ol>
+<pre><code class="javascript">&lt;script&gt;
+    $(document).snowfall({deviceorientation : true, image: &quot;http://loktar00.github.io/JQuery-Snowfall/images/flake.png&quot;, minSize: 10, maxSize: 32, flakeCount: 60});
+&lt;/script&gt;
+</code></pre>
+<p> 其他效果以后更新或者在其他文章发布</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/流行框架第二天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/11/流行框架第二天/" itemprop="url">流行框架第二天：Git与Angular入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
+                2017-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/移动web/" itemprop="url" rel="index">
+                    <span itemprop="name">移动web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><ul>
+<li><p>Node Node.js — 类似一个操作系统</p>
+<ul>
+<li>一个JS的运行环境</li>
+<li>主要用于开发Web应用程序（回想登陆的例子）</li>
+<li>很多的前端开发工具都是基于node这个平台</li>
+<li>所用的工具就相当于一些软件</li>
+</ul>
+</li>
+<li><p>NVM （可选的）</p>
+<ul>
+<li>Node Version Manager(Node的版本管理工具)</li>
+<li>因为node的版本比较多，很多时候我们可能依赖多个版本，并要求自由切换</li>
+<li>使用<ul>
+<li>nvm use [对应的版本号] [平台架构（如果是32系统需要写32,64位不用管）]</li>
+<li>nvm install <version> [arch]  安装</version></li>
+<li>nvm uninstall <version> 卸载</version></li>
+<li>nvm list 查看已经安装版本</li>
+</ul>
+</li>
+<li>官网<ul>
+<li><a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="external">https://github.com/coreybutler/nvm-windows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>NPM </p>
+<ul>
+<li>node package manager(node的包管理工具)</li>
+<li>npm管理包非常方便，我们只需要记住使用哪个包就可以了</li>
+<li><p>使用</p>
+<ul>
+<li>npm install xxx </li>
+<li>安装一个包到项目本地，必须要联网</li>
+<li><p>安装完成过后项目根目录下会多一个node_modules文件夹，所有的下载下来的包全部在里面</p>
+</li>
+<li><p>由于需要记录项目依赖哪些东西，所以需要一个配置文件“package.json”，可以通过npm init命令生成</p>
+</li>
+<li><p>以后安装包的时候将其–save</p>
+</li>
+<li><p>–save就是将我们安装的包名字和包版本记录到配置文件中的dependencies节点中</p>
+</li>
+<li>–save-dev</li>
+<li><p>项目依赖分两种，一个就是普通的项目依赖比如bootstrap，还用一种只是开发阶段需要用的，这种属于开发依赖比如gulp，开发依赖最终记录在devDependencies节点里面</p>
+</li>
+<li><p>npm uninstall xxx –save</p>
+</li>
+<li><p>npm install xxx -g(全局安装包)</p>
+<ul>
+<li>如果你安装的是一个工具，工具要在每一个地方都能用，这种情况下一般全局安装。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bower</p>
+<ul>
+<li>Web sites are made of lots of things — frameworks, libraries, assets, and utilities. Bower manages all these things for you.</li>
+<li>Bower就是用来管理项目中所有的依赖，主要用于Web页面开发时使用的包管理，比如jquery，bootstrap</li>
+<li><blockquote>
+<p>重复的轮子太多，抓住轮子与轮子之间的共性</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Gulp  FIS3</p>
+</li>
+<li><p><a href="http://www.ydcss.com/archives/94" target="_blank" rel="external">http://www.ydcss.com/archives/94</a></p>
+</li>
+<li><p>msi - microsoft installer 微软安装器</p>
+</li>
+</ul>
+<h2 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h2><h3 id="什么是GIT"><a href="#什么是GIT" class="headerlink" title="什么是GIT"></a>什么是GIT</h3><ul>
+<li>是一个源代码管理工具</li>
+<li>在一个项目中，凡是由开发人员编写的都算是源代码</li>
+<li>源代码有必要管理起来？</li>
+<li>让源代码可以被追溯，主要记录每次变更了什么，谁主导这次变化</li>
+<li>人为的维护比较麻烦，</li>
+<li>GIT是Linux之父当年为了维护管理Linux的源代码写的一个工具</li>
+<li>Git 之前 很多使用 svn vss tfs hs ……</li>
+</ul>
+<ul>
+<li><a href="https://guides.github.com/" target="_blank" rel="external">https://guides.github.com/</a></li>
+</ul>
+<h3 id="安装GIT"><a href="#安装GIT" class="headerlink" title="安装GIT"></a>安装GIT</h3><ul>
+<li>git命令行工具</li>
+<li>基于git命令行的一个客户端软件（提供一个界面去管理源代码）</li>
+</ul>
+<h3 id="GIT命令操作"><a href="#GIT命令操作" class="headerlink" title="GIT命令操作"></a>GIT命令操作</h3><ul>
+<li>初始化一个本地GIT仓储</li>
+</ul>
+<pre><code class="shell">cd 当前项目目录
+git init // 初始化一个本地的仓库
+</code></pre>
+<blockquote>
+<p>就是在本地文件夹中添加了一个.git的文件夹用于记录所有的项目变更信息</p>
+</blockquote>
+<ul>
+<li>查看本地仓储的变更状态</li>
+</ul>
+<p>git status<br>用于查看本地仓储的状态<br>第一次查看，显示的是一坨没有被跟踪的文件</p>
+<p>git status -s // -s 是输出简要的变更日志</p>
+<ul>
+<li>添加本地暂存（托管）文件</li>
+</ul>
+<p>git add<br>可以将一个没有被跟踪的文件添加到跟踪列表</p>
+<p>类似于node_modules这种性质的文件是不应该被跟踪</p>
+<ul>
+<li>添加本地GIT忽略清单文件</li>
+</ul>
+<p>在代码库文件夹的根目录添加一个.gitignore文件<br>此文件用于说明忽略的文件有哪些</p>
+<ul>
+<li>提交被托管的文件变化到本地仓储</li>
+</ul>
+<p>git commit<br>将本地的变化提交的本地的仓库文件夹归档<br>一般在有了一个小单元的整体变化后再提交</p>
+<ul>
+<li>对比差异</li>
+</ul>
+<p>git diff<br>可以用于对比当前状态和版本库中状态的变化</p>
+<ul>
+<li>提交日志</li>
+</ul>
+<p>git log<br>可以查看提交日志</p>
+<ul>
+<li>回归到指定版本</li>
+</ul>
+<p>git reset –hard</p>
+<ul>
+<li><p>为仓储添加远端（服务器端）地址</p>
+</li>
+<li><p>将本地仓储的提交记录推送到远端的master分支</p>
+</li>
+<li><p>拉取远端master分支的更新记录到本地</p>
+</li>
+<li><p>回归到指定版本</p>
+</li>
+</ul>
+<h3 id="GITHUB基本使用"><a href="#GITHUB基本使用" class="headerlink" title="GITHUB基本使用"></a>GITHUB基本使用</h3><ul>
+<li><a href="https://github.com/" target="_blank" rel="external">https://github.com/</a></li>
+<li>GITHUB是一个GIT服务的提供商，</li>
+<li></li>
+<li>提出社交化编程</li>
+</ul>
+<p><a href="http://zoomzhao.github.io/code-guide/" target="_blank" rel="external">http://zoomzhao.github.io/code-guide/</a><br><a href="https://github.com/jobbole/awesome-javascript-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-javascript-cn</a><br><a href="https://github.com/jobbole/awesome-css-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-css-cn</a></p>
+<ul>
+<li>GIT分支</li>
+</ul>
+<h2 id="Angular入门"><a href="#Angular入门" class="headerlink" title="Angular入门"></a>Angular入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>知识储备</li>
+<li>什么是Angular<ul>
+<li>快速构建Web应用程序</li>
+<li>单页面应用程序</li>
+</ul>
+</li>
+<li>Angular的特性</li>
+<li>为什么要用Angular<ul>
+<li>让Web应用程序开发更简单，更快捷</li>
+</ul>
+</li>
+<li>带领前端进入MV*的时代</li>
+</ul>
+<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><ul>
+<li>引用Angular<ul>
+<li>下载</li>
+<li>bower</li>
+<li>npm</li>
+</ul>
+</li>
+<li>基本使用</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/流行框架第一天/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1313,461 +2207,6 @@ $result = bucketSort(array(2,4,5,2,1,0,77,55,44,5,3,5,778,999,87)) ;
 var_dump($result) ;
 </code></pre>
 <p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/流行框架第二天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/11/流行框架第二天/" itemprop="url">流行框架第二天：Git与Angular入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
-                2017-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动web/" itemprop="url" rel="index">
-                    <span itemprop="name">移动web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><ul>
-<li><p>Node Node.js — 类似一个操作系统</p>
-<ul>
-<li>一个JS的运行环境</li>
-<li>主要用于开发Web应用程序（回想登陆的例子）</li>
-<li>很多的前端开发工具都是基于node这个平台</li>
-<li>所用的工具就相当于一些软件</li>
-</ul>
-</li>
-<li><p>NVM （可选的）</p>
-<ul>
-<li>Node Version Manager(Node的版本管理工具)</li>
-<li>因为node的版本比较多，很多时候我们可能依赖多个版本，并要求自由切换</li>
-<li>使用<ul>
-<li>nvm use [对应的版本号] [平台架构（如果是32系统需要写32,64位不用管）]</li>
-<li>nvm install <version> [arch]  安装</version></li>
-<li>nvm uninstall <version> 卸载</version></li>
-<li>nvm list 查看已经安装版本</li>
-</ul>
-</li>
-<li>官网<ul>
-<li><a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="external">https://github.com/coreybutler/nvm-windows</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>NPM </p>
-<ul>
-<li>node package manager(node的包管理工具)</li>
-<li>npm管理包非常方便，我们只需要记住使用哪个包就可以了</li>
-<li><p>使用</p>
-<ul>
-<li>npm install xxx </li>
-<li>安装一个包到项目本地，必须要联网</li>
-<li><p>安装完成过后项目根目录下会多一个node_modules文件夹，所有的下载下来的包全部在里面</p>
-</li>
-<li><p>由于需要记录项目依赖哪些东西，所以需要一个配置文件“package.json”，可以通过npm init命令生成</p>
-</li>
-<li><p>以后安装包的时候将其–save</p>
-</li>
-<li><p>–save就是将我们安装的包名字和包版本记录到配置文件中的dependencies节点中</p>
-</li>
-<li>–save-dev</li>
-<li><p>项目依赖分两种，一个就是普通的项目依赖比如bootstrap，还用一种只是开发阶段需要用的，这种属于开发依赖比如gulp，开发依赖最终记录在devDependencies节点里面</p>
-</li>
-<li><p>npm uninstall xxx –save</p>
-</li>
-<li><p>npm install xxx -g(全局安装包)</p>
-<ul>
-<li>如果你安装的是一个工具，工具要在每一个地方都能用，这种情况下一般全局安装。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Bower</p>
-<ul>
-<li>Web sites are made of lots of things — frameworks, libraries, assets, and utilities. Bower manages all these things for you.</li>
-<li>Bower就是用来管理项目中所有的依赖，主要用于Web页面开发时使用的包管理，比如jquery，bootstrap</li>
-<li><blockquote>
-<p>重复的轮子太多，抓住轮子与轮子之间的共性</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>Gulp  FIS3</p>
-</li>
-<li><p><a href="http://www.ydcss.com/archives/94" target="_blank" rel="external">http://www.ydcss.com/archives/94</a></p>
-</li>
-<li><p>msi - microsoft installer 微软安装器</p>
-</li>
-</ul>
-<h2 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h2><h3 id="什么是GIT"><a href="#什么是GIT" class="headerlink" title="什么是GIT"></a>什么是GIT</h3><ul>
-<li>是一个源代码管理工具</li>
-<li>在一个项目中，凡是由开发人员编写的都算是源代码</li>
-<li>源代码有必要管理起来？</li>
-<li>让源代码可以被追溯，主要记录每次变更了什么，谁主导这次变化</li>
-<li>人为的维护比较麻烦，</li>
-<li>GIT是Linux之父当年为了维护管理Linux的源代码写的一个工具</li>
-<li>Git 之前 很多使用 svn vss tfs hs ……</li>
-</ul>
-<ul>
-<li><a href="https://guides.github.com/" target="_blank" rel="external">https://guides.github.com/</a></li>
-</ul>
-<h3 id="安装GIT"><a href="#安装GIT" class="headerlink" title="安装GIT"></a>安装GIT</h3><ul>
-<li>git命令行工具</li>
-<li>基于git命令行的一个客户端软件（提供一个界面去管理源代码）</li>
-</ul>
-<h3 id="GIT命令操作"><a href="#GIT命令操作" class="headerlink" title="GIT命令操作"></a>GIT命令操作</h3><ul>
-<li>初始化一个本地GIT仓储</li>
-</ul>
-<pre><code class="shell">cd 当前项目目录
-git init // 初始化一个本地的仓库
-</code></pre>
-<blockquote>
-<p>就是在本地文件夹中添加了一个.git的文件夹用于记录所有的项目变更信息</p>
-</blockquote>
-<ul>
-<li>查看本地仓储的变更状态</li>
-</ul>
-<p>git status<br>用于查看本地仓储的状态<br>第一次查看，显示的是一坨没有被跟踪的文件</p>
-<p>git status -s // -s 是输出简要的变更日志</p>
-<ul>
-<li>添加本地暂存（托管）文件</li>
-</ul>
-<p>git add<br>可以将一个没有被跟踪的文件添加到跟踪列表</p>
-<p>类似于node_modules这种性质的文件是不应该被跟踪</p>
-<ul>
-<li>添加本地GIT忽略清单文件</li>
-</ul>
-<p>在代码库文件夹的根目录添加一个.gitignore文件<br>此文件用于说明忽略的文件有哪些</p>
-<ul>
-<li>提交被托管的文件变化到本地仓储</li>
-</ul>
-<p>git commit<br>将本地的变化提交的本地的仓库文件夹归档<br>一般在有了一个小单元的整体变化后再提交</p>
-<ul>
-<li>对比差异</li>
-</ul>
-<p>git diff<br>可以用于对比当前状态和版本库中状态的变化</p>
-<ul>
-<li>提交日志</li>
-</ul>
-<p>git log<br>可以查看提交日志</p>
-<ul>
-<li>回归到指定版本</li>
-</ul>
-<p>git reset –hard</p>
-<ul>
-<li><p>为仓储添加远端（服务器端）地址</p>
-</li>
-<li><p>将本地仓储的提交记录推送到远端的master分支</p>
-</li>
-<li><p>拉取远端master分支的更新记录到本地</p>
-</li>
-<li><p>回归到指定版本</p>
-</li>
-</ul>
-<h3 id="GITHUB基本使用"><a href="#GITHUB基本使用" class="headerlink" title="GITHUB基本使用"></a>GITHUB基本使用</h3><ul>
-<li><a href="https://github.com/" target="_blank" rel="external">https://github.com/</a></li>
-<li>GITHUB是一个GIT服务的提供商，</li>
-<li></li>
-<li>提出社交化编程</li>
-</ul>
-<p><a href="http://zoomzhao.github.io/code-guide/" target="_blank" rel="external">http://zoomzhao.github.io/code-guide/</a><br><a href="https://github.com/jobbole/awesome-javascript-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-javascript-cn</a><br><a href="https://github.com/jobbole/awesome-css-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-css-cn</a></p>
-<ul>
-<li>GIT分支</li>
-</ul>
-<h2 id="Angular入门"><a href="#Angular入门" class="headerlink" title="Angular入门"></a>Angular入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
-<li>知识储备</li>
-<li>什么是Angular<ul>
-<li>快速构建Web应用程序</li>
-<li>单页面应用程序</li>
-</ul>
-</li>
-<li>Angular的特性</li>
-<li>为什么要用Angular<ul>
-<li>让Web应用程序开发更简单，更快捷</li>
-</ul>
-</li>
-<li>带领前端进入MV*的时代</li>
-</ul>
-<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><ul>
-<li>引用Angular<ul>
-<li>下载</li>
-<li>bower</li>
-<li>npm</li>
-</ul>
-</li>
-<li>基本使用</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/11/网页加载条/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/11/网页加载条/" itemprop="url">网页加载进度条与雪花效果</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-11T00:00:00+08:00">
-                2017-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网页效果/" itemprop="url" rel="index">
-                    <span itemprop="name">网页效果</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
-<li>引入库文件就行了<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&gt;&lt;/script&gt;
-&lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&gt;
-</code></pre>
-</li>
-</ul>
-<h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
-<li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
-<li>先引入js：<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-</li>
-<li>在合适的地方调用就行了 可以把图片换成其他的图片</li>
-</ol>
-<pre><code class="javascript">&lt;script&gt;
-    $(document).snowfall({deviceorientation : true, image: &quot;http://loktar00.github.io/JQuery-Snowfall/images/flake.png&quot;, minSize: 10, maxSize: 32, flakeCount: 60});
-&lt;/script&gt;
-</code></pre>
-<p> 其他效果以后更新或者在其他文章发布</p>
 
           
         
@@ -2435,152 +2874,6 @@ myinfo.html      -------------------- 展示个人信息视图
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/10/how-to-update-hexo-article/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/10/how-to-update-hexo-article/" itemprop="url">how to update hexo article</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-10T22:45:13+08:00">
-                2017-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo博客/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo博客</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><pre><code class="bash">$ hexo new &#39;文件名称&#39;
-</code></pre>
-<p>例如:</p>
-<pre><code class="bash">$ hexo new &#39;test&#39;
-</code></pre>
-<p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
-<p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
-<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><pre><code class="bash">$ hexo clean
-$ hexo generate
-(若要本地预览就先执行 hexo server)
-$ hexo deploy
-</code></pre>
-<p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2630,7 +2923,7 @@ $ hexo deploy
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2641,7 +2934,7 @@ $ hexo deploy
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2652,7 +2945,7 @@ $ hexo deploy
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

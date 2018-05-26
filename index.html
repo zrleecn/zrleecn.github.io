@@ -270,7 +270,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/SVN基本使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/26/Redis基本使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
@@ -289,7 +289,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/22/SVN基本使用/" itemprop="url">SVN 的基本使用</a></h1>
+                <a class="post-title-link" href="/2018/05/26/Redis基本使用/" itemprop="url">Redis缓存的基本使用</a></h1>
         
 
         <div class="post-meta">
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T00:00:00+08:00">
-                2018-05-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T00:00:00+08:00">
+                2018-05-26
               </time>
             
 
@@ -324,8 +324,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SVN/" itemprop="url" rel="index">
-                    <span itemprop="name">SVN</span>
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
                   </a>
                 </span>
 
@@ -360,52 +360,47 @@
       
         
           
-            <h2 id="简单说明"><a href="#简单说明" class="headerlink" title="简单说明"></a>简单说明</h2><p>① 多人开发同一个项目不会出现代码覆盖情况。<br>② 针对一个文件可以创建许多不同版本，并且可以随时查看不同版本的内容。<br>③ 公司领导可以通过svn查看每个人的工作情况</p>
-<h2 id="svn的安装"><a href="#svn的安装" class="headerlink" title="svn的安装"></a>svn的安装</h2><ul>
-<li>安装subversion</li>
-<li>安装TortoiseSVN<br>安装完成后可以进行重启操作，重启后会看到svn的状态图标</li>
+            <h2 id="什么是Redis"><a href="#什么是Redis" class="headerlink" title="什么是Redis"></a>什么是Redis</h2><p>Redis是Remote Dictionary Server(远程数据服务)的缩写</p>
+<p>同一个select 查询sql语句，每天需要被执行查询100万次，并且每次查询获得的数据还是一样的。为了减轻数据库的负载，就把查询好的数据给缓存起来(存储在内存中)，第一个用户执行从mysql中获得数据并存储到内存中，第二个 到 第100万次查询就直接从内存中获得数据。</p>
+<p>使用缓存减轻数据库的负载。数据库是整个网站资源的“瓶颈”。<br>在开发网站的时候如果有一些数据在短时间之内不会发生变化，而它们还要被频繁访问，为了提高用户的请求速度和降低网站的负载，就把这些数据放到一个读取速度更快的介质上(或者是通过较少的计算量就可以获得该数据) ，该行为就称作对该数据的缓存。</p>
+<p>该介质可以是文件、数据库、内存，内存介质经常用于数据缓存。</p>
+<h2 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h2><h3 id="Linux-安装方法"><a href="#Linux-安装方法" class="headerlink" title="Linux 安装方法"></a>Linux 安装方法</h3><p>准备材料：redis-2.6.14.tar.gz  或者使用其他的版本</p>
+<pre><code>tar zxvf redis-2.6.14.tar.gz
+cd redis2.6.14
+make
+</code></pre><p>make完成之后进入src目录 将redis-cli和redis-server 拷贝到工作目录里面 ，同时将redis.conf 也拷贝过去。</p>
+<pre><code class="shell">mkdir /usr/local/redis
+cp redis-cli redis-server /usr/local/redis
+cp ../redis.conf /usr/local/redis
+</code></pre>
+<h3 id="后台启动redis"><a href="#后台启动redis" class="headerlink" title="后台启动redis"></a>后台启动redis</h3><p>编辑redis.conf 将damonize no 改为yes</p>
+<pre><code>cd /usr/lcoal/redis
+vi ./redis.conf
+</code></pre><p> 将damonize no 改为yes即为后台启动<br> 启动服务</p>
+<pre><code>./redis-server redis.conf
+</code></pre><p>进入redis操作终端</p>
+<pre><code>./redis-cli
+</code></pre><h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><h3 id="key的操作"><a href="#key的操作" class="headerlink" title="key的操作"></a>key的操作</h3><p>在redis里边，除了”\n”和空格 不能作为名字的组成内容外，其他键盘可见内容都可以作为key的名字部分。名字长度不做要求。<br><img src="http://chuantu.biz/t6/319/1527339205x-1566688604.png" alt=""></p>
+<h3 id="String类型操作"><a href="#String类型操作" class="headerlink" title="String类型操作"></a>String类型操作</h3><p><img src="http://chuantu.biz/t6/319/1527339260x-1566688604.png" alt=""></p>
+<h3 id="数据类型List链表"><a href="#数据类型List链表" class="headerlink" title="数据类型List链表"></a>数据类型List链表</h3><p><img src="http://chuantu.biz/t6/319/1527339368x-1566688604.png" alt=""></p>
+<h3 id="set集合类型"><a href="#set集合类型" class="headerlink" title="set集合类型"></a>set集合类型</h3><p><img src="http://chuantu.biz/t6/319/1527339418x-1566688604.png" alt=""></p>
+<h3 id="Sort-Set排序集合类型"><a href="#Sort-Set排序集合类型" class="headerlink" title="Sort Set排序集合类型"></a>Sort Set排序集合类型</h3><p>list链表类型： 内部存储的元素有排序功能、会存在多个相同的元素。<br>Set集合类型： 元素没有排序功能、不存在多个相同元素</p>
+<p>该Sort Set是两种类型(list和set)的集中体现,称为排序集合类型。<br>Sort Set类型：元素有排序功能、不存在多个相同元素</p>
+<p>和set一样sorted set也是string类型元素的集合，./<br>不同的是每个元素都会关联一个权。<br>通过权/值可以有序的获取集合中的元素</p>
+<p>权：一个集合中多个元素做排序的标准。<br>值：元素的具体信息。</p>
+<h2 id="持久化功能"><a href="#持久化功能" class="headerlink" title="持久化功能"></a>持久化功能</h2><p>redis(nosql产品)为了内部数据的安全考虑，会把本身的数据以文件形式保存到硬盘中一份，在服务器重启之后会自动把硬盘的数据恢复到内存(redis)的里边。<br>数据保存到硬盘的过程就称为“持久化”效果。</p>
+<h3 id="1-snap-shotting快照持久化"><a href="#1-snap-shotting快照持久化" class="headerlink" title="1. snap shotting快照持久化"></a>1. snap shotting快照持久化</h3><p>该持久化默认开启，一次性把redis中全部的数据保存一份存储在硬盘中，如果数据非常多(10-20G)就不适合频繁进行该持久化操作。</p>
+<h4 id="1-1-手动发起快照持久化"><a href="#1-1-手动发起快照持久化" class="headerlink" title="1.1 手动发起快照持久化"></a>1.1 手动发起快照持久化</h4><pre><code>./redis-cli  [-h 主机名ip  -p 端口号码]  bgsave
+</code></pre><h3 id="2-append-only-file-（AOF持久化）"><a href="#2-append-only-file-（AOF持久化）" class="headerlink" title="2. append only file （AOF持久化）"></a>2. append only file （AOF持久化）</h3><p>本质：把用户执行的每个“写”指令(添加、修改、删除)都备份到文件中，还原数据的时候就是执行具体写指令而已(与mysql的备份还原类似)。</p>
+<h4 id="2-1开启aof持久化"><a href="#2-1开启aof持久化" class="headerlink" title="2.1开启aof持久化"></a>2.1开启aof持久化</h4><p>(第一次开启该aof持久化会清空redis的全部数据)：<br><img src="http://chuantu.biz/t6/319/1527339670x-1566688604.png" alt=""><br>为了修改的配置文件生效，需要重启服务：</p>
+<h4 id="2-2-该aof持久化备份频率"><a href="#2-2-该aof持久化备份频率" class="headerlink" title="2.2. 该aof持久化备份频率"></a>2.2. 该aof持久化备份频率</h4><ul>
+<li>appendfsync always   //每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用，【数据最安全，服务器性能最低】</li>
+<li>appendfsync everysec   //每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐 【数据相对安全，服务器性能折中】</li>
+<li>appendfsync no   //完全依赖 os，性能最好,持久化没保证<br>【数据安全性低，服务器性能最高】<h4 id="2-3-为aof备份文件做优化压缩处理"><a href="#2-3-为aof备份文件做优化压缩处理" class="headerlink" title="2.3 为aof备份文件做优化压缩处理"></a>2.3 为aof备份文件做优化压缩处理</h4></li>
 </ul>
-<h2 id="创建svn仓库"><a href="#创建svn仓库" class="headerlink" title="创建svn仓库"></a>创建svn仓库</h2><p>cmd 命令代码</p>
-<pre><code>svnadmin create f:/svnServer/app/shop
-</code></pre><p>这样就创建好了。<strong>前提是这个目录需要自己先创建好。</strong></p>
-<h2 id="启动仓库服务"><a href="#启动仓库服务" class="headerlink" title="启动仓库服务"></a>启动仓库服务</h2><p>svnserve  -d(独立端口运行)  -r(仓库地址)   仓库地址</p>
-<p>使用cmd命令行启动刚创建的shop仓库</p>
-<pre><code>svnserve  -d  -r  f:/svnServer/app/shop
-</code></pre><p>该svn服务走svn协议，端口号码是3690</p>
-<h2 id="客户端与仓库取得联系"><a href="#客户端与仓库取得联系" class="headerlink" title="客户端与仓库取得联系"></a>客户端与仓库取得联系</h2><p>本地目录右键 SVN Checkout<br>URL of repository svn地址，主机名 如svn://localhsot<br>Checkout diretory 是本地目录<br>确定</p>
-<p>但是现在是不能够连接的 因为还没配置 现在使用匿名方式<br>在仓库conf/svnserve.conf 设置成下面这样</p>
-<pre><code>anon-access = write (12行)
-</code></pre><p>然后再checkout就可以了</p>
-<h2 id="账号的设置"><a href="#账号的设置" class="headerlink" title="账号的设置"></a>账号的设置</h2><p>在仓库conf/svnserve.conf 修改</p>
-<pre><code>password-db = passwd
-authz-db = authz
-</code></pre><p>把他们前面的#去掉 注意前面不能有空格</p>
-<h3 id="设置账号"><a href="#设置账号" class="headerlink" title="设置账号"></a>设置账号</h3><p>在仓库conf/svnserve.conf 关闭匿名</p>
-<pre><code>anon-access = none
-</code></pre><p>在仓库conf/passwd 设置账号<br>在[users] 下面添加用户<br>例如：</p>
-<pre><code>zrlee = zrlee
-user1 = password
-</code></pre><h3 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h3><p>在仓库conf/authz 设置权限</p>
-<p>例如<br>[/] 对应主机地址svn：//loaclhost<br>[shop:/] 多个仓库之一地址 svn://localhsot/shop<br>r – 读<br>w – 写<br>*= 其他用户无权限<br>设置例子</p>
-<pre><code>[/]
-zrlee = rw 
-*=
-</code></pre><h3 id="一个组设置权限"><a href="#一个组设置权限" class="headerlink" title="一个组设置权限"></a>一个组设置权限</h3><p>在仓库conf/authz</p>
-<pre><code>[groups]
-php = php1,php2,php3
-[/]
-zrlee = rw 
-@php = rw    // 设置hp组的用户权限
-*=
-</code></pre><h2 id="设置开机启动服务"><a href="#设置开机启动服务" class="headerlink" title="设置开机启动服务"></a>设置开机启动服务</h2><p>(略过）</p>
-<h2 id="文件图标标志"><a href="#文件图标标志" class="headerlink" title="文件图标标志"></a>文件图标标志</h2><p>① 蓝色加号：本地的.svn对该文件有形成管理(远程仓库 还没有该文件记录)<br>② 绿色对号：本地文件、.svn管理的版本文件、仓库文件 三者内部一致<br>③ 红色叹号：本地文件  与  .svn和仓库文件 不一致(用户自己修改了该文件)<br>④ 黄色叹号：表示该文件正处于冲突状态<br>⑤ 蓝色问号：新建的一个文件，本地.svn 和 远程仓库 对该文件都没有记录</p>
-<h2 id="同时运行多个仓库"><a href="#同时运行多个仓库" class="headerlink" title="同时运行多个仓库"></a>同时运行多个仓库</h2><p>svnserve -r 目录写上级的目录即可</p>
-<h2 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h2><p>SVN的冲突：<br>广义角度的冲突：提交程序文件 本地版本号码 小于 仓库服务器版本号码.<br>狭义角度的冲突：多个程序员对同一个文件、同一处代码进行修改，在他们提交文件的时候会产生冲突。</p>
-<h3 id="大家修改的代码不在同一处"><a href="#大家修改的代码不在同一处" class="headerlink" title="大家修改的代码不在同一处"></a>大家修改的代码不在同一处</h3><p>解决：直接执行update操作，把仓库最新文件更新到本地，与本地文件做融合，之后继续提交给文件即可。</p>
-<p>把仓库最新的程序文件给update更新多本地，使得本地 和 仓库的号码保持一致，<br>仓库的文件更新到本地，会与本地的文件进行融合(非覆盖操作)，会把两个人的修改内容体现在一个文件中。</p>
-<h3 id="大家修改的代码在同一处-行"><a href="#大家修改的代码在同一处-行" class="headerlink" title="大家修改的代码在同一处(行)"></a>大家修改的代码在同一处(行)</h3><p>解决：先执行update更新操作，把本地冲突文件打开“稍作”调整，继续提交。</p>
-<h2 id="同一个文件的不同版本切换"><a href="#同一个文件的不同版本切换" class="headerlink" title="同一个文件的不同版本切换"></a>同一个文件的不同版本切换</h2><p>TortoiseSVN-Update to revision ..</p>
-
+<p>redis相关操作指令：<br><img src="http://chuantu.biz/t6/319/1527339816x-1566688604.png" alt=""></p>
+<h2 id="redis的主从模式"><a href="#redis的主从模式" class="headerlink" title="redis的主从模式"></a>redis的主从模式</h2><p>把原先一台redis服务器做的工作 现在交给多个服务器去完成，可以明显降低每台服务器的工作量。<br>为了降低每个redis服务器的负载，可以多设置几个，并做主从模式<br>一个redis服务器负载“写”(添加、修改、删除)数据，其他服务器负载“读”数据<br>主服务器数据会“自动”同步给从服务器<br><img src="http://chuantu.biz/t6/319/1527339905x-1566688604.png" alt=""><br>redis.conf配置文件修改后需要重启进程(杀掉旧进程，启动新进程)<br>此时就可以看到主服务器给从服务器自动同步的数据。<br><img src="http://chuantu.biz/t6/319/1527340048x-1566688604.png" alt=""></p>
+<h2 id="php与redis结合"><a href="#php与redis结合" class="headerlink" title="php与redis结合"></a>php与redis结合</h2><h3 id="1-安装php的redis扩展"><a href="#1-安装php的redis扩展" class="headerlink" title="1. 安装php的redis扩展"></a>1. 安装php的redis扩展</h3>
           
         
       
@@ -637,6 +632,184 @@ if ($_SESSION[&#39;gtserver&#39;] == 1) {   //服务器正常
     }
 }
 </code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/SVN基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/22/SVN基本使用/" itemprop="url">SVN 的基本使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T00:00:00+08:00">
+                2018-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SVN/" itemprop="url" rel="index">
+                    <span itemprop="name">SVN</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简单说明"><a href="#简单说明" class="headerlink" title="简单说明"></a>简单说明</h2><p>① 多人开发同一个项目不会出现代码覆盖情况。<br>② 针对一个文件可以创建许多不同版本，并且可以随时查看不同版本的内容。<br>③ 公司领导可以通过svn查看每个人的工作情况</p>
+<h2 id="svn的安装"><a href="#svn的安装" class="headerlink" title="svn的安装"></a>svn的安装</h2><ul>
+<li>安装subversion</li>
+<li>安装TortoiseSVN<br>安装完成后可以进行重启操作，重启后会看到svn的状态图标</li>
+</ul>
+<h2 id="创建svn仓库"><a href="#创建svn仓库" class="headerlink" title="创建svn仓库"></a>创建svn仓库</h2><p>cmd 命令代码</p>
+<pre><code>svnadmin create f:/svnServer/app/shop
+</code></pre><p>这样就创建好了。<strong>前提是这个目录需要自己先创建好。</strong></p>
+<h2 id="启动仓库服务"><a href="#启动仓库服务" class="headerlink" title="启动仓库服务"></a>启动仓库服务</h2><p>svnserve  -d(独立端口运行)  -r(仓库地址)   仓库地址</p>
+<p>使用cmd命令行启动刚创建的shop仓库</p>
+<pre><code>svnserve  -d  -r  f:/svnServer/app/shop
+</code></pre><p>该svn服务走svn协议，端口号码是3690</p>
+<h2 id="客户端与仓库取得联系"><a href="#客户端与仓库取得联系" class="headerlink" title="客户端与仓库取得联系"></a>客户端与仓库取得联系</h2><p>本地目录右键 SVN Checkout<br>URL of repository svn地址，主机名 如svn://localhsot<br>Checkout diretory 是本地目录<br>确定</p>
+<p>但是现在是不能够连接的 因为还没配置 现在使用匿名方式<br>在仓库conf/svnserve.conf 设置成下面这样</p>
+<pre><code>anon-access = write (12行)
+</code></pre><p>然后再checkout就可以了</p>
+<h2 id="账号的设置"><a href="#账号的设置" class="headerlink" title="账号的设置"></a>账号的设置</h2><p>在仓库conf/svnserve.conf 修改</p>
+<pre><code>password-db = passwd
+authz-db = authz
+</code></pre><p>把他们前面的#去掉 注意前面不能有空格</p>
+<h3 id="设置账号"><a href="#设置账号" class="headerlink" title="设置账号"></a>设置账号</h3><p>在仓库conf/svnserve.conf 关闭匿名</p>
+<pre><code>anon-access = none
+</code></pre><p>在仓库conf/passwd 设置账号<br>在[users] 下面添加用户<br>例如：</p>
+<pre><code>zrlee = zrlee
+user1 = password
+</code></pre><h3 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h3><p>在仓库conf/authz 设置权限</p>
+<p>例如<br>[/] 对应主机地址svn：//loaclhost<br>[shop:/] 多个仓库之一地址 svn://localhsot/shop<br>r – 读<br>w – 写<br>*= 其他用户无权限<br>设置例子</p>
+<pre><code>[/]
+zrlee = rw 
+*=
+</code></pre><h3 id="一个组设置权限"><a href="#一个组设置权限" class="headerlink" title="一个组设置权限"></a>一个组设置权限</h3><p>在仓库conf/authz</p>
+<pre><code>[groups]
+php = php1,php2,php3
+[/]
+zrlee = rw 
+@php = rw    // 设置hp组的用户权限
+*=
+</code></pre><h2 id="设置开机启动服务"><a href="#设置开机启动服务" class="headerlink" title="设置开机启动服务"></a>设置开机启动服务</h2><p>(略过）</p>
+<h2 id="文件图标标志"><a href="#文件图标标志" class="headerlink" title="文件图标标志"></a>文件图标标志</h2><p>① 蓝色加号：本地的.svn对该文件有形成管理(远程仓库 还没有该文件记录)<br>② 绿色对号：本地文件、.svn管理的版本文件、仓库文件 三者内部一致<br>③ 红色叹号：本地文件  与  .svn和仓库文件 不一致(用户自己修改了该文件)<br>④ 黄色叹号：表示该文件正处于冲突状态<br>⑤ 蓝色问号：新建的一个文件，本地.svn 和 远程仓库 对该文件都没有记录</p>
+<h2 id="同时运行多个仓库"><a href="#同时运行多个仓库" class="headerlink" title="同时运行多个仓库"></a>同时运行多个仓库</h2><p>svnserve -r 目录写上级的目录即可</p>
+<h2 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h2><p>SVN的冲突：<br>广义角度的冲突：提交程序文件 本地版本号码 小于 仓库服务器版本号码.<br>狭义角度的冲突：多个程序员对同一个文件、同一处代码进行修改，在他们提交文件的时候会产生冲突。</p>
+<h3 id="大家修改的代码不在同一处"><a href="#大家修改的代码不在同一处" class="headerlink" title="大家修改的代码不在同一处"></a>大家修改的代码不在同一处</h3><p>解决：直接执行update操作，把仓库最新文件更新到本地，与本地文件做融合，之后继续提交给文件即可。</p>
+<p>把仓库最新的程序文件给update更新多本地，使得本地 和 仓库的号码保持一致，<br>仓库的文件更新到本地，会与本地的文件进行融合(非覆盖操作)，会把两个人的修改内容体现在一个文件中。</p>
+<h3 id="大家修改的代码在同一处-行"><a href="#大家修改的代码在同一处-行" class="headerlink" title="大家修改的代码在同一处(行)"></a>大家修改的代码在同一处(行)</h3><p>解决：先执行update更新操作，把本地冲突文件打开“稍作”调整，继续提交。</p>
+<h2 id="同一个文件的不同版本切换"><a href="#同一个文件的不同版本切换" class="headerlink" title="同一个文件的不同版本切换"></a>同一个文件的不同版本切换</h2><p>TortoiseSVN-Update to revision ..</p>
+
           
         
       
@@ -1774,445 +1947,6 @@ foreach($result as $row) {
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/bootstrap常用的类/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/16/bootstrap常用的类/" itemprop="url">bootstrap3.x 学习大纲</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T00:00:00+08:00">
-                2017-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web前端框架/" itemprop="url" rel="index">
-                    <span itemprop="name">web前端框架</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>#学习大纲</p>
-<hr>
-<h2 id="css样式"><a href="#css样式" class="headerlink" title="css样式"></a>css样式</h2><ul>
-<li>栅格系统</li>
-<li>排版</li>
-<li>代码</li>
-<li>表格</li>
-<li>表单</li>
-<li>按钮</li>
-<li>图片</li>
-<li>辅助类</li>
-<li>响应式工具<h2 id="css组件"><a href="#css组件" class="headerlink" title="css组件"></a>css组件</h2></li>
-<li>glypicons图标</li>
-<li>下拉菜单</li>
-<li>按钮组</li>
-<li>输入框</li>
-<li>导航</li>
-<li>导航条</li>
-<li>路径导航</li>
-<li>分页</li>
-<li>标签</li>
-<li>微章</li>
-<li>巨幕</li>
-<li>页头</li>
-<li>缩略图</li>
-<li>警告框</li>
-<li>进图条</li>
-<li>媒体对象</li>
-<li>列表组</li>
-<li>面板</li>
-<li>响应式嵌入式内容<br>well<h2 id="js插件"><a href="#js插件" class="headerlink" title="js插件"></a>js插件</h2></li>
-<li>模态框</li>
-<li>下拉菜单</li>
-<li>滚动监听</li>
-<li>标签页</li>
-<li>工具提示</li>
-<li>弹出框</li>
-<li>警告框</li>
-<li>按钮</li>
-<li>折叠效果</li>
-<li>幻灯片效果</li>
-<li>固定左侧边栏</li>
-</ul>
-<h1 id="常用的类"><a href="#常用的类" class="headerlink" title="常用的类"></a>常用的类</h1><h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><pre><code class="css">    .container
-</code></pre>
-<h2 id="栅格系统"><a href="#栅格系统" class="headerlink" title="栅格系统"></a>栅格系统</h2><pre><code>分为12个格子
-</code></pre><h2 id="排版"><a href="#排版" class="headerlink" title="排版"></a>排版</h2><ul>
-<li><p>标题 </p>
-<pre><code class="css">    .page-header
-</code></pre>
-</li>
-<li><p>段落 </p>
-<pre><code>.lead
-</code></pre></li>
-<li><p>.mark标记</p>
-</li>
-<li><p>.del删除线标记</p>
-</li>
-<li><p>.samll小号字体标记</p>
-<h2 id="文本对齐"><a href="#文本对齐" class="headerlink" title="文本对齐"></a>文本对齐</h2><pre><code class="css">    .text-left
-    .text-center
-    .text-right
-</code></pre>
-</li>
-</ul>
-<h2 id="文本大小写"><a href="#文本大小写" class="headerlink" title="文本大小写"></a>文本大小写</h2><pre><code class="css">        .text-lowercase
-        .text-uppercase
-        .text-captialize 首字母大写
-</code></pre>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><pre><code class="css">        .list-unstyled
-</code></pre>
-<ul>
-<li>内联列表<pre><code class="css">   .list-inline
-</code></pre>
-</li>
-<li>自定义列表</li>
-<li>水平排列列表</li>
-</ul>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code class="html">    code 标记
-    pre 标记
-    kbd 标记
-</code></pre>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><pre><code class="css">    .table
-    .table-striped 不同颜色 斑马线
-    .table-bordered 
-    .table-hover
-    .table-responsive ##
-</code></pre>
-<p>响应式表格table外面的div的类</p>
-<pre><code class="css">        表格状态类（颜色）
-        .active    鼠标悬停在行或单元格上时所设置的颜色
-        .success    标识成功或积极的动作
-        .info    标识普通的提示信息或动作
-        .warning    标识警告或需要用户注意
-        .danger    标识危险或潜在的带来负面影响的动作
-</code></pre>
-<h2 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h2><pre><code class="css">    .btn
-    .btn-default
-    .btn-primary
-    .btn-succedd
-    .btn-info
-    .btn-success
-    .btn-warning
-    .btn-danger
-    .btn-lg 大按钮
-    .btn-sm
-    .btn-xs
-    .btn-block 快元素按钮
-    disabled属性 禁止按钮
-</code></pre>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><pre><code class="css">    .img-circle 圆形
-    .img-rounded 圆角
-</code></pre>
-<h2 id="辅助类"><a href="#辅助类" class="headerlink" title="辅助类"></a>辅助类</h2><ul>
-<li>文本颜色<pre><code class="css">      .text-mutexd
-       .text-primary
-       .text-success
-       .text-info
-       .text-warning
-       .text-danger
-</code></pre>
-</li>
-<li>背景颜色 (和文本差不多)<pre><code class="css">       .bg-primary
-       .....
-</code></pre>
-</li>
-<li>关闭按钮<pre><code class="css">       .close
-       &lt;span class=&#39;close&#39;&gt;&amp;times;&lt;/span&gt;
-</code></pre>
-</li>
-<li>三角形</li>
-</ul>
-<pre><code>         .caret
-</code></pre><ul>
-<li>浮动</li>
-</ul>
-<pre><code class="css">        .pull-left
-         .pull-right
-</code></pre>
-<ul>
-<li>清浮动</li>
-</ul>
-<pre><code class="css">.clearfix
-</code></pre>
-<ul>
-<li>隐藏显示<pre><code class="css">       .hide
-       .show
-</code></pre>
-</li>
-<li>块居中<pre><code class="css">       .center-block
-</code></pre>
-</li>
-</ul>
-<h2 id="glyphicons图标"><a href="#glyphicons图标" class="headerlink" title="glyphicons图标"></a>glyphicons图标</h2><pre><code class="css">    .glyphicon
-    .glyphicon-xxx
-</code></pre>
-<h2 id="下拉菜单"><a href="#下拉菜单" class="headerlink" title="下拉菜单"></a>下拉菜单</h2><pre><code class="css">    .dropdown
-    .dropdown-toggle
-    data-toggle=&#39;dropdown&#39;
-    .dropdown-menu
-    .divider  //分割线
-    .dropdown-header   //标题
-</code></pre>
-<ul>
-<li>例子</li>
-</ul>
-<pre><code class="html">&lt;div class=&quot;dropdown&quot;&gt;
-        &lt;div class=&quot;btn btn-success dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;
-            更多
-            &lt;span class=&#39;caret&#39;&gt;&lt;/span&gt;
-        &lt;/div&gt;
-        &lt;ul class=&quot;dropdown-menu list-unstyled&quot;&gt;
-            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
-            &lt;li class=&quot;divider&quot;&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a&gt;resume.zrlee.cn&lt;/a&gt;&lt;/li&gt;
-
-        &lt;/ul&gt;
-    &lt;/div&gt;
-</code></pre>
-<h2 id="按钮组"><a href="#按钮组" class="headerlink" title="按钮组"></a>按钮组</h2><pre><code class="css">    .btn-group
-</code></pre>
-<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><pre><code class="css">    .form-group
-    .form-inline
-    .form-control 
-    .input-group
-    .input-group-addon
-    .input-group-btn
-</code></pre>
-<h2 id="表单-1"><a href="#表单-1" class="headerlink" title="表单"></a>表单</h2><pre><code>.form-inline
-.form-horizontal 标签需要加control-lable类
-select也可以加form-control类
-.has-success
-.has-warning
-.has-error
-.has-feedback  //嵌入图标 form-group标签需要加上.has-feedback
-.help-block 下面提示文字&lt;p&gt;
-</code></pre><h1 id="导航"><a href="#导航" class="headerlink" title="导航]"></a>导航]</h1><h2 id="标签页导航"><a href="#标签页导航" class="headerlink" title="标签页导航"></a>标签页导航</h2><pre><code>.nav .nav-tabs
-</code></pre><h2 id="胶囊式标签页"><a href="#胶囊式标签页" class="headerlink" title="胶囊式标签页"></a>胶囊式标签页</h2><pre><code>.nav-pills
-.active 选中
-</code></pre><h2 id="导航条"><a href="#导航条" class="headerlink" title="导航条"></a>导航条</h2><pre><code class="css">    .navbar 
-    .navbar-default
-    .navbar-fixed-top
-    .navbar-header
-    .navbar-default
-    .narbar-inverse
-    .navbar-brand
-    .navbar-form
-    .navbar-text
-    .navbar-left/right
-    .navbar-link
-    .collapsed
-    data-target=
-    data-toggle=
-    .icon-bar
-    .collapse
-    .navbar-collapse
-</code></pre>
-<h2 id="路径导航"><a href="#路径导航" class="headerlink" title="路径导航"></a>路径导航</h2><pre><code>.breadcrumb
-</code></pre><h2 id="分页效果"><a href="#分页效果" class="headerlink" title="分页效果"></a>分页效果</h2><pre><code>.pagination
-</code></pre><h1 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h1><pre><code>.label
-.label-default
-.label-primary ....
-</code></pre><h1 id="徽章"><a href="#徽章" class="headerlink" title="徽章"></a>徽章</h1><pre><code>.badge
-</code></pre><h1 id="巨幕"><a href="#巨幕" class="headerlink" title="巨幕"></a>巨幕</h1><pre><code>.jumbotron
-</code></pre><h1 id="缩略图"><a href="#缩略图" class="headerlink" title="缩略图"></a>缩略图</h1><pre><code class="css">    .thumbnail
-
-    警告框
-    .alert
-    .alert-waining
-    .alert-dismissible  //点击关闭按钮隐藏
-    .alert-danger .....
-    .close data-dismiss=&quot;alert&quot;
-    .alert-link 连接
-    进度条
-    .progress
-    .progress-bar
-    .progress-bar-primary
-    .progress-striped
-    .active 进度条有动画
-    媒体对象
-    .media 
-    .media-left
-    .media-bottom
-    .media-heading
-    .media-body
-    .media-object
-    .media-list
-</code></pre>
-<pre><code>列表组
-.list-group
-.list-group-item
-.list-group-item-primary    
-</code></pre><hr>
-<pre><code>    11.html
-</code></pre><hr>
-<pre><code>面版
-.panel
-.pa
-具有响应式特性的嵌入内容
-.embed-responsive 
-.embed-responsive-16by9
-.embed-responsive-item
-</code></pre><p>js插件</p>
-<hr>
-<pre><code>    12.html
-</code></pre><hr>
-<p>1.模态框</p>
-<pre><code class="css">    .modal
-    .fade
-    .modal-dialog
-    .modal.content
-    .modal-header
-    .modal-title
-    .modal-body
-    .modal-footer
-    data-toggle=&#39;modal&#39;
-    data-dismiss =&#39;modal&#39;
-</code></pre>
-<hr>
-<pre><code>    13.html
-</code></pre><hr>
-<p>2.滚动监听<br>    data-spy=’scroll’<br>     data-target=’#mynav’<br>      data-offset=’150’</p>
-<hr>
-<pre><code>    14.html
-</code></pre><hr>
-<p>3标签页<br>    .nav<br>    .nav-tabs<br>    .active<br>    data-toggle=’tab’<br>    href=’#id’<br>    .tab-content<br>    .tab-pane<br>    .fade<br>    .in<br>4.提示工具</p>
-<p>5.轮播</p>
-<hr>
-<pre><code>    15.html
-</code></pre><hr>
-<pre><code>.carousel   //最外面
-.slide         //最外面
-.carousel-inner  //放图片的大容器
-.item  //其中一项图片容器
-.active
-.carousel-indicators  //指示灯
-.left   //左控制按钮
-.carousel-control
-.right
-data-ride=&#39;carousel&#39;
-data-slide-to=&quot;0&quot; 1 2 3 4
-data-slide=&#39;prev&#39; 
-data-slide=&#39;next&#39;
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/主流框架第四天/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2387,7 +2121,7 @@ data-slide=&#39;next&#39;
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2398,7 +2132,7 @@ data-slide=&#39;next&#39;
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2409,7 +2143,7 @@ data-slide=&#39;next&#39;
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

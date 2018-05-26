@@ -1,0 +1,857 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="redis," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://resume.zrlee.cn/img/me.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="什么是RedisRedis是Remote Dictionary Server(远程数据服务)的缩写 同一个select 查询sql语句，每天需要被执行查询100万次，并且每次查询获得的数据还是一样的。为了减轻数据库的负载，就把查询好的数据给缓存起来(存储在内存中)，第一个用户执行从mysql中获得数据并存储到内存中，第二个 到 第100万次查询就直接从内存中获得数据。 使用缓存减轻数据库的负载。数">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis缓存的基本使用">
+<meta property="og:url" content="http://yoursite.com/2018/05/26/Redis基本使用/index.html">
+<meta property="og:site_name" content="resume.zrlee.cn">
+<meta property="og:description" content="什么是RedisRedis是Remote Dictionary Server(远程数据服务)的缩写 同一个select 查询sql语句，每天需要被执行查询100万次，并且每次查询获得的数据还是一样的。为了减轻数据库的负载，就把查询好的数据给缓存起来(存储在内存中)，第一个用户执行从mysql中获得数据并存储到内存中，第二个 到 第100万次查询就直接从内存中获得数据。 使用缓存减轻数据库的负载。数">
+<meta property="og:image" content="http://chuantu.biz/t6/319/1527339205x-1566688604.png">
+<meta property="og:image" content="http://chuantu.biz/t6/319/1527339260x-1566688604.png">
+<meta property="og:image" content="http://chuantu.biz/t6/319/1527339368x-1566688604.png">
+<meta property="og:image" content="http://chuantu.biz/t6/319/1527339418x-1566688604.png">
+<meta property="og:image" content="http://chuantu.biz/t6/319/1527339670x-1566688604.png">
+<meta property="og:image" content="http://chuantu.biz/t6/319/1527339816x-1566688604.png">
+<meta property="og:image" content="http://chuantu.biz/t6/319/1527339905x-1566688604.png">
+<meta property="og:image" content="http://chuantu.biz/t6/319/1527340048x-1566688604.png">
+<meta property="og:updated_time" content="2018-05-26T13:11:53.009Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis缓存的基本使用">
+<meta name="twitter:description" content="什么是RedisRedis是Remote Dictionary Server(远程数据服务)的缩写 同一个select 查询sql语句，每天需要被执行查询100万次，并且每次查询获得的数据还是一样的。为了减轻数据库的负载，就把查询好的数据给缓存起来(存储在内存中)，第一个用户执行从mysql中获得数据并存储到内存中，第二个 到 第100万次查询就直接从内存中获得数据。 使用缓存减轻数据库的负载。数">
+<meta name="twitter:image" content="http://chuantu.biz/t6/319/1527339205x-1566688604.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/26/Redis基本使用/"/>
+
+
+
+
+
+  <title>Redis缓存的基本使用 | resume.zrlee.cn</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">resume.zrlee.cn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/26/Redis基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redis缓存的基本使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T00:00:00+08:00">
+                2018-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/redis/" itemprop="url" rel="index">
+                    <span itemprop="name">redis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是Redis"><a href="#什么是Redis" class="headerlink" title="什么是Redis"></a>什么是Redis</h2><p>Redis是Remote Dictionary Server(远程数据服务)的缩写</p>
+<p>同一个select 查询sql语句，每天需要被执行查询100万次，并且每次查询获得的数据还是一样的。为了减轻数据库的负载，就把查询好的数据给缓存起来(存储在内存中)，第一个用户执行从mysql中获得数据并存储到内存中，第二个 到 第100万次查询就直接从内存中获得数据。</p>
+<p>使用缓存减轻数据库的负载。数据库是整个网站资源的“瓶颈”。<br>在开发网站的时候如果有一些数据在短时间之内不会发生变化，而它们还要被频繁访问，为了提高用户的请求速度和降低网站的负载，就把这些数据放到一个读取速度更快的介质上(或者是通过较少的计算量就可以获得该数据) ，该行为就称作对该数据的缓存。</p>
+<p>该介质可以是文件、数据库、内存，内存介质经常用于数据缓存。</p>
+<h2 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h2><h3 id="Linux-安装方法"><a href="#Linux-安装方法" class="headerlink" title="Linux 安装方法"></a>Linux 安装方法</h3><p>准备材料：redis-2.6.14.tar.gz  或者使用其他的版本</p>
+<pre><code>tar zxvf redis-2.6.14.tar.gz
+cd redis2.6.14
+make
+</code></pre><p>make完成之后进入src目录 将redis-cli和redis-server 拷贝到工作目录里面 ，同时将redis.conf 也拷贝过去。</p>
+<pre><code class="shell">mkdir /usr/local/redis
+cp redis-cli redis-server /usr/local/redis
+cp ../redis.conf /usr/local/redis
+</code></pre>
+<h3 id="后台启动redis"><a href="#后台启动redis" class="headerlink" title="后台启动redis"></a>后台启动redis</h3><p>编辑redis.conf 将damonize no 改为yes</p>
+<pre><code>cd /usr/lcoal/redis
+vi ./redis.conf
+</code></pre><p> 将damonize no 改为yes即为后台启动<br> 启动服务</p>
+<pre><code>./redis-server redis.conf
+</code></pre><p>进入redis操作终端</p>
+<pre><code>./redis-cli
+</code></pre><h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><h3 id="key的操作"><a href="#key的操作" class="headerlink" title="key的操作"></a>key的操作</h3><p>在redis里边，除了”\n”和空格 不能作为名字的组成内容外，其他键盘可见内容都可以作为key的名字部分。名字长度不做要求。<br><img src="http://chuantu.biz/t6/319/1527339205x-1566688604.png" alt=""></p>
+<h3 id="String类型操作"><a href="#String类型操作" class="headerlink" title="String类型操作"></a>String类型操作</h3><p><img src="http://chuantu.biz/t6/319/1527339260x-1566688604.png" alt=""></p>
+<h3 id="数据类型List链表"><a href="#数据类型List链表" class="headerlink" title="数据类型List链表"></a>数据类型List链表</h3><p><img src="http://chuantu.biz/t6/319/1527339368x-1566688604.png" alt=""></p>
+<h3 id="set集合类型"><a href="#set集合类型" class="headerlink" title="set集合类型"></a>set集合类型</h3><p><img src="http://chuantu.biz/t6/319/1527339418x-1566688604.png" alt=""></p>
+<h3 id="Sort-Set排序集合类型"><a href="#Sort-Set排序集合类型" class="headerlink" title="Sort Set排序集合类型"></a>Sort Set排序集合类型</h3><p>list链表类型： 内部存储的元素有排序功能、会存在多个相同的元素。<br>Set集合类型： 元素没有排序功能、不存在多个相同元素</p>
+<p>该Sort Set是两种类型(list和set)的集中体现,称为排序集合类型。<br>Sort Set类型：元素有排序功能、不存在多个相同元素</p>
+<p>和set一样sorted set也是string类型元素的集合，./<br>不同的是每个元素都会关联一个权。<br>通过权/值可以有序的获取集合中的元素</p>
+<p>权：一个集合中多个元素做排序的标准。<br>值：元素的具体信息。</p>
+<h2 id="持久化功能"><a href="#持久化功能" class="headerlink" title="持久化功能"></a>持久化功能</h2><p>redis(nosql产品)为了内部数据的安全考虑，会把本身的数据以文件形式保存到硬盘中一份，在服务器重启之后会自动把硬盘的数据恢复到内存(redis)的里边。<br>数据保存到硬盘的过程就称为“持久化”效果。</p>
+<h3 id="1-snap-shotting快照持久化"><a href="#1-snap-shotting快照持久化" class="headerlink" title="1. snap shotting快照持久化"></a>1. snap shotting快照持久化</h3><p>该持久化默认开启，一次性把redis中全部的数据保存一份存储在硬盘中，如果数据非常多(10-20G)就不适合频繁进行该持久化操作。</p>
+<h4 id="1-1-手动发起快照持久化"><a href="#1-1-手动发起快照持久化" class="headerlink" title="1.1 手动发起快照持久化"></a>1.1 手动发起快照持久化</h4><pre><code>./redis-cli  [-h 主机名ip  -p 端口号码]  bgsave
+</code></pre><h3 id="2-append-only-file-（AOF持久化）"><a href="#2-append-only-file-（AOF持久化）" class="headerlink" title="2. append only file （AOF持久化）"></a>2. append only file （AOF持久化）</h3><p>本质：把用户执行的每个“写”指令(添加、修改、删除)都备份到文件中，还原数据的时候就是执行具体写指令而已(与mysql的备份还原类似)。</p>
+<h4 id="2-1开启aof持久化"><a href="#2-1开启aof持久化" class="headerlink" title="2.1开启aof持久化"></a>2.1开启aof持久化</h4><p>(第一次开启该aof持久化会清空redis的全部数据)：<br><img src="http://chuantu.biz/t6/319/1527339670x-1566688604.png" alt=""><br>为了修改的配置文件生效，需要重启服务：</p>
+<h4 id="2-2-该aof持久化备份频率"><a href="#2-2-该aof持久化备份频率" class="headerlink" title="2.2. 该aof持久化备份频率"></a>2.2. 该aof持久化备份频率</h4><ul>
+<li>appendfsync always   //每次收到写命令就立即强制写入磁盘，最慢的，但是保证完全的持久化，不推荐使用，【数据最安全，服务器性能最低】</li>
+<li>appendfsync everysec   //每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐 【数据相对安全，服务器性能折中】</li>
+<li>appendfsync no   //完全依赖 os，性能最好,持久化没保证<br>【数据安全性低，服务器性能最高】<h4 id="2-3-为aof备份文件做优化压缩处理"><a href="#2-3-为aof备份文件做优化压缩处理" class="headerlink" title="2.3 为aof备份文件做优化压缩处理"></a>2.3 为aof备份文件做优化压缩处理</h4></li>
+</ul>
+<p>redis相关操作指令：<br><img src="http://chuantu.biz/t6/319/1527339816x-1566688604.png" alt=""></p>
+<h2 id="redis的主从模式"><a href="#redis的主从模式" class="headerlink" title="redis的主从模式"></a>redis的主从模式</h2><p>把原先一台redis服务器做的工作 现在交给多个服务器去完成，可以明显降低每台服务器的工作量。<br>为了降低每个redis服务器的负载，可以多设置几个，并做主从模式<br>一个redis服务器负载“写”(添加、修改、删除)数据，其他服务器负载“读”数据<br>主服务器数据会“自动”同步给从服务器<br><img src="http://chuantu.biz/t6/319/1527339905x-1566688604.png" alt=""><br>redis.conf配置文件修改后需要重启进程(杀掉旧进程，启动新进程)<br>此时就可以看到主服务器给从服务器自动同步的数据。<br><img src="http://chuantu.biz/t6/319/1527340048x-1566688604.png" alt=""></p>
+<h2 id="php与redis结合"><a href="#php与redis结合" class="headerlink" title="php与redis结合"></a>php与redis结合</h2><h3 id="1-安装php的redis扩展"><a href="#1-安装php的redis扩展" class="headerlink" title="1. 安装php的redis扩展"></a>1. 安装php的redis扩展</h3>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/22/geetest使用/" rel="next" title="geettest滑块验证码使用完整教程(PHP)">
+                <i class="fa fa-chevron-left"></i> geettest滑块验证码使用完整教程(PHP)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wx.zrlee.cn/image/me.png"
+               alt="zrlee" />
+          <p class="site-author-name" itemprop="name">zrlee</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zrleecn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微信">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  微信
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/zrleecn" title="Github" target="_blank">Github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://zrleecn.github.io/" title="Blog" target="_blank">Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://resume.zrlee.cn" title="Resume" target="_blank">Resume</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Redis"><span class="nav-number">1.</span> <span class="nav-text">什么是Redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装redis"><span class="nav-number">2.</span> <span class="nav-text">安装redis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-安装方法"><span class="nav-number">2.1.</span> <span class="nav-text">Linux 安装方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后台启动redis"><span class="nav-number">2.2.</span> <span class="nav-text">后台启动redis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单使用"><span class="nav-number">3.</span> <span class="nav-text">简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#key的操作"><span class="nav-number">3.1.</span> <span class="nav-text">key的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String类型操作"><span class="nav-number">3.2.</span> <span class="nav-text">String类型操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型List链表"><span class="nav-number">3.3.</span> <span class="nav-text">数据类型List链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set集合类型"><span class="nav-number">3.4.</span> <span class="nav-text">set集合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sort-Set排序集合类型"><span class="nav-number">3.5.</span> <span class="nav-text">Sort Set排序集合类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化功能"><span class="nav-number">4.</span> <span class="nav-text">持久化功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-snap-shotting快照持久化"><span class="nav-number">4.1.</span> <span class="nav-text">1. snap shotting快照持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-手动发起快照持久化"><span class="nav-number">4.1.1.</span> <span class="nav-text">1.1 手动发起快照持久化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-append-only-file-（AOF持久化）"><span class="nav-number">4.2.</span> <span class="nav-text">2. append only file （AOF持久化）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1开启aof持久化"><span class="nav-number">4.2.1.</span> <span class="nav-text">2.1开启aof持久化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-该aof持久化备份频率"><span class="nav-number">4.2.2.</span> <span class="nav-text">2.2. 该aof持久化备份频率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-为aof备份文件做优化压缩处理"><span class="nav-number">4.2.3.</span> <span class="nav-text">2.3 为aof备份文件做优化压缩处理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis的主从模式"><span class="nav-number">5.</span> <span class="nav-text">redis的主从模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php与redis结合"><span class="nav-number">6.</span> <span class="nav-text">php与redis结合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装php的redis扩展"><span class="nav-number">6.1.</span> <span class="nav-text">1. 安装php的redis扩展</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zrlee</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script>
+	
+		hljs.initHighlightingOnLoad();
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
+
+
+</script>
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
