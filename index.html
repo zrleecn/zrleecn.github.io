@@ -794,6 +794,195 @@ print(emps.find_one({&quot;name&quot;:&quot;zrlee&quot;}))
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/mongodb_install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/03/mongodb_install/" itemprop="url">MongoDB的安装与配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+00:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-MongoDB的安装与配置"><a href="#1-MongoDB的安装与配置" class="headerlink" title="1.MongoDB的安装与配置"></a>1.MongoDB的安装与配置</h1><p>下载地址：<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="external">https://www.mongodb.com/download-center#community</a><br>下载完安装包，并解压 tgz（以下演示的是 64 位 Linux上的安装） 。<br>下面以 ubuntu为例</p>
+<ul>
+<li>解压 <pre><code>tar -zxvf mongodb-linux-x86_64-4.0.2.tgz
+</code></pre></li>
+</ul>
+<ul>
+<li>移动到/usr/local/目录下<pre><code>sudo mv -r mongodb-linux-x86_64-ubuntu1604-4.0.2/ /usr/local/mongodb
+</code></pre></li>
+<li>将可执行文件添加到PATH路径中<pre><code>export PATH=/usr/local/mongodb/bin:$PATH
+</code></pre>创建数据库目录<br>MongoDB的数据存储在data目录的db目录下，但是这个目录在安装过程不会自动创建，所以你需要手动创建data目录，并在data目录中创建db目录。<br>注意：/data/db 是 MongoDB 默认的启动的数据库路径(–dbpath)。</li>
+</ul>
+<pre><code class="shell">sudo mkdir /data/db
+cd /data
+sudo chmod -R 777 db
+</code></pre>
+<h1 id="2-管理mongo"><a href="#2-管理mongo" class="headerlink" title="2.管理mongo"></a>2.管理mongo</h1><ul>
+<li>默认端口27017</li>
+<li>启动<br>进入mongodb的bin目录（我的是/usr/local/mongodb/bin）<pre><code>./mongod
+</code></pre></li>
+<li>关闭<pre><code>./mongod --shutdown
+</code></pre></li>
+</ul>
+<p>另外还可以使用配置文件启动mongodb</p>
+<ul>
+<li>创建配置文件<pre><code>sudo mkdir /etc/mongodb/mongod.conf
+</code></pre></li>
+<li><p>创建日志文件</p>
+<pre><code>sudo mkdir /etc/mongodb/mongod.log
+</code></pre><blockquote>
+<p>以上的路径按照自己喜欢创建</p>
+</blockquote>
+</li>
+<li><p>编辑配置文件</p>
+</li>
+</ul>
+<pre><code># 配置日志文件路径
+logpath = /etc/mongodb/mongod.log
+# 日志追加
+logappend = true
+# 数据库目录
+dbpath = /data/db
+# 以守护进程启动
+fork = true
+</code></pre><ul>
+<li><p>配置文件启动方式</p>
+<pre><code>./mongod -f /etc/mongodb/mongod.conf
+</code></pre></li>
+<li><p>查看进程</p>
+<pre><code>ps -el | grep mongodb
+</code></pre></li>
+<li><p>MongoDB后台管理 Shell<br>如果你需要进入MongoDB后台管理，你需要先打开mongodb装目录的下的bin目录，然后执行mongo命令文件。</p>
+</li>
+</ul>
+<p>MongoDB Shell是MongoDB自带的交互式Javascript shell,用来对MongoDB进行操作和管理的交互式环境。</p>
+<pre><code>cd /usr/local/mongodb/bin
+./mongo
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/mongodb_base/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1426,195 +1615,6 @@ db.depts.insert({&quot;dname&quot;:&quot;技术部&quot;,&quot;bus&quot;:[&quot;
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/mongodb_install/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/03/mongodb_install/" itemprop="url">MongoDB的安装与配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+00:00">
-                2018-10-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">mongodb</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="1-MongoDB的安装与配置"><a href="#1-MongoDB的安装与配置" class="headerlink" title="1.MongoDB的安装与配置"></a>1.MongoDB的安装与配置</h1><p>下载地址：<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="external">https://www.mongodb.com/download-center#community</a><br>下载完安装包，并解压 tgz（以下演示的是 64 位 Linux上的安装） 。<br>下面以 ubuntu为例</p>
-<ul>
-<li>解压 <pre><code>tar -zxvf mongodb-linux-x86_64-4.0.2.tgz
-</code></pre></li>
-</ul>
-<ul>
-<li>移动到/usr/local/目录下<pre><code>sudo mv -r mongodb-linux-x86_64-ubuntu1604-4.0.2/ /usr/local/mongodb
-</code></pre></li>
-<li>将可执行文件添加到PATH路径中<pre><code>export PATH=/usr/local/mongodb/bin:$PATH
-</code></pre>创建数据库目录<br>MongoDB的数据存储在data目录的db目录下，但是这个目录在安装过程不会自动创建，所以你需要手动创建data目录，并在data目录中创建db目录。<br>注意：/data/db 是 MongoDB 默认的启动的数据库路径(–dbpath)。</li>
-</ul>
-<pre><code class="shell">sudo mkdir /data/db
-cd /data
-sudo chmod -R 777 db
-</code></pre>
-<h1 id="2-管理mongo"><a href="#2-管理mongo" class="headerlink" title="2.管理mongo"></a>2.管理mongo</h1><ul>
-<li>默认端口27017</li>
-<li>启动<br>进入mongodb的bin目录（我的是/usr/local/mongodb/bin）<pre><code>./mongod
-</code></pre></li>
-<li>关闭<pre><code>./mongod --shutdown
-</code></pre></li>
-</ul>
-<p>另外还可以使用配置文件启动mongodb</p>
-<ul>
-<li>创建配置文件<pre><code>sudo mkdir /etc/mongodb/mongod.conf
-</code></pre></li>
-<li><p>创建日志文件</p>
-<pre><code>sudo mkdir /etc/mongodb/mongod.log
-</code></pre><blockquote>
-<p>以上的路径按照自己喜欢创建</p>
-</blockquote>
-</li>
-<li><p>编辑配置文件</p>
-</li>
-</ul>
-<pre><code># 配置日志文件路径
-logpath = /etc/mongodb/mongod.log
-# 日志追加
-logappend = true
-# 数据库目录
-dbpath = /data/db
-# 以守护进程启动
-fork = true
-</code></pre><ul>
-<li><p>配置文件启动方式</p>
-<pre><code>./mongod -f /etc/mongodb/mongod.conf
-</code></pre></li>
-<li><p>查看进程</p>
-<pre><code>ps -el | grep mongodb
-</code></pre></li>
-<li><p>MongoDB后台管理 Shell<br>如果你需要进入MongoDB后台管理，你需要先打开mongodb装目录的下的bin目录，然后执行mongo命令文件。</p>
-</li>
-</ul>
-<p>MongoDB Shell是MongoDB自带的交互式Javascript shell,用来对MongoDB进行操作和管理的交互式环境。</p>
-<pre><code>cd /usr/local/mongodb/bin
-./mongo
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/21/ubuntu_svn_use/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1934,7 +1934,7 @@ setup(name=&quot;zrlee_test_module&quot;, version=&quot;1.0&quot;, description=&
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/Redis基本使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/26/Redis基本使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
@@ -1953,7 +1953,7 @@ setup(name=&quot;zrlee_test_module&quot;, version=&quot;1.0&quot;, description=&
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/25/Redis基本使用/" itemprop="url">Redis缓存的基本使用</a></h1>
+                <a class="post-title-link" href="/2018/05/26/Redis基本使用/" itemprop="url">Redis缓存的基本使用</a></h1>
         
 
         <div class="post-meta">
@@ -1965,8 +1965,8 @@ setup(name=&quot;zrlee_test_module&quot;, version=&quot;1.0&quot;, description=&
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T16:00:00+00:00">
-                2018-05-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T00:00:00+00:00">
+                2018-05-26
               </time>
             
 
@@ -2107,7 +2107,7 @@ vi ./redis.conf
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/geetest使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/geetest使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
@@ -2126,7 +2126,7 @@ vi ./redis.conf
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/21/geetest使用/" itemprop="url">geettest滑块验证码使用完整教程(PHP)</a></h1>
+                <a class="post-title-link" href="/2018/05/22/geetest使用/" itemprop="url">geettest滑块验证码使用完整教程(PHP)</a></h1>
         
 
         <div class="post-meta">
@@ -2138,8 +2138,8 @@ vi ./redis.conf
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T16:00:00+00:00">
-                2018-05-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T00:00:00+00:00">
+                2018-05-22
               </time>
             
 
@@ -2338,7 +2338,7 @@ if ($_SESSION[&#39;gtserver&#39;] == 1) {   //服务器正常
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/SVN基本使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/SVN基本使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
@@ -2357,7 +2357,7 @@ if ($_SESSION[&#39;gtserver&#39;] == 1) {   //服务器正常
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/21/SVN基本使用/" itemprop="url">SVN 的基本使用</a></h1>
+                <a class="post-title-link" href="/2018/05/22/SVN基本使用/" itemprop="url">SVN 的基本使用</a></h1>
         
 
         <div class="post-meta">
@@ -2369,8 +2369,8 @@ if ($_SESSION[&#39;gtserver&#39;] == 1) {   //服务器正常
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T16:00:00+00:00">
-                2018-05-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T00:00:00+00:00">
+                2018-05-22
               </time>
             
 
