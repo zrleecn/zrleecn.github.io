@@ -97,19 +97,12 @@
 <meta property="og:url" content="http://yoursite.com/2018/05/26/Redis基本使用/index.html">
 <meta property="og:site_name" content="resume.zrlee.cn">
 <meta property="og:description" content="什么是RedisRedis是Remote Dictionary Server(远程数据服务)的缩写 同一个select 查询sql语句，每天需要被执行查询100万次，并且每次查询获得的数据还是一样的。为了减轻数据库的负载，就把查询好的数据给缓存起来(存储在内存中)，第一个用户执行从mysql中获得数据并存储到内存中，第二个 到 第100万次查询就直接从内存中获得数据。 使用缓存减轻数据库的负载。数">
-<meta property="og:image" content="http://chuantu.biz/t6/319/1527339205x-1566688604.png">
-<meta property="og:image" content="http://chuantu.biz/t6/319/1527339260x-1566688604.png">
-<meta property="og:image" content="http://chuantu.biz/t6/319/1527339368x-1566688604.png">
-<meta property="og:image" content="http://chuantu.biz/t6/319/1527339418x-1566688604.png">
 <meta property="og:image" content="http://chuantu.biz/t6/319/1527339670x-1566688604.png">
-<meta property="og:image" content="http://chuantu.biz/t6/319/1527339816x-1566688604.png">
-<meta property="og:image" content="http://chuantu.biz/t6/319/1527339905x-1566688604.png">
-<meta property="og:image" content="http://chuantu.biz/t6/319/1527340048x-1566688604.png">
-<meta property="og:updated_time" content="2018-05-26T13:11:54.000Z">
+<meta property="og:updated_time" content="2018-12-17T04:26:37.079Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis缓存的基本使用">
 <meta name="twitter:description" content="什么是RedisRedis是Remote Dictionary Server(远程数据服务)的缩写 同一个select 查询sql语句，每天需要被执行查询100万次，并且每次查询获得的数据还是一样的。为了减轻数据库的负载，就把查询好的数据给缓存起来(存储在内存中)，第一个用户执行从mysql中获得数据并存储到内存中，第二个 到 第100万次查询就直接从内存中获得数据。 使用缓存减轻数据库的负载。数">
-<meta name="twitter:image" content="http://chuantu.biz/t6/319/1527339205x-1566688604.png">
+<meta name="twitter:image" content="http://chuantu.biz/t6/319/1527339670x-1566688604.png">
 
 
 
@@ -388,11 +381,8 @@ vi ./redis.conf
 <pre><code>./redis-server redis.conf
 </code></pre><p>进入redis操作终端</p>
 <pre><code>./redis-cli
-</code></pre><h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><h3 id="key的操作"><a href="#key的操作" class="headerlink" title="key的操作"></a>key的操作</h3><p>在redis里边，除了”\n”和空格 不能作为名字的组成内容外，其他键盘可见内容都可以作为key的名字部分。名字长度不做要求。<br><img src="http://chuantu.biz/t6/319/1527339205x-1566688604.png" alt=""></p>
-<h3 id="String类型操作"><a href="#String类型操作" class="headerlink" title="String类型操作"></a>String类型操作</h3><p><img src="http://chuantu.biz/t6/319/1527339260x-1566688604.png" alt=""></p>
-<h3 id="数据类型List链表"><a href="#数据类型List链表" class="headerlink" title="数据类型List链表"></a>数据类型List链表</h3><p><img src="http://chuantu.biz/t6/319/1527339368x-1566688604.png" alt=""></p>
-<h3 id="set集合类型"><a href="#set集合类型" class="headerlink" title="set集合类型"></a>set集合类型</h3><p><img src="http://chuantu.biz/t6/319/1527339418x-1566688604.png" alt=""></p>
-<h3 id="Sort-Set排序集合类型"><a href="#Sort-Set排序集合类型" class="headerlink" title="Sort Set排序集合类型"></a>Sort Set排序集合类型</h3><p>list链表类型： 内部存储的元素有排序功能、会存在多个相同的元素。<br>Set集合类型： 元素没有排序功能、不存在多个相同元素</p>
+</code></pre><h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><h3 id="key的操作"><a href="#key的操作" class="headerlink" title="key的操作"></a>key的操作</h3><p>在redis里边，除了”\n”和空格 不能作为名字的组成内容外，其他键盘可见内容都可以作为key的名字部分。名字长度不做要求。</p>
+<h3 id="String类型操作"><a href="#String类型操作" class="headerlink" title="String类型操作"></a>String类型操作</h3><h3 id="数据类型List链表"><a href="#数据类型List链表" class="headerlink" title="数据类型List链表"></a>数据类型List链表</h3><h3 id="set集合类型"><a href="#set集合类型" class="headerlink" title="set集合类型"></a>set集合类型</h3><h3 id="Sort-Set排序集合类型"><a href="#Sort-Set排序集合类型" class="headerlink" title="Sort Set排序集合类型"></a>Sort Set排序集合类型</h3><p>list链表类型： 内部存储的元素有排序功能、会存在多个相同的元素。<br>Set集合类型： 元素没有排序功能、不存在多个相同元素</p>
 <p>该Sort Set是两种类型(list和set)的集中体现,称为排序集合类型。<br>Sort Set类型：元素有排序功能、不存在多个相同元素</p>
 <p>和set一样sorted set也是string类型元素的集合，./<br>不同的是每个元素都会关联一个权。<br>通过权/值可以有序的获取集合中的元素</p>
 <p>权：一个集合中多个元素做排序的标准。<br>值：元素的具体信息。</p>
@@ -406,8 +396,9 @@ vi ./redis.conf
 <li>appendfsync everysec   //每秒钟强制写入磁盘一次，在性能和持久化方面做了很好的折中，推荐 【数据相对安全，服务器性能折中】</li>
 <li>appendfsync no   //完全依赖 os，性能最好,持久化没保证<br>【数据安全性低，服务器性能最高】<h4 id="2-3-为aof备份文件做优化压缩处理"><a href="#2-3-为aof备份文件做优化压缩处理" class="headerlink" title="2.3 为aof备份文件做优化压缩处理"></a>2.3 为aof备份文件做优化压缩处理</h4></li>
 </ul>
-<p>redis相关操作指令：<br><img src="http://chuantu.biz/t6/319/1527339816x-1566688604.png" alt=""></p>
-<h2 id="redis的主从模式"><a href="#redis的主从模式" class="headerlink" title="redis的主从模式"></a>redis的主从模式</h2><p>把原先一台redis服务器做的工作 现在交给多个服务器去完成，可以明显降低每台服务器的工作量。<br>为了降低每个redis服务器的负载，可以多设置几个，并做主从模式<br>一个redis服务器负载“写”(添加、修改、删除)数据，其他服务器负载“读”数据<br>主服务器数据会“自动”同步给从服务器<br><img src="http://chuantu.biz/t6/319/1527339905x-1566688604.png" alt=""><br>redis.conf配置文件修改后需要重启进程(杀掉旧进程，启动新进程)<br>此时就可以看到主服务器给从服务器自动同步的数据。<br><img src="http://chuantu.biz/t6/319/1527340048x-1566688604.png" alt=""></p>
+<p>redis相关操作指令：</p>
+<h2 id="redis的主从模式"><a href="#redis的主从模式" class="headerlink" title="redis的主从模式"></a>redis的主从模式</h2><p>把原先一台redis服务器做的工作 现在交给多个服务器去完成，可以明显降低每台服务器的工作量。<br>为了降低每个redis服务器的负载，可以多设置几个，并做主从模式<br>一个redis服务器负载“写”(添加、修改、删除)数据，其他服务器负载“读”数据<br>主服务器数据会“自动”同步给从服务器</p>
+<p>redis.conf配置文件修改后需要重启进程(杀掉旧进程，启动新进程)<br>此时就可以看到主服务器给从服务器自动同步的数据。</p>
 <h2 id="php与redis结合"><a href="#php与redis结合" class="headerlink" title="php与redis结合"></a>php与redis结合</h2><h3 id="1-安装php的redis扩展"><a href="#1-安装php的redis扩展" class="headerlink" title="1. 安装php的redis扩展"></a>1. 安装php的redis扩展</h3>
       
     </div>
@@ -450,8 +441,8 @@ vi ./redis.conf
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/22/SVN基本使用/" rel="next" title="SVN 的基本使用">
-                <i class="fa fa-chevron-left"></i> SVN 的基本使用
+              <a href="/2018/05/22/geetest使用/" rel="next" title="geettest滑块验证码使用完整教程(PHP)">
+                <i class="fa fa-chevron-left"></i> geettest滑块验证码使用完整教程(PHP)
               </a>
             
           </div>
