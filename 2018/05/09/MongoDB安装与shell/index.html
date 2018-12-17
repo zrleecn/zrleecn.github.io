@@ -1,0 +1,879 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mongodb," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://resume.zrlee.cn/img/me.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="MongoDB安装与shell安装方法只需要在官网下载解压包https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;amp;wd=&amp;amp;eqid=8488b4090000820b000000065af41a24 放到">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB安装与shell">
+<meta property="og:url" content="http://yoursite.com/2018/05/09/MongoDB安装与shell/index.html">
+<meta property="og:site_name" content="resume.zrlee.cn">
+<meta property="og:description" content="MongoDB安装与shell安装方法只需要在官网下载解压包https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;amp;wd=&amp;amp;eqid=8488b4090000820b000000065af41a24 放到">
+<meta property="og:updated_time" content="2018-05-10T10:42:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB安装与shell">
+<meta name="twitter:description" content="MongoDB安装与shell安装方法只需要在官网下载解压包https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;amp;wd=&amp;amp;eqid=8488b4090000820b000000065af41a24 放到">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/09/MongoDB安装与shell/"/>
+
+
+
+
+
+  <title>MongoDB安装与shell | resume.zrlee.cn</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">resume.zrlee.cn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/09/MongoDB安装与shell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB安装与shell</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T16:00:00+00:00">
+                2018-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="MongoDB安装与shell"><a href="#MongoDB安装与shell" class="headerlink" title="MongoDB安装与shell"></a>MongoDB安装与shell</h1><h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>只需要在官网下载解压包<br><a href="https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;wd=&amp;eqid=8488b4090000820b000000065af41a24" target="_blank" rel="external">https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;wd=&amp;eqid=8488b4090000820b000000065af41a24</a></p>
+<p>放到linux服务器上解压即可</p>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>MongoDB的数据存储在data目录的db目录下，但是这个目录在安装过程不会自动创建，所以你需要手动创建data目录，并在data目录中创建db目录。<br>例如</p>
+<pre><code class="shell"># mkdir /data/db
+</code></pre>
+<p>启动先进入到mongodb的bin目录 执行命令</p>
+<pre><code># ./mongod
+</code></pre><p>有时候需要用配置文件的形式启动可以通过如下口令</p>
+<pre><code># ./mongod -f 配置文件路径
+</code></pre><p>这个配置文件需要你手动创建例如在mongodb目录中创建一个etc/mongo.conf</p>
+<p>在bin目录</p>
+<pre><code># mkdir etc
+# cd etc
+# vim mongo.conf
+</code></pre><p>mongo.conf 里面的内容</p>
+<pre><code> logpath=./log/mongodb.log
+ logappend=false
+ dbpath=/data/db
+ fork=true
+ rest=true
+</code></pre><p>参数详解<br>logpath指定日志的目录<br>logappend 是否追加形式保存日志<br>dbpath 指定db目录<br>fork 是否后台运行进程<br>rest 是否使用web console 设定为true的时候可以通过 ip:28017 访问默认端口是28017</p>
+<h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><pre><code># ps -ef|grep mongo
+</code></pre><h3 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h3><pre><code># ./mongod --shutdown
+</code></pre><h2 id="MongoDB后台管理-Shell"><a href="#MongoDB后台管理-Shell" class="headerlink" title="MongoDB后台管理 Shell"></a>MongoDB后台管理 Shell</h2><h3 id="shell-基本命令"><a href="#shell-基本命令" class="headerlink" title="shell 基本命令"></a>shell 基本命令</h3><p>进入shell 在mongondb的bin目录下</p>
+<pre><code># ./mongo
+</code></pre><p>查看数据库</p>
+<pre><code># show dbs
+</code></pre><p>选择数据库</p>
+<pre><code># use dbname
+</code></pre><p>查看集合</p>
+<pre><code># show collections
+</code></pre><p>集合插入</p>
+<pre><code># db.account.save({&#39;name&#39;:&#39;zrlee&#39; , &#39;skill&#39;:&#39;php22&#39;})
+</code></pre><p>account 为集合的名称</p>
+<p>查看account集合的数据</p>
+<pre><code># db.account.find()
+</code></pre><p>删除account集合</p>
+<pre><code># db.account.drop()
+</code></pre><p>删除数据库</p>
+<pre><code># db.dropDatabase()
+</code></pre><p>注意删除的是当前选中的库</p>
+<p>其他的口令</p>
+<pre><code># db.help()                    查看db方法帮助
+# db.mycoll.help()             help on collection methods
+# sh.help()                    sharding helpers
+# rs.help()                    replica set helpers
+# help admin                   administrative help
+# help connect                 connecting to a db help
+# help keys                    key shortcuts
+# help misc                    misc things to know
+# help mr                      mapreduce
+
+# show dbs                     show database names
+# show collections             show collections in current # 
+# show users                   show users in current database
+# show profile                 show most recent 
+# show logs                    show the accessible logger names
+# show log [name]              prints out the last segment of log in memory, &#39;global&#39; is default
+# use &lt;db_name&gt;                set current database
+# db.foo.find()                foo集合对象列表
+# db.foo.find( { a : 1 } )     list objects in foo where a == 1
+
+    exit                         quit the mongo shell
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/05/CentOS下安装启动Docker/" rel="next" title="CentOS下安装Docker与启动方法">
+                <i class="fa fa-chevron-left"></i> CentOS下安装Docker与启动方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/16/laravel5安装配置Entrust/" rel="prev" title="Laravel5安装配置Entrust扩展包RABC权限管理">
+                Laravel5安装配置Entrust扩展包RABC权限管理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wx.zrlee.cn/img/me.png"
+               alt="zrlee" />
+          <p class="site-author-name" itemprop="name">zrlee</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zrleecn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微信">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  微信
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/zrleecn" title="Github" target="_blank">Github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://zrleecn.github.io/" title="Blog" target="_blank">Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://resume.zrlee.cn" title="Resume" target="_blank">Resume</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB安装与shell"><span class="nav-number">1.</span> <span class="nav-text">MongoDB安装与shell</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装方法"><span class="nav-number">1.1.</span> <span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动"><span class="nav-number">1.2.</span> <span class="nav-text">启动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看进程"><span class="nav-number">1.2.1.</span> <span class="nav-text">查看进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结束进程"><span class="nav-number">1.2.2.</span> <span class="nav-text">结束进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MongoDB后台管理-Shell"><span class="nav-number">1.3.</span> <span class="nav-text">MongoDB后台管理 Shell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell-基本命令"><span class="nav-number">1.3.1.</span> <span class="nav-text">shell 基本命令</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <a href="http://gdcainfo.miitbeian.gov.cn/state/outPortal/loginPortal.action">
+	 粤ICP备16075339号-1
+	 </a>
+	
+  
+  &copy; 2015-
+  <span itemprop="copyrightYear">2018 hexo 版权所有 </span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zrlee</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script>
+	
+		hljs.initHighlightingOnLoad();
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
+
+
+</script>
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

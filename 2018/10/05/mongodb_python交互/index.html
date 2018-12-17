@@ -1,0 +1,888 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mongodb," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://resume.zrlee.cn/img/me.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="安装模块sudo pip install pymongo  mongodb远程连接配置如下：1.修改配置文件mongodb.conf 命令：vim /etc/mongodb.conf 把 bind_ip=127.0.0.1 这一行注释掉或者是修改成  bind_ip=0.0.0.0  基本使用与MongoClient建立连接import pymongo # 创建客户端 建立连接 当然这里最好的做">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB Python 交互">
+<meta property="og:url" content="http://yoursite.com/2018/10/05/mongodb_python交互/index.html">
+<meta property="og:site_name" content="resume.zrlee.cn">
+<meta property="og:description" content="安装模块sudo pip install pymongo  mongodb远程连接配置如下：1.修改配置文件mongodb.conf 命令：vim /etc/mongodb.conf 把 bind_ip=127.0.0.1 这一行注释掉或者是修改成  bind_ip=0.0.0.0  基本使用与MongoClient建立连接import pymongo # 创建客户端 建立连接 当然这里最好的做">
+<meta property="og:updated_time" content="2018-10-12T05:00:42.068Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB Python 交互">
+<meta name="twitter:description" content="安装模块sudo pip install pymongo  mongodb远程连接配置如下：1.修改配置文件mongodb.conf 命令：vim /etc/mongodb.conf 把 bind_ip=127.0.0.1 这一行注释掉或者是修改成  bind_ip=0.0.0.0  基本使用与MongoClient建立连接import pymongo # 创建客户端 建立连接 当然这里最好的做">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/05/mongodb_python交互/"/>
+
+
+
+
+
+  <title>MongoDB Python 交互 | resume.zrlee.cn</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">resume.zrlee.cn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/mongodb_python交互/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB Python 交互</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T10:00:04+00:00">
+                2018-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <hr>
+<h1 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h1><pre><code>sudo pip install pymongo
+</code></pre><blockquote>
+<p>mongodb远程连接配置如下：<br>1.修改配置文件mongodb.conf</p>
+<p>命令：vim /etc/mongodb.conf</p>
+<p>把 bind_ip=127.0.0.1 这一行注释掉或者是修改成  bind_ip=0.0.0.0</p>
+</blockquote>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="与MongoClient建立连接"><a href="#与MongoClient建立连接" class="headerlink" title="与MongoClient建立连接"></a>与MongoClient建立连接</h2><pre><code>import pymongo
+# 创建客户端 建立连接 当然这里最好的做法是try捕获异常 建立连接可能会发生异常
+client = pymongo.MongoClient(&quot;mongodb://username:password@192.168.0.106:27017/dbname&quot;)
+print(client)
+# 获得python数据库
+pythondb = client.python
+# 获得emps集合
+emps = client.emps
+</code></pre><p>colletion 类主要有一下方法</p>
+<ul>
+<li>insert_one()</li>
+<li>insert_many()</li>
+<li>update_one()</li>
+<li>update_many()</li>
+<li>delete_one()</li>
+<li>delete_many()</li>
+<li>find()</li>
+<li>find_one()</li>
+</ul>
+<h2 id="插入文档-insert-one"><a href="#插入文档-insert-one" class="headerlink" title="插入文档 insert_one()"></a>插入文档 insert_one()</h2><pre><code># 插入同时返回文档id
+inserted_id = emps.insert_one(emp).inserted_id
+</code></pre><h2 id="获取单个文档-find-one"><a href="#获取单个文档-find-one" class="headerlink" title="获取单个文档 find_one()"></a>获取单个文档 find_one()</h2><pre><code>print(emps.find_one())
+</code></pre><p>find_one()还支持查询生成的文档必须匹配的特定元素</p>
+<pre><code>print(emps.find_one({&quot;name&quot;:&quot;zrlee&quot;}))
+</code></pre><h2 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h2><p>为了使查询更有趣，让我们再插入一些文档。除了插入单个文档之外，我们还可以通过将列表作为第一个参数传递来执行批量插入操作insert_many()</p>
+<pre><code>emp = [{
+        &quot;name&quot;:&quot;koa&quot;,
+        &quot;sal&quot;:4000
+    },{
+        &quot;name&quot;:&quot;marry&quot;,
+        &quot;sal&quot;:2000
+    }
+]
+
+result = emps.insert_many(emp)
+print(result)
+</code></pre><h2 id="查询多个文档"><a href="#查询多个文档" class="headerlink" title="查询多个文档"></a>查询多个文档</h2><pre><code>for emp in emps.find():
+    print(emp)
+</code></pre><h2 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h2><p>如果我们只想知道有多少文档与查询匹配，我们可以执行count()操作而不是完整查询</p>
+<pre><code>print(emps.estimated_document_count())
+</code></pre><h2 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h2><ul>
+<li>$in 查询名字是zrle，aa的文档</li>
+</ul>
+<pre><code>result = emps.find({&quot;name&quot;:{&quot;$in&quot;:[&quot;zrlee&quot;, &quot;a&quot;]}})
+
+for emp in result :
+    print(emp)
+</code></pre><ul>
+<li>不在范围</li>
+</ul>
+<pre><code>result = emps.find({
+    &quot;name&quot;:{
+        &quot;$nin&quot;:[&quot;zrlee&quot;, &quot;a&quot;]
+        }
+    })
+
+for emp in result :
+    print(emp)
+</code></pre><p>其实操作都是一样的就不全部列举了</p>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><ul>
+<li>update_one()</li>
+</ul>
+<pre><code>emps.update_one({&quot;name&quot;:&quot;zrlee&quot;}, {&quot;$set&quot;:{&quot;sal&quot;:12000}})
+print(emps.find_one({&quot;name&quot;:&quot;zrlee&quot;}))
+</code></pre><h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><pre><code>emps.delete_one({&quot;name&quot;:&quot;a&quot;}})
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/03/mongodb_base/" rel="next" title="MongoDB的基础操作">
+                <i class="fa fa-chevron-left"></i> MongoDB的基础操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/12/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wx.zrlee.cn/img/me.png"
+               alt="zrlee" />
+          <p class="site-author-name" itemprop="name">zrlee</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zrleecn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微信">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  微信
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/zrleecn" title="Github" target="_blank">Github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://zrleecn.github.io/" title="Blog" target="_blank">Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://resume.zrlee.cn" title="Resume" target="_blank">Resume</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装模块"><span class="nav-number">1.</span> <span class="nav-text">安装模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本使用"><span class="nav-number">2.</span> <span class="nav-text">基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#与MongoClient建立连接"><span class="nav-number">2.1.</span> <span class="nav-text">与MongoClient建立连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入文档-insert-one"><span class="nav-number">2.2.</span> <span class="nav-text">插入文档 insert_one()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取单个文档-find-one"><span class="nav-number">2.3.</span> <span class="nav-text">获取单个文档 find_one()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#批量插入"><span class="nav-number">2.4.</span> <span class="nav-text">批量插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询多个文档"><span class="nav-number">2.5.</span> <span class="nav-text">查询多个文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计数"><span class="nav-number">2.6.</span> <span class="nav-text">计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范围查询"><span class="nav-number">2.7.</span> <span class="nav-text">范围查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新"><span class="nav-number">2.8.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除"><span class="nav-number">2.9.</span> <span class="nav-text">删除</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <a href="http://gdcainfo.miitbeian.gov.cn/state/outPortal/loginPortal.action">
+	 粤ICP备16075339号-1
+	 </a>
+	
+  
+  &copy; 2015-
+  <span itemprop="copyrightYear">2018 hexo 版权所有 </span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zrlee</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script>
+	
+		hljs.initHighlightingOnLoad();
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
+
+
+</script>
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

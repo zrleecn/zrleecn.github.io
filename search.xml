@@ -3,8 +3,901 @@
   
     
     <entry>
+      <title></title>
+      <url>/2018/12/17/laravel/</url>
+      <content type="html"><![CDATA[<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="shell">composer create-project  --prefer-dist  laravel/laravel=5.5.*  blog
+</code></pre>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><pre><code class="php">Route::get(&quot;/article&quot;, &quot;ArticleController@index&quot;) ;
+</code></pre>
+<h3 id="必选参数"><a href="#必选参数" class="headerlink" title="必选参数"></a>必选参数</h3><pre><code class="php">//article/5
+Route::get(&quot;/article/{id}&quot;, function ($id){
+    //    函数接收参数
+    return $id ;
+}) ;
+</code></pre>
+<h3 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h3><pre><code class="php">// 可选参数要指定默认值 地址可以不传入name的参数
+Route::get(&quot;/article/{id}/{name?}&quot;, function ($id, $name=&#39;default&#39;){
+    //    函数接收参数
+    echo $id, $name ;
+}) ;
+
+
+
+Route::get(&quot;/article/{id}/{name?}&quot;, function ($id, $name=&#39;default&#39;){
+    //    函数接收参数
+    echo $id, $name ;
+// where 限制参数的类型
+})-&gt;where([&#39;id&#39;=&gt;&quot;\d+&quot;])-&gt;name(&#39;article_show&#39;);
+
+
+### 路由命名
+```php
+Route::get(&quot;/article/{id}/{name?}&quot;, function ($id, $name=&#39;default&#39;){
+    //    函数接收参数
+    echo $id, $name ;
+})-&gt;name(&#39;article_show&#39;);
+
+Route::get(&quot;/route&quot;, function (){
+    return route(&#39;article_show&#39;, [&quot;id&quot;=&gt;2, &quot;name&quot;=&gt;&#39;zrlee&#39;]) ;
+}) ;
+</code></pre>
+<h3 id="路由组"><a href="#路由组" class="headerlink" title="路由组"></a>路由组</h3><pre><code class="php">
+//设置前缀 为admin
+Route::group([&#39;prefix&#39;=&gt;&#39;admin&#39;], function (){
+//    下面的路由都要使用admin作为前缀
+    Route::get(&#39;del&#39;, function (){
+        return &#39;del&#39; ;
+    });
+    Route::get(&#39;update&#39;,function(){
+        return &#39;update&#39; ;
+    });
+}) ;
+</code></pre>
+<p>命名空间</p>
+<pre><code class="php">//设置前缀 为admin 指定命名空间 指定类的命名空间为admin
+Route::group([&#39;prefix&#39;=&gt;&#39;admin&#39;, &#39;namespace&#39;=&gt; &#39;Admin&#39;], function (){
+//    下面的路由都要使用admin作为前缀
+    Route::get(&#39;del&#39;, function (){
+        return &#39;del&#39; ;
+    });
+    Route::get(&#39;update&#39;,function(){
+        return &#39;update&#39; ;
+    });
+//    Admin命名空间下的HomeController
+    Route::get(&quot;/&quot;, &#39;HomeController@index&#39;) ;
+}) ;
+</code></pre>
+<h3 id="路由模型绑定"><a href="#路由模型绑定" class="headerlink" title="路由模型绑定"></a>路由模型绑定</h3><p>当注入模型 ID 到路由控制器时，我们通常需要查询这个 ID 对应的模型，Laravel 路由模型绑定提供了一个方便的方法自动将模型注入到我们的路由中</p>
+<pre><code class="php">Route::get(&#39;/model/articles/{articles}&#39;, function (\App\Model\Articles $articles) {
+//    直接就获取到传入的id的记录
+    return $articles;
+});
+</code></pre>
+<h2 id="artisan"><a href="#artisan" class="headerlink" title="artisan"></a>artisan</h2><pre><code class="php">
+php artisan make:controller Admin\HomeController
+php artisan make:model Model\Articles 
+php artisan make:migrations
+// 创建users表同时创建users模型
+php artisan make:migration create_users_table --create=users
+</code></pre>
+<h3 id="表单方法伪造"><a href="#表单方法伪造" class="headerlink" title="表单方法伪造"></a>表单方法伪造</h3><p>HTML 表单没有支持 PUT、PATCH 或 DELETE 动作。所以在从 HTML 表单中调用被定义的 PUT、PATCH 或 DELETE 路由时，你将需要在表单中增加隐藏的 _method 字段。 _method 字段的值将被作为 HTTP 的请求方法使用：</p>
+<pre><code class="php">&lt;form action=&quot;/foo/bar&quot; method=&quot;POST&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;PUT&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;{{ csrf_token() }}&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+<p>你也可以使用辅助函数 method_field 来生成隐藏的输入字段 _method</p>
+<pre><code class="php">{{ method_field('PUT') }}
+</code></pre>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>/2018/10/12/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MongoDB Python 交互]]></title>
+      <url>/2018/10/05/mongodb_python%E4%BA%A4%E4%BA%92/</url>
+      <content type="html"><![CDATA[<hr>
+<h1 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h1><pre><code>sudo pip install pymongo
+</code></pre><blockquote>
+<p>mongodb远程连接配置如下：<br>1.修改配置文件mongodb.conf</p>
+<p>命令：vim /etc/mongodb.conf</p>
+<p>把 bind_ip=127.0.0.1 这一行注释掉或者是修改成  bind_ip=0.0.0.0</p>
+</blockquote>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="与MongoClient建立连接"><a href="#与MongoClient建立连接" class="headerlink" title="与MongoClient建立连接"></a>与MongoClient建立连接</h2><pre><code>import pymongo
+# 创建客户端 建立连接 当然这里最好的做法是try捕获异常 建立连接可能会发生异常
+client = pymongo.MongoClient(&quot;mongodb://username:password@192.168.0.106:27017/dbname&quot;)
+print(client)
+# 获得python数据库
+pythondb = client.python
+# 获得emps集合
+emps = client.emps
+</code></pre><p>colletion 类主要有一下方法</p>
+<ul>
+<li>insert_one()</li>
+<li>insert_many()</li>
+<li>update_one()</li>
+<li>update_many()</li>
+<li>delete_one()</li>
+<li>delete_many()</li>
+<li>find()</li>
+<li>find_one()</li>
+</ul>
+<h2 id="插入文档-insert-one"><a href="#插入文档-insert-one" class="headerlink" title="插入文档 insert_one()"></a>插入文档 insert_one()</h2><pre><code># 插入同时返回文档id
+inserted_id = emps.insert_one(emp).inserted_id
+</code></pre><h2 id="获取单个文档-find-one"><a href="#获取单个文档-find-one" class="headerlink" title="获取单个文档 find_one()"></a>获取单个文档 find_one()</h2><pre><code>print(emps.find_one())
+</code></pre><p>find_one()还支持查询生成的文档必须匹配的特定元素</p>
+<pre><code>print(emps.find_one({&quot;name&quot;:&quot;zrlee&quot;}))
+</code></pre><h2 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h2><p>为了使查询更有趣，让我们再插入一些文档。除了插入单个文档之外，我们还可以通过将列表作为第一个参数传递来执行批量插入操作insert_many()</p>
+<pre><code>emp = [{
+        &quot;name&quot;:&quot;koa&quot;,
+        &quot;sal&quot;:4000
+    },{
+        &quot;name&quot;:&quot;marry&quot;,
+        &quot;sal&quot;:2000
+    }
+]
+
+result = emps.insert_many(emp)
+print(result)
+</code></pre><h2 id="查询多个文档"><a href="#查询多个文档" class="headerlink" title="查询多个文档"></a>查询多个文档</h2><pre><code>for emp in emps.find():
+    print(emp)
+</code></pre><h2 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h2><p>如果我们只想知道有多少文档与查询匹配，我们可以执行count()操作而不是完整查询</p>
+<pre><code>print(emps.estimated_document_count())
+</code></pre><h2 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h2><ul>
+<li>$in 查询名字是zrle，aa的文档</li>
+</ul>
+<pre><code>result = emps.find({&quot;name&quot;:{&quot;$in&quot;:[&quot;zrlee&quot;, &quot;a&quot;]}})
+
+for emp in result :
+    print(emp)
+</code></pre><ul>
+<li>不在范围</li>
+</ul>
+<pre><code>result = emps.find({
+    &quot;name&quot;:{
+        &quot;$nin&quot;:[&quot;zrlee&quot;, &quot;a&quot;]
+        }
+    })
+
+for emp in result :
+    print(emp)
+</code></pre><p>其实操作都是一样的就不全部列举了</p>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><ul>
+<li>update_one()</li>
+</ul>
+<pre><code>emps.update_one({&quot;name&quot;:&quot;zrlee&quot;}, {&quot;$set&quot;:{&quot;sal&quot;:12000}})
+print(emps.find_one({&quot;name&quot;:&quot;zrlee&quot;}))
+</code></pre><h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><pre><code>emps.delete_one({&quot;name&quot;:&quot;a&quot;}})
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> mongodb </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mongodb </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MongoDB的基础操作]]></title>
+      <url>/2018/10/03/mongodb_base/</url>
+      <content type="html"><![CDATA[<h1 id="1-MongoDB的基础操作"><a href="#1-MongoDB的基础操作" class="headerlink" title="1.MongoDB的基础操作"></a>1.MongoDB的基础操作</h1><h2 id="1-1-基本的操作"><a href="#1-1-基本的操作" class="headerlink" title="1.1 基本的操作"></a>1.1 基本的操作</h2><pre><code>//查看数据库
+show dbs
+
+//查看集合列表
+show collections
+
+//查看用户列表
+show users
+
+//切换数据库
+use dbname
+</code></pre><ul>
+<li><p>创建一个集合——创建一个emp集合</p>
+<pre><code>db.createCollection(&#39;emp&#39;)
+</code></pre></li>
+<li><p>保存一条数据到emp</p>
+<pre><code>db.emp.insert({
+  &quot;empno&quot;:100,
+  &quot;ename&quot;:&quot;zrlee&quot;,
+  &quot;deptno&quot;:1,
+  &quot;sal&quot;:8000
+})
+</code></pre></li>
+<li><p>查看emp表的数据<br>·语法：db.集合名称.find({若干条件})<br>例如查看emp表的所有数据</p>
+<pre><code>db.emp.find()
+</code></pre></li>
+<li><p>漂亮显示数据（带格式）</p>
+</li>
+</ul>
+<pre><code>db.emp.find().pretty()
+</code></pre><ul>
+<li>关于ID的问题</li>
+</ul>
+<p>在MongoDB集合中的每一行记录都会自动的生成一个“”_id” :ObjectId(“55949a13eecd74894d19d8dc”)”数据，这个数据组成是：“时间戳 + 机器码 + PID + 计数器”，这个ID的信息是MongonDB数据自己为用户生成的。</p>
+<ul>
+<li>查看单独的一个文档信息</li>
+</ul>
+<pre><code>db.emp.findOne()
+</code></pre><ul>
+<li>删除数据</li>
+</ul>
+<pre><code>db.emp.remove({&quot;ename&quot;:&quot;zrlee2&quot;})
+</code></pre><ul>
+<li>更新数据</li>
+</ul>
+<pre><code>var update_data = {
+    &quot;empno&quot;:100,
+    &quot;ename&quot;:&quot;zrlee.cn&quot;,
+    &quot;deptno&quot;:1,
+    &quot;sal&quot;:8000
+}
+
+db.emp.update( {&quot;ename&quot;:&quot;zrlee1&quot;}, update_data)
+</code></pre><ul>
+<li><p>删除集合</p>
+<pre><code>db.emp.drop()
+</code></pre></li>
+<li><p>删除数据库（删除当前所在的数据库）</p>
+</li>
+</ul>
+<pre><code>db.dropDatabase()
+</code></pre><h2 id="1-2数据操作"><a href="#1-2数据操作" class="headerlink" title="1.2数据操作"></a>1.2数据操作</h2><p>只要是数据库那么就绝对离不开最为核心的功能：CRUD，所以在MongoDB里面对于数据的操作也是有支持的，但是需要提醒的是，除了增加之外，其它的都很麻烦。<br>使用“db.集合.insert()”可以实现数据的增加操作。</p>
+<ul>
+<li>增加一个简单数据</li>
+</ul>
+<pre><code>db.infos.insert({&quot;url&quot;:&quot;www.zrlee.cn&quot;})
+</code></pre><ul>
+<li>保存数组（保存多条）</li>
+</ul>
+<pre><code>db.infos.insert([
+    {&quot;url&quot;:&quot;wx.zrlee.cn&quot;},
+    {&quot;url&quot;:&quot;py.zrlee.cn&quot;}
+])
+</code></pre><h2 id="1-3数据查询"><a href="#1-3数据查询" class="headerlink" title="1.3数据查询"></a>1.3数据查询</h2><p>首先对于数据的查询操作核心的语法：“db.集合名称.find({查询条件} [,{设置显示的字段}])”。</p>
+<ul>
+<li>查出名字为zrlee的emp<pre><code>db.emp.find({&quot;ename&quot;:&quot;zrlee&quot;}).pretty()
+</code></pre></li>
+</ul>
+<p>对于设置的显示字段严格来讲就称为数据的投影操作，如果不需要显示的字段设置“0”，而需要显示的字段设置“1”</p>
+<ul>
+<li>不想显示“_id”<pre><code>db.emp.find({&quot;ename&quot;:&quot;zrlee&quot;}, {&quot;_id&quot;:0}).pretty()
+</code></pre></li>
+<li>查询单个数据<pre><code>db.emp.findOne({&quot;ename&quot;:&quot;zrlee&quot;}, {&quot;_id&quot;:0}).pretty()
+</code></pre></li>
+</ul>
+<h2 id="1-4-关系运算"><a href="#1-4-关系运算" class="headerlink" title="1.4 关系运算"></a>1.4 关系运算</h2><p>在MongoDB里面支持的关系查询操作：大于（$gt）、小于（$lt）、大于等于（$gte）、小于等于（$lte）、不等于（$ne）、等于（key:value、$eq）。但是要想让这些操作可以正常使用，那么需要准备出一个数据集合。</p>
+<ul>
+<li>定义一个学生信息集合</li>
+</ul>
+<pre><code>db.students.insert({&quot;name&quot;:&quot;aa&quot;, &quot;sex&quot;:&quot;1&quot;, &quot;age&quot;:19,&quot;score&quot;:89})
+
+db.students.insert({&quot;name&quot;:&quot;bb&quot;, &quot;sex&quot;:&quot;0&quot;, &quot;age&quot;:20,&quot;score&quot;:67})
+
+db.students.insert({&quot;name&quot;:&quot;cc&quot;, &quot;sex&quot;:&quot;1&quot;, &quot;age&quot;:21,&quot;score&quot;:76})
+</code></pre><ul>
+<li><p>查询名字是aa的信息</p>
+<pre><code>db.students.find({&quot;name&quot;:&quot;aa&quot;}).pretty()
+</code></pre></li>
+<li><p>查询年龄大于20岁的学生</p>
+<pre><code>db.students.find({&quot;age&quot;: {&quot;$gt&quot;:20} }).pretty()
+</code></pre></li>
+<li><p>查询成绩大于等于70分的学生</p>
+</li>
+</ul>
+<pre><code>db.students.find({&quot;score&quot;: {&quot;$gte&quot;:70} }).pretty()
+</code></pre><ul>
+<li>查询名字不是aa的信息<pre><code>db.students.find({&quot;name&quot;: {&quot;$ne&quot;:&quot;aa&quot;} }).pretty()
+</code></pre></li>
+</ul>
+<h2 id="1-5-逻辑运算"><a href="#1-5-逻辑运算" class="headerlink" title="1.5 逻辑运算"></a>1.5 逻辑运算</h2><p>逻辑运算主要就是三种类型：与（$and）、或（$or）、非（$not、$nor）。</p>
+<ul>
+<li><p>查询年龄在20 ~ 21岁的学生信息</p>
+<pre><code>db.students.find({
+  &quot;age&quot;:{
+      &quot;$gte&quot;:20,
+      &quot;$lte&quot;:21
+      }
+}).pretty()
+</code></pre><p>或者是这样</p>
+<pre><code>db.students.find({
+  &quot;$and&quot;:[
+      {&quot;age&quot;:{&quot;$gte&quot;:20}},
+      {&quot;age&quot;:{&quot;$lte&quot;:21}}
+  ]
+}).pretty()
+</code></pre></li>
+<li><p>查询年龄大于19岁，或者成绩大于70分的学生信息</p>
+</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;$or&quot;:[
+        {&quot;age&quot;:{&quot;$gt&quot;:19}},
+        {&quot;score&quot;:{&quot;$gt&quot;:70}}
+    ]
+}).pretty()
+</code></pre><h2 id="1-6-范围查询"><a href="#1-6-范围查询" class="headerlink" title="1.6 范围查询"></a>1.6 范围查询</h2><p>只要是数据库，必须存在有“$in”（在范围之中）、“$nin”（不在范围之中）。</p>
+<ul>
+<li>查询姓名是“aa”、“bb”的students信息</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;name&quot;:{
+        &quot;$in&quot;:[&quot;aa&quot;, &quot;bb&quot;]
+    }
+}).pretty()
+</code></pre><ul>
+<li>不在范围</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;name&quot;:{
+        &quot;$nin&quot;:[&quot;aa&quot;, &quot;bb&quot;]
+    }
+}).pretty()
+</code></pre><h2 id="1-7-数组查询"><a href="#1-7-数组查询" class="headerlink" title="1.7 数组查询"></a>1.7 数组查询</h2><p>首先在mongoDB里面是支持数组保存的，一旦支持了数组保存，就需要针对于数组的数据进行匹配。</p>
+<ul>
+<li>先保存一部分数组内容测试</li>
+</ul>
+<pre><code>db.students.insert({&quot;name&quot;:&quot;A&quot;,&quot;sex&quot;:1,&quot;score&quot;:99,&quot;course&quot;:[&quot;python&quot;,&quot;java&quot;,&quot;php&quot;]})
+db.students.insert({&quot;name&quot;:&quot;B&quot;,&quot;sex&quot;:0,&quot;score&quot;:80,&quot;course&quot;:[&quot;python&quot;,]})
+db.students.insert({&quot;name&quot;:&quot;C&quot;,&quot;sex&quot;:1,&quot;score&quot;:78,&quot;course&quot;:[&quot;python&quot;,&quot;php&quot;]})
+db.students.insert({&quot;name&quot;:&quot;D&quot;,&quot;sex&quot;:0,&quot;score&quot;:56,&quot;course&quot;:[&quot;php&quot;,]})
+db.students.insert({&quot;name&quot;:&quot;E&quot;,&quot;sex&quot;:1,&quot;score&quot;:76,&quot;course&quot;:[&quot;java&quot;,&quot;php&quot;]})
+</code></pre><p>此时的数据包含有数组内容，而后需要针对于数组数据进行判断，可以使用几个运算符：$all、$size、$slice、$elemMatch。</p>
+<ul>
+<li><p>查询同时参加python和php学课程的学生<br>·现在两个数组内容都需要保存，所以使用“{“$all”,[内容1,内容2,..]}”</p>
+<pre><code>db.students.find({
+  &quot;course&quot;:{&quot;$all&quot;:[&quot;python&quot;,&quot;php&quot;]}
+}).pretty()
+</code></pre></li>
+<li><p>要求查询出只参加两门课程的学生<br>·使用“$size”来进行数量的控制。</p>
+</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;course&quot;:{&quot;$size&quot;:2}
+}).pretty()
+</code></pre><ul>
+<li>查询具有course成员的数据</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;course&quot;:{&quot;$exists&quot;:true}
+}).pretty()
+</code></pre><h2 id="1-8-条件过滤"><a href="#1-8-条件过滤" class="headerlink" title="1.8 条件过滤"></a>1.8 条件过滤</h2><p>实际上习惯于传统关系型数据库开发的我们对于数据的筛选，可能首先想到的一定是where子句，所以在MongoDB里面也提供有“$where”</p>
+<ul>
+<li>使用where进行数据查询<pre><code>db.students.find({
+  &quot;$where&quot;:&quot;this.age &gt; 20&quot;
+}).pretty()
+</code></pre>或者<br>```<br>db.students.find(“this.age &gt; 20”).pretty()</li>
+</ul>
+<pre><code>
+- 正则运算 （模糊查询）
+如果要想实现模糊查询，那么必须使用正则表达式，而且正则表达式使用的是语言Perl兼容的正则表达式的形式。如果要想实现正则使用，则按照如下的定义格式：
+
+·基础语法：{key : 正则标记}；
+
+·完整语法：{key : {&quot;$regex&quot; : 正则标记 , &quot;$options&quot; : 选项}}。
+
+|- 对于options主要是设置正则的信息查询的标记：
+
+|- “i”：忽略字母大小写；
+
+|- “m”多行查找；
+
+|- “x”：空白字符串除了被转义的或在字符类中意外的完全被忽略；
+
+|- “s”：匹配所有的字符（圆点、“.”），包括换行内容。
+
+|- 需要注意的是，如果是直接使用（javascript）那么只能够使用i和m，而“x”和“s”必须使用“$regex”。
+
+- 查询姓名有字母a
+</code></pre><p>db.students.find({“name”:/a/i}).pretty()</p>
+<pre><code>
+## 1.9 数据排序
+在MongoDB里面数据的排序操作使用“sort()”函数，在进行排序的时候可以有两个顺序：升序（1）、降序（-1）。
+</code></pre><p>db.students.find().sort({“score”:1}).pretty()</p>
+<pre><code>
+## 1.10 数据分页显示
+在MongoDB里面的数据分页显示也是符合于大数据要求的操作函数：
+
+· skip(n)：表示跨过多少数据行；
+
+· limit(n)：取出的数据行的个数限制。
+
+- 范例：分页显示（第一页，skip(0)、limit(2)）
+</code></pre><p>db.students.find().skip(0).limit(2).sort({“score”:1}).pretty()</p>
+<pre><code>
+- 范例：分页显示（第二页，skip(1)、limit(2)）
+</code></pre><p>db.students.find().skip(1).limit(2).sort({“score”:1}).pretty()</p>
+<h1 id="2-数据更新操作"><a href="#2-数据更新操作" class="headerlink" title="2. 数据更新操作"></a>2. 数据更新操作</h1><p>对于MongoDB而言，数据的更新基本上是一件很麻烦的事情，如果在实际的工作之中，真的具有此类的操作支持，那么最好的做法，在MongoDB里面对于数据的更新操作提供了两类函数：save()、update()。</p>
+<h2 id="2-1-函数的基本使用"><a href="#2-1-函数的基本使用" class="headerlink" title="2.1 函数的基本使用"></a>2.1 函数的基本使用</h2><p>如果要修改数据最直接的使用函数就是update()函数，但是这个函数的语法要求很麻烦：</p>
+<p>·语法：db.集合.update(更新条件 , 新的对象数据（更新操作符） , upsert , multi)；</p>
+<p>|- upsert：如果要更新的数据不存在，则增加一条新的内容（true为增加、false为不增加）；</p>
+<p>|- multi：表示是否只更新满足条件的第一行记录，如果设置为false，只更新第一条，如果是true全更新。</p>
+<ul>
+<li>更新存在的数据——将年龄是19岁的人的成绩都更新为100分</li>
+</ul>
+<pre><code>// 第一个false 是upsert 第二个是multi
+db.students.update({&quot;age&quot;:19},{&quot;$set&quot;:{&quot;score&quot;:100}}, false , false)
+</code></pre><p>– 更新不存在的数据</p>
+<pre><code>db.students.update({&quot;age&quot;:19},{&quot;$set&quot;:{&quot;name&quot;:&quot;不存在的&quot;}}, true , false)
+</code></pre><h2 id="2-2-修改器"><a href="#2-2-修改器" class="headerlink" title="2.2 修改器"></a>2.2 修改器</h2><p>对MongoDB数据库而言，数据的修改会牵扯到内容的变更、结构的变更（包含有数组），所以在进行MongoDB设计的时候就提供有一系列的修改器的应用，那么像之前使用的“$set”就是一个修改器。</p>
+<p>1、 $inc：主要针对于一个数字字段，增加某个数字字段的数据内容；</p>
+<p>·语法：{“$inc” : {“成员” : 内容}}</p>
+<ul>
+<li>将所有年龄为19岁的学生成绩一律减少30分<pre><code>db.students.update({&quot;age&quot;:19}, {&quot;$inc&quot;:{&quot;score&quot;:-30}})
+</code></pre></li>
+</ul>
+<p>2、 $set：进行内容的重新设置；</p>
+<p>·语法：{“$set” : {“成员” : “新内容”}}；</p>
+<ul>
+<li>将年龄是20岁的人的成绩修改为89</li>
+</ul>
+<pre><code>db.students.update({&quot;age&quot;:19}, {&quot;$set&quot;:{&quot;score&quot;:89}})
+</code></pre><p>3、 $unset：删除某个成员的内容；</p>
+<p>·语法：{“$unset” : {“成员” : 1}}</p>
+<p>-范例：删除“aa”的年龄与成绩信息</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;aa&quot;}, {&quot;$unset&quot;:{&quot;score&quot;:1,&quot;age&quot;:1}})
+执行之后指定的成员内容就消失了。
+</code></pre><p>4、 $push：相当于将内容追加到指定的成员之中（基本上是数组）；</p>
+<p>·语法：${“$push” : {成员 : value}}<br>向“E”里面的课程追加一个“python”</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;E&quot;}, {&quot;$push&quot;:{&quot;course&quot;:&quot;python&quot;}})
+</code></pre><p>就是进行数组数据的添加操作使用的，如果没有数组则进行一个新的数组的创建，如果有则进行内容的追加。</p>
+<p>5、 $pushAll：与“$push”是类似的，可以一次追加多个内容到数组里面；</p>
+<p>·语法：${“$pushAll” : {成员 : 数组内容}}</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;E&quot;}, {&quot;$push&quot;:{&quot;course&quot;:[&quot;python&quot;,&quot;java&quot;]}})
+</code></pre><p>6、 $addToSet：向数组里面增加一个新的内容，只有这个内容不存在的时候才会增加；</p>
+<p>·语法：{“$addToSet” : {成员 : 内容}}</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;bb&quot;}, {&quot;$addToSet&quot;:{&quot;course&quot;:&quot;python&quot;}})
+</code></pre><h1 id="3-删除数据"><a href="#3-删除数据" class="headerlink" title="3. 删除数据"></a>3. 删除数据</h1><p>在MongoDB里面数据的删除实际上并不复杂，只需要使用“remove()”函数就可以了。</p>
+<p>但是在这个函数是有两个可选项：</p>
+<p>·删除条件：满足条件的数据被删除；</p>
+<p>·是否只删除一个数据，如果设置为true或者是1表示只删除一个。</p>
+<ul>
+<li>清空infos集合中的内容</li>
+</ul>
+<pre><code>db.infos.remove({})
+</code></pre><ul>
+<li>删除所有姓名里面带有“a”的信息，默认情况下会全部删除</li>
+</ul>
+<pre><code>db.students.remove({&quot;name&quot;:/a/})
+</code></pre><ul>
+<li>删除所有姓名里面带有“a”的信息，只删除一个<pre><code>db.students.remove({&quot;name&quot;:/a/}，true)
+</code></pre>删除操作里面依然需要使用限定查询的相关操作内容。<h1 id="4-游标"><a href="#4-游标" class="headerlink" title="4.游标"></a>4.游标</h1>所谓的游标就是指的数据可以一行行的进行操作，非常类似于ResultSet数据处理。在MongoDB数据库里面对于游标的控制非常的简单，只需要使用find()函数就可以返回游标了。对于返回的游标如果要想进行操作，使用两个函数：</li>
+</ul>
+<p>·判断是否有下一行数据：hasNext()；</p>
+<p>·取出当前数据：next()；</p>
+<pre><code>var cursor = db.emp.find()
+cursor.hasNext()
+cursor.next()
+</code></pre><p>实际上使用find()函数查询出来返回回来的就是一个游标的对象</p>
+<ul>
+<li>使用循环进行游标的操作<pre><code>var cursor = db.emp.find()
+while(cursor.hasNext()){
+  var doc = cursor.next()
+  print(doc.ename)
+}
+</code></pre></li>
+</ul>
+<p>相当于每一个数据都单独拿出来进行逐行的控制。当游标数据取出来之后，实际上每行数据返回的都是一个Object型的内容，那么如果需要将数据按照json的形式出现，则可以使用printjson()函数完成。</p>
+<ul>
+<li>例如</li>
+</ul>
+<pre><code>var cursor = db.emp.find()
+while(cursor.hasNext()){
+    var doc = cursor.next()
+    printjson(doc)
+}
+</code></pre><h1 id="5-索-引"><a href="#5-索-引" class="headerlink" title="5.索 引"></a>5.索 引</h1><h2 id="5-1-唯一索引"><a href="#5-1-唯一索引" class="headerlink" title="5.1 唯一索引"></a>5.1 唯一索引</h2><p>唯一索引的主要目的是用在某一个字段上，使该字段的内容不重复。</p>
+<ul>
+<li>name字段 创建唯一索引</li>
+</ul>
+<pre><code>db.students.ensureIndex({&quot;name&quot;:1}, {&quot;unique&quot;:true})
+</code></pre><ul>
+<li>查看表的索引<pre><code>db.studnets.getIndexes()
+</code></pre></li>
+<li>删索引</li>
+</ul>
+<pre><code>db.students.dropIndexes()
+</code></pre><h2 id="5-2-过期索引"><a href="#5-2-过期索引" class="headerlink" title="5.2 过期索引"></a>5.2 过期索引</h2><p>在一些程序站点会出现若干秒之后信息被删除的情况，例如：手机信息验证码，那么在MongoDB里面就可以轻松的实现过期索引，但是这个时间往往不怎么准确。</p>
+<ul>
+<li><p>范例：设置过期索引</p>
+<pre><code>db.logsinfo.ensureIndex({&quot;time&quot;:1}, {&quot;expireAfterSeconds&quot;:10})
+</code></pre></li>
+<li><p>如果要想实现过期索引，需要保存一个时间信息；</p>
+<pre><code>db.logsinfo.insert({&quot;name&quot;:&quot;zrlee&quot;, &quot;time&quot;:new Date()})
+</code></pre><p>等到10秒以后（永远不会那么准确）所保存的数据就会消失。这样的特性在进行一些临时数据保存的时候非常有帮助，最早如果没有MongoDB这种特性，而只是使用最简单的关系型数据库开发，那么是非常麻烦的<br>q</p>
+<h1 id="5-3-全文索引"><a href="#5-3-全文索引" class="headerlink" title="5.3 全文索引"></a>5.3 全文索引</h1><p>在一些信息管理平台上经常需要进行信息模糊查询，最早的时候是利用了某个字段上实现的模糊查询，但是这个时候返回的信息并不会很准确，因为只能够查A字段或者是B字段，而在MongoDB里面实现了非常简单的全文检索</p>
+</li>
+<li><p>定义一个新的集合</p>
+</li>
+</ul>
+<pre><code>db.news.insert({&quot;title&quot;:&quot;https://wx.zrlee.cn&quot;, &quot;content&quot;:&quot;wx&quot;})
+db.news.insert({&quot;title&quot;:&quot;http://py.zrlee.cn&quot;, &quot;content&quot;:&quot;python&quot;})
+db.news.insert({&quot;title&quot;:&quot;http://www.zrlee.cn&quot;, &quot;content&quot;:&quot;www&quot;})
+db.news.insert({&quot;title&quot;:&quot;http://blog.zrlee.cn&quot;, &quot;content&quot;:&quot;blog&quot;})
+</code></pre><ul>
+<li>设置全文检索</li>
+</ul>
+<pre><code>db.news.ensureIndex({&quot;title&quot;:&quot;text&quot;, &quot;content&quot;:&quot;text&quot;})
+</code></pre><ul>
+<li>实现数据的模糊查询<br>如果要想表示出全文检索，则使用“$text”判断符，而要想进行数据的查询则使用“$search”运算符：</li>
+</ul>
+<p>|- 查询指定关键字：{“$search” : “查询关键字”}；</p>
+<p>|- 查询多个关键字（或关系）：{“$search” : “查询关键字查询关键字 …”}；(使用空格隔开)</p>
+<p>|- 查询多个关键字（与关系）：{“$search” : “\”查询关键字\” \”查询关键字\”…”}</p>
+<p>|- 查询多个关键字（排除某一个）：{“$search” : “查询关键字查询关键字 … -排除关键字”}</p>
+<ul>
+<li><p>查询单个内容</p>
+<pre><code>db.news.find({&quot;$text&quot;: {&quot;$search&quot;:&quot;https&quot;}})
+</code></pre></li>
+<li><p>查询包含”wx” 或者 “py” 的内容</p>
+<pre><code>db.news.find({&quot;$text&quot;:{&quot;$search&quot;:&quot;wx py&quot;}}).pretty()
+</code></pre></li>
+<li><p>查询同时存在”https” 与 “python”</p>
+<pre><code>db.news.find({&quot;$text&quot;:{&quot;$search&quot;:&quot;\&quot;https\&quot; \&quot;zrlee.cn\&quot;&quot;}}).pretty()
+</code></pre></li>
+<li><p>查询有zrlee.cn但是没有“https”</p>
+<pre><code>db.news.find({&quot;$text&quot;:{&quot;$search&quot;:&quot;\&quot;zrlee.cn\&quot; -https&quot;}}).pretty()
+</code></pre></li>
+</ul>
+<h2 id="5-4-地理信息索引"><a href="#5-4-地理信息索引" class="headerlink" title="5.4 地理信息索引"></a>5.4 地理信息索引</h2><p>地理信息索引分为两类：2D平面索引，另外就是2DSphere球面索引。在2D索引里面基本上能够保存的信息都是坐标，而且坐标保存的就是经纬度坐标。</p>
+<ul>
+<li>创建商铺集合保存经纬度的信息</li>
+</ul>
+<pre><code>db.shop.insert({&quot;loc&quot;:[10,10]})
+db.shop.insert({&quot;loc&quot;:[11,11]})
+db.shop.insert({&quot;loc&quot;:[10,11]})
+db.shop.insert({&quot;loc&quot;:[13,15]})
+db.shop.insert({&quot;loc&quot;:[12,12]})
+db.shop.insert({&quot;loc&quot;:[16,16]})
+</code></pre><ul>
+<li>为shop的集合定义2D索引</li>
+</ul>
+<pre><code>db.shop.ensureIndex({&quot;loc&quot;:&quot;2d&quot;})
+</code></pre><p>这个时候shop集合就可以实现坐标位置的查询了，而要进行查询有两种查询方式：</p>
+<p>·“$near”查询，查询距离某个点最近的坐标点；</p>
+<p>·“$geoWithin”查询：查询某个形状内的点；</p>
+<ul>
+<li>假设我的位置是[11,11] 查询附近的店设置一个距离范围—— 3个点内的（不设置默认返回100条信息）<pre><code>db.shop.find({&quot;loc&quot;:{&quot;$near&quot;:[11,11],&quot;$maxDistance&quot;:3}})
+</code></pre></li>
+</ul>
+<p>但是需要注意一点，在2D索引里面虽然支持最大距离，但是不支持最小距离。</p>
+<p>但是也可以设置一个查询的范围，使用“$geoWithin”查询，而可以设置的范围：</p>
+<p>·矩形范围（$box）：{“$box”:[[x1,y1],[x2,y2]]}；</p>
+<p>·圆形范围（$center）：{“$center” : [[x1,y1],r]}；</p>
+<p>·多边型（$polygon）：{“$polygon” :[[x1,y1],[x2,y2][x3,y3] , …]}</p>
+<ul>
+<li>范例：查询矩形<pre><code>db.shop.find({&quot;loc&quot;:{&quot;geoWithin&quot;:{&quot;$box&quot;:[ [10,10],[12,12] ]}}}).pretty()
+</code></pre></li>
+</ul>
+<blockquote>
+<p>其他的形状类似的语法</p>
+</blockquote>
+<h1 id="6-聚合框架"><a href="#6-聚合框架" class="headerlink" title="6. 聚合框架"></a>6. 聚合框架</h1><h2 id="6-1-group"><a href="#6-1-group" class="headerlink" title="6.1 $group"></a>6.1 $group</h2><p>group主要进行分组的数据操作<br>_id 是分组的依据字段</p>
+<ul>
+<li>按照部门编号来进行分组 统计每个部门的员工人数</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;: {&quot;_id&quot;:&quot;$deptno&quot;, &quot;dcount&quot;:{&quot;$sum&quot;: 1}}}])
+</code></pre><ul>
+<li>按照部门编号分组 统计每个部门下员工的平均工资<pre><code>db.emps.aggregate([{&quot;$group&quot;: {&quot;_id&quot;:&quot;$deptno&quot;, &quot;sal_avg&quot;:{&quot;$avg&quot;: &quot;$sal&quot;}}}])
+</code></pre></li>
+</ul>
+<ul>
+<li>按照部门编号分组 统计每个部门下员工的平均工资,最高工资，最低工资</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;: {
+    &quot;_id&quot;:&quot;$deptno&quot;,
+    &quot;sal_avg&quot;:{&quot;$avg&quot;: &quot;$sal&quot;}
+    }}])
+</code></pre><ul>
+<li>找出每个部门下员工的姓名 按照数组的形式保存数据</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;:{
+    &quot;_id&quot;:&quot;$deptno&quot;,
+    &quot;name_list&quot;:{
+        &quot;$push&quot;:&quot;$name&quot;
+    }
+}}])
+</code></pre><p>使用“$push”的确可以将数据变为数组进行保存，但是有一个问题出现了，重复的内容也会进行保存，那么在MongoDB里面提供有取消重复的设置。<br>如果不想增加重复的内容只需要把”$push”换成”$addToSet”</p>
+<ul>
+<li>保存第一个内容</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;:{
+    &quot;_id&quot;:&quot;$deptno&quot;,
+    &quot;ename&quot;:{
+        &quot;$first&quot;:&quot;$name&quot;
+    }
+}}])
+</code></pre><p>同理 如果想要保存最后一条数据 则需要把”$first” 换成”$last”即可 操作一样不作演示</p>
+<p>虽然可以方便的实现分组处理，但是有一点需要注意，所有的分组数据是无序的，并且都是在内存之中完成的，所以不可能支持大数据量</p>
+<h2 id="6-2-project"><a href="#6-2-project" class="headerlink" title="6.2 $project"></a>6.2 $project</h2><p>可以利用“$project”来控制数据列的显示规则，那么可以执行的规则如下：</p>
+<p>|- 普通列（{成员 : 1 | true}）：表示要显示的内容；</p>
+<p>|- “_id”列（{“_id” : 0 | false}）：表示“_id”列是否显示；</p>
+<p>|- 条件过滤列（{成员 : 表达式}）：满足表达式之后的数据可以进行显示。</p>
+<ul>
+<li>例如只显示 员工姓名 工资 不显示id</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$project&quot;:{
+    &quot;_id&quot;:0,
+    &quot;name&quot;:1,
+    &quot;sal&quot;:1
+}}])
+</code></pre><p>此时只有设置进去的列才可以被显示出来，而其它的列不能够被显示出来。实际上这就属于数据库的投影机制。</p>
+<p>实际上在进行数据投影的过程里面也支持四则运算：加法（“$add”）、减法（“$subtract”）、乘法（“$multiply”）、除法（“$divide”）、求模（$mod）</p>
+<ul>
+<li>统计员工的年薪</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$project&quot;:{
+    &quot;_id&quot;:0,
+    &quot;name&quot;:1,
+    &quot;sal&quot;:{&quot;年薪&quot;:{&quot;$multiply&quot;:[&quot;$sal&quot;,12]}}
+}}])
+</code></pre><p>·关系运算：大小比较（“$cmp”）、等于（“$eq”）、大于（“$gt”）、大于等于（“$gte”）、小于（“$lt”）、小于等于（“$lte”）、不等于（“$ne”）、判断NULL（“$ifNull”），这些返回的结果都是布尔型数据；</p>
+<p>·逻辑运算：与（“$and”）、或（“$or”）、非（“$not”）；</p>
+<p>·字符串操作：连接（“$concat”）、截取（“$substr”）、转小写（“$toLower”）、转大写（“toUpper”）、不区分大小写比较（“$strcasecmp”）。</p>
+<h2 id="6-3-match"><a href="#6-3-match" class="headerlink" title="6.3 $match"></a>6.3 $match</h2><p>“$match”是一个滤波操作，就是进行WHERE的过滤。</p>
+<ul>
+<li>范例：查询工资在5000 ~8000的雇员</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$match&quot;:{
+    &quot;sal&quot;:{&quot;$gte&quot;:5000, &quot;$lt&quot;:8000}
+}}])
+</code></pre><ul>
+<li>控制投影操作<pre><code>db.emps.aggregate([
+  {
+  &quot;$match&quot;:{
+      &quot;sal&quot;:{&quot;$gte&quot;:5000, &quot;$lt&quot;:8000}
+      }
+  },
+  {
+  &quot;$project&quot;:{&quot;_id&quot;:0, &quot;sal&quot;:1, &quot;name&quot;:1}    
+  }
+])
+</code></pre></li>
+</ul>
+<h2 id="6-4-sort"><a href="#6-4-sort" class="headerlink" title="6.4 $sort"></a>6.4 $sort</h2><p>使用“$sort”可以实现排序，设置1表示升序，设置-1表示降序</p>
+<ul>
+<li>按工资降序排序</li>
+</ul>
+<pre><code>db.emps.aggregate([
+    {&quot;$sort&quot;:{&quot;sal&quot;:-1}}
+])
+</code></pre><h2 id="6-5-分页处理：-limit、-skip"><a href="#6-5-分页处理：-limit、-skip" class="headerlink" title="6.5 分页处理：$limit、$skip"></a>6.5 分页处理：$limit、$skip</h2><p>“$limit”：负责数据的取出个数；</p>
+<p>“$skip”：数据的跨过个数。</p>
+<pre><code>db.emps.aggregate([
+    {&quot;$project&quot;:{&quot;_id&quot;:0, &quot;name&quot;:1, &quot;sal&quot;:1}},
+    {&quot;$skip&quot;:2},
+    {&quot;$limit&quot;:2}
+])
+</code></pre><p>先使用skip再使用limit</p>
+<h2 id="5-6-unwind"><a href="#5-6-unwind" class="headerlink" title="5.6$unwind"></a>5.6$unwind</h2><p>在查询数据的时候经常会返回数组信息，但是数组并不方便信息的浏览，所以提供有“$unwind”可以将数组数据变为独立的字符串内容。</p>
+<ul>
+<li>范例：添加一些信息</li>
+</ul>
+<pre><code>db.depts.insert({&quot;dname&quot;:&quot;财务部&quot;,&quot;bus&quot;:[&quot;工资&quot;, &quot;税收&quot;]})
+db.depts.insert({&quot;dname&quot;:&quot;技术部&quot;,&quot;bus&quot;:[&quot;生产&quot;, &quot;研发&quot;, &quot;测试&quot;]})
+</code></pre><p>-范例：将信息进行转化</p>
+<pre><code>db.depts.aggregate([
+    {&quot;$project&quot;:{&quot;dname&quot;:1 , &quot;bus&quot;:1}},
+    {&quot;$unwind&quot;:&quot;$bus&quot;}
+])
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> mongodb </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mongodb </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[MongoDB的安装与配置]]></title>
+      <url>/2018/10/03/mongodb_install/</url>
+      <content type="html"><![CDATA[<h1 id="1-MongoDB的安装与配置"><a href="#1-MongoDB的安装与配置" class="headerlink" title="1.MongoDB的安装与配置"></a>1.MongoDB的安装与配置</h1><p>下载地址：<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="external">https://www.mongodb.com/download-center#community</a><br>下载完安装包，并解压 tgz（以下演示的是 64 位 Linux上的安装） 。<br>下面以 ubuntu为例</p>
+<ul>
+<li>解压 <pre><code>tar -zxvf mongodb-linux-x86_64-4.0.2.tgz
+</code></pre></li>
+</ul>
+<ul>
+<li>移动到/usr/local/目录下<pre><code>sudo mv -r mongodb-linux-x86_64-ubuntu1604-4.0.2/ /usr/local/mongodb
+</code></pre></li>
+<li>将可执行文件添加到PATH路径中<pre><code>export PATH=/usr/local/mongodb/bin:$PATH
+</code></pre>创建数据库目录<br>MongoDB的数据存储在data目录的db目录下，但是这个目录在安装过程不会自动创建，所以你需要手动创建data目录，并在data目录中创建db目录。<br>注意：/data/db 是 MongoDB 默认的启动的数据库路径(–dbpath)。</li>
+</ul>
+<pre><code class="shell">sudo mkdir /data/db
+cd /data
+sudo chmod -R 777 db
+</code></pre>
+<h1 id="2-管理mongo"><a href="#2-管理mongo" class="headerlink" title="2.管理mongo"></a>2.管理mongo</h1><ul>
+<li>默认端口27017</li>
+<li>启动<br>进入mongodb的bin目录（我的是/usr/local/mongodb/bin）<pre><code>./mongod
+</code></pre></li>
+<li>关闭<pre><code>./mongod --shutdown
+</code></pre></li>
+</ul>
+<p>另外还可以使用配置文件启动mongodb</p>
+<ul>
+<li>创建配置文件<pre><code>sudo mkdir /etc/mongodb/mongod.conf
+</code></pre></li>
+<li><p>创建日志文件</p>
+<pre><code>sudo mkdir /etc/mongodb/mongod.log
+</code></pre><blockquote>
+<p>以上的路径按照自己喜欢创建</p>
+</blockquote>
+</li>
+<li><p>编辑配置文件</p>
+</li>
+</ul>
+<pre><code># 配置日志文件路径
+logpath = /etc/mongodb/mongod.log
+# 日志追加
+logappend = true
+# 数据库目录
+dbpath = /data/db
+# 以守护进程启动
+fork = true
+</code></pre><ul>
+<li><p>配置文件启动方式</p>
+<pre><code>./mongod -f /etc/mongodb/mongod.conf
+</code></pre></li>
+<li><p>查看进程</p>
+<pre><code>ps -el | grep mongodb
+</code></pre></li>
+<li><p>MongoDB后台管理 Shell<br>如果你需要进入MongoDB后台管理，你需要先打开mongodb装目录的下的bin目录，然后执行mongo命令文件。</p>
+</li>
+</ul>
+<p>MongoDB Shell是MongoDB自带的交互式Javascript shell,用来对MongoDB进行操作和管理的交互式环境。</p>
+<pre><code>cd /usr/local/mongodb/bin
+./mongo
+</code></pre>]]></content>
+      
+        <categories>
+            
+            <category> mongodb </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> mongodb </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[在Ubuntu下使用svn 基本操作]]></title>
+      <url>/2018/09/21/ubuntu_svn_use/</url>
+      <content type="html"><![CDATA[<h1 id="在Ubuntu下使用svn-基本操作"><a href="#在Ubuntu下使用svn-基本操作" class="headerlink" title="在Ubuntu下使用svn 基本操作"></a>在Ubuntu下使用svn 基本操作</h1><h2 id="checkout到本地目录"><a href="#checkout到本地目录" class="headerlink" title="checkout到本地目录"></a>checkout到本地目录</h2><pre><code>sudo svn checkout svn://ip
+</code></pre><h2 id="往版本库中添加新的文件"><a href="#往版本库中添加新的文件" class="headerlink" title="往版本库中添加新的文件"></a>往版本库中添加新的文件</h2><pre><code>sudo svn add file_name
+# 或者使用通配符
+sudo svn add *
+sudo svn add dir/*.py
+</code></pre><h2 id="将改动的文件提交到版本库"><a href="#将改动的文件提交到版本库" class="headerlink" title="将改动的文件提交到版本库"></a>将改动的文件提交到版本库</h2><pre><code>svn commit -m &quot;LogMessage&quot; [-N] [--no-unlock] PATH(如果选择了保持锁，就使用--no-unlock开关)
+svn commit -m &quot;提交注释&quot;
+</code></pre><h2 id="加锁-解锁"><a href="#加锁-解锁" class="headerlink" title="加锁/解锁"></a>加锁/解锁</h2><pre><code># 加锁
+svn lock -m &quot;lock test file&quot; test.php
+# 解锁
+svn unlock PATH
+</code></pre><h2 id="更新到某个版本"><a href="#更新到某个版本" class="headerlink" title="更新到某个版本"></a>更新到某个版本</h2><pre><code>svn update -r m path
+# m 版本号
+svn update -r 10 test.py
+</code></pre><h2 id="查看文件或者目录状态"><a href="#查看文件或者目录状态" class="headerlink" title="查看文件或者目录状态"></a>查看文件或者目录状态</h2><pre><code>svn status path
+</code></pre><blockquote>
+<p>（目录下的文件和子目录的状态，正常状态不显示）<br>不在svn的控制中；M：内容被修改；C：发生冲突；A：预定加入到版本库；K：被锁定】</p>
+</blockquote>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><pre><code>svn delete path -m &quot;delete test fle&quot;
+</code></pre><h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><pre><code>svn log path
+</code></pre><h2 id="比较差异"><a href="#比较差异" class="headerlink" title="比较差异"></a>比较差异</h2><pre><code>svn diff path
+</code></pre><h2 id="将两个版本之间的差异合并到当前文件"><a href="#将两个版本之间的差异合并到当前文件" class="headerlink" title="将两个版本之间的差异合并到当前文件"></a>将两个版本之间的差异合并到当前文件</h2><pre><code>svn merge -r m:n path
+svn merge -r 200:205 test.php
+</code></pre><blockquote>
+<p>其他配置请查看另一篇关于svn的配置<br><a href="https://note.youdao.com/" target="_blank" rel="external"> SVN 的基本使用</a></p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> svn </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> svn </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[python模块发布]]></title>
+      <url>/2018/09/01/python_module/</url>
+      <content type="html"><![CDATA[<h1 id="python模块发布"><a href="#python模块发布" class="headerlink" title="python模块发布"></a>python模块发布</h1><h2 id="zrlee-module目录结构如下"><a href="#zrlee-module目录结构如下" class="headerlink" title="zrlee_module目录结构如下"></a>zrlee_module目录结构如下</h2><pre><code>├── setup.py
+├── zrleea
+│   ├── test.py
+│   └── __init__.py
+└── zrleeb
+    ├── test.py
+    └── __init__.py
+</code></pre><p>假设zrleea 目录下test.py的代码如下</p>
+<pre><code>def pt(string):
+    print(string)
+</code></pre><p>_init.py 控制着包的导入行为<br>nit.py为空则仅是把这个包导入，不会导入包中的模块<br>init.py 里面有一个<strong>all</strong> 列表 元素中定义被导入的模块名,它控制着 from 包名 import *时导入的模块</p>
+<pre><code> __all__ = [&quot;test&quot;]
+</code></pre><h2 id="编辑setup-py"><a href="#编辑setup-py" class="headerlink" title="编辑setup.py"></a>编辑setup.py</h2><pre><code>from distutils.core import setup
+
+setup(name=&quot;zrlee_test_module&quot;, version=&quot;1.0&quot;, description=&quot;zrlee&#39;s module&quot;, author=&quot;zrlee&quot;, py_modules=[&#39;one.test&#39;, &#39;test&#39;])
+</code></pre><p>根据自己的实际情况修改setup()函数里面的参数py_modules需指明所需包含的py文件</p>
+<h2 id="构建模块"><a href="#构建模块" class="headerlink" title="构建模块"></a>构建模块</h2><pre><code>python setup.py build
+</code></pre><h2 id="生成发布压缩包"><a href="#生成发布压缩包" class="headerlink" title="生成发布压缩包"></a>生成发布压缩包</h2><pre><code>python setup.py sdist
+</code></pre><h1 id="安装、使用"><a href="#安装、使用" class="headerlink" title="安装、使用"></a>安装、使用</h1><h2 id="安装的方式"><a href="#安装的方式" class="headerlink" title="安装的方式"></a>安装的方式</h2><ol>
+<li>找到模块的压缩包</li>
+<li>解压</li>
+<li>进入文件夹</li>
+<li>执行命令python setup.py install</li>
+</ol>
+<p>注意：如果在install的时候，执行目录安装，可以使用python setup.py install –prefix=安装路径</p>
+<h2 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h2><p>在程序中，使用from import 即可完成对安装的模块使用</p>
+<p>from 模块名 import 模块名或者*</p>
+]]></content>
+      
+        <categories>
+            
+            <category> python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Redis缓存的基本使用]]></title>
-      <url>/2018/05/26/Redis%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+      <url>/2018/05/25/Redis%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<h2 id="什么是Redis"><a href="#什么是Redis" class="headerlink" title="什么是Redis"></a>什么是Redis</h2><p>Redis是Remote Dictionary Server(远程数据服务)的缩写</p>
 <p>同一个select 查询sql语句，每天需要被执行查询100万次，并且每次查询获得的数据还是一样的。为了减轻数据库的负载，就把查询好的数据给缓存起来(存储在内存中)，第一个用户执行从mysql中获得数据并存储到内存中，第二个 到 第100万次查询就直接从内存中获得数据。</p>
 <p>使用缓存减轻数据库的负载。数据库是整个网站资源的“瓶颈”。<br>在开发网站的时候如果有一些数据在短时间之内不会发生变化，而它们还要被频繁访问，为了提高用户的请求速度和降低网站的负载，就把这些数据放到一个读取速度更快的介质上(或者是通过较少的计算量就可以获得该数据) ，该行为就称作对该数据的缓存。</p>
@@ -64,7 +957,7 @@ vi ./redis.conf
     
     <entry>
       <title><![CDATA[geettest滑块验证码使用完整教程(PHP)]]></title>
-      <url>/2018/05/22/geetest%E4%BD%BF%E7%94%A8/</url>
+      <url>/2018/05/21/geetest%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<h2 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h2><ul>
 <li>官网：<a href="http://www.geetest.com/" target="_blank" rel="external">http://www.geetest.com/</a></li>
 <li>github：<a href="https://github.com/GeeTeam/gt-php-sdk.git" target="_blank" rel="external">https://github.com/GeeTeam/gt-php-sdk.git</a></li>
@@ -182,7 +1075,7 @@ if ($_SESSION[&#39;gtserver&#39;] == 1) {   //服务器正常
     
     <entry>
       <title><![CDATA[SVN 的基本使用]]></title>
-      <url>/2018/05/22/SVN%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+      <url>/2018/05/21/SVN%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<h2 id="简单说明"><a href="#简单说明" class="headerlink" title="简单说明"></a>简单说明</h2><p>① 多人开发同一个项目不会出现代码覆盖情况。<br>② 针对一个文件可以创建许多不同版本，并且可以随时查看不同版本的内容。<br>③ 公司领导可以通过svn查看每个人的工作情况</p>
 <h2 id="svn的安装"><a href="#svn的安装" class="headerlink" title="svn的安装"></a>svn的安装</h2><ul>
 <li>安装subversion</li>
@@ -247,7 +1140,7 @@ zrlee = rw
     
     <entry>
       <title><![CDATA[Laravel5安装配置Entrust扩展包RABC权限管理]]></title>
-      <url>/2018/05/17/laravel5%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEEntrust/</url>
+      <url>/2018/05/16/laravel5%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEEntrust/</url>
       <content type="html"><![CDATA[<p>Entrust为我们在Laravel中实现基于角色的权限管理（RBAC）提供了简洁灵活的方式。</p>
 <h1 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h1><p>想要在Laravel中使用Entrust，首先需要通过Composer来安装其依赖包：</p>
 <pre><code>composer require zizaco/entrust 5.2.x-dev
@@ -391,7 +1284,7 @@ $role-&gt;forceDelete(); // 不管透视表是否有级联删除都会生效
     
     <entry>
       <title><![CDATA[MongoDB安装与shell]]></title>
-      <url>/2018/05/10/MongoDB%E5%AE%89%E8%A3%85%E4%B8%8Eshell/</url>
+      <url>/2018/05/09/MongoDB%E5%AE%89%E8%A3%85%E4%B8%8Eshell/</url>
       <content type="html"><![CDATA[<h1 id="MongoDB安装与shell"><a href="#MongoDB安装与shell" class="headerlink" title="MongoDB安装与shell"></a>MongoDB安装与shell</h1><h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>只需要在官网下载解压包<br><a href="https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;wd=&amp;eqid=8488b4090000820b000000065af41a24" target="_blank" rel="external">https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;wd=&amp;eqid=8488b4090000820b000000065af41a24</a></p>
 <p>放到linux服务器上解压即可</p>
 <h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>MongoDB的数据存储在data目录的db目录下，但是这个目录在安装过程不会自动创建，所以你需要手动创建data目录，并在data目录中创建db目录。<br>例如</p>
@@ -474,7 +1367,7 @@ $role-&gt;forceDelete(); // 不管透视表是否有级联删除都会生效
     
     <entry>
       <title><![CDATA[CentOS下安装Docker与启动方法]]></title>
-      <url>/2018/05/06/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8Docker/</url>
+      <url>/2018/05/05/CentOS%E4%B8%8B%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8Docker/</url>
       <content type="html"><![CDATA[<h1 id="CentOS下安装Docker与启动方法"><a href="#CentOS下安装Docker与启动方法" class="headerlink" title="CentOS下安装Docker与启动方法"></a>CentOS下安装Docker与启动方法</h1><blockquote>
 <p>有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动</p>
 </blockquote>
@@ -515,30 +1408,7 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
     
     <entry>
       <title><![CDATA[laravel验证]]></title>
-      <url>/2018/05/03/laravel-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
-      <content type="html"><![CDATA[<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：</p>
-<pre><code class="`php">$value = config(&#39;app.timezone&#39;);
-</code></pre>
-]]></content>
-      
-        <categories>
-            
-            <category> laravel </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> laravel </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[laravel验证]]></title>
-      <url>/2018/05/03/laravel-%E9%AA%8C%E8%AF%81%E8%A7%84%E5%88%99/</url>
+      <url>/2018/05/02/laravel-%E9%AA%8C%E8%AF%81%E8%A7%84%E5%88%99/</url>
       <content type="html"><![CDATA[<h1 id="创建表单请求"><a href="#创建表单请求" class="headerlink" title="创建表单请求"></a>创建表单请求</h1><p>在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令 </p>
 <pre><code class="php">php artisan make:request ArticleRequest
 </code></pre>
@@ -595,8 +1465,31 @@ Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host
     </entry>
     
     <entry>
+      <title><![CDATA[laravel验证]]></title>
+      <url>/2018/05/02/laravel-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+      <content type="html"><![CDATA[<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：</p>
+<pre><code class="`php">$value = config(&#39;app.timezone&#39;);
+</code></pre>
+]]></content>
+      
+        <categories>
+            
+            <category> laravel </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> laravel </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[php递归实现无限分类算法]]></title>
-      <url>/2017/05/17/%E6%97%A0%E9%99%90%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/</url>
+      <url>/2017/05/16/%E6%97%A0%E9%99%90%E5%88%86%E7%B1%BB%E7%AE%97%E6%B3%95/</url>
       <content type="html"><![CDATA[<h1 id="php递归实现无限分类算法"><a href="#php递归实现无限分类算法" class="headerlink" title="php递归实现无限分类算法"></a>php递归实现无限分类算法</h1><pre><code class="php">
 &lt;?php
 
@@ -664,7 +1557,7 @@ foreach($result as $row) {
     
     <entry>
       <title><![CDATA[流行框架第四天：Angular指令、服务、和TODOMVC案例]]></title>
-      <url>/2017/05/16/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6%E7%AC%AC%E5%9B%9B%E5%A4%A9/</url>
+      <url>/2017/05/15/%E4%B8%BB%E6%B5%81%E6%A1%86%E6%9E%B6%E7%AC%AC%E5%9B%9B%E5%A4%A9/</url>
       <content type="html"><![CDATA[<h1 id="流行框架第四天：Angular指令、服务、和TODOMVC案例"><a href="#流行框架第四天：Angular指令、服务、和TODOMVC案例" class="headerlink" title="流行框架第四天：Angular指令、服务、和TODOMVC案例"></a>流行框架第四天：Angular指令、服务、和TODOMVC案例</h1><h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="内置指令"><a href="#内置指令" class="headerlink" title="内置指令"></a>内置指令</h3><pre><code> ng-app
 </code></pre><h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><h3 id="内置服务"><a href="#内置服务" class="headerlink" title="内置服务"></a>内置服务</h3><h3 id="自定义服务"><a href="#自定义服务" class="headerlink" title="自定义服务"></a>自定义服务</h3><h2 id="TODOLIST案例"><a href="#TODOLIST案例" class="headerlink" title="TODOLIST案例"></a>TODOLIST案例</h2>]]></content>
       
@@ -679,7 +1572,7 @@ foreach($result as $row) {
     
     <entry>
       <title><![CDATA[bootstrap3.x 学习大纲]]></title>
-      <url>/2017/05/16/bootstrap%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB/</url>
+      <url>/2017/05/15/bootstrap%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB/</url>
       <content type="html"><![CDATA[<hr>
 <p>#学习大纲</p>
 <hr>
@@ -1005,7 +1898,7 @@ data-slide=&#39;next&#39;
     
     <entry>
       <title><![CDATA[流行框架第三天：Angular入门]]></title>
-      <url>/2017/05/15/angular%E5%85%A5%E9%97%A8/</url>
+      <url>/2017/05/14/angular%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<h1 id="流行框架第三天：Angular入门"><a href="#流行框架第三天：Angular入门" class="headerlink" title="流行框架第三天：Angular入门"></a>流行框架第三天：Angular入门</h1><h2 id="推荐工具"><a href="#推荐工具" class="headerlink" title="推荐工具"></a>推荐工具</h2><ul>
 <li>在线编辑器<ul>
 <li><a href="http://codepen.io/" target="_blank" rel="external">http://codepen.io/</a></li>
@@ -1250,482 +2143,8 @@ readfile($file);
     </entry>
     
     <entry>
-      <title><![CDATA[网页加载进度条与雪花效果]]></title>
-      <url>/2017/05/11/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%9D%A1/</url>
-      <content type="html"><![CDATA[<h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
-<li>引入库文件就行了<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&gt;&lt;/script&gt;
-&lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&gt;
-</code></pre>
-</li>
-</ul>
-<h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
-<li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
-<li>先引入js：<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-</li>
-<li>在合适的地方调用就行了 可以把图片换成其他的图片</li>
-</ol>
-<pre><code class="javascript">&lt;script&gt;
-    $(document).snowfall({deviceorientation : true, image: &quot;http://loktar00.github.io/JQuery-Snowfall/images/flake.png&quot;, minSize: 10, maxSize: 32, flakeCount: 60});
-&lt;/script&gt;
-</code></pre>
-<p> 其他效果以后更新或者在其他文章发布</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 网页效果 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> 效果 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[流行框架第二天：Git与Angular入门]]></title>
-      <url>/2017/05/11/%E6%B5%81%E8%A1%8C%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%BA%8C%E5%A4%A9/</url>
-      <content type="html"><![CDATA[<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><ul>
-<li><p>Node Node.js — 类似一个操作系统</p>
-<ul>
-<li>一个JS的运行环境</li>
-<li>主要用于开发Web应用程序（回想登陆的例子）</li>
-<li>很多的前端开发工具都是基于node这个平台</li>
-<li>所用的工具就相当于一些软件</li>
-</ul>
-</li>
-<li><p>NVM （可选的）</p>
-<ul>
-<li>Node Version Manager(Node的版本管理工具)</li>
-<li>因为node的版本比较多，很多时候我们可能依赖多个版本，并要求自由切换</li>
-<li>使用<ul>
-<li>nvm use [对应的版本号] [平台架构（如果是32系统需要写32,64位不用管）]</li>
-<li>nvm install <version> [arch]  安装</version></li>
-<li>nvm uninstall <version> 卸载</version></li>
-<li>nvm list 查看已经安装版本</li>
-</ul>
-</li>
-<li>官网<ul>
-<li><a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="external">https://github.com/coreybutler/nvm-windows</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>NPM </p>
-<ul>
-<li>node package manager(node的包管理工具)</li>
-<li>npm管理包非常方便，我们只需要记住使用哪个包就可以了</li>
-<li><p>使用</p>
-<ul>
-<li>npm install xxx </li>
-<li>安装一个包到项目本地，必须要联网</li>
-<li><p>安装完成过后项目根目录下会多一个node_modules文件夹，所有的下载下来的包全部在里面</p>
-</li>
-<li><p>由于需要记录项目依赖哪些东西，所以需要一个配置文件“package.json”，可以通过npm init命令生成</p>
-</li>
-<li><p>以后安装包的时候将其–save</p>
-</li>
-<li><p>–save就是将我们安装的包名字和包版本记录到配置文件中的dependencies节点中</p>
-</li>
-<li>–save-dev</li>
-<li><p>项目依赖分两种，一个就是普通的项目依赖比如bootstrap，还用一种只是开发阶段需要用的，这种属于开发依赖比如gulp，开发依赖最终记录在devDependencies节点里面</p>
-</li>
-<li><p>npm uninstall xxx –save</p>
-</li>
-<li><p>npm install xxx -g(全局安装包)</p>
-<ul>
-<li>如果你安装的是一个工具，工具要在每一个地方都能用，这种情况下一般全局安装。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Bower</p>
-<ul>
-<li>Web sites are made of lots of things — frameworks, libraries, assets, and utilities. Bower manages all these things for you.</li>
-<li>Bower就是用来管理项目中所有的依赖，主要用于Web页面开发时使用的包管理，比如jquery，bootstrap</li>
-<li><blockquote>
-<p>重复的轮子太多，抓住轮子与轮子之间的共性</p>
-</blockquote>
-</li>
-</ul>
-</li>
-<li><p>Gulp  FIS3</p>
-</li>
-<li><p><a href="http://www.ydcss.com/archives/94" target="_blank" rel="external">http://www.ydcss.com/archives/94</a></p>
-</li>
-<li><p>msi - microsoft installer 微软安装器</p>
-</li>
-</ul>
-<h2 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h2><h3 id="什么是GIT"><a href="#什么是GIT" class="headerlink" title="什么是GIT"></a>什么是GIT</h3><ul>
-<li>是一个源代码管理工具</li>
-<li>在一个项目中，凡是由开发人员编写的都算是源代码</li>
-<li>源代码有必要管理起来？</li>
-<li>让源代码可以被追溯，主要记录每次变更了什么，谁主导这次变化</li>
-<li>人为的维护比较麻烦，</li>
-<li>GIT是Linux之父当年为了维护管理Linux的源代码写的一个工具</li>
-<li>Git 之前 很多使用 svn vss tfs hs ……</li>
-</ul>
-<ul>
-<li><a href="https://guides.github.com/" target="_blank" rel="external">https://guides.github.com/</a></li>
-</ul>
-<h3 id="安装GIT"><a href="#安装GIT" class="headerlink" title="安装GIT"></a>安装GIT</h3><ul>
-<li>git命令行工具</li>
-<li>基于git命令行的一个客户端软件（提供一个界面去管理源代码）</li>
-</ul>
-<h3 id="GIT命令操作"><a href="#GIT命令操作" class="headerlink" title="GIT命令操作"></a>GIT命令操作</h3><ul>
-<li>初始化一个本地GIT仓储</li>
-</ul>
-<pre><code class="shell">cd 当前项目目录
-git init // 初始化一个本地的仓库
-</code></pre>
-<blockquote>
-<p>就是在本地文件夹中添加了一个.git的文件夹用于记录所有的项目变更信息</p>
-</blockquote>
-<ul>
-<li>查看本地仓储的变更状态</li>
-</ul>
-<p>git status<br>用于查看本地仓储的状态<br>第一次查看，显示的是一坨没有被跟踪的文件</p>
-<p>git status -s // -s 是输出简要的变更日志</p>
-<ul>
-<li>添加本地暂存（托管）文件</li>
-</ul>
-<p>git add<br>可以将一个没有被跟踪的文件添加到跟踪列表</p>
-<p>类似于node_modules这种性质的文件是不应该被跟踪</p>
-<ul>
-<li>添加本地GIT忽略清单文件</li>
-</ul>
-<p>在代码库文件夹的根目录添加一个.gitignore文件<br>此文件用于说明忽略的文件有哪些</p>
-<ul>
-<li>提交被托管的文件变化到本地仓储</li>
-</ul>
-<p>git commit<br>将本地的变化提交的本地的仓库文件夹归档<br>一般在有了一个小单元的整体变化后再提交</p>
-<ul>
-<li>对比差异</li>
-</ul>
-<p>git diff<br>可以用于对比当前状态和版本库中状态的变化</p>
-<ul>
-<li>提交日志</li>
-</ul>
-<p>git log<br>可以查看提交日志</p>
-<ul>
-<li>回归到指定版本</li>
-</ul>
-<p>git reset –hard</p>
-<ul>
-<li><p>为仓储添加远端（服务器端）地址</p>
-</li>
-<li><p>将本地仓储的提交记录推送到远端的master分支</p>
-</li>
-<li><p>拉取远端master分支的更新记录到本地</p>
-</li>
-<li><p>回归到指定版本</p>
-</li>
-</ul>
-<h3 id="GITHUB基本使用"><a href="#GITHUB基本使用" class="headerlink" title="GITHUB基本使用"></a>GITHUB基本使用</h3><ul>
-<li><a href="https://github.com/" target="_blank" rel="external">https://github.com/</a></li>
-<li>GITHUB是一个GIT服务的提供商，</li>
-<li></li>
-<li>提出社交化编程</li>
-</ul>
-<p><a href="http://zoomzhao.github.io/code-guide/" target="_blank" rel="external">http://zoomzhao.github.io/code-guide/</a><br><a href="https://github.com/jobbole/awesome-javascript-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-javascript-cn</a><br><a href="https://github.com/jobbole/awesome-css-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-css-cn</a></p>
-<ul>
-<li>GIT分支</li>
-</ul>
-<h2 id="Angular入门"><a href="#Angular入门" class="headerlink" title="Angular入门"></a>Angular入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
-<li>知识储备</li>
-<li>什么是Angular<ul>
-<li>快速构建Web应用程序</li>
-<li>单页面应用程序</li>
-</ul>
-</li>
-<li>Angular的特性</li>
-<li>为什么要用Angular<ul>
-<li>让Web应用程序开发更简单，更快捷</li>
-</ul>
-</li>
-<li>带领前端进入MV*的时代</li>
-</ul>
-<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><ul>
-<li>引用Angular<ul>
-<li>下载</li>
-<li>bower</li>
-<li>npm</li>
-</ul>
-</li>
-<li>基本使用</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> 移动web </category>
-            
-        </categories>
-        
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[流行框架第一天：构建前端自动化工作流环境]]></title>
-      <url>/2017/05/11/%E6%B5%81%E8%A1%8C%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
-      <content type="html"><![CDATA[<h2 id="兩個問題"><a href="#兩個問題" class="headerlink" title="兩個問題"></a>兩個問題</h2><h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
-<li>了解什么是Node，什么是NPM；（Node.js）</li>
-<li>掌握Bower的使用；</li>
-<li>熟练使用Less/Sass；</li>
-<li>搭建一个自己的自动化工作流环境；<ul>
-<li>自动编译</li>
-<li>自动合并</li>
-<li>自动刷新</li>
-<li>自动部署</li>
-</ul>
-</li>
-<li>GIT 与 GITHUB<ul>
-<li>master 托管源文件</li>
-<li>gh-pages 托管部署文件</li>
-<li>在github搭建自己的blog</li>
-</ul>
-</li>
-</ul>
-<h2 id="为什么要有自动化的流程"><a href="#为什么要有自动化的流程" class="headerlink" title="为什么要有自动化的流程"></a>为什么要有自动化的流程</h2><ul>
-<li>在我们的开发过程中有大量的重复操作</li>
-<li>DRY  Don’t repeat yourself</li>
-<li><p>开发人员的精力应放在哪？创造，新的一切</p>
-</li>
-<li><p>前端开发的编译操作</p>
-</li>
-</ul>
-<h2 id="1-Node环境"><a href="#1-Node环境" class="headerlink" title="1.Node环境"></a>1.Node环境</h2><h3 id="1-1-什么是Node"><a href="#1-1-什么是Node" class="headerlink" title="1.1.什么是Node"></a>1.1.什么是Node</h3><ul>
-<li>Node.js 可能类似jquery.js</li>
-<li>不是JS文件，也不是一个JS框架（）</li>
-<li>而是Server side Javascript runtime, 服务端的一个JS运行时</li>
-<li>我们可以在NODE运行JS代码</li>
-<li>alert();ECMAScript  JS- ES  BOM  DOM</li>
-<li>node中只能运行ECMAScript，无法使用 BOM 和 DOM</li>
-<li>目前我们的JS是运行在浏览器内核中</li>
-<li>PHP是什么？是一门脚本语言也是一个运行环境</li>
-<li><p>为什么Node选中了JS，</p>
-</li>
-<li><p>说到底就是一个JS运行环境</p>
-</li>
-<li><p>目前有两个分支</p>
-<ul>
-<li>Node.js 0.12.7 官方版本 要求尽善尽美</li>
-<li>IO.js 是社区的产物，不是官方的东西，io.js有很多新特性，迭代非常快，社区推进非常快</li>
-<li>15年两者合并，发布node第一个正式版 4.0， 迭代速度又慢了</li>
-<li>node 5.x == io.js</li>
-<li>node 4.0 == node</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-2-Node环境搭建"><a href="#1-2-Node环境搭建" class="headerlink" title="1.2.Node环境搭建"></a>1.2.Node环境搭建</h3><h4 id="1-2-1-Mac"><a href="#1-2-1-Mac" class="headerlink" title="1.2.1.Mac"></a>1.2.1.Mac</h4><ul>
-<li>安装包的方式<ul>
-<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0.pkg" target="_blank" rel="external">pkg</a></li>
-</ul>
-</li>
-<li><p>NVM（Node Version Manager）</p>
-<pre><code class="bash">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
-$ echo &#39;. ~/.nvm/nvm.sh&#39; &gt;&gt; .bash_profile
-$ nvm install stable
-$ nvm alias default stable
-</code></pre>
-</li>
-</ul>
-<h4 id="1-2-2-Windows"><a href="#1-2-2-Windows" class="headerlink" title="1.2.2.Windows"></a>1.2.2.Windows</h4><ul>
-<li>安装包的方式<ul>
-<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x64.msi" target="_blank" rel="external">msi_x64</a></li>
-<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x86.msi" target="_blank" rel="external">msi_x86</a></li>
-</ul>
-</li>
-<li>NVM（Node Version Manager）</li>
-<li>nvm(node version manager)</li>
-<li>因为NODE版本比较多，开发人员可能依赖很多版本</li>
-<li><p>通过NVM，可以轻松切换于不同的版本之间</p>
-<pre><code class="command">
-</code></pre>
-<p>NVM_HOME=C:\Develop\nvm</p>
-</li>
-</ul>
-<p>NVM_SYMLINK=C:\Develop\nodejs</p>
-<p>NPM_HOME=C:\Develop\nvm\npm</p>
-<p>PATH=%NVM_HOME%;%NVM_SYMLINK%;%NPM_HOME%</p>
-<h4 id="1-2-3-环境变量"><a href="#1-2-3-环境变量" class="headerlink" title="1.2.3.环境变量"></a>1.2.3.环境变量</h4><ul>
-<li><p>环境变量就是操作系统提供的系统级别用于存储变量的地方</p>
-</li>
-<li><p>系统变量和用户变量</p>
-</li>
-<li>系统变量指的是所用当前系统用户共享的变量</li>
-<li>自己的电脑一般只有一个用户</li>
-<li><p>建议将自己配置的环境变量放在用户变量中，用户变量比较干净</p>
-</li>
-<li><p>环境变量的变量名是不区分大小写的</p>
-</li>
-<li><p>变量间运行相互引用</p>
-</li>
-<li><p>特殊值：</p>
-</li>
-<li>PATH变量（不区分大小写）</li>
-<li>PATH 相当于一个路径的引用</li>
-<li><p>只要添加到PATH变量中的路径，都可以在任何目录下搜索</p>
-</li>
-<li><p>命令行</p>
-</li>
-<li>可以用来执行当前目录下的文件</li>
-<li>命令</li>
-</ul>
-<p>cd :change directory</p>
-<ul>
-<li>Node.js是一个轻内核（本身没有什么功能）的东东，所有的功能都要功能包提供</li>
-<li>node官方提供了一些最基础的包</li>
-</ul>
-<h3 id="1-3-Node用途"><a href="#1-3-Node用途" class="headerlink" title="1.3.Node用途"></a>1.3.Node用途</h3><h4 id="REPL环境（控制台环境）"><a href="#REPL环境（控制台环境）" class="headerlink" title="REPL环境（控制台环境）"></a>REPL环境（控制台环境）</h4><h4 id="1-3-1-开发Web应用程序"><a href="#1-3-1-开发Web应用程序" class="headerlink" title="1.3.1.开发Web应用程序"></a>1.3.1.开发Web应用程序</h4><ul>
-<li>做动态网站</li>
-<li>开发提供数据的服务端API</li>
-</ul>
-<h4 id="1-3-2-前端开发工具基础"><a href="#1-3-2-前端开发工具基础" class="headerlink" title="1.3.2.前端开发工具基础"></a>1.3.2.前端开发工具基础</h4><ul>
-<li>Node.js给前端乃至整个开发行业带来一场工业革命</li>
-<li>刀跟火种</li>
-</ul>
-<h3 id="1-4-Node开发Web应用Demo"><a href="#1-4-Node开发Web应用Demo" class="headerlink" title="1.4.Node开发Web应用Demo"></a>1.4.Node开发Web应用Demo</h3><h4 id="1-4-1-复习请求与响应"><a href="#1-4-1-复习请求与响应" class="headerlink" title="1.4.1.复习请求与响应"></a>1.4.1.复习请求与响应</h4><p>客户端发送到服务端的东西称之为请求报文<br>服务端返回给客户端的东西称之为响应报文</p>
-<h3 id="1-5-NPM"><a href="#1-5-NPM" class="headerlink" title="1.5.NPM"></a>1.5.NPM</h3><h4 id="1-5-1-什么是NPM"><a href="#1-5-1-什么是NPM" class="headerlink" title="1.5.1.什么是NPM"></a>1.5.1.什么是NPM</h4><p><a href="https://www.npmjs.com/" target="_blank" rel="external">https://www.npmjs.com/</a></p>
-<ul>
-<li>Node Package Manager</li>
-<li>Node应用程序依赖包的管理工具</li>
-<li>安装卸载更新之类的操作</li>
-</ul>
-<h4 id="1-5-2-为什么使用NPM"><a href="#1-5-2-为什么使用NPM" class="headerlink" title="1.5.2.为什么使用NPM"></a>1.5.2.为什么使用NPM</h4><ul>
-<li>包很多</li>
-<li>场景：我需要用一个A，A依赖B，B依赖C</li>
-<li>常见的包管理工具都有循环依赖的功能</li>
-<li>你只需记住你要什么东西</li>
-</ul>
-<h4 id="1-5-3-常见的NPM操作"><a href="#1-5-3-常见的NPM操作" class="headerlink" title="1.5.3.常见的NPM操作"></a>1.5.3.常见的NPM操作</h4><p>// 安装一个包，默认安装最新稳定版本<br>npm install package_name<br>// –save<br>// 初始化操作，给项目添加一个配置文件<br>npm init<br>// –yes参数走默认配置</p>
-<ul>
-<li>如果官方数据源太慢使用</li>
-<li><a href="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a></li>
-</ul>
-<hr>
-<h2 id="2-Bower"><a href="#2-Bower" class="headerlink" title="2.Bower"></a>2.Bower</h2><h3 id="2-1-什么是Bower"><a href="#2-1-什么是Bower" class="headerlink" title="2.1.什么是Bower"></a>2.1.什么是Bower</h3><ul>
-<li><a href="http://bower.io/" target="_blank" rel="external">官网</a></li>
-<li>web应用程序依赖项管理工具</li>
-</ul>
-<h3 id="2-2-为什么使用Bower"><a href="#2-2-为什么使用Bower" class="headerlink" title="2.2.为什么使用Bower"></a>2.2.为什么使用Bower</h3><ul>
-<li>方便便捷的方式管理包，zhuangbi</li>
-</ul>
-<h3 id="2-3-Bower实践"><a href="#2-3-Bower实践" class="headerlink" title="2.3.Bower实践"></a>2.3.Bower实践</h3><ul>
-<li><p>npm install -g bower // -g:global</p>
-</li>
-<li><p>修改npm全局路径，就是在用户目录下添加.npmrc文件</p>
-</li>
-</ul>
-<hr>
-<h2 id="3-Sass-LESS"><a href="#3-Sass-LESS" class="headerlink" title="3.Sass/LESS"></a>3.Sass/LESS</h2><hr>
-<h2 id="4-Gulp"><a href="#4-Gulp" class="headerlink" title="4.Gulp"></a>4.Gulp</h2><h3 id="4-1-Gulp简介"><a href="#4-1-Gulp简介" class="headerlink" title="4.1.Gulp简介"></a>4.1.Gulp简介</h3><ul>
-<li>链接：<ul>
-<li><a href="http://gulpjs.com/" target="_blank" rel="external">官网</a></li>
-<li><a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">中文网</a></li>
-</ul>
-</li>
-<li>就是用来机械化的完成重复性质的工作</li>
-<li>gulp的机制就是将重复工作抽象成一个个的任务，</li>
-</ul>
-<h3 id="4-2-Gulp准备工作"><a href="#4-2-Gulp准备工作" class="headerlink" title="4.2.Gulp准备工作"></a>4.2.Gulp准备工作</h3><ul>
-<li>安装Node.js</li>
-<li>安装 gulp 命令行工具<ul>
-<li><code>npm install -g gulp</code></li>
-</ul>
-</li>
-<li>初始化 gulp 项目</li>
-<li>创建任务 - gulpfile.js</li>
-</ul>
-<h3 id="4-3-基本使用"><a href="#4-3-基本使用" class="headerlink" title="4.3.基本使用"></a>4.3.基本使用</h3><h3 id="4-4-常用插件"><a href="#4-4-常用插件" class="headerlink" title="4.4.常用插件"></a>4.4.常用插件</h3><ul>
-<li><a href="https://www.npmjs.com/package/gulp-less" target="_blank" rel="external">编译 Less：gulp-less</a></li>
-<li><a href="https://www.npmjs.com/package/gulp-connect" target="_blank" rel="external">创建本地服务器：gulp-connect</a></li>
-<li><a href="https://www.npmjs.com/package/gulp-concat" target="_blank" rel="external">合并文件：gulp-concat</a></li>
-<li><a href="https://www.npmjs.com/package/gulp-uglify" target="_blank" rel="external">最小化 js 文件：gulp-uglify</a></li>
-<li><a href="https://www.npmjs.com/package/gulp-rename" target="_blank" rel="external">重命名文件：gulp-rename</a></li>
-<li><a href="https://www.npmjs.com/package/gulp-minify-css" target="_blank" rel="external">最小化 css 文件：gulp-minify-css</a></li>
-<li><a href="https://www.npmjs.com/package/gulp-minify-html" target="_blank" rel="external">压缩html文件 gulp-minify-html</a></li>
-<li><a href="https://www.npmjs.com/package/gulp-imagemin" target="_blank" rel="external">最小化图像：gulp-imagemin</a></li>
-</ul>
-<hr>
-<h2 id="5-Git"><a href="#5-Git" class="headerlink" title="5.Git"></a>5.Git</h2><h3 id="5-1-什么是GIT，什么是GITHUB"><a href="#5-1-什么是GIT，什么是GITHUB" class="headerlink" title="5.1.什么是GIT，什么是GITHUB"></a>5.1.什么是GIT，什么是GITHUB</h3><ul>
-<li>GIT</li>
-<li>GITHUB</li>
-</ul>
-<h3 id="5-2-环境安装"><a href="#5-2-环境安装" class="headerlink" title="5.2.环境安装"></a>5.2.环境安装</h3><h3 id="5-3-GIT常用命令"><a href="#5-3-GIT常用命令" class="headerlink" title="5.3.GIT常用命令"></a>5.3.GIT常用命令</h3><hr>
-<h2 id="6-Markdown"><a href="#6-Markdown" class="headerlink" title="6.Markdown"></a>6.Markdown</h2><p><a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="external">https://guides.github.com/features/mastering-markdown/</a><br><a href="https://help.github.com/articles/github-flavored-markdown/" target="_blank" rel="external">https://help.github.com/articles/github-flavored-markdown/</a><br><a href="https://help.github.com/articles/markdown-basics/" target="_blank" rel="external">https://help.github.com/articles/markdown-basics/</a></p>
-]]></content>
-      
-        <categories>
-            
-            <category> 移动web </category>
-            
-        </categories>
-        
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[php 桶式排序 实现方法]]></title>
-      <url>/2017/05/11/php%E6%8D%85%E5%BC%8F%E6%8E%92%E5%BA%8F/</url>
-      <content type="html"><![CDATA[<hr>
-<pre><code class="php">&lt;?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2017/2/20
- * Time: 12:49
- */
-/**
- * 桶式排序
- */
-
-function bucketSort ($list){
-    $max = max($list);
-    $min = min($list) ;
-
-    $bucket = array_fill($min , $max-$min +1 , 0 );
-    //待排序的数作为数组的键 值全是0
-    foreach ($list as $value){
-
-        $bucket[$value] ++ ;
-    }
-    foreach($bucket as $key=&gt;$value){
-        if($value == 1) {
-            $new_list[] = $key ;
-        }elseif ($value &gt;=1 ){
-            for($i = 1 ; $i&lt;=$value ; $i++){
-                $new_list [] = $key ;
-            }
-        }
-    }
-    return $new_list ;
-}
-$result = bucketSort(array(2,4,5,2,1,0,77,55,44,5,3,5,778,999,87)) ;
-var_dump($result) ;
-</code></pre>
-<p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
-]]></content>
-      
-        <categories>
-            
-            <category> php </category>
-            
-        </categories>
-        
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[linux常用口令]]></title>
-      <url>/2017/05/11/linux%E5%B8%B8%E7%94%A8%E5%8F%A3%E4%BB%A4/</url>
+      <url>/2017/05/10/linux%E5%B8%B8%E7%94%A8%E5%8F%A3%E4%BB%A4/</url>
       <content type="html"><![CDATA[<hr>
 <ol>
 <li><p>打开文件</p>
@@ -2014,6 +2433,507 @@ var_dump($result) ;
     </entry>
     
     <entry>
+      <title><![CDATA[php 桶式排序 实现方法]]></title>
+      <url>/2017/05/10/php%E6%8D%85%E5%BC%8F%E6%8E%92%E5%BA%8F/</url>
+      <content type="html"><![CDATA[<hr>
+<pre><code class="php">&lt;?php
+/**
+ * Created by PhpStorm.
+ * User: Administrator
+ * Date: 2017/2/20
+ * Time: 12:49
+ */
+/**
+ * 桶式排序
+ */
+
+function bucketSort ($list){
+    $max = max($list);
+    $min = min($list) ;
+
+    $bucket = array_fill($min , $max-$min +1 , 0 );
+    //待排序的数作为数组的键 值全是0
+    foreach ($list as $value){
+
+        $bucket[$value] ++ ;
+    }
+    foreach($bucket as $key=&gt;$value){
+        if($value == 1) {
+            $new_list[] = $key ;
+        }elseif ($value &gt;=1 ){
+            for($i = 1 ; $i&lt;=$value ; $i++){
+                $new_list [] = $key ;
+            }
+        }
+    }
+    return $new_list ;
+}
+$result = bucketSort(array(2,4,5,2,1,0,77,55,44,5,3,5,778,999,87)) ;
+var_dump($result) ;
+</code></pre>
+<p>输出结果：<br><img src="http://img0.ph.126.net/keLuY8qROHdfRd3Mu9MHfw==/6631995753514903761.png" alt="此处输入图片的描述"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> php </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[流行框架第一天：构建前端自动化工作流环境]]></title>
+      <url>/2017/05/10/%E6%B5%81%E8%A1%8C%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
+      <content type="html"><![CDATA[<h2 id="兩個問題"><a href="#兩個問題" class="headerlink" title="兩個問題"></a>兩個問題</h2><h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><ul>
+<li>了解什么是Node，什么是NPM；（Node.js）</li>
+<li>掌握Bower的使用；</li>
+<li>熟练使用Less/Sass；</li>
+<li>搭建一个自己的自动化工作流环境；<ul>
+<li>自动编译</li>
+<li>自动合并</li>
+<li>自动刷新</li>
+<li>自动部署</li>
+</ul>
+</li>
+<li>GIT 与 GITHUB<ul>
+<li>master 托管源文件</li>
+<li>gh-pages 托管部署文件</li>
+<li>在github搭建自己的blog</li>
+</ul>
+</li>
+</ul>
+<h2 id="为什么要有自动化的流程"><a href="#为什么要有自动化的流程" class="headerlink" title="为什么要有自动化的流程"></a>为什么要有自动化的流程</h2><ul>
+<li>在我们的开发过程中有大量的重复操作</li>
+<li>DRY  Don’t repeat yourself</li>
+<li><p>开发人员的精力应放在哪？创造，新的一切</p>
+</li>
+<li><p>前端开发的编译操作</p>
+</li>
+</ul>
+<h2 id="1-Node环境"><a href="#1-Node环境" class="headerlink" title="1.Node环境"></a>1.Node环境</h2><h3 id="1-1-什么是Node"><a href="#1-1-什么是Node" class="headerlink" title="1.1.什么是Node"></a>1.1.什么是Node</h3><ul>
+<li>Node.js 可能类似jquery.js</li>
+<li>不是JS文件，也不是一个JS框架（）</li>
+<li>而是Server side Javascript runtime, 服务端的一个JS运行时</li>
+<li>我们可以在NODE运行JS代码</li>
+<li>alert();ECMAScript  JS- ES  BOM  DOM</li>
+<li>node中只能运行ECMAScript，无法使用 BOM 和 DOM</li>
+<li>目前我们的JS是运行在浏览器内核中</li>
+<li>PHP是什么？是一门脚本语言也是一个运行环境</li>
+<li><p>为什么Node选中了JS，</p>
+</li>
+<li><p>说到底就是一个JS运行环境</p>
+</li>
+<li><p>目前有两个分支</p>
+<ul>
+<li>Node.js 0.12.7 官方版本 要求尽善尽美</li>
+<li>IO.js 是社区的产物，不是官方的东西，io.js有很多新特性，迭代非常快，社区推进非常快</li>
+<li>15年两者合并，发布node第一个正式版 4.0， 迭代速度又慢了</li>
+<li>node 5.x == io.js</li>
+<li>node 4.0 == node</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-Node环境搭建"><a href="#1-2-Node环境搭建" class="headerlink" title="1.2.Node环境搭建"></a>1.2.Node环境搭建</h3><h4 id="1-2-1-Mac"><a href="#1-2-1-Mac" class="headerlink" title="1.2.1.Mac"></a>1.2.1.Mac</h4><ul>
+<li>安装包的方式<ul>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0.pkg" target="_blank" rel="external">pkg</a></li>
+</ul>
+</li>
+<li><p>NVM（Node Version Manager）</p>
+<pre><code class="bash">$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
+$ echo &#39;. ~/.nvm/nvm.sh&#39; &gt;&gt; .bash_profile
+$ nvm install stable
+$ nvm alias default stable
+</code></pre>
+</li>
+</ul>
+<h4 id="1-2-2-Windows"><a href="#1-2-2-Windows" class="headerlink" title="1.2.2.Windows"></a>1.2.2.Windows</h4><ul>
+<li>安装包的方式<ul>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x64.msi" target="_blank" rel="external">msi_x64</a></li>
+<li><a href="https://nodejs.org/dist/v5.5.0/node-v5.5.0-x86.msi" target="_blank" rel="external">msi_x86</a></li>
+</ul>
+</li>
+<li>NVM（Node Version Manager）</li>
+<li>nvm(node version manager)</li>
+<li>因为NODE版本比较多，开发人员可能依赖很多版本</li>
+<li><p>通过NVM，可以轻松切换于不同的版本之间</p>
+<pre><code class="command">
+</code></pre>
+<p>NVM_HOME=C:\Develop\nvm</p>
+</li>
+</ul>
+<p>NVM_SYMLINK=C:\Develop\nodejs</p>
+<p>NPM_HOME=C:\Develop\nvm\npm</p>
+<p>PATH=%NVM_HOME%;%NVM_SYMLINK%;%NPM_HOME%</p>
+<h4 id="1-2-3-环境变量"><a href="#1-2-3-环境变量" class="headerlink" title="1.2.3.环境变量"></a>1.2.3.环境变量</h4><ul>
+<li><p>环境变量就是操作系统提供的系统级别用于存储变量的地方</p>
+</li>
+<li><p>系统变量和用户变量</p>
+</li>
+<li>系统变量指的是所用当前系统用户共享的变量</li>
+<li>自己的电脑一般只有一个用户</li>
+<li><p>建议将自己配置的环境变量放在用户变量中，用户变量比较干净</p>
+</li>
+<li><p>环境变量的变量名是不区分大小写的</p>
+</li>
+<li><p>变量间运行相互引用</p>
+</li>
+<li><p>特殊值：</p>
+</li>
+<li>PATH变量（不区分大小写）</li>
+<li>PATH 相当于一个路径的引用</li>
+<li><p>只要添加到PATH变量中的路径，都可以在任何目录下搜索</p>
+</li>
+<li><p>命令行</p>
+</li>
+<li>可以用来执行当前目录下的文件</li>
+<li>命令</li>
+</ul>
+<p>cd :change directory</p>
+<ul>
+<li>Node.js是一个轻内核（本身没有什么功能）的东东，所有的功能都要功能包提供</li>
+<li>node官方提供了一些最基础的包</li>
+</ul>
+<h3 id="1-3-Node用途"><a href="#1-3-Node用途" class="headerlink" title="1.3.Node用途"></a>1.3.Node用途</h3><h4 id="REPL环境（控制台环境）"><a href="#REPL环境（控制台环境）" class="headerlink" title="REPL环境（控制台环境）"></a>REPL环境（控制台环境）</h4><h4 id="1-3-1-开发Web应用程序"><a href="#1-3-1-开发Web应用程序" class="headerlink" title="1.3.1.开发Web应用程序"></a>1.3.1.开发Web应用程序</h4><ul>
+<li>做动态网站</li>
+<li>开发提供数据的服务端API</li>
+</ul>
+<h4 id="1-3-2-前端开发工具基础"><a href="#1-3-2-前端开发工具基础" class="headerlink" title="1.3.2.前端开发工具基础"></a>1.3.2.前端开发工具基础</h4><ul>
+<li>Node.js给前端乃至整个开发行业带来一场工业革命</li>
+<li>刀跟火种</li>
+</ul>
+<h3 id="1-4-Node开发Web应用Demo"><a href="#1-4-Node开发Web应用Demo" class="headerlink" title="1.4.Node开发Web应用Demo"></a>1.4.Node开发Web应用Demo</h3><h4 id="1-4-1-复习请求与响应"><a href="#1-4-1-复习请求与响应" class="headerlink" title="1.4.1.复习请求与响应"></a>1.4.1.复习请求与响应</h4><p>客户端发送到服务端的东西称之为请求报文<br>服务端返回给客户端的东西称之为响应报文</p>
+<h3 id="1-5-NPM"><a href="#1-5-NPM" class="headerlink" title="1.5.NPM"></a>1.5.NPM</h3><h4 id="1-5-1-什么是NPM"><a href="#1-5-1-什么是NPM" class="headerlink" title="1.5.1.什么是NPM"></a>1.5.1.什么是NPM</h4><p><a href="https://www.npmjs.com/" target="_blank" rel="external">https://www.npmjs.com/</a></p>
+<ul>
+<li>Node Package Manager</li>
+<li>Node应用程序依赖包的管理工具</li>
+<li>安装卸载更新之类的操作</li>
+</ul>
+<h4 id="1-5-2-为什么使用NPM"><a href="#1-5-2-为什么使用NPM" class="headerlink" title="1.5.2.为什么使用NPM"></a>1.5.2.为什么使用NPM</h4><ul>
+<li>包很多</li>
+<li>场景：我需要用一个A，A依赖B，B依赖C</li>
+<li>常见的包管理工具都有循环依赖的功能</li>
+<li>你只需记住你要什么东西</li>
+</ul>
+<h4 id="1-5-3-常见的NPM操作"><a href="#1-5-3-常见的NPM操作" class="headerlink" title="1.5.3.常见的NPM操作"></a>1.5.3.常见的NPM操作</h4><p>// 安装一个包，默认安装最新稳定版本<br>npm install package_name<br>// –save<br>// 初始化操作，给项目添加一个配置文件<br>npm init<br>// –yes参数走默认配置</p>
+<ul>
+<li>如果官方数据源太慢使用</li>
+<li><a href="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a></li>
+</ul>
+<hr>
+<h2 id="2-Bower"><a href="#2-Bower" class="headerlink" title="2.Bower"></a>2.Bower</h2><h3 id="2-1-什么是Bower"><a href="#2-1-什么是Bower" class="headerlink" title="2.1.什么是Bower"></a>2.1.什么是Bower</h3><ul>
+<li><a href="http://bower.io/" target="_blank" rel="external">官网</a></li>
+<li>web应用程序依赖项管理工具</li>
+</ul>
+<h3 id="2-2-为什么使用Bower"><a href="#2-2-为什么使用Bower" class="headerlink" title="2.2.为什么使用Bower"></a>2.2.为什么使用Bower</h3><ul>
+<li>方便便捷的方式管理包，zhuangbi</li>
+</ul>
+<h3 id="2-3-Bower实践"><a href="#2-3-Bower实践" class="headerlink" title="2.3.Bower实践"></a>2.3.Bower实践</h3><ul>
+<li><p>npm install -g bower // -g:global</p>
+</li>
+<li><p>修改npm全局路径，就是在用户目录下添加.npmrc文件</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-Sass-LESS"><a href="#3-Sass-LESS" class="headerlink" title="3.Sass/LESS"></a>3.Sass/LESS</h2><hr>
+<h2 id="4-Gulp"><a href="#4-Gulp" class="headerlink" title="4.Gulp"></a>4.Gulp</h2><h3 id="4-1-Gulp简介"><a href="#4-1-Gulp简介" class="headerlink" title="4.1.Gulp简介"></a>4.1.Gulp简介</h3><ul>
+<li>链接：<ul>
+<li><a href="http://gulpjs.com/" target="_blank" rel="external">官网</a></li>
+<li><a href="http://www.gulpjs.com.cn/" target="_blank" rel="external">中文网</a></li>
+</ul>
+</li>
+<li>就是用来机械化的完成重复性质的工作</li>
+<li>gulp的机制就是将重复工作抽象成一个个的任务，</li>
+</ul>
+<h3 id="4-2-Gulp准备工作"><a href="#4-2-Gulp准备工作" class="headerlink" title="4.2.Gulp准备工作"></a>4.2.Gulp准备工作</h3><ul>
+<li>安装Node.js</li>
+<li>安装 gulp 命令行工具<ul>
+<li><code>npm install -g gulp</code></li>
+</ul>
+</li>
+<li>初始化 gulp 项目</li>
+<li>创建任务 - gulpfile.js</li>
+</ul>
+<h3 id="4-3-基本使用"><a href="#4-3-基本使用" class="headerlink" title="4.3.基本使用"></a>4.3.基本使用</h3><h3 id="4-4-常用插件"><a href="#4-4-常用插件" class="headerlink" title="4.4.常用插件"></a>4.4.常用插件</h3><ul>
+<li><a href="https://www.npmjs.com/package/gulp-less" target="_blank" rel="external">编译 Less：gulp-less</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-connect" target="_blank" rel="external">创建本地服务器：gulp-connect</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-concat" target="_blank" rel="external">合并文件：gulp-concat</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-uglify" target="_blank" rel="external">最小化 js 文件：gulp-uglify</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-rename" target="_blank" rel="external">重命名文件：gulp-rename</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-css" target="_blank" rel="external">最小化 css 文件：gulp-minify-css</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-html" target="_blank" rel="external">压缩html文件 gulp-minify-html</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-imagemin" target="_blank" rel="external">最小化图像：gulp-imagemin</a></li>
+</ul>
+<hr>
+<h2 id="5-Git"><a href="#5-Git" class="headerlink" title="5.Git"></a>5.Git</h2><h3 id="5-1-什么是GIT，什么是GITHUB"><a href="#5-1-什么是GIT，什么是GITHUB" class="headerlink" title="5.1.什么是GIT，什么是GITHUB"></a>5.1.什么是GIT，什么是GITHUB</h3><ul>
+<li>GIT</li>
+<li>GITHUB</li>
+</ul>
+<h3 id="5-2-环境安装"><a href="#5-2-环境安装" class="headerlink" title="5.2.环境安装"></a>5.2.环境安装</h3><h3 id="5-3-GIT常用命令"><a href="#5-3-GIT常用命令" class="headerlink" title="5.3.GIT常用命令"></a>5.3.GIT常用命令</h3><hr>
+<h2 id="6-Markdown"><a href="#6-Markdown" class="headerlink" title="6.Markdown"></a>6.Markdown</h2><p><a href="https://guides.github.com/features/mastering-markdown/" target="_blank" rel="external">https://guides.github.com/features/mastering-markdown/</a><br><a href="https://help.github.com/articles/github-flavored-markdown/" target="_blank" rel="external">https://help.github.com/articles/github-flavored-markdown/</a><br><a href="https://help.github.com/articles/markdown-basics/" target="_blank" rel="external">https://help.github.com/articles/markdown-basics/</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 移动web </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[流行框架第二天：Git与Angular入门]]></title>
+      <url>/2017/05/10/%E6%B5%81%E8%A1%8C%E6%A1%86%E6%9E%B6%E7%AC%AC%E4%BA%8C%E5%A4%A9/</url>
+      <content type="html"><![CDATA[<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><ul>
+<li><p>Node Node.js — 类似一个操作系统</p>
+<ul>
+<li>一个JS的运行环境</li>
+<li>主要用于开发Web应用程序（回想登陆的例子）</li>
+<li>很多的前端开发工具都是基于node这个平台</li>
+<li>所用的工具就相当于一些软件</li>
+</ul>
+</li>
+<li><p>NVM （可选的）</p>
+<ul>
+<li>Node Version Manager(Node的版本管理工具)</li>
+<li>因为node的版本比较多，很多时候我们可能依赖多个版本，并要求自由切换</li>
+<li>使用<ul>
+<li>nvm use [对应的版本号] [平台架构（如果是32系统需要写32,64位不用管）]</li>
+<li>nvm install <version> [arch]  安装</version></li>
+<li>nvm uninstall <version> 卸载</version></li>
+<li>nvm list 查看已经安装版本</li>
+</ul>
+</li>
+<li>官网<ul>
+<li><a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="external">https://github.com/coreybutler/nvm-windows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>NPM </p>
+<ul>
+<li>node package manager(node的包管理工具)</li>
+<li>npm管理包非常方便，我们只需要记住使用哪个包就可以了</li>
+<li><p>使用</p>
+<ul>
+<li>npm install xxx </li>
+<li>安装一个包到项目本地，必须要联网</li>
+<li><p>安装完成过后项目根目录下会多一个node_modules文件夹，所有的下载下来的包全部在里面</p>
+</li>
+<li><p>由于需要记录项目依赖哪些东西，所以需要一个配置文件“package.json”，可以通过npm init命令生成</p>
+</li>
+<li><p>以后安装包的时候将其–save</p>
+</li>
+<li><p>–save就是将我们安装的包名字和包版本记录到配置文件中的dependencies节点中</p>
+</li>
+<li>–save-dev</li>
+<li><p>项目依赖分两种，一个就是普通的项目依赖比如bootstrap，还用一种只是开发阶段需要用的，这种属于开发依赖比如gulp，开发依赖最终记录在devDependencies节点里面</p>
+</li>
+<li><p>npm uninstall xxx –save</p>
+</li>
+<li><p>npm install xxx -g(全局安装包)</p>
+<ul>
+<li>如果你安装的是一个工具，工具要在每一个地方都能用，这种情况下一般全局安装。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bower</p>
+<ul>
+<li>Web sites are made of lots of things — frameworks, libraries, assets, and utilities. Bower manages all these things for you.</li>
+<li>Bower就是用来管理项目中所有的依赖，主要用于Web页面开发时使用的包管理，比如jquery，bootstrap</li>
+<li><blockquote>
+<p>重复的轮子太多，抓住轮子与轮子之间的共性</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>Gulp  FIS3</p>
+</li>
+<li><p><a href="http://www.ydcss.com/archives/94" target="_blank" rel="external">http://www.ydcss.com/archives/94</a></p>
+</li>
+<li><p>msi - microsoft installer 微软安装器</p>
+</li>
+</ul>
+<h2 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h2><h3 id="什么是GIT"><a href="#什么是GIT" class="headerlink" title="什么是GIT"></a>什么是GIT</h3><ul>
+<li>是一个源代码管理工具</li>
+<li>在一个项目中，凡是由开发人员编写的都算是源代码</li>
+<li>源代码有必要管理起来？</li>
+<li>让源代码可以被追溯，主要记录每次变更了什么，谁主导这次变化</li>
+<li>人为的维护比较麻烦，</li>
+<li>GIT是Linux之父当年为了维护管理Linux的源代码写的一个工具</li>
+<li>Git 之前 很多使用 svn vss tfs hs ……</li>
+</ul>
+<ul>
+<li><a href="https://guides.github.com/" target="_blank" rel="external">https://guides.github.com/</a></li>
+</ul>
+<h3 id="安装GIT"><a href="#安装GIT" class="headerlink" title="安装GIT"></a>安装GIT</h3><ul>
+<li>git命令行工具</li>
+<li>基于git命令行的一个客户端软件（提供一个界面去管理源代码）</li>
+</ul>
+<h3 id="GIT命令操作"><a href="#GIT命令操作" class="headerlink" title="GIT命令操作"></a>GIT命令操作</h3><ul>
+<li>初始化一个本地GIT仓储</li>
+</ul>
+<pre><code class="shell">cd 当前项目目录
+git init // 初始化一个本地的仓库
+</code></pre>
+<blockquote>
+<p>就是在本地文件夹中添加了一个.git的文件夹用于记录所有的项目变更信息</p>
+</blockquote>
+<ul>
+<li>查看本地仓储的变更状态</li>
+</ul>
+<p>git status<br>用于查看本地仓储的状态<br>第一次查看，显示的是一坨没有被跟踪的文件</p>
+<p>git status -s // -s 是输出简要的变更日志</p>
+<ul>
+<li>添加本地暂存（托管）文件</li>
+</ul>
+<p>git add<br>可以将一个没有被跟踪的文件添加到跟踪列表</p>
+<p>类似于node_modules这种性质的文件是不应该被跟踪</p>
+<ul>
+<li>添加本地GIT忽略清单文件</li>
+</ul>
+<p>在代码库文件夹的根目录添加一个.gitignore文件<br>此文件用于说明忽略的文件有哪些</p>
+<ul>
+<li>提交被托管的文件变化到本地仓储</li>
+</ul>
+<p>git commit<br>将本地的变化提交的本地的仓库文件夹归档<br>一般在有了一个小单元的整体变化后再提交</p>
+<ul>
+<li>对比差异</li>
+</ul>
+<p>git diff<br>可以用于对比当前状态和版本库中状态的变化</p>
+<ul>
+<li>提交日志</li>
+</ul>
+<p>git log<br>可以查看提交日志</p>
+<ul>
+<li>回归到指定版本</li>
+</ul>
+<p>git reset –hard</p>
+<ul>
+<li><p>为仓储添加远端（服务器端）地址</p>
+</li>
+<li><p>将本地仓储的提交记录推送到远端的master分支</p>
+</li>
+<li><p>拉取远端master分支的更新记录到本地</p>
+</li>
+<li><p>回归到指定版本</p>
+</li>
+</ul>
+<h3 id="GITHUB基本使用"><a href="#GITHUB基本使用" class="headerlink" title="GITHUB基本使用"></a>GITHUB基本使用</h3><ul>
+<li><a href="https://github.com/" target="_blank" rel="external">https://github.com/</a></li>
+<li>GITHUB是一个GIT服务的提供商，</li>
+<li></li>
+<li>提出社交化编程</li>
+</ul>
+<p><a href="http://zoomzhao.github.io/code-guide/" target="_blank" rel="external">http://zoomzhao.github.io/code-guide/</a><br><a href="https://github.com/jobbole/awesome-javascript-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-javascript-cn</a><br><a href="https://github.com/jobbole/awesome-css-cn" target="_blank" rel="external">https://github.com/jobbole/awesome-css-cn</a></p>
+<ul>
+<li>GIT分支</li>
+</ul>
+<h2 id="Angular入门"><a href="#Angular入门" class="headerlink" title="Angular入门"></a>Angular入门</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>知识储备</li>
+<li>什么是Angular<ul>
+<li>快速构建Web应用程序</li>
+<li>单页面应用程序</li>
+</ul>
+</li>
+<li>Angular的特性</li>
+<li>为什么要用Angular<ul>
+<li>让Web应用程序开发更简单，更快捷</li>
+</ul>
+</li>
+<li>带领前端进入MV*的时代</li>
+</ul>
+<h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><ul>
+<li>引用Angular<ul>
+<li>下载</li>
+<li>bower</li>
+<li>npm</li>
+</ul>
+</li>
+<li>基本使用</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> 移动web </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[网页加载进度条与雪花效果]]></title>
+      <url>/2017/05/10/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%9D%A1/</url>
+      <content type="html"><![CDATA[<h3 id="网页顶部加载加载进度条"><a href="#网页顶部加载加载进度条" class="headerlink" title="网页顶部加载加载进度条"></a>网页顶部加载加载进度条</h3><ul>
+<li>引入库文件就行了<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/pace/1.0.2/pace.min.js&quot;&gt;&lt;/script&gt;
+&lt;link href=&quot;//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css&quot; rel=&quot;stylesheet&quot;&gt;
+</code></pre>
+</li>
+</ul>
+<h3 id="雪花掉落效果"><a href="#雪花掉落效果" class="headerlink" title="雪花掉落效果"></a>雪花掉落效果</h3><ol>
+<li>雪花我是用这个JQuery-Snowfall库，这是项目地址：<a href="https://github.com/loktar00/JQuery-Snowfall" target="_blank" rel="external">https://github.com/loktar00/JQuery-Snowfall</a></li>
+<li>先引入js：<pre><code class="html">&lt;script src=&quot;//cdn.bootcss.com/JQuery-Snowfall/1.7.4/snowfall.jquery.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+</li>
+<li>在合适的地方调用就行了 可以把图片换成其他的图片</li>
+</ol>
+<pre><code class="javascript">&lt;script&gt;
+    $(document).snowfall({deviceorientation : true, image: &quot;http://loktar00.github.io/JQuery-Snowfall/images/flake.png&quot;, minSize: 10, maxSize: 32, flakeCount: 60});
+&lt;/script&gt;
+</code></pre>
+<p> 其他效果以后更新或者在其他文章发布</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 网页效果 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 效果 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[how to update hexo article]]></title>
+      <url>/2017/05/10/how-to-update-hexo-article/</url>
+      <content type="html"><![CDATA[<h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><pre><code class="bash">$ hexo new &#39;文件名称&#39;
+</code></pre>
+<p>例如:</p>
+<pre><code class="bash">$ hexo new &#39;test&#39;
+</code></pre>
+<p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
+<p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
+<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><pre><code class="bash">$ hexo clean
+$ hexo generate
+(若要本地预览就先执行 hexo server)
+$ hexo deploy
+</code></pre>
+<p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
+]]></content>
+      
+        <categories>
+            
+            <category> hexo博客 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[项目清单文件]]></title>
       <url>/2017/05/10/start/</url>
       <content type="html"><![CDATA[<h3 id="一-测试环境"><a href="#一-测试环境" class="headerlink" title="一. 测试环境"></a>一. 测试环境</h3><pre><code>PHP5.5.12
@@ -2129,54 +3049,6 @@ myinfo.html      -------------------- 展示个人信息视图
  “我的消息”
 </code></pre></li>
 </ul>
-]]></content>
-      
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[how to update hexo article]]></title>
-      <url>/2017/05/10/how-to-update-hexo-article/</url>
-      <content type="html"><![CDATA[<h2 id="更新文章"><a href="#更新文章" class="headerlink" title="更新文章"></a>更新文章</h2><h3 id="打开Git-bash"><a href="#打开Git-bash" class="headerlink" title="打开Git bash"></a>打开Git bash</h3><h4 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h4><pre><code class="bash">$ hexo new &#39;文件名称&#39;
-</code></pre>
-<p>例如:</p>
-<pre><code class="bash">$ hexo new &#39;test&#39;
-</code></pre>
-<p>然后在 Hexo/source/_posts 中就可以找到刚才新建的博文</p>
-<p>当然可以在 Hexo/source/_posts 中直接新建 .md 文件，效果是一样的。<br>然后编辑md文件 里面就是博文的内容</p>
-<h3 id="发博文"><a href="#发博文" class="headerlink" title="发博文"></a>发博文</h3><pre><code class="bash">$ hexo clean
-$ hexo generate
-(若要本地预览就先执行 hexo server)
-$ hexo deploy
-</code></pre>
-<p>打开自己的GitHub仓库地址就可以看到发表的博文了</p>
-]]></content>
-      
-        <categories>
-            
-            <category> hexo博客 </category>
-            
-        </categories>
-        
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>/2017/05/10/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 ]]></content>
       
         

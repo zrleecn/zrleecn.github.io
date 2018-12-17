@@ -270,12 +270,12 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/26/Redis基本使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/17/laravel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -289,7 +289,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/26/Redis基本使用/" itemprop="url">Redis缓存的基本使用</a></h1>
+                <a class="post-title-link" href="/2018/12/17/laravel/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -301,8 +301,1672 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T00:00:00+08:00">
-                2018-05-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T03:17:10+00:00">
+                2018-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="shell">composer create-project  --prefer-dist  laravel/laravel=5.5.*  blog
+</code></pre>
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><pre><code class="php">Route::get(&quot;/article&quot;, &quot;ArticleController@index&quot;) ;
+</code></pre>
+<h3 id="必选参数"><a href="#必选参数" class="headerlink" title="必选参数"></a>必选参数</h3><pre><code class="php">//article/5
+Route::get(&quot;/article/{id}&quot;, function ($id){
+    //    函数接收参数
+    return $id ;
+}) ;
+</code></pre>
+<h3 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h3><pre><code class="php">// 可选参数要指定默认值 地址可以不传入name的参数
+Route::get(&quot;/article/{id}/{name?}&quot;, function ($id, $name=&#39;default&#39;){
+    //    函数接收参数
+    echo $id, $name ;
+}) ;
+
+
+
+Route::get(&quot;/article/{id}/{name?}&quot;, function ($id, $name=&#39;default&#39;){
+    //    函数接收参数
+    echo $id, $name ;
+// where 限制参数的类型
+})-&gt;where([&#39;id&#39;=&gt;&quot;\d+&quot;])-&gt;name(&#39;article_show&#39;);
+
+
+### 路由命名
+```php
+Route::get(&quot;/article/{id}/{name?}&quot;, function ($id, $name=&#39;default&#39;){
+    //    函数接收参数
+    echo $id, $name ;
+})-&gt;name(&#39;article_show&#39;);
+
+Route::get(&quot;/route&quot;, function (){
+    return route(&#39;article_show&#39;, [&quot;id&quot;=&gt;2, &quot;name&quot;=&gt;&#39;zrlee&#39;]) ;
+}) ;
+</code></pre>
+<h3 id="路由组"><a href="#路由组" class="headerlink" title="路由组"></a>路由组</h3><pre><code class="php">
+//设置前缀 为admin
+Route::group([&#39;prefix&#39;=&gt;&#39;admin&#39;], function (){
+//    下面的路由都要使用admin作为前缀
+    Route::get(&#39;del&#39;, function (){
+        return &#39;del&#39; ;
+    });
+    Route::get(&#39;update&#39;,function(){
+        return &#39;update&#39; ;
+    });
+}) ;
+</code></pre>
+<p>命名空间</p>
+<pre><code class="php">//设置前缀 为admin 指定命名空间 指定类的命名空间为admin
+Route::group([&#39;prefix&#39;=&gt;&#39;admin&#39;, &#39;namespace&#39;=&gt; &#39;Admin&#39;], function (){
+//    下面的路由都要使用admin作为前缀
+    Route::get(&#39;del&#39;, function (){
+        return &#39;del&#39; ;
+    });
+    Route::get(&#39;update&#39;,function(){
+        return &#39;update&#39; ;
+    });
+//    Admin命名空间下的HomeController
+    Route::get(&quot;/&quot;, &#39;HomeController@index&#39;) ;
+}) ;
+</code></pre>
+<h3 id="路由模型绑定"><a href="#路由模型绑定" class="headerlink" title="路由模型绑定"></a>路由模型绑定</h3><p>当注入模型 ID 到路由控制器时，我们通常需要查询这个 ID 对应的模型，Laravel 路由模型绑定提供了一个方便的方法自动将模型注入到我们的路由中</p>
+<pre><code class="php">Route::get(&#39;/model/articles/{articles}&#39;, function (\App\Model\Articles $articles) {
+//    直接就获取到传入的id的记录
+    return $articles;
+});
+</code></pre>
+<h2 id="artisan"><a href="#artisan" class="headerlink" title="artisan"></a>artisan</h2><pre><code class="php">
+php artisan make:controller Admin\HomeController
+php artisan make:model Model\Articles 
+php artisan make:migrations
+// 创建users表同时创建users模型
+php artisan make:migration create_users_table --create=users
+</code></pre>
+<h3 id="表单方法伪造"><a href="#表单方法伪造" class="headerlink" title="表单方法伪造"></a>表单方法伪造</h3><p>HTML 表单没有支持 PUT、PATCH 或 DELETE 动作。所以在从 HTML 表单中调用被定义的 PUT、PATCH 或 DELETE 路由时，你将需要在表单中增加隐藏的 _method 字段。 _method 字段的值将被作为 HTTP 的请求方法使用：</p>
+<pre><code class="php">&lt;form action=&quot;/foo/bar&quot; method=&quot;POST&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;PUT&quot;&gt;
+    &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;{{ csrf_token() }}&quot;&gt;
+&lt;/form&gt;
+</code></pre>
+<p>你也可以使用辅助函数 method_field 来生成隐藏的输入字段 _method</p>
+<pre><code class="php">{{ method_field('PUT') }}
+</code></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/12/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/12/hello-world/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-12T06:06:03+00:00">
+                2018-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/mongodb_python交互/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/05/mongodb_python交互/" itemprop="url">MongoDB Python 交互</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-05T10:00:04+00:00">
+                2018-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<h1 id="安装模块"><a href="#安装模块" class="headerlink" title="安装模块"></a>安装模块</h1><pre><code>sudo pip install pymongo
+</code></pre><blockquote>
+<p>mongodb远程连接配置如下：<br>1.修改配置文件mongodb.conf</p>
+<p>命令：vim /etc/mongodb.conf</p>
+<p>把 bind_ip=127.0.0.1 这一行注释掉或者是修改成  bind_ip=0.0.0.0</p>
+</blockquote>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="与MongoClient建立连接"><a href="#与MongoClient建立连接" class="headerlink" title="与MongoClient建立连接"></a>与MongoClient建立连接</h2><pre><code>import pymongo
+# 创建客户端 建立连接 当然这里最好的做法是try捕获异常 建立连接可能会发生异常
+client = pymongo.MongoClient(&quot;mongodb://username:password@192.168.0.106:27017/dbname&quot;)
+print(client)
+# 获得python数据库
+pythondb = client.python
+# 获得emps集合
+emps = client.emps
+</code></pre><p>colletion 类主要有一下方法</p>
+<ul>
+<li>insert_one()</li>
+<li>insert_many()</li>
+<li>update_one()</li>
+<li>update_many()</li>
+<li>delete_one()</li>
+<li>delete_many()</li>
+<li>find()</li>
+<li>find_one()</li>
+</ul>
+<h2 id="插入文档-insert-one"><a href="#插入文档-insert-one" class="headerlink" title="插入文档 insert_one()"></a>插入文档 insert_one()</h2><pre><code># 插入同时返回文档id
+inserted_id = emps.insert_one(emp).inserted_id
+</code></pre><h2 id="获取单个文档-find-one"><a href="#获取单个文档-find-one" class="headerlink" title="获取单个文档 find_one()"></a>获取单个文档 find_one()</h2><pre><code>print(emps.find_one())
+</code></pre><p>find_one()还支持查询生成的文档必须匹配的特定元素</p>
+<pre><code>print(emps.find_one({&quot;name&quot;:&quot;zrlee&quot;}))
+</code></pre><h2 id="批量插入"><a href="#批量插入" class="headerlink" title="批量插入"></a>批量插入</h2><p>为了使查询更有趣，让我们再插入一些文档。除了插入单个文档之外，我们还可以通过将列表作为第一个参数传递来执行批量插入操作insert_many()</p>
+<pre><code>emp = [{
+        &quot;name&quot;:&quot;koa&quot;,
+        &quot;sal&quot;:4000
+    },{
+        &quot;name&quot;:&quot;marry&quot;,
+        &quot;sal&quot;:2000
+    }
+]
+
+result = emps.insert_many(emp)
+print(result)
+</code></pre><h2 id="查询多个文档"><a href="#查询多个文档" class="headerlink" title="查询多个文档"></a>查询多个文档</h2><pre><code>for emp in emps.find():
+    print(emp)
+</code></pre><h2 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h2><p>如果我们只想知道有多少文档与查询匹配，我们可以执行count()操作而不是完整查询</p>
+<pre><code>print(emps.estimated_document_count())
+</code></pre><h2 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h2><ul>
+<li>$in 查询名字是zrle，aa的文档</li>
+</ul>
+<pre><code>result = emps.find({&quot;name&quot;:{&quot;$in&quot;:[&quot;zrlee&quot;, &quot;a&quot;]}})
+
+for emp in result :
+    print(emp)
+</code></pre><ul>
+<li>不在范围</li>
+</ul>
+<pre><code>result = emps.find({
+    &quot;name&quot;:{
+        &quot;$nin&quot;:[&quot;zrlee&quot;, &quot;a&quot;]
+        }
+    })
+
+for emp in result :
+    print(emp)
+</code></pre><p>其实操作都是一样的就不全部列举了</p>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><ul>
+<li>update_one()</li>
+</ul>
+<pre><code>emps.update_one({&quot;name&quot;:&quot;zrlee&quot;}, {&quot;$set&quot;:{&quot;sal&quot;:12000}})
+print(emps.find_one({&quot;name&quot;:&quot;zrlee&quot;}))
+</code></pre><h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><pre><code>emps.delete_one({&quot;name&quot;:&quot;a&quot;}})
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/mongodb_base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/03/mongodb_base/" itemprop="url">MongoDB的基础操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+00:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-MongoDB的基础操作"><a href="#1-MongoDB的基础操作" class="headerlink" title="1.MongoDB的基础操作"></a>1.MongoDB的基础操作</h1><h2 id="1-1-基本的操作"><a href="#1-1-基本的操作" class="headerlink" title="1.1 基本的操作"></a>1.1 基本的操作</h2><pre><code>//查看数据库
+show dbs
+
+//查看集合列表
+show collections
+
+//查看用户列表
+show users
+
+//切换数据库
+use dbname
+</code></pre><ul>
+<li><p>创建一个集合——创建一个emp集合</p>
+<pre><code>db.createCollection(&#39;emp&#39;)
+</code></pre></li>
+<li><p>保存一条数据到emp</p>
+<pre><code>db.emp.insert({
+  &quot;empno&quot;:100,
+  &quot;ename&quot;:&quot;zrlee&quot;,
+  &quot;deptno&quot;:1,
+  &quot;sal&quot;:8000
+})
+</code></pre></li>
+<li><p>查看emp表的数据<br>·语法：db.集合名称.find({若干条件})<br>例如查看emp表的所有数据</p>
+<pre><code>db.emp.find()
+</code></pre></li>
+<li><p>漂亮显示数据（带格式）</p>
+</li>
+</ul>
+<pre><code>db.emp.find().pretty()
+</code></pre><ul>
+<li>关于ID的问题</li>
+</ul>
+<p>在MongoDB集合中的每一行记录都会自动的生成一个“”_id” :ObjectId(“55949a13eecd74894d19d8dc”)”数据，这个数据组成是：“时间戳 + 机器码 + PID + 计数器”，这个ID的信息是MongonDB数据自己为用户生成的。</p>
+<ul>
+<li>查看单独的一个文档信息</li>
+</ul>
+<pre><code>db.emp.findOne()
+</code></pre><ul>
+<li>删除数据</li>
+</ul>
+<pre><code>db.emp.remove({&quot;ename&quot;:&quot;zrlee2&quot;})
+</code></pre><ul>
+<li>更新数据</li>
+</ul>
+<pre><code>var update_data = {
+    &quot;empno&quot;:100,
+    &quot;ename&quot;:&quot;zrlee.cn&quot;,
+    &quot;deptno&quot;:1,
+    &quot;sal&quot;:8000
+}
+
+db.emp.update( {&quot;ename&quot;:&quot;zrlee1&quot;}, update_data)
+</code></pre><ul>
+<li><p>删除集合</p>
+<pre><code>db.emp.drop()
+</code></pre></li>
+<li><p>删除数据库（删除当前所在的数据库）</p>
+</li>
+</ul>
+<pre><code>db.dropDatabase()
+</code></pre><h2 id="1-2数据操作"><a href="#1-2数据操作" class="headerlink" title="1.2数据操作"></a>1.2数据操作</h2><p>只要是数据库那么就绝对离不开最为核心的功能：CRUD，所以在MongoDB里面对于数据的操作也是有支持的，但是需要提醒的是，除了增加之外，其它的都很麻烦。<br>使用“db.集合.insert()”可以实现数据的增加操作。</p>
+<ul>
+<li>增加一个简单数据</li>
+</ul>
+<pre><code>db.infos.insert({&quot;url&quot;:&quot;www.zrlee.cn&quot;})
+</code></pre><ul>
+<li>保存数组（保存多条）</li>
+</ul>
+<pre><code>db.infos.insert([
+    {&quot;url&quot;:&quot;wx.zrlee.cn&quot;},
+    {&quot;url&quot;:&quot;py.zrlee.cn&quot;}
+])
+</code></pre><h2 id="1-3数据查询"><a href="#1-3数据查询" class="headerlink" title="1.3数据查询"></a>1.3数据查询</h2><p>首先对于数据的查询操作核心的语法：“db.集合名称.find({查询条件} [,{设置显示的字段}])”。</p>
+<ul>
+<li>查出名字为zrlee的emp<pre><code>db.emp.find({&quot;ename&quot;:&quot;zrlee&quot;}).pretty()
+</code></pre></li>
+</ul>
+<p>对于设置的显示字段严格来讲就称为数据的投影操作，如果不需要显示的字段设置“0”，而需要显示的字段设置“1”</p>
+<ul>
+<li>不想显示“_id”<pre><code>db.emp.find({&quot;ename&quot;:&quot;zrlee&quot;}, {&quot;_id&quot;:0}).pretty()
+</code></pre></li>
+<li>查询单个数据<pre><code>db.emp.findOne({&quot;ename&quot;:&quot;zrlee&quot;}, {&quot;_id&quot;:0}).pretty()
+</code></pre></li>
+</ul>
+<h2 id="1-4-关系运算"><a href="#1-4-关系运算" class="headerlink" title="1.4 关系运算"></a>1.4 关系运算</h2><p>在MongoDB里面支持的关系查询操作：大于（$gt）、小于（$lt）、大于等于（$gte）、小于等于（$lte）、不等于（$ne）、等于（key:value、$eq）。但是要想让这些操作可以正常使用，那么需要准备出一个数据集合。</p>
+<ul>
+<li>定义一个学生信息集合</li>
+</ul>
+<pre><code>db.students.insert({&quot;name&quot;:&quot;aa&quot;, &quot;sex&quot;:&quot;1&quot;, &quot;age&quot;:19,&quot;score&quot;:89})
+
+db.students.insert({&quot;name&quot;:&quot;bb&quot;, &quot;sex&quot;:&quot;0&quot;, &quot;age&quot;:20,&quot;score&quot;:67})
+
+db.students.insert({&quot;name&quot;:&quot;cc&quot;, &quot;sex&quot;:&quot;1&quot;, &quot;age&quot;:21,&quot;score&quot;:76})
+</code></pre><ul>
+<li><p>查询名字是aa的信息</p>
+<pre><code>db.students.find({&quot;name&quot;:&quot;aa&quot;}).pretty()
+</code></pre></li>
+<li><p>查询年龄大于20岁的学生</p>
+<pre><code>db.students.find({&quot;age&quot;: {&quot;$gt&quot;:20} }).pretty()
+</code></pre></li>
+<li><p>查询成绩大于等于70分的学生</p>
+</li>
+</ul>
+<pre><code>db.students.find({&quot;score&quot;: {&quot;$gte&quot;:70} }).pretty()
+</code></pre><ul>
+<li>查询名字不是aa的信息<pre><code>db.students.find({&quot;name&quot;: {&quot;$ne&quot;:&quot;aa&quot;} }).pretty()
+</code></pre></li>
+</ul>
+<h2 id="1-5-逻辑运算"><a href="#1-5-逻辑运算" class="headerlink" title="1.5 逻辑运算"></a>1.5 逻辑运算</h2><p>逻辑运算主要就是三种类型：与（$and）、或（$or）、非（$not、$nor）。</p>
+<ul>
+<li><p>查询年龄在20 ~ 21岁的学生信息</p>
+<pre><code>db.students.find({
+  &quot;age&quot;:{
+      &quot;$gte&quot;:20,
+      &quot;$lte&quot;:21
+      }
+}).pretty()
+</code></pre><p>或者是这样</p>
+<pre><code>db.students.find({
+  &quot;$and&quot;:[
+      {&quot;age&quot;:{&quot;$gte&quot;:20}},
+      {&quot;age&quot;:{&quot;$lte&quot;:21}}
+  ]
+}).pretty()
+</code></pre></li>
+<li><p>查询年龄大于19岁，或者成绩大于70分的学生信息</p>
+</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;$or&quot;:[
+        {&quot;age&quot;:{&quot;$gt&quot;:19}},
+        {&quot;score&quot;:{&quot;$gt&quot;:70}}
+    ]
+}).pretty()
+</code></pre><h2 id="1-6-范围查询"><a href="#1-6-范围查询" class="headerlink" title="1.6 范围查询"></a>1.6 范围查询</h2><p>只要是数据库，必须存在有“$in”（在范围之中）、“$nin”（不在范围之中）。</p>
+<ul>
+<li>查询姓名是“aa”、“bb”的students信息</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;name&quot;:{
+        &quot;$in&quot;:[&quot;aa&quot;, &quot;bb&quot;]
+    }
+}).pretty()
+</code></pre><ul>
+<li>不在范围</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;name&quot;:{
+        &quot;$nin&quot;:[&quot;aa&quot;, &quot;bb&quot;]
+    }
+}).pretty()
+</code></pre><h2 id="1-7-数组查询"><a href="#1-7-数组查询" class="headerlink" title="1.7 数组查询"></a>1.7 数组查询</h2><p>首先在mongoDB里面是支持数组保存的，一旦支持了数组保存，就需要针对于数组的数据进行匹配。</p>
+<ul>
+<li>先保存一部分数组内容测试</li>
+</ul>
+<pre><code>db.students.insert({&quot;name&quot;:&quot;A&quot;,&quot;sex&quot;:1,&quot;score&quot;:99,&quot;course&quot;:[&quot;python&quot;,&quot;java&quot;,&quot;php&quot;]})
+db.students.insert({&quot;name&quot;:&quot;B&quot;,&quot;sex&quot;:0,&quot;score&quot;:80,&quot;course&quot;:[&quot;python&quot;,]})
+db.students.insert({&quot;name&quot;:&quot;C&quot;,&quot;sex&quot;:1,&quot;score&quot;:78,&quot;course&quot;:[&quot;python&quot;,&quot;php&quot;]})
+db.students.insert({&quot;name&quot;:&quot;D&quot;,&quot;sex&quot;:0,&quot;score&quot;:56,&quot;course&quot;:[&quot;php&quot;,]})
+db.students.insert({&quot;name&quot;:&quot;E&quot;,&quot;sex&quot;:1,&quot;score&quot;:76,&quot;course&quot;:[&quot;java&quot;,&quot;php&quot;]})
+</code></pre><p>此时的数据包含有数组内容，而后需要针对于数组数据进行判断，可以使用几个运算符：$all、$size、$slice、$elemMatch。</p>
+<ul>
+<li><p>查询同时参加python和php学课程的学生<br>·现在两个数组内容都需要保存，所以使用“{“$all”,[内容1,内容2,..]}”</p>
+<pre><code>db.students.find({
+  &quot;course&quot;:{&quot;$all&quot;:[&quot;python&quot;,&quot;php&quot;]}
+}).pretty()
+</code></pre></li>
+<li><p>要求查询出只参加两门课程的学生<br>·使用“$size”来进行数量的控制。</p>
+</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;course&quot;:{&quot;$size&quot;:2}
+}).pretty()
+</code></pre><ul>
+<li>查询具有course成员的数据</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;course&quot;:{&quot;$exists&quot;:true}
+}).pretty()
+</code></pre><h2 id="1-8-条件过滤"><a href="#1-8-条件过滤" class="headerlink" title="1.8 条件过滤"></a>1.8 条件过滤</h2><p>实际上习惯于传统关系型数据库开发的我们对于数据的筛选，可能首先想到的一定是where子句，所以在MongoDB里面也提供有“$where”</p>
+<ul>
+<li>使用where进行数据查询<pre><code>db.students.find({
+  &quot;$where&quot;:&quot;this.age &gt; 20&quot;
+}).pretty()
+</code></pre>或者<br>```<br>db.students.find(“this.age &gt; 20”).pretty()</li>
+</ul>
+<pre><code>
+- 正则运算 （模糊查询）
+如果要想实现模糊查询，那么必须使用正则表达式，而且正则表达式使用的是语言Perl兼容的正则表达式的形式。如果要想实现正则使用，则按照如下的定义格式：
+
+·基础语法：{key : 正则标记}；
+
+·完整语法：{key : {&quot;$regex&quot; : 正则标记 , &quot;$options&quot; : 选项}}。
+
+|- 对于options主要是设置正则的信息查询的标记：
+
+|- “i”：忽略字母大小写；
+
+|- “m”多行查找；
+
+|- “x”：空白字符串除了被转义的或在字符类中意外的完全被忽略；
+
+|- “s”：匹配所有的字符（圆点、“.”），包括换行内容。
+
+|- 需要注意的是，如果是直接使用（javascript）那么只能够使用i和m，而“x”和“s”必须使用“$regex”。
+
+- 查询姓名有字母a
+</code></pre><p>db.students.find({“name”:/a/i}).pretty()</p>
+<pre><code>
+## 1.9 数据排序
+在MongoDB里面数据的排序操作使用“sort()”函数，在进行排序的时候可以有两个顺序：升序（1）、降序（-1）。
+</code></pre><p>db.students.find().sort({“score”:1}).pretty()</p>
+<pre><code>
+## 1.10 数据分页显示
+在MongoDB里面的数据分页显示也是符合于大数据要求的操作函数：
+
+· skip(n)：表示跨过多少数据行；
+
+· limit(n)：取出的数据行的个数限制。
+
+- 范例：分页显示（第一页，skip(0)、limit(2)）
+</code></pre><p>db.students.find().skip(0).limit(2).sort({“score”:1}).pretty()</p>
+<pre><code>
+- 范例：分页显示（第二页，skip(1)、limit(2)）
+</code></pre><p>db.students.find().skip(1).limit(2).sort({“score”:1}).pretty()</p>
+<h1 id="2-数据更新操作"><a href="#2-数据更新操作" class="headerlink" title="2. 数据更新操作"></a>2. 数据更新操作</h1><p>对于MongoDB而言，数据的更新基本上是一件很麻烦的事情，如果在实际的工作之中，真的具有此类的操作支持，那么最好的做法，在MongoDB里面对于数据的更新操作提供了两类函数：save()、update()。</p>
+<h2 id="2-1-函数的基本使用"><a href="#2-1-函数的基本使用" class="headerlink" title="2.1 函数的基本使用"></a>2.1 函数的基本使用</h2><p>如果要修改数据最直接的使用函数就是update()函数，但是这个函数的语法要求很麻烦：</p>
+<p>·语法：db.集合.update(更新条件 , 新的对象数据（更新操作符） , upsert , multi)；</p>
+<p>|- upsert：如果要更新的数据不存在，则增加一条新的内容（true为增加、false为不增加）；</p>
+<p>|- multi：表示是否只更新满足条件的第一行记录，如果设置为false，只更新第一条，如果是true全更新。</p>
+<ul>
+<li>更新存在的数据——将年龄是19岁的人的成绩都更新为100分</li>
+</ul>
+<pre><code>// 第一个false 是upsert 第二个是multi
+db.students.update({&quot;age&quot;:19},{&quot;$set&quot;:{&quot;score&quot;:100}}, false , false)
+</code></pre><p>– 更新不存在的数据</p>
+<pre><code>db.students.update({&quot;age&quot;:19},{&quot;$set&quot;:{&quot;name&quot;:&quot;不存在的&quot;}}, true , false)
+</code></pre><h2 id="2-2-修改器"><a href="#2-2-修改器" class="headerlink" title="2.2 修改器"></a>2.2 修改器</h2><p>对MongoDB数据库而言，数据的修改会牵扯到内容的变更、结构的变更（包含有数组），所以在进行MongoDB设计的时候就提供有一系列的修改器的应用，那么像之前使用的“$set”就是一个修改器。</p>
+<p>1、 $inc：主要针对于一个数字字段，增加某个数字字段的数据内容；</p>
+<p>·语法：{“$inc” : {“成员” : 内容}}</p>
+<ul>
+<li>将所有年龄为19岁的学生成绩一律减少30分<pre><code>db.students.update({&quot;age&quot;:19}, {&quot;$inc&quot;:{&quot;score&quot;:-30}})
+</code></pre></li>
+</ul>
+<p>2、 $set：进行内容的重新设置；</p>
+<p>·语法：{“$set” : {“成员” : “新内容”}}；</p>
+<ul>
+<li>将年龄是20岁的人的成绩修改为89</li>
+</ul>
+<pre><code>db.students.update({&quot;age&quot;:19}, {&quot;$set&quot;:{&quot;score&quot;:89}})
+</code></pre><p>3、 $unset：删除某个成员的内容；</p>
+<p>·语法：{“$unset” : {“成员” : 1}}</p>
+<p>-范例：删除“aa”的年龄与成绩信息</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;aa&quot;}, {&quot;$unset&quot;:{&quot;score&quot;:1,&quot;age&quot;:1}})
+执行之后指定的成员内容就消失了。
+</code></pre><p>4、 $push：相当于将内容追加到指定的成员之中（基本上是数组）；</p>
+<p>·语法：${“$push” : {成员 : value}}<br>向“E”里面的课程追加一个“python”</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;E&quot;}, {&quot;$push&quot;:{&quot;course&quot;:&quot;python&quot;}})
+</code></pre><p>就是进行数组数据的添加操作使用的，如果没有数组则进行一个新的数组的创建，如果有则进行内容的追加。</p>
+<p>5、 $pushAll：与“$push”是类似的，可以一次追加多个内容到数组里面；</p>
+<p>·语法：${“$pushAll” : {成员 : 数组内容}}</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;E&quot;}, {&quot;$push&quot;:{&quot;course&quot;:[&quot;python&quot;,&quot;java&quot;]}})
+</code></pre><p>6、 $addToSet：向数组里面增加一个新的内容，只有这个内容不存在的时候才会增加；</p>
+<p>·语法：{“$addToSet” : {成员 : 内容}}</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;bb&quot;}, {&quot;$addToSet&quot;:{&quot;course&quot;:&quot;python&quot;}})
+</code></pre><h1 id="3-删除数据"><a href="#3-删除数据" class="headerlink" title="3. 删除数据"></a>3. 删除数据</h1><p>在MongoDB里面数据的删除实际上并不复杂，只需要使用“remove()”函数就可以了。</p>
+<p>但是在这个函数是有两个可选项：</p>
+<p>·删除条件：满足条件的数据被删除；</p>
+<p>·是否只删除一个数据，如果设置为true或者是1表示只删除一个。</p>
+<ul>
+<li>清空infos集合中的内容</li>
+</ul>
+<pre><code>db.infos.remove({})
+</code></pre><ul>
+<li>删除所有姓名里面带有“a”的信息，默认情况下会全部删除</li>
+</ul>
+<pre><code>db.students.remove({&quot;name&quot;:/a/})
+</code></pre><ul>
+<li>删除所有姓名里面带有“a”的信息，只删除一个<pre><code>db.students.remove({&quot;name&quot;:/a/}，true)
+</code></pre>删除操作里面依然需要使用限定查询的相关操作内容。<h1 id="4-游标"><a href="#4-游标" class="headerlink" title="4.游标"></a>4.游标</h1>所谓的游标就是指的数据可以一行行的进行操作，非常类似于ResultSet数据处理。在MongoDB数据库里面对于游标的控制非常的简单，只需要使用find()函数就可以返回游标了。对于返回的游标如果要想进行操作，使用两个函数：</li>
+</ul>
+<p>·判断是否有下一行数据：hasNext()；</p>
+<p>·取出当前数据：next()；</p>
+<pre><code>var cursor = db.emp.find()
+cursor.hasNext()
+cursor.next()
+</code></pre><p>实际上使用find()函数查询出来返回回来的就是一个游标的对象</p>
+<ul>
+<li>使用循环进行游标的操作<pre><code>var cursor = db.emp.find()
+while(cursor.hasNext()){
+  var doc = cursor.next()
+  print(doc.ename)
+}
+</code></pre></li>
+</ul>
+<p>相当于每一个数据都单独拿出来进行逐行的控制。当游标数据取出来之后，实际上每行数据返回的都是一个Object型的内容，那么如果需要将数据按照json的形式出现，则可以使用printjson()函数完成。</p>
+<ul>
+<li>例如</li>
+</ul>
+<pre><code>var cursor = db.emp.find()
+while(cursor.hasNext()){
+    var doc = cursor.next()
+    printjson(doc)
+}
+</code></pre><h1 id="5-索-引"><a href="#5-索-引" class="headerlink" title="5.索 引"></a>5.索 引</h1><h2 id="5-1-唯一索引"><a href="#5-1-唯一索引" class="headerlink" title="5.1 唯一索引"></a>5.1 唯一索引</h2><p>唯一索引的主要目的是用在某一个字段上，使该字段的内容不重复。</p>
+<ul>
+<li>name字段 创建唯一索引</li>
+</ul>
+<pre><code>db.students.ensureIndex({&quot;name&quot;:1}, {&quot;unique&quot;:true})
+</code></pre><ul>
+<li>查看表的索引<pre><code>db.studnets.getIndexes()
+</code></pre></li>
+<li>删索引</li>
+</ul>
+<pre><code>db.students.dropIndexes()
+</code></pre><h2 id="5-2-过期索引"><a href="#5-2-过期索引" class="headerlink" title="5.2 过期索引"></a>5.2 过期索引</h2><p>在一些程序站点会出现若干秒之后信息被删除的情况，例如：手机信息验证码，那么在MongoDB里面就可以轻松的实现过期索引，但是这个时间往往不怎么准确。</p>
+<ul>
+<li><p>范例：设置过期索引</p>
+<pre><code>db.logsinfo.ensureIndex({&quot;time&quot;:1}, {&quot;expireAfterSeconds&quot;:10})
+</code></pre></li>
+<li><p>如果要想实现过期索引，需要保存一个时间信息；</p>
+<pre><code>db.logsinfo.insert({&quot;name&quot;:&quot;zrlee&quot;, &quot;time&quot;:new Date()})
+</code></pre><p>等到10秒以后（永远不会那么准确）所保存的数据就会消失。这样的特性在进行一些临时数据保存的时候非常有帮助，最早如果没有MongoDB这种特性，而只是使用最简单的关系型数据库开发，那么是非常麻烦的<br>q</p>
+<h1 id="5-3-全文索引"><a href="#5-3-全文索引" class="headerlink" title="5.3 全文索引"></a>5.3 全文索引</h1><p>在一些信息管理平台上经常需要进行信息模糊查询，最早的时候是利用了某个字段上实现的模糊查询，但是这个时候返回的信息并不会很准确，因为只能够查A字段或者是B字段，而在MongoDB里面实现了非常简单的全文检索</p>
+</li>
+<li><p>定义一个新的集合</p>
+</li>
+</ul>
+<pre><code>db.news.insert({&quot;title&quot;:&quot;https://wx.zrlee.cn&quot;, &quot;content&quot;:&quot;wx&quot;})
+db.news.insert({&quot;title&quot;:&quot;http://py.zrlee.cn&quot;, &quot;content&quot;:&quot;python&quot;})
+db.news.insert({&quot;title&quot;:&quot;http://www.zrlee.cn&quot;, &quot;content&quot;:&quot;www&quot;})
+db.news.insert({&quot;title&quot;:&quot;http://blog.zrlee.cn&quot;, &quot;content&quot;:&quot;blog&quot;})
+</code></pre><ul>
+<li>设置全文检索</li>
+</ul>
+<pre><code>db.news.ensureIndex({&quot;title&quot;:&quot;text&quot;, &quot;content&quot;:&quot;text&quot;})
+</code></pre><ul>
+<li>实现数据的模糊查询<br>如果要想表示出全文检索，则使用“$text”判断符，而要想进行数据的查询则使用“$search”运算符：</li>
+</ul>
+<p>|- 查询指定关键字：{“$search” : “查询关键字”}；</p>
+<p>|- 查询多个关键字（或关系）：{“$search” : “查询关键字查询关键字 …”}；(使用空格隔开)</p>
+<p>|- 查询多个关键字（与关系）：{“$search” : “\”查询关键字\” \”查询关键字\”…”}</p>
+<p>|- 查询多个关键字（排除某一个）：{“$search” : “查询关键字查询关键字 … -排除关键字”}</p>
+<ul>
+<li><p>查询单个内容</p>
+<pre><code>db.news.find({&quot;$text&quot;: {&quot;$search&quot;:&quot;https&quot;}})
+</code></pre></li>
+<li><p>查询包含”wx” 或者 “py” 的内容</p>
+<pre><code>db.news.find({&quot;$text&quot;:{&quot;$search&quot;:&quot;wx py&quot;}}).pretty()
+</code></pre></li>
+<li><p>查询同时存在”https” 与 “python”</p>
+<pre><code>db.news.find({&quot;$text&quot;:{&quot;$search&quot;:&quot;\&quot;https\&quot; \&quot;zrlee.cn\&quot;&quot;}}).pretty()
+</code></pre></li>
+<li><p>查询有zrlee.cn但是没有“https”</p>
+<pre><code>db.news.find({&quot;$text&quot;:{&quot;$search&quot;:&quot;\&quot;zrlee.cn\&quot; -https&quot;}}).pretty()
+</code></pre></li>
+</ul>
+<h2 id="5-4-地理信息索引"><a href="#5-4-地理信息索引" class="headerlink" title="5.4 地理信息索引"></a>5.4 地理信息索引</h2><p>地理信息索引分为两类：2D平面索引，另外就是2DSphere球面索引。在2D索引里面基本上能够保存的信息都是坐标，而且坐标保存的就是经纬度坐标。</p>
+<ul>
+<li>创建商铺集合保存经纬度的信息</li>
+</ul>
+<pre><code>db.shop.insert({&quot;loc&quot;:[10,10]})
+db.shop.insert({&quot;loc&quot;:[11,11]})
+db.shop.insert({&quot;loc&quot;:[10,11]})
+db.shop.insert({&quot;loc&quot;:[13,15]})
+db.shop.insert({&quot;loc&quot;:[12,12]})
+db.shop.insert({&quot;loc&quot;:[16,16]})
+</code></pre><ul>
+<li>为shop的集合定义2D索引</li>
+</ul>
+<pre><code>db.shop.ensureIndex({&quot;loc&quot;:&quot;2d&quot;})
+</code></pre><p>这个时候shop集合就可以实现坐标位置的查询了，而要进行查询有两种查询方式：</p>
+<p>·“$near”查询，查询距离某个点最近的坐标点；</p>
+<p>·“$geoWithin”查询：查询某个形状内的点；</p>
+<ul>
+<li>假设我的位置是[11,11] 查询附近的店设置一个距离范围—— 3个点内的（不设置默认返回100条信息）<pre><code>db.shop.find({&quot;loc&quot;:{&quot;$near&quot;:[11,11],&quot;$maxDistance&quot;:3}})
+</code></pre></li>
+</ul>
+<p>但是需要注意一点，在2D索引里面虽然支持最大距离，但是不支持最小距离。</p>
+<p>但是也可以设置一个查询的范围，使用“$geoWithin”查询，而可以设置的范围：</p>
+<p>·矩形范围（$box）：{“$box”:[[x1,y1],[x2,y2]]}；</p>
+<p>·圆形范围（$center）：{“$center” : [[x1,y1],r]}；</p>
+<p>·多边型（$polygon）：{“$polygon” :[[x1,y1],[x2,y2][x3,y3] , …]}</p>
+<ul>
+<li>范例：查询矩形<pre><code>db.shop.find({&quot;loc&quot;:{&quot;geoWithin&quot;:{&quot;$box&quot;:[ [10,10],[12,12] ]}}}).pretty()
+</code></pre></li>
+</ul>
+<blockquote>
+<p>其他的形状类似的语法</p>
+</blockquote>
+<h1 id="6-聚合框架"><a href="#6-聚合框架" class="headerlink" title="6. 聚合框架"></a>6. 聚合框架</h1><h2 id="6-1-group"><a href="#6-1-group" class="headerlink" title="6.1 $group"></a>6.1 $group</h2><p>group主要进行分组的数据操作<br>_id 是分组的依据字段</p>
+<ul>
+<li>按照部门编号来进行分组 统计每个部门的员工人数</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;: {&quot;_id&quot;:&quot;$deptno&quot;, &quot;dcount&quot;:{&quot;$sum&quot;: 1}}}])
+</code></pre><ul>
+<li>按照部门编号分组 统计每个部门下员工的平均工资<pre><code>db.emps.aggregate([{&quot;$group&quot;: {&quot;_id&quot;:&quot;$deptno&quot;, &quot;sal_avg&quot;:{&quot;$avg&quot;: &quot;$sal&quot;}}}])
+</code></pre></li>
+</ul>
+<ul>
+<li>按照部门编号分组 统计每个部门下员工的平均工资,最高工资，最低工资</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;: {
+    &quot;_id&quot;:&quot;$deptno&quot;,
+    &quot;sal_avg&quot;:{&quot;$avg&quot;: &quot;$sal&quot;}
+    }}])
+</code></pre><ul>
+<li>找出每个部门下员工的姓名 按照数组的形式保存数据</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;:{
+    &quot;_id&quot;:&quot;$deptno&quot;,
+    &quot;name_list&quot;:{
+        &quot;$push&quot;:&quot;$name&quot;
+    }
+}}])
+</code></pre><p>使用“$push”的确可以将数据变为数组进行保存，但是有一个问题出现了，重复的内容也会进行保存，那么在MongoDB里面提供有取消重复的设置。<br>如果不想增加重复的内容只需要把”$push”换成”$addToSet”</p>
+<ul>
+<li>保存第一个内容</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;:{
+    &quot;_id&quot;:&quot;$deptno&quot;,
+    &quot;ename&quot;:{
+        &quot;$first&quot;:&quot;$name&quot;
+    }
+}}])
+</code></pre><p>同理 如果想要保存最后一条数据 则需要把”$first” 换成”$last”即可 操作一样不作演示</p>
+<p>虽然可以方便的实现分组处理，但是有一点需要注意，所有的分组数据是无序的，并且都是在内存之中完成的，所以不可能支持大数据量</p>
+<h2 id="6-2-project"><a href="#6-2-project" class="headerlink" title="6.2 $project"></a>6.2 $project</h2><p>可以利用“$project”来控制数据列的显示规则，那么可以执行的规则如下：</p>
+<p>|- 普通列（{成员 : 1 | true}）：表示要显示的内容；</p>
+<p>|- “_id”列（{“_id” : 0 | false}）：表示“_id”列是否显示；</p>
+<p>|- 条件过滤列（{成员 : 表达式}）：满足表达式之后的数据可以进行显示。</p>
+<ul>
+<li>例如只显示 员工姓名 工资 不显示id</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$project&quot;:{
+    &quot;_id&quot;:0,
+    &quot;name&quot;:1,
+    &quot;sal&quot;:1
+}}])
+</code></pre><p>此时只有设置进去的列才可以被显示出来，而其它的列不能够被显示出来。实际上这就属于数据库的投影机制。</p>
+<p>实际上在进行数据投影的过程里面也支持四则运算：加法（“$add”）、减法（“$subtract”）、乘法（“$multiply”）、除法（“$divide”）、求模（$mod）</p>
+<ul>
+<li>统计员工的年薪</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$project&quot;:{
+    &quot;_id&quot;:0,
+    &quot;name&quot;:1,
+    &quot;sal&quot;:{&quot;年薪&quot;:{&quot;$multiply&quot;:[&quot;$sal&quot;,12]}}
+}}])
+</code></pre><p>·关系运算：大小比较（“$cmp”）、等于（“$eq”）、大于（“$gt”）、大于等于（“$gte”）、小于（“$lt”）、小于等于（“$lte”）、不等于（“$ne”）、判断NULL（“$ifNull”），这些返回的结果都是布尔型数据；</p>
+<p>·逻辑运算：与（“$and”）、或（“$or”）、非（“$not”）；</p>
+<p>·字符串操作：连接（“$concat”）、截取（“$substr”）、转小写（“$toLower”）、转大写（“toUpper”）、不区分大小写比较（“$strcasecmp”）。</p>
+<h2 id="6-3-match"><a href="#6-3-match" class="headerlink" title="6.3 $match"></a>6.3 $match</h2><p>“$match”是一个滤波操作，就是进行WHERE的过滤。</p>
+<ul>
+<li>范例：查询工资在5000 ~8000的雇员</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$match&quot;:{
+    &quot;sal&quot;:{&quot;$gte&quot;:5000, &quot;$lt&quot;:8000}
+}}])
+</code></pre><ul>
+<li>控制投影操作<pre><code>db.emps.aggregate([
+  {
+  &quot;$match&quot;:{
+      &quot;sal&quot;:{&quot;$gte&quot;:5000, &quot;$lt&quot;:8000}
+      }
+  },
+  {
+  &quot;$project&quot;:{&quot;_id&quot;:0, &quot;sal&quot;:1, &quot;name&quot;:1}    
+  }
+])
+</code></pre></li>
+</ul>
+<h2 id="6-4-sort"><a href="#6-4-sort" class="headerlink" title="6.4 $sort"></a>6.4 $sort</h2><p>使用“$sort”可以实现排序，设置1表示升序，设置-1表示降序</p>
+<ul>
+<li>按工资降序排序</li>
+</ul>
+<pre><code>db.emps.aggregate([
+    {&quot;$sort&quot;:{&quot;sal&quot;:-1}}
+])
+</code></pre><h2 id="6-5-分页处理：-limit、-skip"><a href="#6-5-分页处理：-limit、-skip" class="headerlink" title="6.5 分页处理：$limit、$skip"></a>6.5 分页处理：$limit、$skip</h2><p>“$limit”：负责数据的取出个数；</p>
+<p>“$skip”：数据的跨过个数。</p>
+<pre><code>db.emps.aggregate([
+    {&quot;$project&quot;:{&quot;_id&quot;:0, &quot;name&quot;:1, &quot;sal&quot;:1}},
+    {&quot;$skip&quot;:2},
+    {&quot;$limit&quot;:2}
+])
+</code></pre><p>先使用skip再使用limit</p>
+<h2 id="5-6-unwind"><a href="#5-6-unwind" class="headerlink" title="5.6$unwind"></a>5.6$unwind</h2><p>在查询数据的时候经常会返回数组信息，但是数组并不方便信息的浏览，所以提供有“$unwind”可以将数组数据变为独立的字符串内容。</p>
+<ul>
+<li>范例：添加一些信息</li>
+</ul>
+<pre><code>db.depts.insert({&quot;dname&quot;:&quot;财务部&quot;,&quot;bus&quot;:[&quot;工资&quot;, &quot;税收&quot;]})
+db.depts.insert({&quot;dname&quot;:&quot;技术部&quot;,&quot;bus&quot;:[&quot;生产&quot;, &quot;研发&quot;, &quot;测试&quot;]})
+</code></pre><p>-范例：将信息进行转化</p>
+<pre><code>db.depts.aggregate([
+    {&quot;$project&quot;:{&quot;dname&quot;:1 , &quot;bus&quot;:1}},
+    {&quot;$unwind&quot;:&quot;$bus&quot;}
+])
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/mongodb_install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/03/mongodb_install/" itemprop="url">MongoDB的安装与配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+00:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-MongoDB的安装与配置"><a href="#1-MongoDB的安装与配置" class="headerlink" title="1.MongoDB的安装与配置"></a>1.MongoDB的安装与配置</h1><p>下载地址：<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="external">https://www.mongodb.com/download-center#community</a><br>下载完安装包，并解压 tgz（以下演示的是 64 位 Linux上的安装） 。<br>下面以 ubuntu为例</p>
+<ul>
+<li>解压 <pre><code>tar -zxvf mongodb-linux-x86_64-4.0.2.tgz
+</code></pre></li>
+</ul>
+<ul>
+<li>移动到/usr/local/目录下<pre><code>sudo mv -r mongodb-linux-x86_64-ubuntu1604-4.0.2/ /usr/local/mongodb
+</code></pre></li>
+<li>将可执行文件添加到PATH路径中<pre><code>export PATH=/usr/local/mongodb/bin:$PATH
+</code></pre>创建数据库目录<br>MongoDB的数据存储在data目录的db目录下，但是这个目录在安装过程不会自动创建，所以你需要手动创建data目录，并在data目录中创建db目录。<br>注意：/data/db 是 MongoDB 默认的启动的数据库路径(–dbpath)。</li>
+</ul>
+<pre><code class="shell">sudo mkdir /data/db
+cd /data
+sudo chmod -R 777 db
+</code></pre>
+<h1 id="2-管理mongo"><a href="#2-管理mongo" class="headerlink" title="2.管理mongo"></a>2.管理mongo</h1><ul>
+<li>默认端口27017</li>
+<li>启动<br>进入mongodb的bin目录（我的是/usr/local/mongodb/bin）<pre><code>./mongod
+</code></pre></li>
+<li>关闭<pre><code>./mongod --shutdown
+</code></pre></li>
+</ul>
+<p>另外还可以使用配置文件启动mongodb</p>
+<ul>
+<li>创建配置文件<pre><code>sudo mkdir /etc/mongodb/mongod.conf
+</code></pre></li>
+<li><p>创建日志文件</p>
+<pre><code>sudo mkdir /etc/mongodb/mongod.log
+</code></pre><blockquote>
+<p>以上的路径按照自己喜欢创建</p>
+</blockquote>
+</li>
+<li><p>编辑配置文件</p>
+</li>
+</ul>
+<pre><code># 配置日志文件路径
+logpath = /etc/mongodb/mongod.log
+# 日志追加
+logappend = true
+# 数据库目录
+dbpath = /data/db
+# 以守护进程启动
+fork = true
+</code></pre><ul>
+<li><p>配置文件启动方式</p>
+<pre><code>./mongod -f /etc/mongodb/mongod.conf
+</code></pre></li>
+<li><p>查看进程</p>
+<pre><code>ps -el | grep mongodb
+</code></pre></li>
+<li><p>MongoDB后台管理 Shell<br>如果你需要进入MongoDB后台管理，你需要先打开mongodb装目录的下的bin目录，然后执行mongo命令文件。</p>
+</li>
+</ul>
+<p>MongoDB Shell是MongoDB自带的交互式Javascript shell,用来对MongoDB进行操作和管理的交互式环境。</p>
+<pre><code>cd /usr/local/mongodb/bin
+./mongo
+</code></pre>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/21/ubuntu_svn_use/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/21/ubuntu_svn_use/" itemprop="url">在Ubuntu下使用svn 基本操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-21T00:00:00+00:00">
+                2018-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/svn/" itemprop="url" rel="index">
+                    <span itemprop="name">svn</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="在Ubuntu下使用svn-基本操作"><a href="#在Ubuntu下使用svn-基本操作" class="headerlink" title="在Ubuntu下使用svn 基本操作"></a>在Ubuntu下使用svn 基本操作</h1><h2 id="checkout到本地目录"><a href="#checkout到本地目录" class="headerlink" title="checkout到本地目录"></a>checkout到本地目录</h2><pre><code>sudo svn checkout svn://ip
+</code></pre><h2 id="往版本库中添加新的文件"><a href="#往版本库中添加新的文件" class="headerlink" title="往版本库中添加新的文件"></a>往版本库中添加新的文件</h2><pre><code>sudo svn add file_name
+# 或者使用通配符
+sudo svn add *
+sudo svn add dir/*.py
+</code></pre><h2 id="将改动的文件提交到版本库"><a href="#将改动的文件提交到版本库" class="headerlink" title="将改动的文件提交到版本库"></a>将改动的文件提交到版本库</h2><pre><code>svn commit -m &quot;LogMessage&quot; [-N] [--no-unlock] PATH(如果选择了保持锁，就使用--no-unlock开关)
+svn commit -m &quot;提交注释&quot;
+</code></pre><h2 id="加锁-解锁"><a href="#加锁-解锁" class="headerlink" title="加锁/解锁"></a>加锁/解锁</h2><pre><code># 加锁
+svn lock -m &quot;lock test file&quot; test.php
+# 解锁
+svn unlock PATH
+</code></pre><h2 id="更新到某个版本"><a href="#更新到某个版本" class="headerlink" title="更新到某个版本"></a>更新到某个版本</h2><pre><code>svn update -r m path
+# m 版本号
+svn update -r 10 test.py
+</code></pre><h2 id="查看文件或者目录状态"><a href="#查看文件或者目录状态" class="headerlink" title="查看文件或者目录状态"></a>查看文件或者目录状态</h2><pre><code>svn status path
+</code></pre><blockquote>
+<p>（目录下的文件和子目录的状态，正常状态不显示）<br>不在svn的控制中；M：内容被修改；C：发生冲突；A：预定加入到版本库；K：被锁定】</p>
+</blockquote>
+<h2 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h2><pre><code>svn delete path -m &quot;delete test fle&quot;
+</code></pre><h2 id="查看日志"><a href="#查看日志" class="headerlink" title="查看日志"></a>查看日志</h2><pre><code>svn log path
+</code></pre><h2 id="比较差异"><a href="#比较差异" class="headerlink" title="比较差异"></a>比较差异</h2><pre><code>svn diff path
+</code></pre><h2 id="将两个版本之间的差异合并到当前文件"><a href="#将两个版本之间的差异合并到当前文件" class="headerlink" title="将两个版本之间的差异合并到当前文件"></a>将两个版本之间的差异合并到当前文件</h2><pre><code>svn merge -r m:n path
+svn merge -r 200:205 test.php
+</code></pre><blockquote>
+<p>其他配置请查看另一篇关于svn的配置<br><a href="https://note.youdao.com/" target="_blank" rel="external"> SVN 的基本使用</a></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/01/python_module/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/01/python_module/" itemprop="url">python模块发布</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T00:00:00+00:00">
+                2018-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="python模块发布"><a href="#python模块发布" class="headerlink" title="python模块发布"></a>python模块发布</h1><h2 id="zrlee-module目录结构如下"><a href="#zrlee-module目录结构如下" class="headerlink" title="zrlee_module目录结构如下"></a>zrlee_module目录结构如下</h2><pre><code>├── setup.py
+├── zrleea
+│   ├── test.py
+│   └── __init__.py
+└── zrleeb
+    ├── test.py
+    └── __init__.py
+</code></pre><p>假设zrleea 目录下test.py的代码如下</p>
+<pre><code>def pt(string):
+    print(string)
+</code></pre><p>_init.py 控制着包的导入行为<br>nit.py为空则仅是把这个包导入，不会导入包中的模块<br>init.py 里面有一个<strong>all</strong> 列表 元素中定义被导入的模块名,它控制着 from 包名 import *时导入的模块</p>
+<pre><code> __all__ = [&quot;test&quot;]
+</code></pre><h2 id="编辑setup-py"><a href="#编辑setup-py" class="headerlink" title="编辑setup.py"></a>编辑setup.py</h2><pre><code>from distutils.core import setup
+
+setup(name=&quot;zrlee_test_module&quot;, version=&quot;1.0&quot;, description=&quot;zrlee&#39;s module&quot;, author=&quot;zrlee&quot;, py_modules=[&#39;one.test&#39;, &#39;test&#39;])
+</code></pre><p>根据自己的实际情况修改setup()函数里面的参数py_modules需指明所需包含的py文件</p>
+<h2 id="构建模块"><a href="#构建模块" class="headerlink" title="构建模块"></a>构建模块</h2><pre><code>python setup.py build
+</code></pre><h2 id="生成发布压缩包"><a href="#生成发布压缩包" class="headerlink" title="生成发布压缩包"></a>生成发布压缩包</h2><pre><code>python setup.py sdist
+</code></pre><h1 id="安装、使用"><a href="#安装、使用" class="headerlink" title="安装、使用"></a>安装、使用</h1><h2 id="安装的方式"><a href="#安装的方式" class="headerlink" title="安装的方式"></a>安装的方式</h2><ol>
+<li>找到模块的压缩包</li>
+<li>解压</li>
+<li>进入文件夹</li>
+<li>执行命令python setup.py install</li>
+</ol>
+<p>注意：如果在install的时候，执行目录安装，可以使用python setup.py install –prefix=安装路径</p>
+<h2 id="模块的引入"><a href="#模块的引入" class="headerlink" title="模块的引入"></a>模块的引入</h2><p>在程序中，使用from import 即可完成对安装的模块使用</p>
+<p>from 模块名 import 模块名或者*</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/Redis基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/25/Redis基本使用/" itemprop="url">Redis缓存的基本使用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T16:00:00+00:00">
+                2018-05-25
               </time>
             
 
@@ -443,12 +2107,12 @@ vi ./redis.conf
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/geetest使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/geetest使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -462,7 +2126,7 @@ vi ./redis.conf
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/22/geetest使用/" itemprop="url">geettest滑块验证码使用完整教程(PHP)</a></h1>
+                <a class="post-title-link" href="/2018/05/21/geetest使用/" itemprop="url">geettest滑块验证码使用完整教程(PHP)</a></h1>
         
 
         <div class="post-meta">
@@ -474,8 +2138,8 @@ vi ./redis.conf
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T00:00:00+08:00">
-                2018-05-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T16:00:00+00:00">
+                2018-05-21
               </time>
             
 
@@ -674,12 +2338,12 @@ if ($_SESSION[&#39;gtserver&#39;] == 1) {   //服务器正常
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/SVN基本使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/SVN基本使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zrlee">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -693,7 +2357,7 @@ if ($_SESSION[&#39;gtserver&#39;] == 1) {   //服务器正常
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/22/SVN基本使用/" itemprop="url">SVN 的基本使用</a></h1>
+                <a class="post-title-link" href="/2018/05/21/SVN基本使用/" itemprop="url">SVN 的基本使用</a></h1>
         
 
         <div class="post-meta">
@@ -705,8 +2369,8 @@ if ($_SESSION[&#39;gtserver&#39;] == 1) {   //服务器正常
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T00:00:00+08:00">
-                2018-05-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T16:00:00+00:00">
+                2018-05-21
               </time>
             
 
@@ -843,1235 +2507,6 @@ zrlee = rw
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/laravel5安装配置Entrust/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/17/laravel5安装配置Entrust/" itemprop="url">Laravel5安装配置Entrust扩展包RABC权限管理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T00:00:00+08:00">
-                2018-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Entrust为我们在Laravel中实现基于角色的权限管理（RBAC）提供了简洁灵活的方式。</p>
-<h1 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装"></a>1、安装</h1><p>想要在Laravel中使用Entrust，首先需要通过Composer来安装其依赖包：</p>
-<pre><code>composer require zizaco/entrust 5.2.x-dev
-</code></pre><p>安装完成后需要在config/app.php中注册服务提供者到providers数组：</p>
-<pre><code class="php">Zizaco\Entrust\EntrustServiceProvider::class,
-</code></pre>
-<p>同时在该配置文件中注册相应门面到aliases数组</p>
-<pre><code class="php">&#39;Entrust&#39; =&gt; Zizaco\Entrust\EntrustFacade::class,
-</code></pre>
-<p>如果你想要使用中间件（要求Laravel 5.1或更高版本）还需要添加如下代码到app/Http/Kernel.php的routeMiddleware数组：</p>
-<pre><code class="php">&#39;role&#39; =&gt; \Zizaco\Entrust\Middleware\EntrustRole::class,
-&#39;permission&#39; =&gt; \Zizaco\Entrust\Middleware\EntrustPermission::class,
-&#39;ability&#39; =&gt; \Zizaco\Entrust\Middleware\EntrustAbility::class,
-</code></pre>
-<h1 id="2、配置"><a href="#2、配置" class="headerlink" title="2、配置"></a>2、配置</h1><p>在配置文件config/auth.php中设置合适的值，Entrust会使用这些配置值来选择相应的用户表和模型类：</p>
-<pre><code class="php">&#39;providers&#39; =&gt; [
-    &#39;users&#39; =&gt; [
-        &#39;driver&#39; =&gt; &#39;eloquent&#39;,
-        &#39;model&#39; =&gt; App\User::class,
-        &#39;table&#39; =&gt; &#39;users&#39;,
-    ],
-],
-</code></pre>
-<p>你还可以发布该扩展包的配置以便后续自定义相关表名以及模型类的命名空间：</p>
-<pre><code class="php">php artisan vendor:publish
-</code></pre>
-<p>该命令会在config目录下创建一个entrust.php文件。</p>
-<h1 id="3、用户角色权限表"><a href="#3、用户角色权限表" class="headerlink" title="3、用户角色权限表"></a>3、用户角色权限表</h1><p>接下来我们使用Entrust提供的迁移命令生成迁移文件：</p>
-<pre><code class="php">php artisan entrust:migration
-</code></pre>
-<p>然后通过以下命令生成相应的数据表：</p>
-<pre><code class="php">php artisan migrate
-</code></pre>
-<p>最终会生成4张新表：</p>
-<ul>
-<li>roles —— 存储角色</li>
-<li>permissions —— 存储权限</li>
-<li>role_user —— 存储角色与用户之间的多对多关系</li>
-<li>permission_role —— 存储角色与权限之间的多对多关系</li>
-</ul>
-<h1 id="4、模型类"><a href="#4、模型类" class="headerlink" title="4、模型类"></a>4、模型类</h1><p><strong>Role</strong><br>我们需要创建Role模型类app/Role.php并编辑其内容如下：</p>
-<pre><code class="php">&lt;?php namespace App;
-
-use Zizaco\Entrust\EntrustRole;
-
-class Role extends EntrustRole
-{
-}
-</code></pre>
-<p>Role模型拥有三个主要属性：</p>
-<ul>
-<li>name —— 角色的唯一名称，如“admin”，“owner”，“employee”等</li>
-<li>display_name —— 人类可读的角色名，例如“后台管理员”、“作者”、“雇主”等</li>
-<li>description —— 该角色的详细描述</li>
-<li>display_name和description属性都是可选的，在数据库中的相应字段默认为空。<br><strong><br>Permission</strong></li>
-</ul>
-<p>接下来创建Permission模型app/Permission.php并编辑其内容如下：</p>
-<pre><code class="php">&lt;?php namespace App;
-
-use Zizaco\Entrust\EntrustPermission;
-
-class Permission extends EntrustPermission
-{
-}
-</code></pre>
-<p>Permission模型也有三个主要属性：</p>
-<ul>
-<li>name —— 权限的唯一名称，如“create-post”，“edit-post”等</li>
-<li>display_name —— 人类可读的权限名称，如“发布文章”，“编辑文章”等</li>
-<li>description —— 该权限的详细描述</li>
-</ul>
-<p><strong>User</strong></p>
-<p>接下来我们在User模型中使用EntrustUserTrait：</p>
-<pre><code class="php">&lt;?php
-
-namespace App;
-
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
-
-class User extends Authenticatable
-{
-    use Notifiable;
-    use EntrustUserTrait;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        &#39;name&#39;, &#39;email&#39;, &#39;password&#39;,
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        &#39;password&#39;, &#39;remember_token&#39;,
-    ];
-}
-</code></pre>
-<p>这将会建立User与Role之间的关联关系：在User模型中添加roles()、hasRole($name)、can($permission)以及ability($roles,$permissions,$options)方法。</p>
-<h2 id="软删除"><a href="#软删除" class="headerlink" title="软删除"></a>软删除</h2><p>使用Entrust提供的迁移命令生成的关联关系表中默认使用了onDelete(‘cascade’)以便父级记录被删除后移除其对应的关联关系。如果你由于某种原因不能在数据库中使用级联删除，那么可以在EntrustRole、EntrustPermission类以及HasRole trait提供的事件监听器中手动删除关联表中的记录。如果模型使用了软删除，那么当不小心误删除数据时，事件监听器将不会删除关联表数据。不过，由于Laravel事件监听器的局限性，所以暂时无法区分是调用delete()还是forceDelete()，基于这个原因，在你删除一个模型之前，必须手动删除所有关联数据（除非你的数据表使用了级联删除）：</p>
-<pre><code class="php">$role = Role::findOrFail(1); // 获取给定权限
-
-// 正常删除
-$role-&gt;delete();
-
-// 强制删除
-$role-&gt;users()-&gt;sync([]); // 删除关联数据
-$role-&gt;perms()-&gt;sync([]); // 删除关联数据
-
-$role-&gt;forceDelete(); // 不管透视表是否有级联删除都会生效
-</code></pre>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>D:\phpStudy\WWW\blog&gt;php artisan entrust:migration</p>
-<p>In BoundMethod.php line 135:</p>
-<p>Method Zizaco\Entrust\MigrationCommand::handle() does not exist<br>这是什么情况</p>
-<blockquote>
-<p>这个问题也是用在laravel5.5中才遇到的一个问。<br>这个提示也很明确，说是找不到这个方法，<br>所以解决办法就是找到这个Zizaco\Entrust\MigrationCommand这个文件，然后里面又个fire方法改成handle方法即可，</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/10/MongoDB安装与shell/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/10/MongoDB安装与shell/" itemprop="url">MongoDB安装与shell</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T00:00:00+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mongodb/" itemprop="url" rel="index">
-                    <span itemprop="name">mongodb</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="MongoDB安装与shell"><a href="#MongoDB安装与shell" class="headerlink" title="MongoDB安装与shell"></a>MongoDB安装与shell</h1><h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>只需要在官网下载解压包<br><a href="https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;wd=&amp;eqid=8488b4090000820b000000065af41a24" target="_blank" rel="external">https://www.baidu.com/link?url=lMLTfNE9DnfgVP1zSgzjhYegCAgLego53GBagaWRq4soXUPbjrqJR_Vy4D_YXjgC0-YBgpUhbpgvNEDAjeKv_K&amp;wd=&amp;eqid=8488b4090000820b000000065af41a24</a></p>
-<p>放到linux服务器上解压即可</p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>MongoDB的数据存储在data目录的db目录下，但是这个目录在安装过程不会自动创建，所以你需要手动创建data目录，并在data目录中创建db目录。<br>例如</p>
-<pre><code class="shell"># mkdir /data/db
-</code></pre>
-<p>启动先进入到mongodb的bin目录 执行命令</p>
-<pre><code># ./mongod
-</code></pre><p>有时候需要用配置文件的形式启动可以通过如下口令</p>
-<pre><code># ./mongod -f 配置文件路径
-</code></pre><p>这个配置文件需要你手动创建例如在mongodb目录中创建一个etc/mongo.conf</p>
-<p>在bin目录</p>
-<pre><code># mkdir etc
-# cd etc
-# vim mongo.conf
-</code></pre><p>mongo.conf 里面的内容</p>
-<pre><code> logpath=./log/mongodb.log
- logappend=false
- dbpath=/data/db
- fork=true
- rest=true
-</code></pre><p>参数详解<br>logpath指定日志的目录<br>logappend 是否追加形式保存日志<br>dbpath 指定db目录<br>fork 是否后台运行进程<br>rest 是否使用web console 设定为true的时候可以通过 ip:28017 访问默认端口是28017</p>
-<h3 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h3><pre><code># ps -ef|grep mongo
-</code></pre><h3 id="结束进程"><a href="#结束进程" class="headerlink" title="结束进程"></a>结束进程</h3><pre><code># ./mongod --shutdown
-</code></pre><h2 id="MongoDB后台管理-Shell"><a href="#MongoDB后台管理-Shell" class="headerlink" title="MongoDB后台管理 Shell"></a>MongoDB后台管理 Shell</h2><h3 id="shell-基本命令"><a href="#shell-基本命令" class="headerlink" title="shell 基本命令"></a>shell 基本命令</h3><p>进入shell 在mongondb的bin目录下</p>
-<pre><code># ./mongo
-</code></pre><p>查看数据库</p>
-<pre><code># show dbs
-</code></pre><p>选择数据库</p>
-<pre><code># use dbname
-</code></pre><p>查看集合</p>
-<pre><code># show collections
-</code></pre><p>集合插入</p>
-<pre><code># db.account.save({&#39;name&#39;:&#39;zrlee&#39; , &#39;skill&#39;:&#39;php22&#39;})
-</code></pre><p>account 为集合的名称</p>
-<p>查看account集合的数据</p>
-<pre><code># db.account.find()
-</code></pre><p>删除account集合</p>
-<pre><code># db.account.drop()
-</code></pre><p>删除数据库</p>
-<pre><code># db.dropDatabase()
-</code></pre><p>注意删除的是当前选中的库</p>
-<p>其他的口令</p>
-<pre><code># db.help()                    查看db方法帮助
-# db.mycoll.help()             help on collection methods
-# sh.help()                    sharding helpers
-# rs.help()                    replica set helpers
-# help admin                   administrative help
-# help connect                 connecting to a db help
-# help keys                    key shortcuts
-# help misc                    misc things to know
-# help mr                      mapreduce
-
-# show dbs                     show database names
-# show collections             show collections in current # 
-# show users                   show users in current database
-# show profile                 show most recent 
-# show logs                    show the accessible logger names
-# show log [name]              prints out the last segment of log in memory, &#39;global&#39; is default
-# use &lt;db_name&gt;                set current database
-# db.foo.find()                foo集合对象列表
-# db.foo.find( { a : 1 } )     list objects in foo where a == 1
-
-    exit                         quit the mongo shell
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/06/CentOS下安装启动Docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/06/CentOS下安装启动Docker/" itemprop="url">CentOS下安装Docker与启动方法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-06T00:00:00+08:00">
-                2018-05-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/docker/" itemprop="url" rel="index">
-                    <span itemprop="name">docker</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="CentOS下安装Docker与启动方法"><a href="#CentOS下安装Docker与启动方法" class="headerlink" title="CentOS下安装Docker与启动方法"></a>CentOS下安装Docker与启动方法</h1><blockquote>
-<p>有时候直接使用yum install 启动时候会出现错误可能是因为安装版本过低 一下方式安装可以正常启动</p>
-</blockquote>
-<h3 id="1、取消selinux，因为它会干扰lxc的正常功能"><a href="#1、取消selinux，因为它会干扰lxc的正常功能" class="headerlink" title="1、取消selinux，因为它会干扰lxc的正常功能"></a>1、取消selinux，因为它会干扰lxc的正常功能</h3><pre><code class="bash"># vim /etc/selinux/config
-</code></pre>
-<p>将SELINUX 改成disabled</p>
-<p>SELINUX=disabled<br>SELINUXTYPE=targeted</p>
-<h3 id="2、配置Fedora-EPEL-源"><a href="#2、配置Fedora-EPEL-源" class="headerlink" title="2、配置Fedora EPEL 源"></a>2、配置Fedora EPEL 源</h3><pre><code>yum install http://ftp.riken.jp/Linux/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
-</code></pre><h3 id="3、配置hop5-in源"><a href="#3、配置hop5-in源" class="headerlink" title="3、配置hop5.in源"></a>3、配置hop5.in源</h3><pre><code># cd /etc/yum.repos.d
-# sudo wget http://www.hop5.in/yum/el6/hop5.repo
-</code></pre><h3 id="4、安装docker-io"><a href="#4、安装docker-io" class="headerlink" title="4、安装docker-io"></a>4、安装docker-io</h3><pre><code># yum install docker-io
-</code></pre><h3 id="5、检查安装情况"><a href="#5、检查安装情况" class="headerlink" title="5、检查安装情况"></a>5、检查安装情况</h3><pre><code># docker -h
-</code></pre><h3 id="6、启动docker"><a href="#6、启动docker" class="headerlink" title="6、启动docker"></a>6、启动docker</h3><pre><code># service docker start
-</code></pre><h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><p>Docker需要3.8以上的内核 查看自己的内核</p>
-<pre><code># uname -a
-</code></pre><p>如果内核版本过低可以进行升级，具体升级方法网上有</p>
-<pre><code># docker info
-Cannot connect to the Docker daemon. Is &#39;docker -d&#39; running on this host?
-</code></pre><p>应该是libmapper有关，需要升级下这个库:</p>
-<pre><code> # yum-config-manager --enable public_ol6_latest
- # yum install device-mapper-event-libs
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/laravel-核心概念/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/03/laravel-核心概念/" itemprop="url">laravel验证</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T00:00:00+08:00">
-                2018-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><h2 id="基础介绍"><a href="#基础介绍" class="headerlink" title="基础介绍"></a>基础介绍</h2><p>可以使用 config 辅助函数获取你的设置值，设置值可以通过「点」语法来获取，其中包含了文件与选项的名称。你也可以指定一个默认值，当该设置选项不存在时就会返回默认值：</p>
-<pre><code class="`php">$value = config(&#39;app.timezone&#39;);
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/laravel-验证规则/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/03/laravel-验证规则/" itemprop="url">laravel验证</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T00:00:00+08:00">
-                2018-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/laravel/" itemprop="url" rel="index">
-                    <span itemprop="name">laravel</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="创建表单请求"><a href="#创建表单请求" class="headerlink" title="创建表单请求"></a>创建表单请求</h1><p>在更复杂的验证情境中，你可能会想要创建一个「表单请求（ form request ）」。表单请求是一个自定义的请求类，里面包含着验证逻辑。要创建一个表单请求类，可使用 Artisan 命令行命令 </p>
-<pre><code class="php">php artisan make:request ArticleRequest
-</code></pre>
-<p>新生成的类保存在 app/Http/Requests 目录下。如果这个目录不存在，那么将会在你运行 make:request 命令时创建出来。让我们添加一些验证规则到 rules 方法中：</p>
-<pre><code class="php">/**
-     * Get the validation rules that apply to the request.
-     *验证规则
-     * @return array
-     */
-    public function rules()
-    {
-        return  [
-            &quot;title&quot;=&gt;&#39;min:5|required&#39;
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            &quot;title.required&quot;=&gt;&quot;不能为空&quot;,
-            &quot;title.min&quot;=&gt;&quot;至少5个字符&quot;
-        ];
-    }
-</code></pre>
-<p>怎样才能较好的运行验证规则呢？你所需要做的就是在控制器方法中利用类型提示传入请求。传入的请求会在控制器方法被调用前进行验证，意思就是说你不会因为验证逻辑而把控制器弄得一团糟：</p>
-<pre><code class="php">    /**
-     * 自定义request
-     * request 中进行表单验证
-     * @param Request $request
-     */
-    public function store (ArticleRequest $request){
-
-        dd($request-&gt;all()) ;
-    }
-</code></pre>
-<h2 id="显示验证错误"><a href="#显示验证错误" class="headerlink" title="显示验证错误"></a>显示验证错误</h2><pre><code class="html"> &lt;p&gt;&lt;input type=&quot;text&quot; name=&quot;title&quot; &gt;{{$errors->first('title')}}&lt;/p&gt;
-</code></pre>
-<h2 id="可用的验证规则"><a href="#可用的验证规则" class="headerlink" title="可用的验证规则"></a>可用的验证规则</h2><p><a href="http://blog.noxue.com/article/473.html" title="不学网" target="_blank" rel="external">不学网验证规则</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/17/无限分类算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/17/无限分类算法/" itemprop="url">php递归实现无限分类算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-17T00:00:00+08:00">
-                2017-05-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/php/" itemprop="url" rel="index">
-                    <span itemprop="name">php</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="php递归实现无限分类算法"><a href="#php递归实现无限分类算法" class="headerlink" title="php递归实现无限分类算法"></a>php递归实现无限分类算法</h1><pre><code class="php">
-&lt;?php
-
-echo &#39;&lt;pre&gt;&#39;;
-$list = array (
-    array ( &#39;cat_id&#39; =&gt; &#39;1&#39;, &#39;cat_name&#39; =&gt; &#39;节点A&#39;, &#39;parent_id&#39; =&gt; &#39;3&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;2&#39;, &#39;cat_name&#39; =&gt; &#39;节点C&#39;, &#39;parent_id&#39; =&gt; &#39;1&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;3&#39;, &#39;cat_name&#39; =&gt; &#39;节点D&#39;, &#39;parent_id&#39; =&gt; &#39;0&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;4&#39;, &#39;cat_name&#39; =&gt; &#39;节点F&#39;, &#39;parent_id&#39; =&gt; &#39;2&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;5&#39;, &#39;cat_name&#39; =&gt; &#39;节点K&#39;, &#39;parent_id&#39; =&gt; &#39;3&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;6&#39;, &#39;cat_name&#39; =&gt; &#39;节点P&#39;, &#39;parent_id&#39; =&gt; &#39;2&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;7&#39;, &#39;cat_name&#39; =&gt; &#39;节点U&#39;, &#39;parent_id&#39; =&gt; &#39;8&#39;, ), 
-    array ( &#39;cat_id&#39; =&gt; &#39;8&#39;, &#39;cat_name&#39; =&gt; &#39;节点X&#39;, &#39;parent_id&#39; =&gt; &#39;3&#39;, ), 
-) ;
-/**
- * @param &amp;$list array 所有分类的数组，在这个数组内查找
- * @param $parent_id int 当前的父分类id
- * @param $deep int 当前递归调用的深度
- * @retrun array 按照层级关系排序好的数组
- */
-function tree(&amp;$list, $parent_id, $deep) {
-    //保证找到的元素都放在一个数组$tree内,应该是$tree在所有的tree函数都共享
-    static $tree;
-    //遍历该数组，找到parent_id值为当前传递进来的$parent_id;
-    foreach($list as $row) {
-        //判断
-        if($row[&#39;parent_id&#39;] == $parent_id) {
-            //保存起来
-            $row[&#39;deep&#39;] = $deep;
-            $tree[] = $row;
-            //依据当前所找到的分类，找到其子节点，操作相同，递归完成
-            tree($list, $row[&#39;cat_id&#39;],$deep+1);
-        }
-    }
-
-    return $tree;
-}
-
-$result = tree($list, 0, 0);
-var_dump($result);
-echo &#39;&lt;hr&gt;&#39;;
-foreach($result as $row) {
-//    echo $row[&#39;deep&#39;];
-    echo &#39;|&#39;, str_repeat(&#39;---&#39;, $row[&#39;deep&#39;]);
-    echo $row[&#39;cat_name&#39;];
-    echo &#39;&lt;br&gt;&#39;;
-}
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/16/主流框架第四天/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zrlee">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://wx.zrlee.cn/image/me.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="resume.zrlee.cn">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/16/主流框架第四天/" itemprop="url">流行框架第四天：Angular指令、服务、和TODOMVC案例</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T00:00:00+08:00">
-                2017-05-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动web/" itemprop="url" rel="index">
-                    <span itemprop="name">移动web</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="流行框架第四天：Angular指令、服务、和TODOMVC案例"><a href="#流行框架第四天：Angular指令、服务、和TODOMVC案例" class="headerlink" title="流行框架第四天：Angular指令、服务、和TODOMVC案例"></a>流行框架第四天：Angular指令、服务、和TODOMVC案例</h1><h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><h3 id="内置指令"><a href="#内置指令" class="headerlink" title="内置指令"></a>内置指令</h3><pre><code> ng-app
-</code></pre><h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><h3 id="内置服务"><a href="#内置服务" class="headerlink" title="内置服务"></a>内置服务</h3><h3 id="自定义服务"><a href="#自定义服务" class="headerlink" title="自定义服务"></a>自定义服务</h3><h2 id="TODOLIST案例"><a href="#TODOLIST案例" class="headerlink" title="TODOLIST案例"></a>TODOLIST案例</h2>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2109,7 +2544,7 @@ foreach($result as $row) {
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="https://wx.zrlee.cn/image/me.png"
+               src="https://wx.zrlee.cn/img/me.png"
                alt="zrlee" />
           <p class="site-author-name" itemprop="name">zrlee</p>
            
@@ -2121,7 +2556,7 @@ foreach($result as $row) {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2132,7 +2567,7 @@ foreach($result as $row) {
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2143,7 +2578,7 @@ foreach($result as $row) {
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2252,9 +2687,13 @@ foreach($result as $row) {
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright" >
+  <a href="http://gdcainfo.miitbeian.gov.cn/state/outPortal/loginPortal.action">
+	 粤ICP备16075339号-1
+	 </a>
+	
   
-  &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  &copy; 2015-
+  <span itemprop="copyrightYear">2018 hexo 版权所有 </span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

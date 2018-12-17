@@ -1,0 +1,861 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="SVN," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://resume.zrlee.cn/img/me.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="简单说明① 多人开发同一个项目不会出现代码覆盖情况。② 针对一个文件可以创建许多不同版本，并且可以随时查看不同版本的内容。③ 公司领导可以通过svn查看每个人的工作情况 svn的安装 安装subversion 安装TortoiseSVN安装完成后可以进行重启操作，重启后会看到svn的状态图标  创建svn仓库cmd 命令代码 svnadmin create f:/svnServer/app/sho">
+<meta name="keywords" content="SVN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVN 的基本使用">
+<meta property="og:url" content="http://yoursite.com/2018/05/21/SVN基本使用/index.html">
+<meta property="og:site_name" content="resume.zrlee.cn">
+<meta property="og:description" content="简单说明① 多人开发同一个项目不会出现代码覆盖情况。② 针对一个文件可以创建许多不同版本，并且可以随时查看不同版本的内容。③ 公司领导可以通过svn查看每个人的工作情况 svn的安装 安装subversion 安装TortoiseSVN安装完成后可以进行重启操作，重启后会看到svn的状态图标  创建svn仓库cmd 命令代码 svnadmin create f:/svnServer/app/sho">
+<meta property="og:updated_time" content="2018-05-23T02:35:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVN 的基本使用">
+<meta name="twitter:description" content="简单说明① 多人开发同一个项目不会出现代码覆盖情况。② 针对一个文件可以创建许多不同版本，并且可以随时查看不同版本的内容。③ 公司领导可以通过svn查看每个人的工作情况 svn的安装 安装subversion 安装TortoiseSVN安装完成后可以进行重启操作，重启后会看到svn的状态图标  创建svn仓库cmd 命令代码 svnadmin create f:/svnServer/app/sho">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/21/SVN基本使用/"/>
+
+
+
+
+
+  <title>SVN 的基本使用 | resume.zrlee.cn</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">resume.zrlee.cn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/SVN基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SVN 的基本使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T16:00:00+00:00">
+                2018-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SVN/" itemprop="url" rel="index">
+                    <span itemprop="name">SVN</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简单说明"><a href="#简单说明" class="headerlink" title="简单说明"></a>简单说明</h2><p>① 多人开发同一个项目不会出现代码覆盖情况。<br>② 针对一个文件可以创建许多不同版本，并且可以随时查看不同版本的内容。<br>③ 公司领导可以通过svn查看每个人的工作情况</p>
+<h2 id="svn的安装"><a href="#svn的安装" class="headerlink" title="svn的安装"></a>svn的安装</h2><ul>
+<li>安装subversion</li>
+<li>安装TortoiseSVN<br>安装完成后可以进行重启操作，重启后会看到svn的状态图标</li>
+</ul>
+<h2 id="创建svn仓库"><a href="#创建svn仓库" class="headerlink" title="创建svn仓库"></a>创建svn仓库</h2><p>cmd 命令代码</p>
+<pre><code>svnadmin create f:/svnServer/app/shop
+</code></pre><p>这样就创建好了。<strong>前提是这个目录需要自己先创建好。</strong></p>
+<h2 id="启动仓库服务"><a href="#启动仓库服务" class="headerlink" title="启动仓库服务"></a>启动仓库服务</h2><p>svnserve  -d(独立端口运行)  -r(仓库地址)   仓库地址</p>
+<p>使用cmd命令行启动刚创建的shop仓库</p>
+<pre><code>svnserve  -d  -r  f:/svnServer/app/shop
+</code></pre><p>该svn服务走svn协议，端口号码是3690</p>
+<h2 id="客户端与仓库取得联系"><a href="#客户端与仓库取得联系" class="headerlink" title="客户端与仓库取得联系"></a>客户端与仓库取得联系</h2><p>本地目录右键 SVN Checkout<br>URL of repository svn地址，主机名 如svn://localhsot<br>Checkout diretory 是本地目录<br>确定</p>
+<p>但是现在是不能够连接的 因为还没配置 现在使用匿名方式<br>在仓库conf/svnserve.conf 设置成下面这样</p>
+<pre><code>anon-access = write (12行)
+</code></pre><p>然后再checkout就可以了</p>
+<h2 id="账号的设置"><a href="#账号的设置" class="headerlink" title="账号的设置"></a>账号的设置</h2><p>在仓库conf/svnserve.conf 修改</p>
+<pre><code>password-db = passwd
+authz-db = authz
+</code></pre><p>把他们前面的#去掉 注意前面不能有空格</p>
+<h3 id="设置账号"><a href="#设置账号" class="headerlink" title="设置账号"></a>设置账号</h3><p>在仓库conf/svnserve.conf 关闭匿名</p>
+<pre><code>anon-access = none
+</code></pre><p>在仓库conf/passwd 设置账号<br>在[users] 下面添加用户<br>例如：</p>
+<pre><code>zrlee = zrlee
+user1 = password
+</code></pre><h3 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h3><p>在仓库conf/authz 设置权限</p>
+<p>例如<br>[/] 对应主机地址svn：//loaclhost<br>[shop:/] 多个仓库之一地址 svn://localhsot/shop<br>r – 读<br>w – 写<br>*= 其他用户无权限<br>设置例子</p>
+<pre><code>[/]
+zrlee = rw 
+*=
+</code></pre><h3 id="一个组设置权限"><a href="#一个组设置权限" class="headerlink" title="一个组设置权限"></a>一个组设置权限</h3><p>在仓库conf/authz</p>
+<pre><code>[groups]
+php = php1,php2,php3
+[/]
+zrlee = rw 
+@php = rw    // 设置hp组的用户权限
+*=
+</code></pre><h2 id="设置开机启动服务"><a href="#设置开机启动服务" class="headerlink" title="设置开机启动服务"></a>设置开机启动服务</h2><p>(略过）</p>
+<h2 id="文件图标标志"><a href="#文件图标标志" class="headerlink" title="文件图标标志"></a>文件图标标志</h2><p>① 蓝色加号：本地的.svn对该文件有形成管理(远程仓库 还没有该文件记录)<br>② 绿色对号：本地文件、.svn管理的版本文件、仓库文件 三者内部一致<br>③ 红色叹号：本地文件  与  .svn和仓库文件 不一致(用户自己修改了该文件)<br>④ 黄色叹号：表示该文件正处于冲突状态<br>⑤ 蓝色问号：新建的一个文件，本地.svn 和 远程仓库 对该文件都没有记录</p>
+<h2 id="同时运行多个仓库"><a href="#同时运行多个仓库" class="headerlink" title="同时运行多个仓库"></a>同时运行多个仓库</h2><p>svnserve -r 目录写上级的目录即可</p>
+<h2 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h2><p>SVN的冲突：<br>广义角度的冲突：提交程序文件 本地版本号码 小于 仓库服务器版本号码.<br>狭义角度的冲突：多个程序员对同一个文件、同一处代码进行修改，在他们提交文件的时候会产生冲突。</p>
+<h3 id="大家修改的代码不在同一处"><a href="#大家修改的代码不在同一处" class="headerlink" title="大家修改的代码不在同一处"></a>大家修改的代码不在同一处</h3><p>解决：直接执行update操作，把仓库最新文件更新到本地，与本地文件做融合，之后继续提交给文件即可。</p>
+<p>把仓库最新的程序文件给update更新多本地，使得本地 和 仓库的号码保持一致，<br>仓库的文件更新到本地，会与本地的文件进行融合(非覆盖操作)，会把两个人的修改内容体现在一个文件中。</p>
+<h3 id="大家修改的代码在同一处-行"><a href="#大家修改的代码在同一处-行" class="headerlink" title="大家修改的代码在同一处(行)"></a>大家修改的代码在同一处(行)</h3><p>解决：先执行update更新操作，把本地冲突文件打开“稍作”调整，继续提交。</p>
+<h2 id="同一个文件的不同版本切换"><a href="#同一个文件的不同版本切换" class="headerlink" title="同一个文件的不同版本切换"></a>同一个文件的不同版本切换</h2><p>TortoiseSVN-Update to revision ..</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SVN/" rel="tag"># SVN</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/16/laravel5安装配置Entrust/" rel="next" title="Laravel5安装配置Entrust扩展包RABC权限管理">
+                <i class="fa fa-chevron-left"></i> Laravel5安装配置Entrust扩展包RABC权限管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/21/geetest使用/" rel="prev" title="geettest滑块验证码使用完整教程(PHP)">
+                geettest滑块验证码使用完整教程(PHP) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wx.zrlee.cn/img/me.png"
+               alt="zrlee" />
+          <p class="site-author-name" itemprop="name">zrlee</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zrleecn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微信">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  微信
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/zrleecn" title="Github" target="_blank">Github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://zrleecn.github.io/" title="Blog" target="_blank">Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://resume.zrlee.cn" title="Resume" target="_blank">Resume</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单说明"><span class="nav-number">1.</span> <span class="nav-text">简单说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#svn的安装"><span class="nav-number">2.</span> <span class="nav-text">svn的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建svn仓库"><span class="nav-number">3.</span> <span class="nav-text">创建svn仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动仓库服务"><span class="nav-number">4.</span> <span class="nav-text">启动仓库服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端与仓库取得联系"><span class="nav-number">5.</span> <span class="nav-text">客户端与仓库取得联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#账号的设置"><span class="nav-number">6.</span> <span class="nav-text">账号的设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设置账号"><span class="nav-number">6.1.</span> <span class="nav-text">设置账号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置权限"><span class="nav-number">6.2.</span> <span class="nav-text">设置权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个组设置权限"><span class="nav-number">6.3.</span> <span class="nav-text">一个组设置权限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置开机启动服务"><span class="nav-number">7.</span> <span class="nav-text">设置开机启动服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件图标标志"><span class="nav-number">8.</span> <span class="nav-text">文件图标标志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同时运行多个仓库"><span class="nav-number">9.</span> <span class="nav-text">同时运行多个仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冲突"><span class="nav-number">10.</span> <span class="nav-text">冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大家修改的代码不在同一处"><span class="nav-number">10.1.</span> <span class="nav-text">大家修改的代码不在同一处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大家修改的代码在同一处-行"><span class="nav-number">10.2.</span> <span class="nav-text">大家修改的代码在同一处(行)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同一个文件的不同版本切换"><span class="nav-number">11.</span> <span class="nav-text">同一个文件的不同版本切换</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <a href="http://gdcainfo.miitbeian.gov.cn/state/outPortal/loginPortal.action">
+	 粤ICP备16075339号-1
+	 </a>
+	
+  
+  &copy; 2015-
+  <span itemprop="copyrightYear">2018 hexo 版权所有 </span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zrlee</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script>
+	
+		hljs.initHighlightingOnLoad();
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
+
+
+</script>
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

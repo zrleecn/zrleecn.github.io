@@ -1,0 +1,1315 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="mongodb," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://resume.zrlee.cn/img/me.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="1.MongoDB的基础操作1.1 基本的操作//查看数据库 show dbs  //查看集合列表 show collections  //查看用户列表 show users  //切换数据库 use dbname  创建一个集合——创建一个emp集合 db.createCollection(&amp;#39;emp&amp;#39;)  保存一条数据到emp db.emp.insert({   &amp;quot;em">
+<meta name="keywords" content="mongodb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB的基础操作">
+<meta property="og:url" content="http://yoursite.com/2018/10/03/mongodb_base/index.html">
+<meta property="og:site_name" content="resume.zrlee.cn">
+<meta property="og:description" content="1.MongoDB的基础操作1.1 基本的操作//查看数据库 show dbs  //查看集合列表 show collections  //查看用户列表 show users  //切换数据库 use dbname  创建一个集合——创建一个emp集合 db.createCollection(&amp;#39;emp&amp;#39;)  保存一条数据到emp db.emp.insert({   &amp;quot;em">
+<meta property="og:updated_time" content="2018-10-12T05:00:14.098Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB的基础操作">
+<meta name="twitter:description" content="1.MongoDB的基础操作1.1 基本的操作//查看数据库 show dbs  //查看集合列表 show collections  //查看用户列表 show users  //切换数据库 use dbname  创建一个集合——创建一个emp集合 db.createCollection(&amp;#39;emp&amp;#39;)  保存一条数据到emp db.emp.insert({   &amp;quot;em">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/03/mongodb_base/"/>
+
+
+
+
+
+  <title>MongoDB的基础操作 | resume.zrlee.cn</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">resume.zrlee.cn</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/mongodb_base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zrlee">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://wx.zrlee.cn/img/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="resume.zrlee.cn">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB的基础操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-03T00:00:00+00:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-MongoDB的基础操作"><a href="#1-MongoDB的基础操作" class="headerlink" title="1.MongoDB的基础操作"></a>1.MongoDB的基础操作</h1><h2 id="1-1-基本的操作"><a href="#1-1-基本的操作" class="headerlink" title="1.1 基本的操作"></a>1.1 基本的操作</h2><pre><code>//查看数据库
+show dbs
+
+//查看集合列表
+show collections
+
+//查看用户列表
+show users
+
+//切换数据库
+use dbname
+</code></pre><ul>
+<li><p>创建一个集合——创建一个emp集合</p>
+<pre><code>db.createCollection(&#39;emp&#39;)
+</code></pre></li>
+<li><p>保存一条数据到emp</p>
+<pre><code>db.emp.insert({
+  &quot;empno&quot;:100,
+  &quot;ename&quot;:&quot;zrlee&quot;,
+  &quot;deptno&quot;:1,
+  &quot;sal&quot;:8000
+})
+</code></pre></li>
+<li><p>查看emp表的数据<br>·语法：db.集合名称.find({若干条件})<br>例如查看emp表的所有数据</p>
+<pre><code>db.emp.find()
+</code></pre></li>
+<li><p>漂亮显示数据（带格式）</p>
+</li>
+</ul>
+<pre><code>db.emp.find().pretty()
+</code></pre><ul>
+<li>关于ID的问题</li>
+</ul>
+<p>在MongoDB集合中的每一行记录都会自动的生成一个“”_id” :ObjectId(“55949a13eecd74894d19d8dc”)”数据，这个数据组成是：“时间戳 + 机器码 + PID + 计数器”，这个ID的信息是MongonDB数据自己为用户生成的。</p>
+<ul>
+<li>查看单独的一个文档信息</li>
+</ul>
+<pre><code>db.emp.findOne()
+</code></pre><ul>
+<li>删除数据</li>
+</ul>
+<pre><code>db.emp.remove({&quot;ename&quot;:&quot;zrlee2&quot;})
+</code></pre><ul>
+<li>更新数据</li>
+</ul>
+<pre><code>var update_data = {
+    &quot;empno&quot;:100,
+    &quot;ename&quot;:&quot;zrlee.cn&quot;,
+    &quot;deptno&quot;:1,
+    &quot;sal&quot;:8000
+}
+
+db.emp.update( {&quot;ename&quot;:&quot;zrlee1&quot;}, update_data)
+</code></pre><ul>
+<li><p>删除集合</p>
+<pre><code>db.emp.drop()
+</code></pre></li>
+<li><p>删除数据库（删除当前所在的数据库）</p>
+</li>
+</ul>
+<pre><code>db.dropDatabase()
+</code></pre><h2 id="1-2数据操作"><a href="#1-2数据操作" class="headerlink" title="1.2数据操作"></a>1.2数据操作</h2><p>只要是数据库那么就绝对离不开最为核心的功能：CRUD，所以在MongoDB里面对于数据的操作也是有支持的，但是需要提醒的是，除了增加之外，其它的都很麻烦。<br>使用“db.集合.insert()”可以实现数据的增加操作。</p>
+<ul>
+<li>增加一个简单数据</li>
+</ul>
+<pre><code>db.infos.insert({&quot;url&quot;:&quot;www.zrlee.cn&quot;})
+</code></pre><ul>
+<li>保存数组（保存多条）</li>
+</ul>
+<pre><code>db.infos.insert([
+    {&quot;url&quot;:&quot;wx.zrlee.cn&quot;},
+    {&quot;url&quot;:&quot;py.zrlee.cn&quot;}
+])
+</code></pre><h2 id="1-3数据查询"><a href="#1-3数据查询" class="headerlink" title="1.3数据查询"></a>1.3数据查询</h2><p>首先对于数据的查询操作核心的语法：“db.集合名称.find({查询条件} [,{设置显示的字段}])”。</p>
+<ul>
+<li>查出名字为zrlee的emp<pre><code>db.emp.find({&quot;ename&quot;:&quot;zrlee&quot;}).pretty()
+</code></pre></li>
+</ul>
+<p>对于设置的显示字段严格来讲就称为数据的投影操作，如果不需要显示的字段设置“0”，而需要显示的字段设置“1”</p>
+<ul>
+<li>不想显示“_id”<pre><code>db.emp.find({&quot;ename&quot;:&quot;zrlee&quot;}, {&quot;_id&quot;:0}).pretty()
+</code></pre></li>
+<li>查询单个数据<pre><code>db.emp.findOne({&quot;ename&quot;:&quot;zrlee&quot;}, {&quot;_id&quot;:0}).pretty()
+</code></pre></li>
+</ul>
+<h2 id="1-4-关系运算"><a href="#1-4-关系运算" class="headerlink" title="1.4 关系运算"></a>1.4 关系运算</h2><p>在MongoDB里面支持的关系查询操作：大于（$gt）、小于（$lt）、大于等于（$gte）、小于等于（$lte）、不等于（$ne）、等于（key:value、$eq）。但是要想让这些操作可以正常使用，那么需要准备出一个数据集合。</p>
+<ul>
+<li>定义一个学生信息集合</li>
+</ul>
+<pre><code>db.students.insert({&quot;name&quot;:&quot;aa&quot;, &quot;sex&quot;:&quot;1&quot;, &quot;age&quot;:19,&quot;score&quot;:89})
+
+db.students.insert({&quot;name&quot;:&quot;bb&quot;, &quot;sex&quot;:&quot;0&quot;, &quot;age&quot;:20,&quot;score&quot;:67})
+
+db.students.insert({&quot;name&quot;:&quot;cc&quot;, &quot;sex&quot;:&quot;1&quot;, &quot;age&quot;:21,&quot;score&quot;:76})
+</code></pre><ul>
+<li><p>查询名字是aa的信息</p>
+<pre><code>db.students.find({&quot;name&quot;:&quot;aa&quot;}).pretty()
+</code></pre></li>
+<li><p>查询年龄大于20岁的学生</p>
+<pre><code>db.students.find({&quot;age&quot;: {&quot;$gt&quot;:20} }).pretty()
+</code></pre></li>
+<li><p>查询成绩大于等于70分的学生</p>
+</li>
+</ul>
+<pre><code>db.students.find({&quot;score&quot;: {&quot;$gte&quot;:70} }).pretty()
+</code></pre><ul>
+<li>查询名字不是aa的信息<pre><code>db.students.find({&quot;name&quot;: {&quot;$ne&quot;:&quot;aa&quot;} }).pretty()
+</code></pre></li>
+</ul>
+<h2 id="1-5-逻辑运算"><a href="#1-5-逻辑运算" class="headerlink" title="1.5 逻辑运算"></a>1.5 逻辑运算</h2><p>逻辑运算主要就是三种类型：与（$and）、或（$or）、非（$not、$nor）。</p>
+<ul>
+<li><p>查询年龄在20 ~ 21岁的学生信息</p>
+<pre><code>db.students.find({
+  &quot;age&quot;:{
+      &quot;$gte&quot;:20,
+      &quot;$lte&quot;:21
+      }
+}).pretty()
+</code></pre><p>或者是这样</p>
+<pre><code>db.students.find({
+  &quot;$and&quot;:[
+      {&quot;age&quot;:{&quot;$gte&quot;:20}},
+      {&quot;age&quot;:{&quot;$lte&quot;:21}}
+  ]
+}).pretty()
+</code></pre></li>
+<li><p>查询年龄大于19岁，或者成绩大于70分的学生信息</p>
+</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;$or&quot;:[
+        {&quot;age&quot;:{&quot;$gt&quot;:19}},
+        {&quot;score&quot;:{&quot;$gt&quot;:70}}
+    ]
+}).pretty()
+</code></pre><h2 id="1-6-范围查询"><a href="#1-6-范围查询" class="headerlink" title="1.6 范围查询"></a>1.6 范围查询</h2><p>只要是数据库，必须存在有“$in”（在范围之中）、“$nin”（不在范围之中）。</p>
+<ul>
+<li>查询姓名是“aa”、“bb”的students信息</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;name&quot;:{
+        &quot;$in&quot;:[&quot;aa&quot;, &quot;bb&quot;]
+    }
+}).pretty()
+</code></pre><ul>
+<li>不在范围</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;name&quot;:{
+        &quot;$nin&quot;:[&quot;aa&quot;, &quot;bb&quot;]
+    }
+}).pretty()
+</code></pre><h2 id="1-7-数组查询"><a href="#1-7-数组查询" class="headerlink" title="1.7 数组查询"></a>1.7 数组查询</h2><p>首先在mongoDB里面是支持数组保存的，一旦支持了数组保存，就需要针对于数组的数据进行匹配。</p>
+<ul>
+<li>先保存一部分数组内容测试</li>
+</ul>
+<pre><code>db.students.insert({&quot;name&quot;:&quot;A&quot;,&quot;sex&quot;:1,&quot;score&quot;:99,&quot;course&quot;:[&quot;python&quot;,&quot;java&quot;,&quot;php&quot;]})
+db.students.insert({&quot;name&quot;:&quot;B&quot;,&quot;sex&quot;:0,&quot;score&quot;:80,&quot;course&quot;:[&quot;python&quot;,]})
+db.students.insert({&quot;name&quot;:&quot;C&quot;,&quot;sex&quot;:1,&quot;score&quot;:78,&quot;course&quot;:[&quot;python&quot;,&quot;php&quot;]})
+db.students.insert({&quot;name&quot;:&quot;D&quot;,&quot;sex&quot;:0,&quot;score&quot;:56,&quot;course&quot;:[&quot;php&quot;,]})
+db.students.insert({&quot;name&quot;:&quot;E&quot;,&quot;sex&quot;:1,&quot;score&quot;:76,&quot;course&quot;:[&quot;java&quot;,&quot;php&quot;]})
+</code></pre><p>此时的数据包含有数组内容，而后需要针对于数组数据进行判断，可以使用几个运算符：$all、$size、$slice、$elemMatch。</p>
+<ul>
+<li><p>查询同时参加python和php学课程的学生<br>·现在两个数组内容都需要保存，所以使用“{“$all”,[内容1,内容2,..]}”</p>
+<pre><code>db.students.find({
+  &quot;course&quot;:{&quot;$all&quot;:[&quot;python&quot;,&quot;php&quot;]}
+}).pretty()
+</code></pre></li>
+<li><p>要求查询出只参加两门课程的学生<br>·使用“$size”来进行数量的控制。</p>
+</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;course&quot;:{&quot;$size&quot;:2}
+}).pretty()
+</code></pre><ul>
+<li>查询具有course成员的数据</li>
+</ul>
+<pre><code>db.students.find({
+    &quot;course&quot;:{&quot;$exists&quot;:true}
+}).pretty()
+</code></pre><h2 id="1-8-条件过滤"><a href="#1-8-条件过滤" class="headerlink" title="1.8 条件过滤"></a>1.8 条件过滤</h2><p>实际上习惯于传统关系型数据库开发的我们对于数据的筛选，可能首先想到的一定是where子句，所以在MongoDB里面也提供有“$where”</p>
+<ul>
+<li>使用where进行数据查询<pre><code>db.students.find({
+  &quot;$where&quot;:&quot;this.age &gt; 20&quot;
+}).pretty()
+</code></pre>或者<br>```<br>db.students.find(“this.age &gt; 20”).pretty()</li>
+</ul>
+<pre><code>
+- 正则运算 （模糊查询）
+如果要想实现模糊查询，那么必须使用正则表达式，而且正则表达式使用的是语言Perl兼容的正则表达式的形式。如果要想实现正则使用，则按照如下的定义格式：
+
+·基础语法：{key : 正则标记}；
+
+·完整语法：{key : {&quot;$regex&quot; : 正则标记 , &quot;$options&quot; : 选项}}。
+
+|- 对于options主要是设置正则的信息查询的标记：
+
+|- “i”：忽略字母大小写；
+
+|- “m”多行查找；
+
+|- “x”：空白字符串除了被转义的或在字符类中意外的完全被忽略；
+
+|- “s”：匹配所有的字符（圆点、“.”），包括换行内容。
+
+|- 需要注意的是，如果是直接使用（javascript）那么只能够使用i和m，而“x”和“s”必须使用“$regex”。
+
+- 查询姓名有字母a
+</code></pre><p>db.students.find({“name”:/a/i}).pretty()</p>
+<pre><code>
+## 1.9 数据排序
+在MongoDB里面数据的排序操作使用“sort()”函数，在进行排序的时候可以有两个顺序：升序（1）、降序（-1）。
+</code></pre><p>db.students.find().sort({“score”:1}).pretty()</p>
+<pre><code>
+## 1.10 数据分页显示
+在MongoDB里面的数据分页显示也是符合于大数据要求的操作函数：
+
+· skip(n)：表示跨过多少数据行；
+
+· limit(n)：取出的数据行的个数限制。
+
+- 范例：分页显示（第一页，skip(0)、limit(2)）
+</code></pre><p>db.students.find().skip(0).limit(2).sort({“score”:1}).pretty()</p>
+<pre><code>
+- 范例：分页显示（第二页，skip(1)、limit(2)）
+</code></pre><p>db.students.find().skip(1).limit(2).sort({“score”:1}).pretty()</p>
+<h1 id="2-数据更新操作"><a href="#2-数据更新操作" class="headerlink" title="2. 数据更新操作"></a>2. 数据更新操作</h1><p>对于MongoDB而言，数据的更新基本上是一件很麻烦的事情，如果在实际的工作之中，真的具有此类的操作支持，那么最好的做法，在MongoDB里面对于数据的更新操作提供了两类函数：save()、update()。</p>
+<h2 id="2-1-函数的基本使用"><a href="#2-1-函数的基本使用" class="headerlink" title="2.1 函数的基本使用"></a>2.1 函数的基本使用</h2><p>如果要修改数据最直接的使用函数就是update()函数，但是这个函数的语法要求很麻烦：</p>
+<p>·语法：db.集合.update(更新条件 , 新的对象数据（更新操作符） , upsert , multi)；</p>
+<p>|- upsert：如果要更新的数据不存在，则增加一条新的内容（true为增加、false为不增加）；</p>
+<p>|- multi：表示是否只更新满足条件的第一行记录，如果设置为false，只更新第一条，如果是true全更新。</p>
+<ul>
+<li>更新存在的数据——将年龄是19岁的人的成绩都更新为100分</li>
+</ul>
+<pre><code>// 第一个false 是upsert 第二个是multi
+db.students.update({&quot;age&quot;:19},{&quot;$set&quot;:{&quot;score&quot;:100}}, false , false)
+</code></pre><p>– 更新不存在的数据</p>
+<pre><code>db.students.update({&quot;age&quot;:19},{&quot;$set&quot;:{&quot;name&quot;:&quot;不存在的&quot;}}, true , false)
+</code></pre><h2 id="2-2-修改器"><a href="#2-2-修改器" class="headerlink" title="2.2 修改器"></a>2.2 修改器</h2><p>对MongoDB数据库而言，数据的修改会牵扯到内容的变更、结构的变更（包含有数组），所以在进行MongoDB设计的时候就提供有一系列的修改器的应用，那么像之前使用的“$set”就是一个修改器。</p>
+<p>1、 $inc：主要针对于一个数字字段，增加某个数字字段的数据内容；</p>
+<p>·语法：{“$inc” : {“成员” : 内容}}</p>
+<ul>
+<li>将所有年龄为19岁的学生成绩一律减少30分<pre><code>db.students.update({&quot;age&quot;:19}, {&quot;$inc&quot;:{&quot;score&quot;:-30}})
+</code></pre></li>
+</ul>
+<p>2、 $set：进行内容的重新设置；</p>
+<p>·语法：{“$set” : {“成员” : “新内容”}}；</p>
+<ul>
+<li>将年龄是20岁的人的成绩修改为89</li>
+</ul>
+<pre><code>db.students.update({&quot;age&quot;:19}, {&quot;$set&quot;:{&quot;score&quot;:89}})
+</code></pre><p>3、 $unset：删除某个成员的内容；</p>
+<p>·语法：{“$unset” : {“成员” : 1}}</p>
+<p>-范例：删除“aa”的年龄与成绩信息</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;aa&quot;}, {&quot;$unset&quot;:{&quot;score&quot;:1,&quot;age&quot;:1}})
+执行之后指定的成员内容就消失了。
+</code></pre><p>4、 $push：相当于将内容追加到指定的成员之中（基本上是数组）；</p>
+<p>·语法：${“$push” : {成员 : value}}<br>向“E”里面的课程追加一个“python”</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;E&quot;}, {&quot;$push&quot;:{&quot;course&quot;:&quot;python&quot;}})
+</code></pre><p>就是进行数组数据的添加操作使用的，如果没有数组则进行一个新的数组的创建，如果有则进行内容的追加。</p>
+<p>5、 $pushAll：与“$push”是类似的，可以一次追加多个内容到数组里面；</p>
+<p>·语法：${“$pushAll” : {成员 : 数组内容}}</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;E&quot;}, {&quot;$push&quot;:{&quot;course&quot;:[&quot;python&quot;,&quot;java&quot;]}})
+</code></pre><p>6、 $addToSet：向数组里面增加一个新的内容，只有这个内容不存在的时候才会增加；</p>
+<p>·语法：{“$addToSet” : {成员 : 内容}}</p>
+<pre><code>db.students.update({&quot;name&quot;:&quot;bb&quot;}, {&quot;$addToSet&quot;:{&quot;course&quot;:&quot;python&quot;}})
+</code></pre><h1 id="3-删除数据"><a href="#3-删除数据" class="headerlink" title="3. 删除数据"></a>3. 删除数据</h1><p>在MongoDB里面数据的删除实际上并不复杂，只需要使用“remove()”函数就可以了。</p>
+<p>但是在这个函数是有两个可选项：</p>
+<p>·删除条件：满足条件的数据被删除；</p>
+<p>·是否只删除一个数据，如果设置为true或者是1表示只删除一个。</p>
+<ul>
+<li>清空infos集合中的内容</li>
+</ul>
+<pre><code>db.infos.remove({})
+</code></pre><ul>
+<li>删除所有姓名里面带有“a”的信息，默认情况下会全部删除</li>
+</ul>
+<pre><code>db.students.remove({&quot;name&quot;:/a/})
+</code></pre><ul>
+<li>删除所有姓名里面带有“a”的信息，只删除一个<pre><code>db.students.remove({&quot;name&quot;:/a/}，true)
+</code></pre>删除操作里面依然需要使用限定查询的相关操作内容。<h1 id="4-游标"><a href="#4-游标" class="headerlink" title="4.游标"></a>4.游标</h1>所谓的游标就是指的数据可以一行行的进行操作，非常类似于ResultSet数据处理。在MongoDB数据库里面对于游标的控制非常的简单，只需要使用find()函数就可以返回游标了。对于返回的游标如果要想进行操作，使用两个函数：</li>
+</ul>
+<p>·判断是否有下一行数据：hasNext()；</p>
+<p>·取出当前数据：next()；</p>
+<pre><code>var cursor = db.emp.find()
+cursor.hasNext()
+cursor.next()
+</code></pre><p>实际上使用find()函数查询出来返回回来的就是一个游标的对象</p>
+<ul>
+<li>使用循环进行游标的操作<pre><code>var cursor = db.emp.find()
+while(cursor.hasNext()){
+  var doc = cursor.next()
+  print(doc.ename)
+}
+</code></pre></li>
+</ul>
+<p>相当于每一个数据都单独拿出来进行逐行的控制。当游标数据取出来之后，实际上每行数据返回的都是一个Object型的内容，那么如果需要将数据按照json的形式出现，则可以使用printjson()函数完成。</p>
+<ul>
+<li>例如</li>
+</ul>
+<pre><code>var cursor = db.emp.find()
+while(cursor.hasNext()){
+    var doc = cursor.next()
+    printjson(doc)
+}
+</code></pre><h1 id="5-索-引"><a href="#5-索-引" class="headerlink" title="5.索 引"></a>5.索 引</h1><h2 id="5-1-唯一索引"><a href="#5-1-唯一索引" class="headerlink" title="5.1 唯一索引"></a>5.1 唯一索引</h2><p>唯一索引的主要目的是用在某一个字段上，使该字段的内容不重复。</p>
+<ul>
+<li>name字段 创建唯一索引</li>
+</ul>
+<pre><code>db.students.ensureIndex({&quot;name&quot;:1}, {&quot;unique&quot;:true})
+</code></pre><ul>
+<li>查看表的索引<pre><code>db.studnets.getIndexes()
+</code></pre></li>
+<li>删索引</li>
+</ul>
+<pre><code>db.students.dropIndexes()
+</code></pre><h2 id="5-2-过期索引"><a href="#5-2-过期索引" class="headerlink" title="5.2 过期索引"></a>5.2 过期索引</h2><p>在一些程序站点会出现若干秒之后信息被删除的情况，例如：手机信息验证码，那么在MongoDB里面就可以轻松的实现过期索引，但是这个时间往往不怎么准确。</p>
+<ul>
+<li><p>范例：设置过期索引</p>
+<pre><code>db.logsinfo.ensureIndex({&quot;time&quot;:1}, {&quot;expireAfterSeconds&quot;:10})
+</code></pre></li>
+<li><p>如果要想实现过期索引，需要保存一个时间信息；</p>
+<pre><code>db.logsinfo.insert({&quot;name&quot;:&quot;zrlee&quot;, &quot;time&quot;:new Date()})
+</code></pre><p>等到10秒以后（永远不会那么准确）所保存的数据就会消失。这样的特性在进行一些临时数据保存的时候非常有帮助，最早如果没有MongoDB这种特性，而只是使用最简单的关系型数据库开发，那么是非常麻烦的<br>q</p>
+<h1 id="5-3-全文索引"><a href="#5-3-全文索引" class="headerlink" title="5.3 全文索引"></a>5.3 全文索引</h1><p>在一些信息管理平台上经常需要进行信息模糊查询，最早的时候是利用了某个字段上实现的模糊查询，但是这个时候返回的信息并不会很准确，因为只能够查A字段或者是B字段，而在MongoDB里面实现了非常简单的全文检索</p>
+</li>
+<li><p>定义一个新的集合</p>
+</li>
+</ul>
+<pre><code>db.news.insert({&quot;title&quot;:&quot;https://wx.zrlee.cn&quot;, &quot;content&quot;:&quot;wx&quot;})
+db.news.insert({&quot;title&quot;:&quot;http://py.zrlee.cn&quot;, &quot;content&quot;:&quot;python&quot;})
+db.news.insert({&quot;title&quot;:&quot;http://www.zrlee.cn&quot;, &quot;content&quot;:&quot;www&quot;})
+db.news.insert({&quot;title&quot;:&quot;http://blog.zrlee.cn&quot;, &quot;content&quot;:&quot;blog&quot;})
+</code></pre><ul>
+<li>设置全文检索</li>
+</ul>
+<pre><code>db.news.ensureIndex({&quot;title&quot;:&quot;text&quot;, &quot;content&quot;:&quot;text&quot;})
+</code></pre><ul>
+<li>实现数据的模糊查询<br>如果要想表示出全文检索，则使用“$text”判断符，而要想进行数据的查询则使用“$search”运算符：</li>
+</ul>
+<p>|- 查询指定关键字：{“$search” : “查询关键字”}；</p>
+<p>|- 查询多个关键字（或关系）：{“$search” : “查询关键字查询关键字 …”}；(使用空格隔开)</p>
+<p>|- 查询多个关键字（与关系）：{“$search” : “\”查询关键字\” \”查询关键字\”…”}</p>
+<p>|- 查询多个关键字（排除某一个）：{“$search” : “查询关键字查询关键字 … -排除关键字”}</p>
+<ul>
+<li><p>查询单个内容</p>
+<pre><code>db.news.find({&quot;$text&quot;: {&quot;$search&quot;:&quot;https&quot;}})
+</code></pre></li>
+<li><p>查询包含”wx” 或者 “py” 的内容</p>
+<pre><code>db.news.find({&quot;$text&quot;:{&quot;$search&quot;:&quot;wx py&quot;}}).pretty()
+</code></pre></li>
+<li><p>查询同时存在”https” 与 “python”</p>
+<pre><code>db.news.find({&quot;$text&quot;:{&quot;$search&quot;:&quot;\&quot;https\&quot; \&quot;zrlee.cn\&quot;&quot;}}).pretty()
+</code></pre></li>
+<li><p>查询有zrlee.cn但是没有“https”</p>
+<pre><code>db.news.find({&quot;$text&quot;:{&quot;$search&quot;:&quot;\&quot;zrlee.cn\&quot; -https&quot;}}).pretty()
+</code></pre></li>
+</ul>
+<h2 id="5-4-地理信息索引"><a href="#5-4-地理信息索引" class="headerlink" title="5.4 地理信息索引"></a>5.4 地理信息索引</h2><p>地理信息索引分为两类：2D平面索引，另外就是2DSphere球面索引。在2D索引里面基本上能够保存的信息都是坐标，而且坐标保存的就是经纬度坐标。</p>
+<ul>
+<li>创建商铺集合保存经纬度的信息</li>
+</ul>
+<pre><code>db.shop.insert({&quot;loc&quot;:[10,10]})
+db.shop.insert({&quot;loc&quot;:[11,11]})
+db.shop.insert({&quot;loc&quot;:[10,11]})
+db.shop.insert({&quot;loc&quot;:[13,15]})
+db.shop.insert({&quot;loc&quot;:[12,12]})
+db.shop.insert({&quot;loc&quot;:[16,16]})
+</code></pre><ul>
+<li>为shop的集合定义2D索引</li>
+</ul>
+<pre><code>db.shop.ensureIndex({&quot;loc&quot;:&quot;2d&quot;})
+</code></pre><p>这个时候shop集合就可以实现坐标位置的查询了，而要进行查询有两种查询方式：</p>
+<p>·“$near”查询，查询距离某个点最近的坐标点；</p>
+<p>·“$geoWithin”查询：查询某个形状内的点；</p>
+<ul>
+<li>假设我的位置是[11,11] 查询附近的店设置一个距离范围—— 3个点内的（不设置默认返回100条信息）<pre><code>db.shop.find({&quot;loc&quot;:{&quot;$near&quot;:[11,11],&quot;$maxDistance&quot;:3}})
+</code></pre></li>
+</ul>
+<p>但是需要注意一点，在2D索引里面虽然支持最大距离，但是不支持最小距离。</p>
+<p>但是也可以设置一个查询的范围，使用“$geoWithin”查询，而可以设置的范围：</p>
+<p>·矩形范围（$box）：{“$box”:[[x1,y1],[x2,y2]]}；</p>
+<p>·圆形范围（$center）：{“$center” : [[x1,y1],r]}；</p>
+<p>·多边型（$polygon）：{“$polygon” :[[x1,y1],[x2,y2][x3,y3] , …]}</p>
+<ul>
+<li>范例：查询矩形<pre><code>db.shop.find({&quot;loc&quot;:{&quot;geoWithin&quot;:{&quot;$box&quot;:[ [10,10],[12,12] ]}}}).pretty()
+</code></pre></li>
+</ul>
+<blockquote>
+<p>其他的形状类似的语法</p>
+</blockquote>
+<h1 id="6-聚合框架"><a href="#6-聚合框架" class="headerlink" title="6. 聚合框架"></a>6. 聚合框架</h1><h2 id="6-1-group"><a href="#6-1-group" class="headerlink" title="6.1 $group"></a>6.1 $group</h2><p>group主要进行分组的数据操作<br>_id 是分组的依据字段</p>
+<ul>
+<li>按照部门编号来进行分组 统计每个部门的员工人数</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;: {&quot;_id&quot;:&quot;$deptno&quot;, &quot;dcount&quot;:{&quot;$sum&quot;: 1}}}])
+</code></pre><ul>
+<li>按照部门编号分组 统计每个部门下员工的平均工资<pre><code>db.emps.aggregate([{&quot;$group&quot;: {&quot;_id&quot;:&quot;$deptno&quot;, &quot;sal_avg&quot;:{&quot;$avg&quot;: &quot;$sal&quot;}}}])
+</code></pre></li>
+</ul>
+<ul>
+<li>按照部门编号分组 统计每个部门下员工的平均工资,最高工资，最低工资</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;: {
+    &quot;_id&quot;:&quot;$deptno&quot;,
+    &quot;sal_avg&quot;:{&quot;$avg&quot;: &quot;$sal&quot;}
+    }}])
+</code></pre><ul>
+<li>找出每个部门下员工的姓名 按照数组的形式保存数据</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;:{
+    &quot;_id&quot;:&quot;$deptno&quot;,
+    &quot;name_list&quot;:{
+        &quot;$push&quot;:&quot;$name&quot;
+    }
+}}])
+</code></pre><p>使用“$push”的确可以将数据变为数组进行保存，但是有一个问题出现了，重复的内容也会进行保存，那么在MongoDB里面提供有取消重复的设置。<br>如果不想增加重复的内容只需要把”$push”换成”$addToSet”</p>
+<ul>
+<li>保存第一个内容</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$group&quot;:{
+    &quot;_id&quot;:&quot;$deptno&quot;,
+    &quot;ename&quot;:{
+        &quot;$first&quot;:&quot;$name&quot;
+    }
+}}])
+</code></pre><p>同理 如果想要保存最后一条数据 则需要把”$first” 换成”$last”即可 操作一样不作演示</p>
+<p>虽然可以方便的实现分组处理，但是有一点需要注意，所有的分组数据是无序的，并且都是在内存之中完成的，所以不可能支持大数据量</p>
+<h2 id="6-2-project"><a href="#6-2-project" class="headerlink" title="6.2 $project"></a>6.2 $project</h2><p>可以利用“$project”来控制数据列的显示规则，那么可以执行的规则如下：</p>
+<p>|- 普通列（{成员 : 1 | true}）：表示要显示的内容；</p>
+<p>|- “_id”列（{“_id” : 0 | false}）：表示“_id”列是否显示；</p>
+<p>|- 条件过滤列（{成员 : 表达式}）：满足表达式之后的数据可以进行显示。</p>
+<ul>
+<li>例如只显示 员工姓名 工资 不显示id</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$project&quot;:{
+    &quot;_id&quot;:0,
+    &quot;name&quot;:1,
+    &quot;sal&quot;:1
+}}])
+</code></pre><p>此时只有设置进去的列才可以被显示出来，而其它的列不能够被显示出来。实际上这就属于数据库的投影机制。</p>
+<p>实际上在进行数据投影的过程里面也支持四则运算：加法（“$add”）、减法（“$subtract”）、乘法（“$multiply”）、除法（“$divide”）、求模（$mod）</p>
+<ul>
+<li>统计员工的年薪</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$project&quot;:{
+    &quot;_id&quot;:0,
+    &quot;name&quot;:1,
+    &quot;sal&quot;:{&quot;年薪&quot;:{&quot;$multiply&quot;:[&quot;$sal&quot;,12]}}
+}}])
+</code></pre><p>·关系运算：大小比较（“$cmp”）、等于（“$eq”）、大于（“$gt”）、大于等于（“$gte”）、小于（“$lt”）、小于等于（“$lte”）、不等于（“$ne”）、判断NULL（“$ifNull”），这些返回的结果都是布尔型数据；</p>
+<p>·逻辑运算：与（“$and”）、或（“$or”）、非（“$not”）；</p>
+<p>·字符串操作：连接（“$concat”）、截取（“$substr”）、转小写（“$toLower”）、转大写（“toUpper”）、不区分大小写比较（“$strcasecmp”）。</p>
+<h2 id="6-3-match"><a href="#6-3-match" class="headerlink" title="6.3 $match"></a>6.3 $match</h2><p>“$match”是一个滤波操作，就是进行WHERE的过滤。</p>
+<ul>
+<li>范例：查询工资在5000 ~8000的雇员</li>
+</ul>
+<pre><code>db.emps.aggregate([{&quot;$match&quot;:{
+    &quot;sal&quot;:{&quot;$gte&quot;:5000, &quot;$lt&quot;:8000}
+}}])
+</code></pre><ul>
+<li>控制投影操作<pre><code>db.emps.aggregate([
+  {
+  &quot;$match&quot;:{
+      &quot;sal&quot;:{&quot;$gte&quot;:5000, &quot;$lt&quot;:8000}
+      }
+  },
+  {
+  &quot;$project&quot;:{&quot;_id&quot;:0, &quot;sal&quot;:1, &quot;name&quot;:1}    
+  }
+])
+</code></pre></li>
+</ul>
+<h2 id="6-4-sort"><a href="#6-4-sort" class="headerlink" title="6.4 $sort"></a>6.4 $sort</h2><p>使用“$sort”可以实现排序，设置1表示升序，设置-1表示降序</p>
+<ul>
+<li>按工资降序排序</li>
+</ul>
+<pre><code>db.emps.aggregate([
+    {&quot;$sort&quot;:{&quot;sal&quot;:-1}}
+])
+</code></pre><h2 id="6-5-分页处理：-limit、-skip"><a href="#6-5-分页处理：-limit、-skip" class="headerlink" title="6.5 分页处理：$limit、$skip"></a>6.5 分页处理：$limit、$skip</h2><p>“$limit”：负责数据的取出个数；</p>
+<p>“$skip”：数据的跨过个数。</p>
+<pre><code>db.emps.aggregate([
+    {&quot;$project&quot;:{&quot;_id&quot;:0, &quot;name&quot;:1, &quot;sal&quot;:1}},
+    {&quot;$skip&quot;:2},
+    {&quot;$limit&quot;:2}
+])
+</code></pre><p>先使用skip再使用limit</p>
+<h2 id="5-6-unwind"><a href="#5-6-unwind" class="headerlink" title="5.6$unwind"></a>5.6$unwind</h2><p>在查询数据的时候经常会返回数组信息，但是数组并不方便信息的浏览，所以提供有“$unwind”可以将数组数据变为独立的字符串内容。</p>
+<ul>
+<li>范例：添加一些信息</li>
+</ul>
+<pre><code>db.depts.insert({&quot;dname&quot;:&quot;财务部&quot;,&quot;bus&quot;:[&quot;工资&quot;, &quot;税收&quot;]})
+db.depts.insert({&quot;dname&quot;:&quot;技术部&quot;,&quot;bus&quot;:[&quot;生产&quot;, &quot;研发&quot;, &quot;测试&quot;]})
+</code></pre><p>-范例：将信息进行转化</p>
+<pre><code>db.depts.aggregate([
+    {&quot;$project&quot;:{&quot;dname&quot;:1 , &quot;bus&quot;:1}},
+    {&quot;$unwind&quot;:&quot;$bus&quot;}
+])
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mongodb/" rel="tag"># mongodb</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/03/mongodb_install/" rel="next" title="MongoDB的安装与配置">
+                <i class="fa fa-chevron-left"></i> MongoDB的安装与配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/05/mongodb_python交互/" rel="prev" title="MongoDB Python 交互">
+                MongoDB Python 交互 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://wx.zrlee.cn/img/me.png"
+               alt="zrlee" />
+          <p class="site-author-name" itemprop="name">zrlee</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zrleecn" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="Facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  Facebook
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="微信">
+                  
+                    <i class="fa fa-fw fa-wechat"></i>
+                  
+                  微信
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://resume.zrlee.cn" target="_blank" title="qq">
+                  
+                    <i class="fa fa-fw fa-qq"></i>
+                  
+                  qq
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com/zrleecn" title="Github" target="_blank">Github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://zrleecn.github.io/" title="Blog" target="_blank">Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://resume.zrlee.cn" title="Resume" target="_blank">Resume</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-MongoDB的基础操作"><span class="nav-number">1.</span> <span class="nav-text">1.MongoDB的基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-基本的操作"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 基本的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2数据操作"><span class="nav-number">1.2.</span> <span class="nav-text">1.2数据操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3数据查询"><span class="nav-number">1.3.</span> <span class="nav-text">1.3数据查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-关系运算"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 关系运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-逻辑运算"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 逻辑运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-范围查询"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 范围查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-数组查询"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 数组查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8-条件过滤"><span class="nav-number">1.8.</span> <span class="nav-text">1.8 条件过滤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-数据更新操作"><span class="nav-number">2.</span> <span class="nav-text">2. 数据更新操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-函数的基本使用"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 函数的基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-修改器"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 修改器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-删除数据"><span class="nav-number">3.</span> <span class="nav-text">3. 删除数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-游标"><span class="nav-number">4.</span> <span class="nav-text">4.游标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-索-引"><span class="nav-number">5.</span> <span class="nav-text">5.索 引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-唯一索引"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 唯一索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-过期索引"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 过期索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-3-全文索引"><span class="nav-number">6.</span> <span class="nav-text">5.3 全文索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-地理信息索引"><span class="nav-number">6.1.</span> <span class="nav-text">5.4 地理信息索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-聚合框架"><span class="nav-number">7.</span> <span class="nav-text">6. 聚合框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-group"><span class="nav-number">7.1.</span> <span class="nav-text">6.1 $group</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-project"><span class="nav-number">7.2.</span> <span class="nav-text">6.2 $project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-match"><span class="nav-number">7.3.</span> <span class="nav-text">6.3 $match</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-sort"><span class="nav-number">7.4.</span> <span class="nav-text">6.4 $sort</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-分页处理：-limit、-skip"><span class="nav-number">7.5.</span> <span class="nav-text">6.5 分页处理：$limit、$skip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-unwind"><span class="nav-number">7.6.</span> <span class="nav-text">5.6$unwind</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  <a href="http://gdcainfo.miitbeian.gov.cn/state/outPortal/loginPortal.action">
+	 粤ICP备16075339号-1
+	 </a>
+	
+  
+  &copy; 2015-
+  <span itemprop="copyrightYear">2018 hexo 版权所有 </span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zrlee</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+<script>
+	
+		hljs.initHighlightingOnLoad();
+	hljs.configure({
+  classPrefix: 'hljs-'
+});
+
+
+</script>
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
